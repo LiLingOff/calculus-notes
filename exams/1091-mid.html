@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1091 期中考詳解</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/math.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+<p class="back"><a href="../index.html">← 目錄</a></p>
+<h1>109 學年第 1 學期　微積分 1 期中考</h1>
+<p class="subtitle">模組 13–17 班，官方解答改寫成詳解</p>
+
+<div class="erratum">
+<p><span class="tag">官方解答錯誤</span>兩處：</p>
+<ol>
+<li>第 4(a) 題：最後寫 $y'=2$，應為 $y'=-2$（由 $y'+8+3y'=0$ 解出）。後面 (b)(c) 用的都是 $-2$，只是筆誤。</li>
+<li>第 7(c) 題：凹向區間沒有扣掉定義域外的點。官方寫凹口向上 $(\frac14,\infty)$、向下 $(-\infty,\frac14)$，但 $x=1$、$x=-\frac12$ 不在定義域。應為凹口向上 $(\frac14,1)$、$(1,\infty)$；凹口向下 $(-\infty,-\frac12)$、$(-\frac12,\frac14)$。</li>
+</ol>
+</div>
+
+<p>每題下方灰字是對應的<a href="../index.html">主題複習路線</a>段號和講義小節。標<span class="lv">超出範圍</span>的是講義沒教的工具，看懂就好。這份考卷第 5 題指定用羅必達，講義規定考試不能用，整題列為超出範圍，但 (a)(b) 另外附上講義範圍內的做法。</p>
+
+<!-- ================================================================ -->
+<h2 id="q1">第 1 題　求極限（15%）</h2>
+
+<section class="q" id="q1a">
+<p class="problem"><span class="tag">1(a)</span>$\displaystyle\lim_{x\to-\infty}\frac{2e^x+5}{3-e^x}$（5%）</p>
+<p class="topic">主題 5 無窮極限與漸近線｜<a href="../week02/index.html#s2-5">§2.5</a>（講義<a href="../week02/index.html#q27">週二題 27</a>）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：$x\to-\infty$ 時 $e^x\to0$。分子分母的極限都存在、分母不為 $0$，直接代。</p>
+$$\lim_{x\to-\infty}\frac{2e^x+5}{3-e^x}=\frac{2\cdot0+5}{3-0}$$
+<p class="ans">$\dfrac53$</p>
+<p>官方給分：答案 3 分、寫出 $e^x\to0$ 2 分。用羅必達扣 5 分（這題也不是不定型，根本不能用）。</p>
+</div>
+</section>
+
+<section class="q" id="q1b">
+<p class="problem"><span class="tag">1(b)</span>$\displaystyle\lim_{x\to0^+}\tan^{-1}(1+\ln x)$（5%）</p>
+<p class="topic">主題 2 反三角函數｜<a href="../week01/index.html#s1-5">§1.5</a>　主題 5｜<a href="../week02/index.html#s2-2">§2.2</a> <a href="../week02/index.html#s2-5">§2.5</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：由內往外。$\ln x\to-\infty$，所以 $1+\ln x\to-\infty$；再用 $\tan^{-1}$ 的水平漸近線 $y=-\frac\pi2$。</p>
+<p>令 $y=1+\ln x$，$x\to0^+$ 時 $y\to-\infty$：</p>
+$$\lim_{x\to0^+}\tan^{-1}(1+\ln x)=\lim_{y\to-\infty}\tan^{-1}y=-\frac\pi2$$
+<p class="ans">$-\dfrac\pi2$</p>
+<p>官方給分：答案 3 分、寫出 $\ln x\to-\infty$ 2 分。只畫出 $\tan^{-1}x$ 的圖和水平漸近線但沒做完，給 1 分。</p>
+</div>
+</section>
+
+<section class="q" id="q1c">
+<p class="problem"><span class="tag">1(c)</span>$\displaystyle\lim_{x\to\infty}\left(\frac1e+\frac ex\right)^x$（5%）</p>
+<p class="topic">主題 11 $e$ 的極限（辨認型式）｜<a href="../week05/index.html#s5-4">§5.4</a>　主題 4 夾擠｜<a href="../week02/index.html#s2-4">§2.4</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：長得像 $\left(1+\frac ax\right)^x$，但底趨近 $\frac1e$ 不是 $1$。這<strong>不是</strong> $1^\infty$ 不定型：小於 $1$ 的數一直自乘只會趨近 $0$。</p>
+<p>底數 $\frac1e+\frac ex\to\frac1e\approx0.37$。$x\gt22$ 時 $\frac ex\lt\frac{e}{22}\lt0.13$，所以底數介於 $0$ 和 $\frac12$ 之間：</p>
+$$0\lt\left(\frac1e+\frac ex\right)^x\lt\left(\frac12\right)^x\;\longrightarrow\;0$$
+<p>夾擠得極限為 $0$。</p>
+<p class="ans">$0$</p>
+<div class="remark">
+<p><strong>常見失分</strong>：先把底數取極限得 $\frac1e$，再算 $\left(\frac1e\right)^x\to0$。官方說這種「取兩次極限」又沒說明理由的寫法 0 分。要嘛像上面用夾擠，要嘛取 $\ln$：$x\ln\left(\frac1e+\frac ex\right)$ 中 $\ln(\cdots)\to\ln\frac1e=-1$，乘上 $x\to\infty$ 得 $-\infty$，所以原式 $=e^{-\infty}=0$。官方也接受寫成 $\left(\frac1e\right)^\infty$ 並說明 $a\lt1$ 時 $a^\infty$ 不是不定型。</p>
+</div>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q2">第 2 題　分段函數的連續與可微（15%）</h2>
+<p>$f(x)=\begin{cases}x^{x+1}, & x\gt0\\ 0, & x=0\\ \dfrac{2(1-\cos x)}{x}, & x\lt0\end{cases}$</p>
+
+<section class="q" id="q2a">
+<p class="problem"><span class="tag">2(a)</span>求 $\displaystyle\lim_{x\to0}f(x)$。$f$ 在 $x=0$ 連續嗎？（5%）</p>
+<p class="topic">主題 6 連續性｜<a href="../week03/index.html#s3-1">§3.1</a>　主題 4 三角極限｜<a href="../week02/index.html#s2-4">§2.4</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：分段點要算左右極限。右邊的 $x^{x+1}$ 底 $\to0$、指數 $\to1$，不是不定型；左邊湊 $\frac{\sin x}{x}$。</p>
+<p><strong>右極限</strong>：$x^{x+1}=e^{(x+1)\ln x}$，$(x+1)\ln x\to1\cdot(-\infty)=-\infty$，所以 $x^{x+1}\to0$。</p>
+<p><strong>左極限</strong>：分子分母同乘 $1+\cos x$，用 $1-\cos^2x=\sin^2x$：</p>
+$$\frac{2(1-\cos x)}{x}=\frac{2\sin^2x}{x(1+\cos x)}=\frac{\sin x}{x}\cdot\sin x\cdot\frac{2}{1+\cos x}\;\longrightarrow\;1\cdot0\cdot1=0$$
+<p>左右極限都是 $0$，所以 $\lim_{x\to0}f(x)=0=f(0)$。</p>
+<p class="ans">$\displaystyle\lim_{x\to0}f(x)=0$，$f$ 在 $0$ 連續</p>
+<p>官方給分：左右極限各 2 分，結論 1 分。官方左極限的另解用了羅必達，考試不能用。</p>
+</div>
+</section>
+
+<section class="q" id="q2b">
+<p class="problem"><span class="tag">2(b)</span>求 $\displaystyle\lim_{x\to0}\frac{f(x)-f(0)}{x-0}$。$f$ 在 $x=0$ 可微嗎？（5%）</p>
+<p class="topic">主題 7 導數的定義｜<a href="../week04/index.html#s4-1">§4.1</a>　右側需要 $x\ln x\to0$<span class="lv">超出範圍</span>（講義在 <a href="../week06/index.html#s6-4">§6.4</a> 題 25 用羅必達算過）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：分段點的可微性用定義算左右導數。左邊是講義的標準極限，右邊會變成 $x^x$。</p>
+<p><strong>右導數</strong>：</p>
+$$\lim_{x\to0^+}\frac{x^{x+1}-0}{x}=\lim_{x\to0^+}x^x=\lim_{x\to0^+}e^{x\ln x}$$
+<p>這裡要用 $\displaystyle\lim_{x\to0^+}x\ln x=0$。它是 $0\cdot(-\infty)$ 型，講義只在<a href="../week06/index.html#q25">週六題 25</a> 用羅必達示範過，考試時直接引用即可。於是右導數 $=e^0=1$。</p>
+<p><strong>左導數</strong>：同 (a) 的變形，</p>
+$$\lim_{x\to0^-}\frac{2(1-\cos x)}{x^2}=\lim_{x\to0^-}\left(\frac{\sin x}{x}\right)^2\frac{2}{1+\cos x}=1\cdot1=1$$
+<p>（也就是講義<a href="../week02/index.html#q17">週二題 17</a> 的 $\frac{1-\cos x}{x^2}\to\frac12$ 乘 $2$。）左右導數相等。</p>
+<p class="ans">極限為 $1$，$f$ 在 $0$ 可微，$f'(0)=1$</p>
+</div>
+</section>
+
+<section class="q" id="q2c">
+<p class="problem"><span class="tag">2(c)</span>求 $x\neq0$ 時的 $f'(x)$。（5%）</p>
+<p class="topic">主題 11 對數微分｜<a href="../week05/index.html#s5-4-1">§5.4.1</a>　主題 8 商法則｜<a href="../week04/index.html#s4-5">§4.5</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：$x\gt0$ 那段底和指數都有 $x$，用對數微分；$x\lt0$ 那段用商法則。</p>
+<p><strong>$x\gt0$</strong>：$\ln f=(x+1)\ln x$，兩邊微分（1 分）：</p>
+$$\frac{f'}{f}=\ln x+\frac{x+1}{x}=\ln x+1+\frac1x\;\Longrightarrow\;f'(x)=x^{x+1}\left(\ln x+1+\frac1x\right)$$
+<p><strong>$x\lt0$</strong>：</p>
+$$f'(x)=\frac{2\sin x\cdot x-2(1-\cos x)\cdot1}{x^2}=\frac{2(x\sin x+\cos x-1)}{x^2}$$
+<p class="ans">$f'(x)=\begin{cases}x^{x+1}\left(\ln x+1+\frac1x\right), & x\gt0\\[1mm] \dfrac{2(x\sin x+\cos x-1)}{x^2}, & x\lt0\end{cases}$</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q3">第 3 題　求導數（15%）</h2>
+
+<section class="q" id="q3a">
+<p class="problem"><span class="tag">3(a)</span>$f(x)=e^{\tan x}$，求 $f'(x)$ 與 $f''(x)$。（5%）</p>
+<p class="topic">主題 9 高階導數與連鎖律｜<a href="../week04/index.html#s4-7">§4.7</a> <a href="../week04/index.html#s4-8">§4.8</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：連鎖律求 $f'$；$f''$ 是乘積 $e^{\tan x}\cdot\sec^2x$ 的導數，每個因子都要再用一次連鎖律。</p>
+$$f'(x)=e^{\tan x}\sec^2x$$
+<p>乘法法則，其中 $(\sec^2x)'=2\sec x\cdot\sec x\tan x=2\sec^2x\tan x$：</p>
+$$f''(x)=e^{\tan x}\sec^2x\cdot\sec^2x+e^{\tan x}\cdot2\sec^2x\tan x$$
+<p class="ans">$f'(x)=e^{\tan x}\sec^2x$；$f''(x)=e^{\tan x}\sec^2x\,(\sec^2x+2\tan x)$</p>
+<p>官方給分：$f'$ 的連鎖律 2 分、$(\tan x)'$ 1 分、$f''$ 的乘法法則 1 分、$(\sec^2x)'$ 1 分。</p>
+</div>
+</section>
+
+<section class="q" id="q3b">
+<p class="problem"><span class="tag">3(b)</span>$\dfrac{d}{dx}\left(2^{x^2}+x^{e^x}\right)$（5%）</p>
+<p class="topic">主題 11 對數微分｜<a href="../week05/index.html#s5-4-1">§5.4.1</a>　主題 9｜<a href="../week04/index.html#s4-8">§4.8 $a^x$ 的導數</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：$2^{x^2}$ 底是常數，用 $(a^u)'=a^u\ln a\cdot u'$；$x^{e^x}$ 底和指數都有 $x$，用對數微分（或寫成 $e^{e^x\ln x}$）。</p>
+$$\left(2^{x^2}\right)'=2^{x^2}\ln2\cdot2x$$
+<p>$x^{e^x}=e^{e^x\ln x}$，指數用乘法法則：</p>
+$$\left(x^{e^x}\right)'=x^{e^x}\left(e^x\ln x+\frac{e^x}{x}\right)$$
+<p class="ans">$2\ln2\cdot x\,2^{x^2}+x^{e^x}e^x\left(\ln x+\dfrac1x\right)$</p>
+</div>
+</section>
+
+<section class="q" id="q3c">
+<p class="problem"><span class="tag">3(c)</span>$\dfrac{d}{dx}\left(x\sin^{-1}x+\sqrt{1-x^2}\right)$（5%）</p>
+<p class="topic">主題 10 反三角導數｜<a href="../week05/index.html#s5-2">§5.2</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：$(\sin^{-1}x)'=\dfrac{1}{\sqrt{1-x^2}}$，加上乘法法則和連鎖律。算完兩項會互相抵消。</p>
+$$\left(\sin^{-1}x+\frac{x}{\sqrt{1-x^2}}\right)+\frac{-2x}{2\sqrt{1-x^2}}=\sin^{-1}x$$
+<p class="ans">$\sin^{-1}x$</p>
+<p>答案這麼乾淨不是巧合：出題者是先挑好答案再往回湊題目。算到最後剩一項時，通常代表沒算錯。</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q4">第 4 題　隱函數、線性近似與凹性（12%）</h2>
+<p>在 $(3,8)$ 附近，$3y^{2/3}+xy=36$ 定義函數 $y=f(x)$。這題和講義<a href="../week06/index.html#q2">週六題 2</a> 是同一條曲線。</p>
+
+<section class="q" id="q4a">
+<p class="problem"><span class="tag">4(a)</span>求 $(3,8)$ 處的 $\dfrac{dy}{dx}$，即 $f'(3)$。（4%）</p>
+<p class="topic">主題 10 隱微分｜<a href="../week05/index.html#s5-1">§5.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：隱微分。$y^{2/3}$ 微分後要乘 $y'$，$xy$ 用乘法法則。</p>
+$$3\cdot\frac23y^{-1/3}y'+y+xy'=0\quad\text{即}\quad2y^{-1/3}y'+y+xy'=0\qquad(*)$$
+<p>代 $(3,8)$，$8^{-1/3}=\frac12$：</p>
+$$y'+8+3y'=0\;\Longrightarrow\;y'=-2$$
+<p class="ans">$f'(3)=-2$</p>
+<p>官方解答這裡寫成 $y'=2$，是筆誤（見頁首）。</p>
+</div>
+</section>
+
+<section class="q" id="q4b">
+<p class="problem"><span class="tag">4(b)</span>用線性近似估計 $f(3.01)$。（3%）</p>
+<p class="topic">主題 12 線性近似｜<a href="../week06/index.html#s6-1">§6.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+$$L(x)=f(3)+f'(3)(x-3)=8-2(x-3),\qquad f(3.01)\approx L(3.01)=8-0.02$$
+<p class="ans">$f(3.01)\approx7.98$</p>
+<p>官方給分：寫出 $L(x)$ 的公式、代入數值、算出估計值各 1 分。</p>
+</div>
+</section>
+
+<section class="q" id="q4c">
+<p class="problem"><span class="tag">4(c)</span>求 $(3,8)$ 處的 $\dfrac{d^2y}{dx^2}$。(b) 的估計值比 $f(3.01)$ 大還是小？（5%）</p>
+<p class="topic">主題 15 線性逼近是高估還是低估｜<a href="../week07/index.html#s7-2-1">§7.2.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：對 $(*)$ 再微分一次求 $y''$。$y''\gt0$ 表示凹口向上，切線在曲線下方，線性近似是<strong>低估</strong>。</p>
+<p>對 $(*)$ 每一項微分（$2y^{-1/3}y'$ 是乘積，$xy'$ 也是）：</p>
+$$-\frac23y^{-4/3}(y')^2+2y^{-1/3}y''+y'+\bigl(y'+xy''\bigr)=0$$
+<p>代 $(3,8)$、$y'=-2$：$8^{-4/3}=\frac1{16}$，所以</p>
+$$-\frac23\cdot\frac1{16}\cdot4+y''-4+3y''=0\;\Longrightarrow\;4y''=4+\frac16=\frac{25}6\;\Longrightarrow\;y''=\frac{25}{24}$$
+<p>$y''(3)\gt0$，而且 $y''$ 連續，所以 $x=3$ 附近凹口向上，切線在曲線下方。</p>
+<p class="ans">$\dfrac{d^2y}{dx^2}\Big|_{(3,8)}=\dfrac{25}{24}$；估計值 $7.98$ 比 $f(3.01)$ 小（低估）</p>
+<p>常見失分：微 $y^{-1/3}$ 時漏乘 $y'$，或 $xy'$ 忘了用乘法法則（少一個 $y'$）。</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q5">第 5 題　羅必達法則（15%）</h2>
+<p>題目：對每個極限寫出不定型，並用羅必達法則計算。</p>
+<div class="remark">
+<p><span class="lv">超出範圍</span>本學期講義規定羅必達不考、考試不能用。下面每小題先寫不定型和羅必達解法讓你看懂，(a)(b) 再附上講義範圍內的做法，那才是現在考試要會的。</p>
+</div>
+
+<section class="q" id="q5a">
+<p class="problem"><span class="tag">5(a)</span>$\displaystyle\lim_{x\to0}\frac{\tan^{-1}(x^2)}{1-\cos(3x)}$（5%）</p>
+<p class="topic"><span class="lv">超出範圍</span>羅必達｜講義範圍內的做法：主題 4｜<a href="../week02/index.html#s2-4">§2.4</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>不定型</strong>：分子分母都 $\to0$，$\frac00$ 型。</p>
+<p><strong>羅必達</strong>：</p>
+$$\overset{L}{=}\lim_{x\to0}\frac{\frac{2x}{1+x^4}}{3\sin3x}=\lim_{x\to0}\frac{2}{9(1+x^4)}\cdot\frac{3x}{\sin3x}=\frac29$$
+<p><strong>講義範圍內</strong>：湊兩個標準極限。$\frac{\tan^{-1}u}{u}\to1$（令 $v=\tan^{-1}u$，$\frac{v}{\tan v}\to1$），以及 $\frac{1-\cos u}{u^2}\to\frac12$（<a href="../week02/index.html#q17">週二題 17</a>）：</p>
+$$\frac{\tan^{-1}(x^2)}{1-\cos3x}=\frac{\tan^{-1}(x^2)}{x^2}\cdot\frac{(3x)^2}{1-\cos3x}\cdot\frac19\;\longrightarrow\;1\cdot2\cdot\frac19$$
+<p class="ans">$\dfrac29$</p>
+</div>
+</section>
+
+<section class="q" id="q5b">
+<p class="problem"><span class="tag">5(b)</span>$\displaystyle\lim_{x\to0}(\cos x)^{\csc(x^2)}$（5%）</p>
+<p class="topic"><span class="lv">超出範圍</span>羅必達｜講義範圍內的做法：主題 11｜<a href="../week05/index.html#s5-4">§5.4</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>不定型</strong>：$\cos x\to1$，$\csc(x^2)=\frac{1}{\sin(x^2)}\to\infty$，$1^\infty$ 型。取 $\ln$ 變成 $\dfrac{\ln(\cos x)}{\sin(x^2)}$，$\frac00$ 型。</p>
+<p><strong>羅必達</strong>：</p>
+$$\lim_{x\to0}\frac{\ln\cos x}{\sin(x^2)}\overset{L}{=}\lim_{x\to0}\frac{-\tan x}{2x\cos(x^2)}=-\frac12$$
+<p><strong>講義範圍內</strong>：令 $u=\cos x-1\to0$，用 $\frac{\ln(1+u)}{u}\to1$（<a href="../week05/index.html#q13">週五題 13</a>）：</p>
+$$\frac{\ln(\cos x)}{\sin(x^2)}=\frac{\ln(1+u)}{u}\cdot\frac{\cos x-1}{x^2}\cdot\frac{x^2}{\sin(x^2)}\;\longrightarrow\;1\cdot\left(-\frac12\right)\cdot1$$
+<p>所以原式 $=e^{-1/2}$。</p>
+<p class="ans">$e^{-1/2}=\dfrac1{\sqrt e}$</p>
+</div>
+</section>
+
+<section class="q" id="q5c">
+<p class="problem"><span class="tag">5(c)</span>$\displaystyle\lim_{x\to\infty}x^3\left(\frac1x-\sin\frac1x\right)$（5%）</p>
+<p class="topic"><span class="lv">超出範圍</span>羅必達（這題沒有講義範圍內的做法）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>不定型</strong>：$x^3\to\infty$，括號 $\to0$，$\infty\cdot0$ 型。令 $y=\frac1x\to0^+$ 改寫成分式：</p>
+$$x^3\left(\frac1x-\sin\frac1x\right)=\frac{y-\sin y}{y^3}\quad(\tfrac00\text{ 型})$$
+<p><strong>羅必達兩次</strong>（每次用之前都確認還是 $\frac00$）：</p>
+$$\overset{L}{=}\lim_{y\to0^+}\frac{1-\cos y}{3y^2}\overset{L}{=}\lim_{y\to0^+}\frac{\sin y}{6y}=\frac16$$
+<p>（第二步也可以直接用 $\frac{1-\cos y}{y^2}\to\frac12$，得 $\frac12\cdot\frac13$。）</p>
+<p class="ans">$\dfrac16$</p>
+<p>官方另一種做法是不換元，直接對 $\frac{1/x-\sin(1/x)}{x^{-3}}$ 連用三次羅必達，計算量大很多。換元 $y=\frac1x$ 是處理 $x\to\infty$ 時 $\sin\frac1x$ 的標準手法。</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q6">第 6 題　利潤最大化（12%）</h2>
+<p>賣出 $x$ 單位時單價 $p(x)=18000-0.5x^2$（元），生產成本 $C(x)=1000+3000x$（元），$C(0)=1000$ 是固定成本。</p>
+
+<section class="q" id="q6a">
+<p class="problem"><span class="tag">6(a)</span>求讓單價 $p(x)$ 非負的 $x$ 範圍 $I$（$x\ge0$）。（2%）</p>
+<p class="topic">主題 1 函數｜<a href="../week01/index.html#s1-1">§1.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$18000-0.5x^2\ge0\iff x^2\le36000$，再加上 $x\ge0$。</p>
+<p class="ans">$I=\left[0,\sqrt{36000}\right]=\left[0,60\sqrt{10}\right]\approx[0,189.7]$</p>
+</div>
+</section>
+
+<section class="q" id="q6b">
+<p class="problem"><span class="tag">6(b)</span>利潤 $=$ 收益 $-$ 成本，收益 $=$ 數量 $\times$ 單價。求利潤函數 $T(x)$。（2%）</p>
+<p class="topic">主題 1 函數｜<a href="../week01/index.html#s1-1">§1.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+$$T(x)=x\,p(x)-C(x)=x(18000-0.5x^2)-(1000+3000x)$$
+<p class="ans">$T(x)=-0.5x^3+15000x-1000$</p>
+</div>
+</section>
+
+<section class="q" id="q6c">
+<p class="problem"><span class="tag">6(c)</span>求讓利潤在 $I$ 上最大的<strong>單價</strong>。（6%）</p>
+<p class="topic">主題 14 極值｜<a href="../week07/index.html#s7-1">§7.1 閉區間上的最大最小值</a>（應用題情境講義沒有，數學工具在範圍內）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：閉區間上的最大值：臨界點加端點比大小。最後要回答的是單價，不是數量。</p>
+<p>臨界點（2 分）：$T'(x)=-1.5x^2+15000=0\iff x^2=10000\iff x=100$（在 $I$ 內）。</p>
+<p>比較（2 分）：</p>
+$$T(0)=-1000,\qquad T(60\sqrt{10})=-1000-3000\cdot60\sqrt{10}\lt0,\qquad T(100)=100\cdot13000-301000=999000$$
+<p>所以 $x=100$ 時利潤最大。只要判斷正負就夠，不用算出精確值。</p>
+<p>單價（2 分）：$p(100)=18000-0.5\cdot10000=13000$。</p>
+<p class="ans">單價 $13000$ 元（此時賣 $100$ 單位，利潤 $999000$ 元）</p>
+<p>常見失分：答「$x=100$」就停了。題目問的是單價。</p>
+</div>
+</section>
+
+<section class="q" id="q6d">
+<p class="problem"><span class="tag">6(d)</span>$x_{\max}$ 是利潤最大時的數量。改變固定成本 $C(0)$，$x_{\max}$ 會變嗎？說明理由。（2%）</p>
+<p class="topic">主題 14 極值｜<a href="../week07/index.html#s7-1">§7.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：固定成本是常數，只會讓 $T$ 整條上下平移，最高點的位置不變。用導數說：常數微分是 $0$，$T'$ 和固定成本無關，臨界點不變。</p>
+<p class="ans">不會變，因為 $T'(x)=-1.5x^2+15000$ 不含 $C(0)$</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q7">第 7 題　函數作圖（16%）</h2>
+<p>$f(x)=\ln\left|\dfrac{2x+1}{x-1}\right|$</p>
+
+<div class="tip"><p><span class="tag">解題套路</span>先用對數律拆開：$f(x)=\ln|2x+1|-\ln|x-1|$。再用 $(\ln|u|)'=\frac{u'}{u}$，不必對分式用商法則。</p></div>
+
+<section class="q" id="q7a">
+<p class="problem"><span class="tag">7(a)</span>寫出定義域。（1%）</p>
+<p class="topic">主題 1 定義域｜<a href="../week01/index.html#s1-2-1">§1.2.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p>分母 $x-1\neq0$；$\ln$ 裡面要大於 $0$，絕對值只排除 $0$，所以 $2x+1\neq0$。</p>
+<p class="ans">$(-\infty,-\frac12)\cup(-\frac12,1)\cup(1,\infty)$</p>
+</div>
+</section>
+
+<section class="q" id="q7b">
+<p class="problem"><span class="tag">7(b)</span>求 $f'(x)$，寫出遞增與遞減區間。（4%）</p>
+<p class="topic">主題 11 對數的導數｜<a href="../week05/index.html#s5-3">§5.3</a>　主題 13 增減｜<a href="../week06/index.html#s6-3-2">§6.3.2</a></p>
+<div class="solution"><span class="tag">詳解</span>
+$$f'(x)=\frac{2}{2x+1}-\frac{1}{x-1}=\frac{2(x-1)-(2x+1)}{(2x+1)(x-1)}=\frac{-3}{(2x+1)(x-1)}$$
+<p>$(2x+1)(x-1)$ 在兩根 $-\frac12$、$1$ 之間為負，所以 $f'$ 在 $(-\frac12,1)$ 為正，兩側為負。</p>
+<p class="ans">$f'(x)=\dfrac{-3}{(2x+1)(x-1)}$；遞增 $(-\frac12,1)$；遞減 $(-\infty,-\frac12)$、$(1,\infty)$</p>
+<p>官方把兩個遞減區間寫成聯集 $(-\infty,-\frac12)\cup(1,\infty)$。嚴格說 $f$ 在聯集上並不遞減：$-1\lt2$，但 $f(-1)=\ln\frac12\lt f(2)=\ln5$。分開列比較正確。</p>
+</div>
+</section>
+
+<section class="q" id="q7c">
+<p class="problem"><span class="tag">7(c)</span>求 $f''(x)$，寫出凹口向上與向下的區間。（4%）</p>
+<p class="topic">主題 15 凹性｜<a href="../week07/index.html#s7-2">§7.2</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$f'(x)=-3(2x^2-x-1)^{-1}$，連鎖律：</p>
+$$f''(x)=3(2x^2-x-1)^{-2}(4x-1)=\frac{3(4x-1)}{(2x^2-x-1)^2}$$
+<p>分母是平方恆正，正負只看 $4x-1$，但要扣掉定義域外的 $-\frac12$ 和 $1$。</p>
+<p class="ans">凹口向上 $(\frac14,1)$、$(1,\infty)$；凹口向下 $(-\infty,-\frac12)$、$(-\frac12,\frac14)$</p>
+<p>反曲點在 $x=\frac14$：$f\left(\frac14\right)=\ln\left|\frac{1.5}{-0.75}\right|=\ln2$，剛好落在水平漸近線上。官方的區間沒扣掉 $-\frac12$、$1$（見頁首）。</p>
+</div>
+</section>
+
+<section class="q" id="q7d">
+<p class="problem"><span class="tag">7(d)</span>求所有垂直與水平漸近線。（4%）</p>
+<p class="topic">主題 5 漸近線｜<a href="../week02/index.html#s2-2">§2.2</a> <a href="../week02/index.html#s2-5">§2.5</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>垂直</strong>：$x\to1$ 時 $\left|\frac{2x+1}{x-1}\right|\to\infty$，$f\to+\infty$；$x\to-\frac12$ 時絕對值裡 $\to0^+$，$f\to-\infty$。</p>
+<p><strong>水平</strong>：$x\to\pm\infty$ 時 $\frac{2x+1}{x-1}\to2$，$\ln$ 連續，$f\to\ln2$。</p>
+<p class="ans">垂直漸近線 $x=1$、$x=-\frac12$；水平漸近線 $y=\ln2$</p>
+<p>官方給分：垂直、水平各 2 分。</p>
+</div>
+</section>
+
+<section class="q" id="q7e">
+<p class="problem"><span class="tag">7(e)</span>畫出 $y=f(x)$。（3%）</p>
+<p class="topic">主題 16 函數作圖｜<a href="../week07/index.html#s7-3">§7.3</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p>補上截距：$f=0\iff|2x+1|=|x-1|\iff x=0$ 或 $x=-2$，所以曲線過 $(-2,0)$ 和原點。</p>
+<figure>
+<img src="fig-1091-q7.svg" alt="y = ln|(2x+1)/(x-1)| 的圖：左段從 ln2 往下掉到 x=-1/2 的負無窮；中段從負無窮爬到 x=1 的正無窮，在 x=1/4 有反曲點；右段從正無窮往下貼近 ln2">
+<figcaption>7(e)：左段從 $y=\ln2$ 下方掉進 $x=-\frac12$；中段一路往上，過原點與反曲點 $(\frac14,\ln2)$；右段從 $+\infty$ 降回 $y=\ln2$</figcaption>
+</figure>
+</div>
+</section>
+
+</main>
+</body>
+</html>

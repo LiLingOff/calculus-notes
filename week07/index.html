@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 7 函數作圖</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/math.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+<p class="back"><a href="../index.html">← 目錄</a></p>
+<h1>Week 7　函數作圖（Curve Sketching）</h1>
+<p class="subtitle">AP Calculus I（115 學年）Lecture Note 7 教學與題解</p>
+
+<div class="erratum">
+<p><span class="tag">講義筆誤</span>讀講義時請自己改正四處：</p>
+<ol>
+<li>p.55 隱函數線性逼近例題 (c)：$\dfrac{d^2y}{dx^2}=\dfrac{119}{18}$ 應為 $\dfrac{119}{108}$。仍然大於 $0$，結論「低估」不變（題 10）。</li>
+<li>p.59 $\dfrac{\cos x}{2+\sin x}$ 例題：$f''\gt0\iff\cos x\lt0\iff\dfrac\pi2\lt x\lt\dfrac{2\pi}{3}$，兩處 $\dfrac{2\pi}{3}$ 都應為 $\dfrac{3\pi}{2}$，凹口向上的區間是 $\left(\frac\pi2,\frac{3\pi}2\right)$（題 17）。</li>
+<li>p.61 隱函數作圖例題：求 $\dfrac{dy}{dx}$ 時括號說「因 $y=-x$ 為漸近線，故 $x+y$ 這一項可消掉」。實際上約掉的是 $x-y$，理由是曲線上 $x\neq y$（題 23）。</li>
+<li>p.62 梯度下降：「向 $f'(x_n)$ 的方向走 $t$ 單位」應為「往 $f'(x_n)$ 的<strong>反方向</strong>走 $t\,|f'(x_n)|$」，公式 $x_{n+1}=x_n-tf'(x_n)$ 本身沒錯（題 25）。</li>
+</ol>
+</div>
+
+<p>這一週的目標是：給一個函數，不靠電腦也能畫出大致長相。工具全部是前幾週學過的東西，一階導數管升降，二階導數管彎的方向，極限管漸近線。講義把整套流程縮寫成 <strong>D-I-S-P-A-D-D-D</strong>，7.3 節會整理。</p>
+
+<!-- ================================================================ -->
+<h2 id="s7-1">7.1 一階導數：遞增遞減與極值</h2>
+
+<p><a href="../week06/index.html#s6-3-2">上週</a>用均值定理證過：斜率正的地方函數往上走，斜率負的地方往下走。</p>
+
+<div class="thm">
+<p><span class="tag">定理 7.1.1（一階導數判別法 Ver.1）</span>$f$ 在 $[a,b]$ 連續、$(a,b)$ 可微。</p>
+<ol>
+<li>某區間上 $f'(x)\ge0$，則 $f$ 在該區間遞增；$f'(x)\gt0$ 則嚴格遞增。</li>
+<li>某區間上 $f'(x)\le0$，則 $f$ 在該區間遞減；$f'(x)\lt0$ 則嚴格遞減。</li>
+</ol>
+</div>
+
+<h3>極大極小</h3>
+<p><strong>全域（global、absolute）</strong>最大值是整個定義域裡最高的那個值；<strong>局部（local）</strong>極大值只要求比「附近」的值都大，像山頂，不一定是最高的那座山。</p>
+
+<div class="def">
+<p><span class="tag">定義 7.1.1</span>$f:D\to\mathbb R$，$a,b\in D$。</p>
+<ul>
+<li>$f(a)\ge f(x)$ 對所有 $x\in D$ 成立：$f(a)$ 是全域最大值；$\le$ 則是全域最小值。</li>
+<li>$f(b)\ge f(x)$ 對所有 $b$ 附近的 $x$ 成立：$f(b)$ 是局部極大值；$\le$ 則是局部極小值。</li>
+</ul>
+<p><span class="tag">定義 7.1.2</span>$f'(c)=0$ 或 $f'(c)$ 不存在的點 $x=c\in D$ 叫<strong>臨界點</strong>（critical point）。</p>
+</div>
+
+<p>直覺：在山頂或谷底，切線一定是水平的（如果有切線的話）。所以找極值只要去臨界點找。但反過來不一定成立，切線水平不代表是山頂，還要看 $f'$ 有沒有變號。</p>
+
+<div class="thm">
+<p><span class="tag">定理 7.1.2（一階導數判別法 Ver.2）</span>$f$ 可微。</p>
+<ol>
+<li>（Fermat）$f$ 在 $x=c$ 有局部極值，則 $f'(c)=0$。</li>
+<li>反過來，$c$ 是臨界點時：$f'$ 經過 $c$ 由負變正，$c$ 是局部極小；由正變負，$c$ 是局部極大。</li>
+</ol>
+</div>
+
+<section class="q" id="q1">
+<p class="problem"><span class="tag">題 1</span>$f(x)=x^3$。說明 $f'(0)=0$，但 $x=0$ 既不是局部極大也不是局部極小。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$f'(x)=3x^2$，$f'(0)=0$，所以 $0$ 是臨界點。</p>
+<p>但 $x\lt0$ 時 $f(x)\lt0=f(0)$，$x\gt0$ 時 $f(x)\gt0=f(0)$。$0$ 的任何附近都同時有比 $f(0)$ 大與小的值，所以不是極值。用定理 7.1.2 看：$f'(x)=3x^2$ 在 $0$ 兩側都是正的，沒有變號。</p>
+<p class="ans">$f'(c)=0$ 只是極值的必要條件，不是充分條件</p>
+</div>
+</section>
+
+<figure>
+<img src="fig-lnx.svg" alt="y 等於 ln x 除以 x 的圖，在 x 等於 e 有最大值，x 等於 π 時的值比較小">
+<figcaption>$y=\dfrac{\ln x}{x}$ 在 $x=e$ 最高，$\pi\gt e$ 所以 $\dfrac{\ln\pi}{\pi}$ 比較低</figcaption>
+</figure>
+
+<section class="q" id="q2">
+<p class="problem"><span class="tag">題 2</span>$e^\pi$ 與 $\pi^e$ 哪個大？（提示：考慮 $f(x)=\dfrac{\ln x}{x}$，$x\gt0$。）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>兩個數都是正的，比大小可以改比 $\ln$：$\ln e^\pi=\pi$，$\ln\pi^e=e\ln\pi$。兩邊同除以 $e\pi$，等於在比</p>
+$$\frac{\ln e}{e}\quad\text{與}\quad\frac{\ln\pi}{\pi}$$
+<p>這正是提示的 $f(x)=\dfrac{\ln x}{x}$ 在 $x=e$ 與 $x=\pi$ 的值。</p>
+$$f'(x)=\frac{\frac1x\cdot x-\ln x}{x^2}=\frac{1-\ln x}{x^2}$$
+<p>$0\lt x\lt e$ 時 $\ln x\lt1$，$f'\gt0$；$x\gt e$ 時 $f'\lt0$。所以 $f$ 在 $x=e$ 有最大值，且在 $(e,\infty)$ 嚴格遞減。$\pi\gt e$，故 $f(\pi)\lt f(e)$：</p>
+$$\frac{\ln\pi}{\pi}\lt\frac1e\ \Longrightarrow\ e\ln\pi\lt\pi\ \Longrightarrow\ \pi^e\lt e^\pi$$
+<p class="ans">$e^\pi\gt\pi^e$（數值上 $e^\pi\approx23.14$，$\pi^e\approx22.46$）</p>
+</div>
+</section>
+
+<h3>閉區間上的全域極值</h3>
+
+<div class="thm">
+<p><span class="tag">定理 7.1.3（極值定理 Ver.2）</span>$f$ 在 $[a,b]$ 連續，則</p>
+<ol>
+<li>全域最大值與最小值一定存在；</li>
+<li>它們只會出現在臨界點或端點 $a,b$。</li>
+</ol>
+</div>
+<p>道理很簡單：最大值如果在區間內部，那裡就是局部極大，由 Fermat 定理必是臨界點；不在內部就只能在端點。講義建議背下這個結論，多變數微積分時一模一樣。</p>
+
+<div class="tip">
+<p><span class="tag">解題套路</span>閉區間找最大最小值：</p>
+<ol>
+<li>求 $f'$，找出區間內的所有臨界點。</li>
+<li>把臨界點與兩個端點全部代進 $f$。</li>
+<li>最大的是最大值，最小的是最小值。不用判斷是極大還是極小。</li>
+</ol>
+</div>
+
+<div class="remark">
+<p>極值定理看圖很直觀，證明卻很難，它等價於「實數線沒有洞」（實數完備性），屬於高等微積分的內容。這門課只拿來用。</p>
+</div>
+
+<figure>
+<img src="fig-extrema.svg" alt="y 等於 x 三次方減 x 在 -2 到 1 的圖，最小值在左端點 -2，最大值在 x 等於負根號三分之一">
+<figcaption>題 3：最小值落在端點，最大值落在臨界點</figcaption>
+</figure>
+
+<section class="q" id="q3">
+<p class="problem"><span class="tag">題 3</span>求 $f(x)=x^3-x$ 在 $[-2,1]$ 上的全域最大值與最小值。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$f'(x)=3x^2-1=0$，$x=\pm\dfrac{1}{\sqrt3}$，兩個都在 $[-2,1]$ 裡。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>$x$</th><th>$-2$</th><th>$-\frac{1}{\sqrt3}$</th><th>$\frac{1}{\sqrt3}$</th><th>$1$</th></tr></thead>
+<tbody><tr><td>$f(x)$</td><td>$-6$</td><td>$\frac{2\sqrt3}{9}\approx0.385$</td><td>$-\frac{2\sqrt3}{9}$</td><td>$0$</td></tr></tbody>
+</table>
+</div>
+<p>其中 $f\!\left(-\tfrac1{\sqrt3}\right)=-\dfrac{1}{3\sqrt3}+\dfrac{1}{\sqrt3}=\dfrac{2}{3\sqrt3}=\dfrac{2\sqrt3}{9}$。</p>
+<p class="ans">最大值 $\dfrac{2\sqrt3}{9}$（在 $x=-\frac{1}{\sqrt3}$），最小值 $-6$（在 $x=-2$）</p>
+</div>
+</section>
+
+<section class="q" id="q4">
+<p class="problem"><span class="tag">題 4</span>求 $f(x)=\dfrac{x}{x^2+3}$ 在 $[0,6]$ 上的全域最大值與最小值。（講義答案 $M=\frac{\sqrt3}{6}$，$m=0$）</p>
+<div class="solution"><span class="tag">詳解</span>
+$$f'(x)=\frac{(x^2+3)-x\cdot2x}{(x^2+3)^2}=\frac{3-x^2}{(x^2+3)^2}$$
+<p>$f'=0$：$x=\pm\sqrt3$，區間內只有 $\sqrt3$。比較：</p>
+$$f(0)=0,\qquad f(\sqrt3)=\frac{\sqrt3}{6}\approx0.289,\qquad f(6)=\frac{6}{39}=\frac{2}{13}\approx0.154$$
+<p class="ans">$M=\dfrac{\sqrt3}{6}$（在 $x=\sqrt3$），$m=0$（在 $x=0$），與講義答案相同</p>
+</div>
+</section>
+
+<section class="q" id="q5">
+<p class="problem"><span class="tag">題 5</span>求 $f(x)=2x^3-3x^2-36x$ 在 $[-4,6]$ 上的全域最大值與最小值。（講義答案 $M=108$，$m=-81$）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$f'(x)=6x^2-6x-36=6(x-3)(x+2)$，臨界點 $x=-2,\,3$。</p>
+$$\begin{aligned}
+f(-4)&=-128-48+144=-32\\
+f(-2)&=-16-12+72=44\\
+f(3)&=54-27-108=-81\\
+f(6)&=432-108-216=108
+\end{aligned}$$
+<p>注意最大值在端點 $x=6$，比局部極大 $44$ 還大，所以端點一定要代。</p>
+<p class="ans">$M=108$（在 $x=6$），$m=-81$（在 $x=3$），與講義答案相同</p>
+</div>
+</section>
+
+<section class="q" id="q6">
+<p class="problem"><span class="tag">題 6</span>舉一個在 $[0,1]$ 上有界、但沒有最大值也沒有最小值的函數。（提示：$x\in(0,1)$ 時 $f(x)=x$，$f(0)=f(1)=\frac12$。）</p>
+<div class="solution"><span class="tag">詳解</span>
+$$f(x)=\begin{cases}x,&0\lt x\lt1\\[2pt]\tfrac12,&x=0\text{ 或 }x=1\end{cases}$$
+<p>$0\lt f(x)\lt1$，所以有界。$f$ 的值可以任意接近 $1$（取 $x=0.999\ldots$），但永遠到不了 $1$：任何 $f(x_0)$ 都能找到更大的值，所以沒有最大值。同理任意接近 $0$ 但到不了，沒有最小值。</p>
+<p>這不違反極值定理，因為 $f$ 在 $x=0$ 與 $x=1$ 不連續。</p>
+<p class="ans">例如上面的 $f$；重點是讓函數在端點不連續，把最高點和最低點「挖掉」</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="s7-2">7.2 二階導數：凹性</h2>
+
+<p>$f''$ 是 $f'$ 的導數，也就是<strong>斜率的變化率</strong>。$f''\gt0$ 代表由左往右看，切線斜率越來越大，圖形往上彎成碗狀，叫<strong>凹口向上</strong>（concave upward）；$f''\lt0$ 代表斜率越來越小，圖形像倒扣的碗，叫<strong>凹口向下</strong>（concave downward）。</p>
+
+<div class="def">
+<p><span class="tag">定義 7.2.1（凹性）</span>在區間 $I$ 上，$f$ 的圖形在所有切線<strong>上方</strong>，稱凹口向上；在所有切線<strong>下方</strong>，稱凹口向下。</p>
+</div>
+
+<figure class="pair">
+<img src="fig-concave-up.svg" alt="y 等於 x 平方，四條切線都在曲線下方">
+<img src="fig-concave-down.svg" alt="y 等於負 x 平方，四條切線都在曲線上方">
+<figcaption>題 7：左圖凹口向上，切線在下方、斜率由左到右變大；右圖凹口向下，切線在上方、斜率變小</figcaption>
+</figure>
+
+<div class="thm">
+<p><span class="tag">定理 7.2.1</span>在 $I$ 上 $f''\gt0$，則圖形在 $I$ 凹口向上；$f''\lt0$ 則凹口向下。</p>
+</div>
+
+<section class="q" id="q7">
+<p class="problem"><span class="tag">題 7</span>判斷 $f(x)=x^2$ 與 $g(x)=-x^2$ 的凹性。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$f'(x)=2x$，斜率由左到右從負變正一路變大；$f''(x)=2\gt0$。$g''(x)=-2\lt0$。</p>
+<p class="ans">$x^2$ 在 $\mathbb R$ 上凹口向上，$-x^2$ 在 $\mathbb R$ 上凹口向下</p>
+</div>
+</section>
+
+<div class="def">
+<p><span class="tag">定義 7.2.2（反曲點）</span>$f$ 在 $x=c$ 連續，且圖形在 $c$ 兩側凹性相反（上變下或下變上），則 $x=c$ 是<strong>反曲點</strong>（inflection point）。</p>
+</div>
+
+<div class="thm">
+<p><span class="tag">定理 7.2.2（二階導數判別法）</span>$f$ 二次可微且 $f''$ 在 $c$ 連續。</p>
+<ol>
+<li>$c$ 是反曲點，則 $f''(c)=0$。</li>
+<li>$c$ 是臨界點（$f'(c)=0$）且 $f''(c)\lt0$，則 $c$ 是局部極大；$f''(c)\gt0$ 則是局部極小。</li>
+</ol>
+</div>
+<p>第 2 點的直覺：切線水平又凹口向下，那就是山頂。</p>
+
+<div class="remark">
+<p>和 $f'(c)=0$ 一樣，$f''(c)=0$ 也只是必要條件。$f(x)=x^4$ 的 $f''(x)=12x^2$，$f''(0)=0$，但 $0$ 兩側 $f''$ 都是正的，整條曲線凹口向上，$x=0$ 不是反曲點。<strong>判斷反曲點一定要看 $f''$ 有沒有變號。</strong></p>
+</div>
+
+<section class="q" id="q8">
+<p class="problem"><span class="tag">題 8</span>$f(x)=\dfrac{x}{x^2-1}$。(a) 求 $f''(x)$。(b) 求凹口向上與向下的區間，有沒有反曲點？</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>(a)</strong> 先求一階：</p>
+$$f'(x)=\frac{(x^2-1)-x\cdot2x}{(x^2-1)^2}=-\frac{x^2+1}{(x^2-1)^2}$$
+<p>再微一次。分子 $-(x^2+1)$ 微分是 $-2x$，分母 $(x^2-1)^2$ 微分是 $2(x^2-1)\cdot2x$：</p>
+$$\begin{aligned}
+f''(x) &= -\frac{2x(x^2-1)^2-(x^2+1)\cdot4x(x^2-1)}{(x^2-1)^4} \\
+&= -\frac{2x(x^2-1)-4x(x^2+1)}{(x^2-1)^3} \\
+&= \frac{2x(x^2+3)}{(x^2-1)^3}
+\end{aligned}$$
+<p><strong>(b)</strong> $x^2+3\gt0$，所以 $f''$ 的正負由 $x$ 和 $(x^2-1)^3$（與 $x^2-1$ 同號）決定。分界點 $-1,0,1$：</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>區間</th><th>$(-\infty,-1)$</th><th>$(-1,0)$</th><th>$(0,1)$</th><th>$(1,\infty)$</th></tr></thead>
+<tbody>
+<tr><td>$x$</td><td>$-$</td><td>$-$</td><td>$+$</td><td>$+$</td></tr>
+<tr><td>$x^2-1$</td><td>$+$</td><td>$-$</td><td>$-$</td><td>$+$</td></tr>
+<tr><td>$f''$</td><td>$-$</td><td>$+$</td><td>$-$</td><td>$+$</td></tr>
+</tbody>
+</table>
+</div>
+<p>$x=\pm1$ 不在定義域，不能當反曲點。$x=0$ 在定義域、$f$ 連續且 $f''$ 變號，是反曲點，$f(0)=0$。</p>
+<p class="ans">凹口向上：$(-1,0)\cup(1,\infty)$；凹口向下：$(-\infty,-1)\cup(0,1)$；反曲點 $(0,0)$</p>
+</div>
+</section>
+
+<section class="q" id="q9">
+<p class="problem"><span class="tag">題 9</span>$f(x)=x^4-12x^3+84x+4$。(a) 找出所有可能的反曲點。(b) 求凹口向上、向下的區間。(c) 找出所有反曲點。（講義答案：(a)(c) $x=0,6$；(b) 上凹 $(-\infty,0)\cup(6,\infty)$，下凹 $(0,6)$）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$f'(x)=4x^3-36x^2+84$，$f''(x)=12x^2-72x=12x(x-6)$。</p>
+<p><strong>(a)</strong> 可能的反曲點是 $f''=0$ 的地方：$x=0,\,6$。</p>
+<p><strong>(b)</strong> $12x(x-6)$ 是開口向上的拋物線，兩根之外為正、之間為負。</p>
+<p><strong>(c)</strong> $f''$ 在 $0$ 與 $6$ 都有變號，兩個都是反曲點。$f(0)=4$，$f(6)=1296-2592+504+4=-788$。</p>
+<p class="ans">(a) $x=0,6$；(b) 上凹 $(-\infty,0)\cup(6,\infty)$，下凹 $(0,6)$；(c) 反曲點 $(0,4)$、$(6,-788)$，與講義答案相同</p>
+</div>
+</section>
+
+<h3 id="s7-2-1">7.2.1 線性逼近是高估還是低估</h3>
+<p>切線 $L(x)=f(a)+f'(a)(x-a)$ 拿來近似 $f(x)$。凹口向上時曲線在切線上方，所以切線值偏小（低估）；凹口向下時切線在上方，偏大（高估）。</p>
+
+<div class="thm">
+<p><span class="tag">定理 7.2.3</span>$f$ 二次可微，$L$ 是 $f$ 在 $x=a$ 的線性化。在 $a$ 附近：</p>
+<ol>
+<li>$f''(a)\gt0$：$L(x)$ 低估 $f(x)$（under-estimation）。</li>
+<li>$f''(a)\lt0$：$L(x)$ 高估 $f(x)$（over-estimation）。</li>
+</ol>
+</div>
+
+<figure>
+<img src="fig-linear.svg" alt="曲線 y 平方等於 x 三次方加 2xy 加 7 在點 (1,4) 附近，切線在曲線下方">
+<figcaption>題 10：曲線在 $(1,4)$ 附近凹口向上，切線在曲線下方</figcaption>
+</figure>
+
+<section class="q" id="q10">
+<p class="problem"><span class="tag">題 10</span>平面曲線 $y^2=x^3+2xy+7$。(a) 求曲線在 $(1,4)$ 的切線 $L(x)$。(b) $P=(1.03,a)$ 在曲線上，用 $L(1.03)$ 估計 $a$。(c) 判斷是低估還是高估。（講義 (c) 的 $y''$ 有筆誤，見頁首。）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>檢查點在曲線上：$16=1+8+7$。</p>
+<p><strong>(a)</strong> 兩邊對 $x$ 微分：</p>
+$$2y\,y'=3x^2+2y+2x\,y'\quad\Longrightarrow\quad y'=\frac{3x^2+2y}{2y-2x}$$
+<p>代 $(1,4)$：$y'=\dfrac{3+8}{8-2}=\dfrac{11}{6}$，所以 $L(x)=4+\dfrac{11}{6}(x-1)$。</p>
+<p><strong>(b)</strong> $a\approx L(1.03)=4+\dfrac{11}{6}\cdot0.03=4.055$。</p>
+<p><strong>(c)</strong> 把 $2y\,y'=3x^2+2y+2x\,y'$ 再微一次：</p>
+$$2(y')^2+2y\,y''=6x+2y'+2y'+2x\,y''$$
+<p>代 $x=1$、$y=4$、$y'=\frac{11}{6}$：</p>
+$$\begin{aligned}
+2\cdot\frac{121}{36}+8y'' &= 6+\frac{44}{6}+2y'' \\
+&\Longrightarrow 6y''=\frac{40}{3}-\frac{121}{18}=\frac{119}{18} \\
+&\Longrightarrow y''=\frac{119}{108}
+\end{aligned}$$
+<p>講義最後一步忘了除以 $6$，寫成 $\frac{119}{18}$。不過正負號不受影響，$y''\gt0$，凹口向上，切線在曲線下方。</p>
+<p class="ans">(a) $L(x)=\dfrac{11}{6}(x-1)+4$；(b) $a\approx4.055$；(c) $y''=\dfrac{119}{108}\gt0$，低估</p>
+</div>
+</section>
+
+<section class="q" id="q11">
+<p class="problem"><span class="tag">題 11</span>(a) 求 $f(x)=\sin x$ 在 $x=\frac\pi3$ 的線性逼近，並估計 $\sin62^\circ$（提示：$62^\circ=\frac{31\pi}{90}$）。(b) 判斷是低估還是高估。（講義答案 $\sin62^\circ\approx\frac{\sqrt3}{2}+\frac{\pi}{180}\approx0.883$，高估）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>(a)</strong> $f\!\left(\frac\pi3\right)=\frac{\sqrt3}{2}$，$f'\!\left(\frac\pi3\right)=\cos\frac\pi3=\frac12$，</p>
+$$L(x)=\frac{\sqrt3}{2}+\frac12\left(x-\frac\pi3\right)$$
+<p>$62^\circ-60^\circ=2^\circ=\dfrac{2\pi}{180}=\dfrac{\pi}{90}$，所以</p>
+$$\begin{aligned}
+\sin62^\circ &\approx \frac{\sqrt3}{2}+\frac12\cdot\frac{\pi}{90} \\
+&= \frac{\sqrt3}{2}+\frac{\pi}{180} \\
+&\approx 0.86603+0.01745= 0.88348
+\end{aligned}$$
+<p><strong>(b)</strong> $f''(x)=-\sin x$，$f''\!\left(\frac\pi3\right)=-\frac{\sqrt3}{2}\lt0$，凹口向下，切線在上方。實際值 $\sin62^\circ\approx0.88295$，確實比估計值小。</p>
+<p class="ans">(a) $\sin62^\circ\approx\dfrac{\sqrt3}{2}+\dfrac{\pi}{180}\approx0.883$；(b) 高估，與講義答案相同</p>
+</div>
+</section>
+
+<h3 id="s7-fermat">Fermat 定理的證明（不考）</h3>
+<p>講義證明了局部極大的情形。想法是看導數定義裡的差商 $\dfrac{f(c+h)-f(c)}{h}$：$c$ 是局部極大，所以 $h$ 夠小時分子 $f(c+h)-f(c)\le0$。</p>
+<ul>
+<li>$h\gt0$：差商 $\le0$，取 $h\to0^+$ 得 $f'(c)\le0$。</li>
+<li>$h\lt0$：負除負，差商 $\ge0$，取 $h\to0^-$ 得 $f'(c)\ge0$。</li>
+</ul>
+<p>$f'(c)$ 存在，左右極限相等，兩個不等式同時成立，只能 $f'(c)=0$。</p>
+
+<section class="q" id="q12">
+<p class="problem"><span class="tag">題 12</span>證明 Fermat 定理在局部極小的情形：$f$ 在 $c$ 有局部極小且 $f'(c)$ 存在，則 $f'(c)=0$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$c$ 是局部極小，所以 $h$ 夠接近 $0$ 時 $f(c)\le f(c+h)$，即 $f(c+h)-f(c)\ge0$。</p>
+<p><strong>情形 1</strong>：$h\gt0$ 且夠小，</p>
+$$\frac{f(c+h)-f(c)}{h}\ge0\ \Longrightarrow\ f'(c)=\lim_{h\to0^+}\frac{f(c+h)-f(c)}{h}\ge0$$
+<p><strong>情形 2</strong>：$h\lt0$ 且夠小，分子 $\ge0$、分母 $\lt0$，</p>
+$$\frac{f(c+h)-f(c)}{h}\le0\ \Longrightarrow\ f'(c)=\lim_{h\to0^-}\frac{f(c+h)-f(c)}{h}\le0$$
+<p>兩邊都用到「$f'(c)$ 存在，所以等於單邊極限」。$f'(c)\ge0$ 且 $f'(c)\le0$，故 $f'(c)=0$。</p>
+<p>另一種寫法：$c$ 是 $f$ 的局部極小，就是 $-f$ 的局部極大，套用已證的情形得 $-f'(c)=0$。</p>
+<p class="ans">$f'(c)=0$ $\quad\blacksquare$</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="s7-3">7.3 作圖流程 DISPADDD</h2>
+
+<p>每個字母是一個步驟，照順序做就不會漏：</p>
+
+<div class="tip">
+<p><span class="tag">解題套路 DISPADDD</span></p>
+<ol>
+<li><strong>D</strong>omain 定義域：分母不能 $0$、根號內不能負、$\ln$ 內要正。</li>
+<li><strong>I</strong>ntercepts 截距：$x=0$ 求 $y$ 截距，$y=0$ 求 $x$ 截距（解不出來就跳過）。</li>
+<li><strong>S</strong>ymmetry 對稱：$f(-x)=f(x)$ 偶函數對稱 $y$ 軸；$f(-x)=-f(x)$ 奇函數對稱原點。也可能對稱別的直線，例如 $x=\frac12$。</li>
+<li><strong>P</strong>eriod 週期：三角函數類，只要畫一個週期再複製。</li>
+<li><strong>A</strong>symptotes 漸近線：垂直漸近線看分母 $0$ 的地方 $f\to\pm\infty$；水平漸近線看 $\displaystyle\lim_{x\to\pm\infty}f$；斜漸近線 $y=mx+b$ 用 $m=\lim\frac{f(x)}{x}$、$b=\lim(f(x)-mx)$，有理函數直接做長除法。</li>
+<li><strong>D</strong>erivative 一階導數：臨界點、遞增遞減區間、局部極值。</li>
+<li><strong>D</strong>erivative 二階導數：凹性、反曲點。</li>
+<li><strong>D</strong>raw 畫圖：把上面的結果整理成一張符號表，先畫漸近線、標特殊點，再依表格的升降與凹性連起來。</li>
+</ol>
+</div>
+
+<figure>
+<img src="fig-ex13.svg" alt="y 等於 (x²-x-2)/(x²-x-6) 的圖，垂直漸近線 x=-2、x=3，水平漸近線 y=1，中間一段在 x=1/2 有極大值 9/25">
+<figcaption>題 13：中間一段對稱於 $x=\frac12$，兩側從上方貼近 $y=1$</figcaption>
+</figure>
+
+<section class="q" id="q13">
+<p class="problem"><span class="tag">題 13</span>$f(x)=\dfrac{x^2-x-2}{x^2-x-6}$，畫出 $y=f(x)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>先因式分解並改寫：$f(x)=\dfrac{(x-2)(x+1)}{(x-3)(x+2)}=1+\dfrac{4}{x^2-x-6}$。後面這個形式微分比較快。</p>
+<p><strong>D</strong>：$x\neq3,\,-2$。</p>
+<p><strong>I</strong>：$f(0)=\frac13$；$x$ 截距 $x=2,\,-1$。</p>
+<p><strong>S</strong>：$x^2-x=\left(x-\frac12\right)^2-\frac14$，$f$ 只跟 $\left(x-\frac12\right)^2$ 有關，圖形對稱於直線 $x=\frac12$。</p>
+<p><strong>P</strong>：無。</p>
+<p><strong>A</strong>：垂直漸近線 $x=3$、$x=-2$；$\displaystyle\lim_{x\to\pm\infty}f(x)=1$，水平漸近線 $y=1$。$|x|$ 很大時 $\frac{4}{x^2-x-6}\gt0$，所以從上方貼近。</p>
+<p><strong>D</strong>：令 $u=x^2-x-6$，</p>
+$$f'(x)=-\frac{4(2x-1)}{(x^2-x-6)^2}$$
+<p>$x\lt\frac12$（不含 $-2$）時 $f'\gt0$ 遞增，$x\gt\frac12$（不含 $3$）時遞減。局部極大 $f\!\left(\frac12\right)=1+\dfrac{4}{-25/4}=\dfrac{9}{25}$。</p>
+<p><strong>D</strong>：$f'=-4(2x-1)u^{-2}$ 再微一次，</p>
+$$\begin{aligned}
+f''(x) &= -8u^{-2}+8(2x-1)^2u^{-3} \\
+&= \frac{8\bigl[(2x-1)^2-u\bigr]}{u^3} \\
+&= \frac{8(3x^2-3x+7)}{(x^2-x-6)^3}
+\end{aligned}$$
+<p>$3x^2-3x+7$ 判別式 $9-84\lt0$，恆正，所以 $f''$ 與 $u=(x-3)(x+2)$ 同號：$x\lt-2$ 或 $x\gt3$ 凹口向上，$-2\lt x\lt3$ 凹口向下。凹性只在漸近線兩側改變，沒有反曲點。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>區間</th><th>$(-\infty,-2)$</th><th>$(-2,\frac12)$</th><th>$(\frac12,3)$</th><th>$(3,\infty)$</th></tr></thead>
+<tbody>
+<tr><td>$f'$</td><td>$+$ 遞增</td><td>$+$ 遞增</td><td>$-$ 遞減</td><td>$-$ 遞減</td></tr>
+<tr><td>$f''$</td><td>$+$ 上凹</td><td>$-$ 下凹</td><td>$-$ 下凹</td><td>$+$ 上凹</td></tr>
+</tbody>
+</table>
+</div>
+<p class="ans">垂直漸近線 $x=-2,3$，水平漸近線 $y=1$；局部極大 $\left(\frac12,\frac{9}{25}\right)$；無反曲點；對稱於 $x=\frac12$</p>
+</div>
+</section>
+
+<figure class="pair">
+<img src="fig-ex14.svg" alt="y 等於 (3x³-2x²+1)/(4x³+2x-3) 的全貌，垂直漸近線 x≈0.728，水平漸近線 y=3/4">
+<img src="fig-ex14-zoom.svg" alt="同一函數縱軸放大，左側在 x≈-3.28 有略高於 3/4 的極大，右側在 x≈1.50 有低於 3/4 的極小">
+<figcaption>題 14：左圖全貌；右圖把縱軸放大，才看得出極值與水平漸近線的上下關係（橘點為兩個離得較遠的反曲點）</figcaption>
+</figure>
+
+<section class="q" id="q14">
+<p class="problem"><span class="tag">題 14</span>畫出 $f(x)=\dfrac{3x^3-2x^2+1}{4x^3+2x-3}$ 的圖形。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>這題分子分母都沒有好看的根，臨界點和反曲點只能用數值解，重點放在定性的形狀。</p>
+<p><strong>D</strong>：分母 $4x^3+2x-3$ 的導數 $12x^2+2\gt0$，嚴格遞增，只有一個實根 $x=a\approx0.728$。定義域 $x\neq a$。</p>
+<p><strong>I</strong>：$f(0)=-\frac13$；分子 $3x^3-2x^2+1=0$ 只有一個實根 $x\approx-0.528$。</p>
+<p><strong>S、P</strong>：無。</p>
+<p><strong>A</strong>：垂直漸近線 $x=a$。在 $a$ 附近分子約 $1.10\gt0$，所以 $x\to a^-$ 時 $f\to-\infty$，$x\to a^+$ 時 $f\to+\infty$。水平漸近線 $y=\frac34$（最高次係數比）。令 $f=\frac34$ 得 $8x^2+6x-13=0$，$x=\frac{-3\pm\sqrt{113}}{8}\approx0.954,\ -1.704$，圖形會穿過水平漸近線兩次。</p>
+<p><strong>D</strong>：</p>
+$$\begin{aligned}
+f'(x) &= \frac{(9x^2-4x)(4x^3+2x-3)-(3x^3-2x^2+1)(12x^2+2)}{(4x^3+2x-3)^2} \\
+&= \frac{8x^4+12x^3-43x^2+12x-2}{(4x^3+2x-3)^2}
+\end{aligned}$$
+<p>分子的實根約 $x\approx-3.283$ 與 $x\approx1.497$，兩根之外為正、之間為負。所以 $(-\infty,-3.283)$ 遞增，$(-3.283,a)$ 與 $(a,1.497)$ 遞減，$(1.497,\infty)$ 遞增。局部極大 $f(-3.283)\approx0.839$（略高於 $\frac34$），局部極小 $f(1.497)\approx0.491$（低於 $\frac34$）。</p>
+<p><strong>D</strong>：$f''$ 的分子是六次多項式 $-2(32x^6+72x^5-360x^4+156x^3+30x^2-117x+14)$，實根約 $-4.793,\ -0.627,\ 0.126,\ 2.092$。連同漸近線 $x=a$，凹性依序為：</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>區間</th><th>$x\lt-4.79$</th><th>$(-4.79,-0.63)$</th><th>$(-0.63,0.13)$</th><th>$(0.13,a)$</th><th>$(a,2.09)$</th><th>$x\gt2.09$</th></tr></thead>
+<tbody><tr><td>$f''$</td><td>上凹</td><td>下凹</td><td>上凹</td><td>下凹</td><td>上凹</td><td>下凹</td></tr></tbody>
+</table>
+</div>
+<p>四個都是反曲點。畫圖時抓住：左邊從 $\frac34$ 下方出發，升到略高於 $\frac34$ 的極大後下降，經過 $(-0.528,0)$、$\left(0,-\frac13\right)$ 掉到 $-\infty$；右邊從 $+\infty$ 下來，穿過 $\frac34$ 降到極小 $0.491$，再慢慢從下方爬回 $\frac34$。</p>
+<p class="ans">垂直漸近線 $x\approx0.728$，水平漸近線 $y=\frac34$；局部極大約 $(-3.28,\,0.839)$，局部極小約 $(1.50,\,0.491)$；反曲點 $x\approx-4.79,-0.63,0.13,2.09$</p>
+</div>
+</section>
+
+<figure>
+<img src="fig-ex15.svg" alt="y 等於 1 加 2/x 減 8/x² 的圖，x=0 是垂直漸近線兩側都往下，右側在 x=8 有極大 9/8，x=12 是反曲點">
+<figcaption>題 15：兩側都掉到 $-\infty$；右邊衝過 $y=1$ 到極大後再從上方貼回來</figcaption>
+</figure>
+
+<section class="q" id="q15">
+<p class="problem"><span class="tag">題 15</span>$f(x)=1+\dfrac2x-\dfrac{8}{x^2}$，畫出 $y=f(x)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>D</strong>：$x\neq0$。</p>
+<p><strong>I</strong>：沒有 $y$ 截距。通分 $f(x)=\dfrac{x^2+2x-8}{x^2}=\dfrac{(x+4)(x-2)}{x^2}$，$x$ 截距 $-4,\,2$。</p>
+<p><strong>S、P</strong>：無。</p>
+<p><strong>A</strong>：$x\to0$ 時 $-\frac{8}{x^2}$ 主導，兩側都 $f\to-\infty$，垂直漸近線 $x=0$。水平漸近線 $y=1$。$f=1\iff\frac2x=\frac{8}{x^2}\iff x=4$，在 $(4,1)$ 穿過漸近線。</p>
+<p><strong>D</strong>：</p>
+$$f'(x)=-\frac{2}{x^2}+\frac{16}{x^3}=\frac{2(8-x)}{x^3}$$
+<p>$0\lt x\lt8$ 時 $f'\gt0$，$x\lt0$ 或 $x\gt8$ 時 $f'\lt0$。局部極大 $f(8)=1+\frac14-\frac18=\frac98$。</p>
+<p><strong>D</strong>：</p>
+$$f''(x)=\frac{4}{x^3}-\frac{48}{x^4}=\frac{4(x-12)}{x^4}$$
+<p>$x^4\gt0$，所以 $x\lt12$（$x\neq0$）凹口向下，$x\gt12$ 凹口向上。反曲點 $f(12)=1+\frac16-\frac{8}{144}=\frac{10}{9}$。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>區間</th><th>$(-\infty,0)$</th><th>$(0,8)$</th><th>$(8,12)$</th><th>$(12,\infty)$</th></tr></thead>
+<tbody>
+<tr><td>$f'$</td><td>$-$ 遞減</td><td>$+$ 遞增</td><td>$-$ 遞減</td><td>$-$ 遞減</td></tr>
+<tr><td>$f''$</td><td>$-$ 下凹</td><td>$-$ 下凹</td><td>$-$ 下凹</td><td>$+$ 上凹</td></tr>
+</tbody>
+</table>
+</div>
+<p>$x\to-\infty$ 時 $\frac2x\lt0$ 主導，從下方貼近 $y=1$；$x\to+\infty$ 時從上方貼近。</p>
+<p class="ans">垂直漸近線 $x=0$，水平漸近線 $y=1$；局部極大 $\left(8,\frac98\right)$；反曲點 $\left(12,\frac{10}{9}\right)$</p>
+</div>
+</section>
+
+<section class="q" id="q16">
+<p class="problem"><span class="tag">題 16</span>已知 $f'(x)=\sqrt[3]{x(9+x)(9-x)}$。(a) 求 $f$ 的臨界點。(b) 求 $f$ 遞減的區間。(c) 求 $f$ 的反曲點與凹口向上的區間。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>這題只給 $f'$，所以只能回答 $x$ 座標。立方根對負數也有定義，$f'$ 的正負跟根號裡面 $g(x)=x(9+x)(9-x)=81x-x^3$ 一樣。</p>
+<p><strong>(a)</strong> $f'$ 處處有定義，$f'=0\iff x=0,\,\pm9$。</p>
+<p><strong>(b)</strong> $g(x)=-x(x+9)(x-9)$，分界點 $-9,0,9$。$x$ 很大時 $-x^3$ 主導為負，往左交替：</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>區間</th><th>$x\lt-9$</th><th>$(-9,0)$</th><th>$(0,9)$</th><th>$x\gt9$</th></tr></thead>
+<tbody><tr><td>$f'$</td><td>$+$</td><td>$-$</td><td>$+$</td><td>$-$</td></tr></tbody>
+</table>
+</div>
+<p><strong>(c)</strong> 用連鎖律，$x\neq0,\pm9$ 時</p>
+$$f''(x)=\frac13\bigl(81x-x^3\bigr)^{-2/3}\bigl(81-3x^2\bigr)=\frac{81-3x^2}{3\sqrt[3]{(81x-x^3)^2}}$$
+<p>分母恆正，$f''$ 與 $81-3x^2$ 同號：$|x|\lt\sqrt{27}=3\sqrt3$ 為正，$|x|\gt3\sqrt3$ 為負。</p>
+<p>注意 $x=0,\pm9$ 處 $f''$ 不存在（$f'$ 在那裡有垂直切線），但兩側 $f''$ 同號，凹性沒變，不是反曲點。$x=\pm3\sqrt3$ 兩側變號，是反曲點。</p>
+<p class="ans">(a) $x=-9,0,9$；(b) $(-9,0)$ 與 $(9,\infty)$；(c) 反曲點 $x=\pm3\sqrt3$，凹口向上區間 $\left(-3\sqrt3,\,3\sqrt3\right)$</p>
+</div>
+</section>
+
+<figure>
+<img src="fig-ex17.svg" alt="y 等於 cos x 除以 (2 加 sin x) 的週期波形，y 截距 1/2">
+<figcaption>題 17：綠點局部極小、紅點局部極大、橘點反曲點，每 $2\pi$ 重複</figcaption>
+</figure>
+
+<section class="q" id="q17">
+<p class="problem"><span class="tag">題 17</span>畫出 $y=f(x)=\dfrac{\cos x}{2+\sin x}$ 的圖形。（講義解答的凹性區間有筆誤，見頁首。）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>D</strong>：$2+\sin x\ge1$，定義域 $\mathbb R$。</p>
+<p><strong>I</strong>：$f(0)=\frac12$；$f=0\iff\cos x=0$，在 $[0,2\pi]$ 是 $x=\frac\pi2,\frac{3\pi}2$。</p>
+<p><strong>S</strong>：無。</p>
+<p><strong>P</strong>：週期 $2\pi$，只看 $[0,2\pi]$。</p>
+<p><strong>A</strong>：分母不為 $0$，值有界，無漸近線。</p>
+<p><strong>D</strong>：商法則，</p>
+$$\begin{aligned}
+f'(x) &= \frac{-\sin x(2+\sin x)-\cos^2x}{(2+\sin x)^2} \\
+&= \frac{-2\sin x-(\sin^2x+\cos^2x)}{(2+\sin x)^2} \\
+&= -\frac{2\sin x+1}{(2+\sin x)^2}
+\end{aligned}$$
+<p>$f'\gt0\iff\sin x\lt-\frac12\iff\frac{7\pi}{6}\lt x\lt\frac{11\pi}{6}$。所以 $f$ 在 $\left(\frac{7\pi}6,\frac{11\pi}6\right)$ 遞增，在 $\left(0,\frac{7\pi}6\right)$ 與 $\left(\frac{11\pi}6,2\pi\right)$ 遞減。</p>
+$$f\!\left(\tfrac{7\pi}{6}\right)=\frac{-\frac{\sqrt3}2}{2-\frac12}=-\frac{\sqrt3}{3},\qquad f\!\left(\tfrac{11\pi}{6}\right)=\frac{\sqrt3}{3}$$
+<p><strong>D</strong>：令 $s=\sin x$、$c=\cos x$，$f'=-(2s+1)(2+s)^{-2}$，</p>
+$$\begin{aligned}
+f''(x) &= \frac{-2c(2+s)+2c(2s+1)}{(2+s)^3} \\
+&= \frac{2c(s-1)}{(2+s)^3} \\
+&= -\frac{2\cos x\,(1-\sin x)}{(2+\sin x)^3}
+\end{aligned}$$
+<p>$(2+\sin x)^3\gt0$，$1-\sin x\ge0$（只在 $x=\frac\pi2$ 為 $0$），所以 $f''\gt0\iff\cos x\lt0\iff\frac\pi2\lt x\lt\frac{3\pi}{2}$。講義這裡寫成 $\frac{2\pi}{3}$ 是筆誤，從它自己的表格（$\frac\pi2$ 到 $\frac{3\pi}2$ 的兩格 $f''$ 都是正）也看得出來。</p>
+<p>凹口向上 $\left(\frac\pi2,\frac{3\pi}2\right)$，凹口向下 $\left(0,\frac\pi2\right)$ 與 $\left(\frac{3\pi}2,2\pi\right)$，反曲點 $\left(\frac\pi2,0\right)$、$\left(\frac{3\pi}2,0\right)$。$f''\!\left(\frac{7\pi}6\right)\gt0$ 是局部極小，$f''\!\left(\frac{11\pi}6\right)\lt0$ 是局部極大。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>區間</th><th>$(0,\frac\pi2)$</th><th>$(\frac\pi2,\frac{7\pi}6)$</th><th>$(\frac{7\pi}6,\frac{3\pi}2)$</th><th>$(\frac{3\pi}2,\frac{11\pi}6)$</th><th>$(\frac{11\pi}6,2\pi)$</th></tr></thead>
+<tbody>
+<tr><td>$f'$</td><td>$-$</td><td>$-$</td><td>$+$</td><td>$+$</td><td>$-$</td></tr>
+<tr><td>$f''$</td><td>$-$</td><td>$+$</td><td>$+$</td><td>$-$</td><td>$-$</td></tr>
+</tbody>
+</table>
+</div>
+<p class="ans">週期 $2\pi$；局部極小 $\left(\frac{7\pi}6,-\frac{\sqrt3}3\right)$，局部極大 $\left(\frac{11\pi}6,\frac{\sqrt3}3\right)$；反曲點 $\left(\frac\pi2,0\right)$、$\left(\frac{3\pi}2,0\right)$；上凹 $\left(\frac\pi2,\frac{3\pi}2\right)$</p>
+</div>
+</section>
+
+<figure>
+<img src="fig-ex18.svg" alt="y 等於 2x²/(x²-1) 的圖，垂直漸近線 x=±1，水平漸近線 y=2，中間一段在原點有極大">
+<figcaption>題 18：對稱於 $y$ 軸，中間一段在原點達到極大 $0$</figcaption>
+</figure>
+
+<section class="q" id="q18">
+<p class="problem"><span class="tag">題 18</span>$f(x)=\dfrac{2x^2}{x^2-1}$，畫出 $y=f(x)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>改寫 $f(x)=2+\dfrac{2}{x^2-1}$。</p>
+<p><strong>D</strong>：$x\neq\pm1$。<strong>I</strong>：只有原點 $(0,0)$。<strong>S</strong>：偶函數，對稱 $y$ 軸。<strong>P</strong>：無。</p>
+<p><strong>A</strong>：垂直漸近線 $x=\pm1$；水平漸近線 $y=2$，$|x|\gt1$ 時 $\frac{2}{x^2-1}\gt0$，從上方貼近。</p>
+<p><strong>D</strong>：$f'(x)=-\dfrac{4x}{(x^2-1)^2}$。$x\lt0$ 遞增、$x\gt0$ 遞減（都扣掉 $\pm1$），$x=0$ 是局部極大，$f(0)=0$。</p>
+<p><strong>D</strong>：</p>
+$$\begin{aligned}
+f''(x) &= -4\cdot\frac{(x^2-1)^2-x\cdot2(x^2-1)\cdot2x}{(x^2-1)^4} \\
+&= -4\cdot\frac{(x^2-1)-4x^2}{(x^2-1)^3} \\
+&= \frac{4(3x^2+1)}{(x^2-1)^3}
+\end{aligned}$$
+<p>與 $x^2-1$ 同號：$|x|\gt1$ 凹口向上，$|x|\lt1$ 凹口向下。凹性只在漸近線改變，無反曲點。</p>
+<p class="ans">垂直漸近線 $x=\pm1$，水平漸近線 $y=2$；局部極大 $(0,0)$；無反曲點；上凹 $|x|\gt1$，下凹 $(-1,1)$</p>
+</div>
+</section>
+
+<figure>
+<img src="fig-ex19.svg" alt="y 等於 (x+1)³/(x²+2x) 的圖，垂直漸近線 x=-2 與 x=0，斜漸近線 y=x+1，對稱於點 (-1,0)">
+<figcaption>題 19：整張圖對點 $(-1,0)$ 對稱，兩端貼著斜漸近線 $y=x+1$</figcaption>
+</figure>
+
+<section class="q" id="q19">
+<p class="problem"><span class="tag">題 19</span>$f(x)=\dfrac{(x+1)^3}{x^2+2x}$，畫出 $y=f(x)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>觀察到 $x^2+2x=(x+1)^2-1$，令 $t=x+1$，函數變成</p>
+$$f=\frac{t^3}{t^2-1}=t+\frac{t}{t^2-1}$$
+<p>它是 $t$ 的奇函數，所以圖形對稱於 $t=0$、$y=0$，也就是點 $(-1,0)$。以下都用 $t$ 算，最後再換回 $x=t-1$。</p>
+<p><strong>D</strong>：$t\neq\pm1$，即 $x\neq0,\,-2$。</p>
+<p><strong>I</strong>：$x=0$ 不在定義域，沒有 $y$ 截距；$f=0\iff t=0$，$x$ 截距 $x=-1$。</p>
+<p><strong>A</strong>：垂直漸近線 $x=0$、$x=-2$。$\frac{t}{t^2-1}\to0$，斜漸近線 $y=t=x+1$。</p>
+<p><strong>D</strong>：</p>
+$$\frac{df}{dt}=\frac{3t^2(t^2-1)-t^3\cdot2t}{(t^2-1)^2}=\frac{t^2(t^2-3)}{(t^2-1)^2}$$
+<p>$|t|\gt\sqrt3$ 為正，$|t|\lt\sqrt3$（$t\neq0,\pm1$）為負。$t=-\sqrt3$ 由正變負是局部極大，$f=\frac{-3\sqrt3}{2}$；$t=\sqrt3$ 是局部極小，$f=\frac{3\sqrt3}2$。$t=0$ 雖然 $f'=0$，但兩側都是負，不是極值。</p>
+<p><strong>D</strong>：$\frac{t}{t^2-1}$ 的二階導數題 8 已經算過，$t$ 的一階導數是常數，</p>
+$$\frac{d^2f}{dt^2}=\frac{2t(t^2+3)}{(t^2-1)^3}$$
+<p>依題 8 的表：$-1\lt t\lt0$ 或 $t\gt1$ 凹口向上，$t\lt-1$ 或 $0\lt t\lt1$ 凹口向下，$t=0$ 是反曲點（而且切線水平）。</p>
+<p>換回 $x$：</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>區間</th><th>$x\lt-1-\sqrt3$</th><th>$(-1-\sqrt3,-2)$</th><th>$(-2,-1)$</th><th>$(-1,0)$</th><th>$(0,-1+\sqrt3)$</th><th>$x\gt-1+\sqrt3$</th></tr></thead>
+<tbody>
+<tr><td>$f'$</td><td>$+$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>$+$</td></tr>
+<tr><td>$f''$</td><td>$-$</td><td>$-$</td><td>$+$</td><td>$-$</td><td>$+$</td><td>$+$</td></tr>
+</tbody>
+</table>
+</div>
+<p class="ans">垂直漸近線 $x=-2,0$，斜漸近線 $y=x+1$；局部極大 $\left(-1-\sqrt3,-\frac{3\sqrt3}2\right)$，局部極小 $\left(-1+\sqrt3,\frac{3\sqrt3}2\right)$；反曲點 $(-1,0)$</p>
+</div>
+</section>
+
+<figure>
+<img src="fig-ex20.svg" alt="y 等於 x²/√(x+1) 的圖，x=-1 為垂直漸近線，在原點有最小值，整條凹口向上">
+<figcaption>題 20：整條凹口向上，最低點在原點</figcaption>
+</figure>
+
+<section class="q" id="q20">
+<p class="problem"><span class="tag">題 20</span>$f(x)=\dfrac{x^2}{\sqrt{x+1}}$，畫出 $y=f(x)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>D</strong>：$x+1\gt0$，即 $x\gt-1$。<strong>I</strong>：$(0,0)$。<strong>S、P</strong>：無。</p>
+<p><strong>A</strong>：$x\to-1^+$ 時分子 $\to1$、分母 $\to0^+$，$f\to+\infty$，垂直漸近線 $x=-1$。$x\to\infty$ 時 $f\approx x^{3/2}$，長得比任何直線快，沒有水平或斜漸近線。</p>
+<p><strong>D</strong>：寫成 $f=x^2(x+1)^{-1/2}$，</p>
+$$\begin{aligned}
+f'(x) &= 2x(x+1)^{-1/2}-\frac12x^2(x+1)^{-3/2} \\
+&= \frac{4x(x+1)-x^2}{2(x+1)^{3/2}} \\
+&= \frac{x(3x+4)}{2(x+1)^{3/2}}
+\end{aligned}$$
+<p>定義域內 $3x+4\gt0$，所以 $f'$ 與 $x$ 同號：$(-1,0)$ 遞減，$(0,\infty)$ 遞增，$x=0$ 是局部（也是全域）極小，$f(0)=0$。</p>
+<p><strong>D</strong>：$f'=\frac12(3x^2+4x)(x+1)^{-3/2}$，</p>
+$$\begin{aligned}
+f''(x) &= \frac12(6x+4)(x+1)^{-3/2}-\frac34(3x^2+4x)(x+1)^{-5/2} \\
+&= \frac{4(3x+2)(x+1)-3(3x^2+4x)}{4(x+1)^{5/2}} \\
+&= \frac{3x^2+8x+8}{4(x+1)^{5/2}}
+\end{aligned}$$
+<p>$3x^2+8x+8$ 判別式 $64-96\lt0$，恆正。整個定義域凹口向上，沒有反曲點。</p>
+<p class="ans">定義域 $x\gt-1$，垂直漸近線 $x=-1$；最小值 $(0,0)$；處處凹口向上，無反曲點</p>
+</div>
+</section>
+
+<figure>
+<img src="fig-ex21.svg" alt="y 等於 e 的 sin x 次方的週期波形，介於 1/e 和 e 之間">
+<figcaption>題 21：在 $\frac1e$ 與 $e$ 之間擺盪，橘點為反曲點</figcaption>
+</figure>
+
+<section class="q" id="q21">
+<p class="problem"><span class="tag">題 21</span>$f(x)=e^{\sin x}$，畫出 $y=f(x)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>D</strong>：$\mathbb R$。<strong>I</strong>：$f(0)=1$；$e^{(\cdot)}\gt0$，沒有 $x$ 截距。<strong>S</strong>：無。<strong>P</strong>：週期 $2\pi$，看 $[0,2\pi]$。<strong>A</strong>：$\frac1e\le f\le e$，無漸近線。</p>
+<p><strong>D</strong>：$f'(x)=\cos x\,e^{\sin x}$，與 $\cos x$ 同號。$\left(0,\frac\pi2\right)$、$\left(\frac{3\pi}2,2\pi\right)$ 遞增，$\left(\frac\pi2,\frac{3\pi}2\right)$ 遞減。最大值 $f\!\left(\frac\pi2\right)=e$，最小值 $f\!\left(\frac{3\pi}2\right)=\frac1e$。</p>
+<p><strong>D</strong>：積法則，</p>
+$$f''(x)=-\sin x\,e^{\sin x}+\cos^2x\,e^{\sin x}=e^{\sin x}\bigl(1-\sin x-\sin^2x\bigr)$$
+<p>令 $s=\sin x$，$1-s-s^2=0$ 得 $s=\frac{-1\pm\sqrt5}{2}$，其中 $\frac{-1-\sqrt5}{2}\lt-1$ 不可能。記 $\alpha=\sin^{-1}\frac{\sqrt5-1}{2}\approx0.666$。$1-s-s^2$ 是開口向下的拋物線，$s\lt\frac{\sqrt5-1}{2}$ 時為正。在 $[0,2\pi]$ 中 $\sin x\gt\frac{\sqrt5-1}2$ 的是 $(\alpha,\pi-\alpha)$。</p>
+<p>凹口向下 $(\alpha,\pi-\alpha)$，凹口向上 $(0,\alpha)\cup(\pi-\alpha,2\pi)$。反曲點在 $x=\alpha\approx0.666$ 與 $x=\pi-\alpha\approx2.475$，$y=e^{(\sqrt5-1)/2}\approx1.855$。</p>
+<div class="remark">
+<p>有趣的是 $\sin x=\frac{\sqrt5-1}{2}\approx0.618$ 正好是黃金比例的倒數。另外最低點 $\frac{3\pi}2$ 附近整段都凹口向上，所以波谷比波峰寬，跟正弦波不一樣。</p>
+</div>
+<p class="ans">週期 $2\pi$；最大 $\left(\frac\pi2,e\right)$，最小 $\left(\frac{3\pi}2,\frac1e\right)$；反曲點 $x=\alpha,\ \pi-\alpha$，$\alpha=\sin^{-1}\frac{\sqrt5-1}2\approx0.666$</p>
+</div>
+</section>
+
+<h3 id="s7-3-1">7.3.1 隱函數作圖（*）</h3>
+<p>方程式解不出 $y=f(x)$ 時也能作圖，做法是把曲線切成幾段，每段把 $y$ 當成 $x$ 的函數，照樣用 DISPADDD。對稱性在這裡特別好用：</p>
+<ul>
+<li>$(x,y)$ 換成 $(x,-y)$ 方程式不變：對稱 $x$ 軸，只畫上半部。</li>
+<li>$(x,y)$ 換成 $(y,x)$ 方程式不變：對稱直線 $y=x$。</li>
+</ul>
+
+<figure>
+<img src="fig-ex22.svg" alt="y² = x³ - 4x + 3 的圖，左邊一個封閉的卵形，右邊一條往右開口的無界曲線">
+<figcaption>題 22：一個封閉的卵形加一條無界分支，紅點處切線垂直</figcaption>
+</figure>
+
+<section class="q" id="q22">
+<p class="problem"><span class="tag">題 22</span>畫出 $y^2=x^3-4x+3$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>講義只說對稱 $x$ 軸、畫 $y=\sqrt{g(x)}$，$g(x)=x^3-4x+3$，細節省略。這裡補上。</p>
+<p><strong>D</strong>：要 $g(x)\ge0$。$g(1)=0$，因式分解 $g(x)=(x-1)(x^2+x-3)$，三根 $x=\frac{-1-\sqrt{13}}2\approx-2.303$、$1$、$\frac{-1+\sqrt{13}}2\approx1.303$。三次項係數正，所以 $g\ge0$ 在 $[-2.303,\,1]\cup[1.303,\,\infty)$。曲線分成兩塊。</p>
+<p><strong>I</strong>：$x$ 截距就是上面三根；$y$ 截距 $y=\pm\sqrt3$。</p>
+<p><strong>S</strong>：對稱 $x$ 軸。</p>
+<p><strong>D</strong>：上半部 $y=\sqrt{g}$，$y'=\dfrac{g'(x)}{2\sqrt{g(x)}}=\dfrac{3x^2-4}{2y}$。在三個 $x$ 截距 $g'\neq0$、$y=0$，切線垂直。$g'=0$ 在 $x=\pm\frac{2}{\sqrt3}$：</p>
+<ul>
+<li>$x=-\frac2{\sqrt3}\approx-1.155$ 在左邊那塊，是卵形的最高點，$y=\sqrt{3+\frac{16\sqrt3}{9}}\approx2.466$。</li>
+<li>$x=\frac2{\sqrt3}\approx1.155$ 落在 $g\lt0$ 的空隙裡，不在曲線上。右邊那塊上半部一路遞增。</li>
+</ul>
+<p><strong>D</strong>：$y''=\dfrac{2g\,g''-(g')^2}{4g^{3/2}}$，分子 $2(x^3-4x+3)(6x)-(3x^2-4)^2=3x^4-24x^2+36x-16$。在右邊那塊它只有一個根 $x\approx1.620$：之前為負（凹口向下），之後為正（凹口向上），是反曲點，約 $(1.620,\pm0.879)$。左邊卵形的上半部整段凹口向下。</p>
+<p class="ans">左邊封閉卵形 $-2.303\le x\le1$（最高點約 $(-1.155,\pm2.466)$），右邊無界分支 $x\ge1.303$（反曲點約 $x\approx1.62$）；對稱 $x$ 軸</p>
+</div>
+</section>
+
+<figure>
+<img src="fig-ex23.svg" alt="x³+y³-x²y-xy²=8 的圖，兩條分支分別在 y=x 的兩側，漸近線 y=x 與 y=-x">
+<figcaption>題 23：藍色是講義討論的 $y\gt x$ 那一支，綠色是它對 $y=x$ 的鏡像</figcaption>
+</figure>
+
+<section class="q" id="q23">
+<p class="problem"><span class="tag">題 23</span>畫出 $x^3+y^3-x^2y-xy^2=8$。（講義求 $\frac{dy}{dx}$ 時的理由有誤，見頁首。）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>講義直接硬做。先因式分解會清楚很多：</p>
+$$\begin{aligned}
+x^3+y^3-xy(x+y) &= (x+y)(x^2-xy+y^2)-xy(x+y) \\
+&= (x+y)(x-y)^2= 8
+\end{aligned}$$
+<p>由此馬上看出：$(x-y)^2\ge0$，所以 $x+y\gt0$，且 $x\neq y$。</p>
+<p><strong>I</strong>：$x=0$ 得 $y^3=8$，$y=2$；同理 $(2,0)$。</p>
+<p><strong>S</strong>：$x,y$ 互換方程式不變，對稱 $y=x$。曲線被 $y=x$ 切成兩支（$x\neq y$），只看 $y\gt x$ 那支。這支同時有 $y\gt x$、$y\gt-x$，所以 $y\gt|x|\ge0$，整支在 $x$ 軸上方。</p>
+<p><strong>A</strong>：講義用反證法說明沒有垂直、水平漸近線，並證明斜漸近線是 $y=\pm x$。用因式分解的形式更直接：沿著曲線 $|x|\to\infty$ 時，若 $x-y$ 也趨向無窮，則 $x+y=\dfrac{8}{(x-y)^2}\to0$，貼近 $y=-x$；若 $x+y\to\infty$，則 $(x-y)^2=\dfrac{8}{x+y}\to0$，貼近 $y=x$。所以漸近線是 $y=x$ 與 $y=-x$。</p>
+<p><strong>D</strong>：對 $(x+y)(x-y)^2=8$ 兩邊微分，</p>
+$$(1+y')(x-y)^2+2(x+y)(x-y)(1-y')=0$$
+<p>曲線上 $x\neq y$，兩邊除以 $(x-y)$（講義括號說消掉 $x+y$，是寫錯了）：</p>
+$$(1+y')(x-y)+2(x+y)(1-y')=0\ \Longrightarrow\ \frac{dy}{dx}=\frac{3x+y}{3y+x}$$
+<p>在 $y\gt|x|$ 這支上，$3y+x\gt0$，所以 $y'$ 的正負看 $3x+y$。$y'=0\iff y=-3x$，代回方程式 $(-2x)(4x)^2=-32x^3=8$，$x^3=-\frac14$：</p>
+$$P\left(-\frac{1}{2^{2/3}},\ \frac{3}{2^{2/3}}\right)\approx(-0.630,\ 1.890)$$
+<p>$-x\lt y\lt-3x$（$P$ 的左邊）$y'\lt0$，$y\gt-3x$（$P$ 的右邊）$y'\gt0$，$P$ 是最低點。</p>
+<p><strong>D</strong>：$y'=\frac{3x+y}{3y+x}$ 再微一次並代回 $y'$，</p>
+$$\begin{aligned}
+\frac{d^2y}{dx^2} &= \frac{(3+y')(3y+x)-(3x+y)(3y'+1)}{(3y+x)^2} \\
+&= \frac{8y-8xy'}{(3y+x)^2} \\
+&= \frac{24(y+x)(y-x)}{(3y+x)^3}
+\end{aligned}$$
+<p>這支上 $y+x\gt0$、$y-x\gt0$、$3y+x\gt0$，所以 $y''\gt0$，整支凹口向上。</p>
+<p><strong>D</strong>：從左上方貼著 $y=-x$ 下來，經過 $(0,2)$ 前先到最低點 $P$，再往右上貼近 $y=x$。另一支是它對 $y=x$ 的鏡像。</p>
+<div class="remark">
+<p>換成旋轉 $45^\circ$ 的座標 $u=\frac{x+y}{\sqrt2}$、$v=\frac{x-y}{\sqrt2}$，方程式變成 $u\,v^2=2\sqrt2$，也就是 $u=\frac{2\sqrt2}{v^2}$，跟 $y=\frac{1}{x^2}$ 是同一種形狀，只是轉了 $45^\circ$。</p>
+</div>
+<p class="ans">漸近線 $y=\pm x$；對稱 $y=x$ 的兩支；$y\gt x$ 那支最低點 $P\left(-2^{-2/3},\,3\cdot2^{-2/3}\right)$，處處凹口向上</p>
+</div>
+</section>
+
+<figure class="pair">
+<img src="fig-ex24a.svg" alt="(a) y² = x²(x+1)，在原點自交，左邊一個圈">
+<img src="fig-ex24b.svg" alt="(b) -xy + y³ = -6，上方一條向右開口的曲線，下方一條遞減曲線，y=0 為水平漸近線">
+<img src="fig-ex24c.svg" alt="(c) x³ + y³ = 6，遞減曲線，斜漸近線 y=-x">
+<figcaption>題 24 (a)(b)(c)</figcaption>
+</figure>
+
+<section class="q" id="q24">
+<p class="problem"><span class="tag">題 24</span>畫出下列隱函數：(a) $y^2=x^2(x+1)$　(b) $-xy+y^3=-6$　(c) $x^3+y^3=6$</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>(a)</strong> 對稱 $x$ 軸。開根號得 $y=\pm|x|\sqrt{x+1}$，也就是 $y=x\sqrt{x+1}$ 與 $y=-x\sqrt{x+1}$ 兩條合起來。先畫 $h(x)=x\sqrt{x+1}$ 這一條，再對 $x$ 軸鏡射。注意 $h$ 不是上半部：$-1\lt x\lt0$ 時 $h\lt0$。</p>
+<ul>
+<li>定義域 $x\ge-1$；截距 $(-1,0)$、$(0,0)$。</li>
+<li>$h(x)=x\sqrt{x+1}$，$h'(x)=\sqrt{x+1}+\dfrac{x}{2\sqrt{x+1}}=\dfrac{3x+2}{2\sqrt{x+1}}$。$x=-\frac23$ 是最低點 $h=-\frac{2\sqrt3}{9}\approx-0.385$；$x\to-1^+$ 時 $h'\to-\infty$，在 $(-1,0)$ 切線垂直。</li>
+<li>$h''(x)=\dfrac{3x+4}{4(x+1)^{3/2}}\gt0$，凹口向上。</li>
+<li>原點處 $h'(0)=1$，鏡像那條斜率 $-1$：曲線在原點以斜率 $\pm1$ 自己交叉。</li>
+</ul>
+<p>形狀：$-1\le x\le0$ 是一個水滴形的圈（上下最寬在 $x=-\frac23$），過原點交叉後兩條往右上、右下張開。</p>
+
+<p><strong>(b)</strong> 這題 $y$ 解不出來，但 $x$ 可以：$x\,y=y^3+6$，$y\neq0$，</p>
+$$x=y^2+\frac6y$$
+<p>把它當成「$x$ 是 $y$ 的函數」來畫，等於把平常的圖轉個方向看。</p>
+<ul>
+<li>$y\neq0$：曲線不碰 $x$ 軸。$y\to0^+$ 時 $x\to+\infty$，$y\to0^-$ 時 $x\to-\infty$，所以 $y=0$ 是水平漸近線。</li>
+<li>$\dfrac{dx}{dy}=2y-\dfrac{6}{y^2}$。$y\gt0$ 時在 $y^3=3$ 變號：$y=3^{1/3}\approx1.442$，$x=3^{2/3}+2\cdot3^{2/3}=3^{5/3}\approx6.24$，這是上面那支最左邊的點，切線垂直。$y\lt0$ 時 $\frac{dx}{dy}\lt0$ 恆成立，下面那支 $y$ 隨 $x$ 單調遞減。</li>
+<li>$\dfrac{d^2x}{dy^2}=2+\dfrac{12}{y^3}$。$y\gt0$ 恆正，上支像往右開口的拋物線；$y\lt0$ 在 $y^3=-6$ 變號，$y=-\sqrt[3]6$，此時 $x=6^{2/3}-6^{2/3}=0$，反曲點剛好就是 $y$ 截距 $(0,-\sqrt[3]6)$。</li>
+<li>$y\to\pm\infty$ 時 $x\approx y^2$，兩支都往右延伸，像 $x=y^2$。</li>
+</ul>
+<p>形狀：上支是從 $y=0$ 上方、$x=+\infty$ 處繞過 $(6.24,1.44)$ 再往右上去的 C 字形；下支從左邊貼著 $y=0$ 下方出發，經過 $(0,-1.817)$ 一路往右下。</p>
+
+<p><strong>(c)</strong> $y=\sqrt[3]{6-x^3}$，定義域 $\mathbb R$，對稱 $y=x$。</p>
+<ul>
+<li>截距 $(0,\sqrt[3]6)$、$(\sqrt[3]6,0)$，$\sqrt[3]6\approx1.817$。</li>
+<li>漸近線：$x+y=\dfrac{6}{x^2-xy+y^2}\to0$，所以 $y=-x$ 是斜漸近線。</li>
+<li>$3x^2+3y^2y'=0$，$y'=-\dfrac{x^2}{y^2}\le0$，整條遞減。$x=0$ 時切線水平，$y=0$ 時切線垂直。</li>
+<li>$y''=-\dfrac{2xy^2-x^2\cdot2yy'}{y^4}=-\dfrac{2x(y^3+x^3)}{y^5}=-\dfrac{12x}{y^5}$。$x$ 與 $y$ 異號時 $y''\gt0$：$x\lt0$（此時 $y\gt0$）與 $x\gt\sqrt[3]6$（此時 $y\lt0$）凹口向上，$0\lt x\lt\sqrt[3]6$ 凹口向下。兩個截距都是反曲點。</li>
+</ul>
+<p class="ans">(a) 原點自交、左側有圈；(b) $y=0$ 為漸近線，上支最左點 $(3^{5/3},3^{1/3})$，下支反曲點 $(0,-\sqrt[3]6)$；(c) 遞減，漸近線 $y=-x$，反曲點 $(0,\sqrt[3]6)$、$(\sqrt[3]6,0)$</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="s7-4">7.4 一維梯度下降（*）</h2>
+
+<p>函數太複雜時解不出 $f'=0$，機器學習的做法是：從一個猜測 $x_0$ 出發，一步一步往低處走。$f'(x_n)\gt0$ 代表往右是上坡，就往左走；$f'(x_n)\lt0$ 就往右走。也就是永遠往 $f'$ 的<strong>反方向</strong>移動，移動量跟斜率成正比：</p>
+$$x_{n+1}=x_n-t\,f'(x_n)$$
+<p>$t$ 叫 <strong>learning rate</strong>（學習率），控制步伐大小。講義寫「向 $f'(x_n)$ 的方向走 $t$ 單位」是筆誤，公式本身是對的。</p>
+
+<figure class="pair">
+<img src="fig-gd-good.svg" alt="在 y=x² 上，t=0.2 時點從 x=10 一步步往原點靠近">
+<img src="fig-gd-bad.svg" alt="在 y=x² 上，t=1.1 時點在左右兩側來回跳，越跳越高">
+<figcaption>題 25：$t=0.2$ 穩穩走向谷底；$t=1.1$ 步伐太大，每一步都跳過谷底而且越跳越遠</figcaption>
+</figure>
+
+<section class="q" id="q25">
+<p class="problem"><span class="tag">題 25</span>$f(x)=x^2$，$x_0=10$。用不同的 $t$ 逼近 $f$ 的最小值，求 $x_1,x_2,\ldots,x_9$：(a) $t=0.2$　(b) $t=0.05$（太小）　(c) $t=1.1$（太大）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$f'(x)=2x$，所以 $x_{n+1}=x_n-2t\,x_n=(1-2t)\,x_n$，是公比 $r=1-2t$ 的等比數列，$x_n=10\,r^n$。</p>
+<ul>
+<li>(a) $r=0.6$：$x_n=10(0.6)^n\to0$。</li>
+<li>(b) $r=0.9$：$x_n=10(0.9)^n\to0$，但比 (a) 慢很多。</li>
+<li>(c) $r=-1.2$：$|r|\gt1$，$x_n=10(-1.2)^n$ 正負交錯且絕對值變大，發散。</li>
+</ul>
+<div class="table-wrap">
+<table>
+<thead><tr><th>$n$</th><th>(a) $t=0.2$</th><th>(b) $t=0.05$</th><th>(c) $t=1.1$</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>6</td><td>9</td><td>$-12$</td></tr>
+<tr><td>2</td><td>3.6</td><td>8.1</td><td>14.4</td></tr>
+<tr><td>3</td><td>2.16</td><td>7.29</td><td>$-17.28$</td></tr>
+<tr><td>4</td><td>1.296</td><td>6.561</td><td>20.736</td></tr>
+<tr><td>5</td><td>0.7776</td><td>5.9049</td><td>$-24.8832$</td></tr>
+<tr><td>6</td><td>0.4666</td><td>5.3144</td><td>29.8598</td></tr>
+<tr><td>7</td><td>0.2799</td><td>4.7830</td><td>$-35.8318$</td></tr>
+<tr><td>8</td><td>0.1680</td><td>4.3047</td><td>42.9982</td></tr>
+<tr><td>9</td><td>0.1008</td><td>3.8742</td><td>$-51.5978$</td></tr>
+</tbody>
+</table>
+</div>
+<p>(c) 的問題出在一步跨太大：在 $x=10$ 斜率是 $20$，走 $1.1\times20=22$ 單位，直接衝到谷底另一邊更高的地方。收斂的條件是 $|1-2t|\lt1$，即 $0\lt t\lt1$。</p>
+<p class="ans">$x_n=10(1-2t)^n$：(a) $10(0.6)^n\to0$；(b) $10(0.9)^n\to0$ 較慢；(c) $10(-1.2)^n$ 發散</p>
+</div>
+</section>
+
+<div class="remark">
+<p>實務上學習率可以每一步調整（例如參考前幾步的 $x_n$），讓收斂更快。另外梯度下降只會找到局部極小，函數有好幾個谷時，掉進哪一個要看起點，想找全域最小值需要其他技巧。</p>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="summary">本週必背總整理</h2>
+<ol>
+<li><strong>臨界點</strong>：$f'(c)=0$ 或 $f'(c)$ 不存在。極值只會在臨界點，但臨界點不一定是極值（$x^3$），要看 $f'$ 變號</li>
+<li><strong>閉區間最大最小值</strong>：臨界點與端點全部代入比大小，端點不能漏</li>
+<li><strong>凹性</strong>：$f''\gt0$ 凹口向上（切線在下方），$f''\lt0$ 凹口向下；反曲點要 $f''$ <strong>變號</strong>且在定義域內（$x^4$ 不是）</li>
+<li><strong>二階判別</strong>：$f'(c)=0$ 且 $f''(c)\lt0$ 是極大，$f''(c)\gt0$ 是極小</li>
+<li><strong>線性逼近</strong>：$f''(a)\gt0$ 低估、$f''(a)\lt0$ 高估</li>
+<li><strong>DISPADDD</strong>：定義域、截距、對稱、週期、漸近線、$f'$、$f''$、畫圖；最後整理成符號表</li>
+<li><strong>隱函數作圖</strong>：先找對稱與因式分解；$y$ 解不出來就試著把 $x$ 寫成 $y$ 的函數</li>
+<li><strong>梯度下降</strong>：$x_{n+1}=x_n-tf'(x_n)$，往斜率反方向走；$t$ 太小慢，太大發散</li>
+</ol>
+
+</main>
+</body>
+</html>

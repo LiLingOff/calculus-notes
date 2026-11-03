@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HW1 詳解</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/math.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+<p class="back"><a href="../index.html">← 目錄</a></p>
+<h1>115 學年第 1 學期　Homework 1</h1>
+<p class="subtitle">AP Calculus I 第一次作業（繳交期限 2026/10/24），官方解答改寫成詳解</p>
+
+<p>這份官方解答逐題驗算過，沒有發現錯誤。每題下方灰字是對應的<a href="../index.html">主題複習路線</a>段號和講義小節。作業範圍是 Week 1 到 Week 6，全部在講義範圍內，題型也和講義例題很接近，適合當期中考前的總複習。</p>
+
+<!-- ================================================================ -->
+<h2 id="q1">第 1 題　反函數與反三角函數</h2>
+<p>$f(x)=\dfrac{x+1}{2x+1}$</p>
+
+<section class="q" id="q1a">
+<p class="problem"><span class="tag">1(a)</span>證明 $f$ 是一對一函數。</p>
+<p class="topic">主題 2 一對一｜<a href="../week01/index.html#s1-4">§1.4</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：照定義證明：假設 $f(a)=f(b)$，推出 $a=b$。</p>
+<p>定義域 $x\neq-\frac12$。設 $a,b\neq-\frac12$ 且 $f(a)=f(b)$，交叉相乘：</p>
+$$(a+1)(2b+1)=(b+1)(2a+1)\iff2ab+a+2b+1=2ab+2a+b+1\iff a+2b=2a+b$$
+<p class="ans">所以 $a=b$，$f$ 一對一　■</p>
+<div class="remark">
+<p><strong>為什麼不用導數</strong>：$f'(x)=\dfrac{-1}{(2x+1)^2}\lt0$，但定義域被 $x=-\frac12$ 切成兩段，「導數恆負」只保證每段各自遞減。要說整體一對一，還得補一句：寫成 $f(x)=\frac12+\frac{1/2}{2x+1}$，左段的函數值都 $\lt\frac12$、右段都 $\gt\frac12$，兩段不會撞值。照定義證明就不用處理這件事。</p>
+</div>
+</div>
+</section>
+
+<section class="q" id="q1b">
+<p class="problem"><span class="tag">1(b)</span>求 $f$ 的反函數。</p>
+<p class="topic">主題 2 反函數｜<a href="../week01/index.html#s1-3">§1.3</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：令 $y=f(x)$，解出 $x$，再把 $x$、$y$ 對調。</p>
+$$y(2x+1)=x+1\iff2xy-x=1-y\iff x(2y-1)=1-y\iff x=\frac{1-y}{2y-1}$$
+<p class="ans">$f^{-1}(x)=\dfrac{1-x}{2x-1}$，$x\neq\dfrac12$</p>
+<p>$x\neq\frac12$ 剛好就是 (a) 補充裡說的「$f$ 取不到 $\frac12$」，反函數的定義域是原函數的值域。</p>
+</div>
+</section>
+
+<section class="q" id="q1c">
+<p class="problem"><span class="tag">1(c)</span>求 $f^{-1}(3)$ 與 $f\bigl(f^{-1}(-4)\bigr)$。</p>
+<p class="topic">主題 2 反函數｜<a href="../week01/index.html#s1-3">§1.3</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$f^{-1}(3)=\dfrac{1-3}{6-1}=-\dfrac25$。驗算：$f\left(-\frac25\right)=\frac{3/5}{1/5}=3$。</p>
+<p>$-4\neq\frac12$，在 $f^{-1}$ 的定義域內，而 $f\bigl(f^{-1}(x)\bigr)=x$，不用算。</p>
+<p class="ans">$f^{-1}(3)=-\dfrac25$；$f\bigl(f^{-1}(-4)\bigr)=-4$</p>
+</div>
+</section>
+
+<section class="q" id="q1d">
+<p class="problem"><span class="tag">1(d)</span>求 $\tan\left(\sin^{-1}\frac12\right)$ 與 $\cos\left(\cos^{-1}\frac{6\pi}{5}\right)$。</p>
+<p class="topic">主題 2 反三角函數｜<a href="../week01/index.html#s1-5">§1.5</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：反三角函數的值域與定義域。$\sin^{-1}$ 輸出在 $[-\frac\pi2,\frac\pi2]$；$\cos^{-1}$ 只吃 $[-1,1]$ 的輸入。</p>
+<p>$\sin^{-1}\frac12=\frac\pi6$，所以 $\tan\frac\pi6=\frac{1}{\sqrt3}=\frac{\sqrt3}3$。</p>
+<p>$\frac{6\pi}{5}\approx3.77\gt1$，不在 $\cos^{-1}$ 的定義域，$\cos^{-1}\frac{6\pi}5$ 沒有定義，整個式子也沒有定義。</p>
+<p class="ans">$\tan\left(\sin^{-1}\frac12\right)=\dfrac{\sqrt3}{3}$；$\cos\left(\cos^{-1}\frac{6\pi}5\right)$ 無定義</p>
+<p>陷阱：看到 $\cos(\cos^{-1}\cdot)$ 就直接「抵消」寫 $\frac{6\pi}5$。抵消只在括號裡的數落在 $[-1,1]$ 時成立。</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q2">第 2 題　求極限（不可用羅必達）</h2>
+
+<section class="q" id="q2a">
+<p class="problem"><span class="tag">2(a)</span>$\displaystyle\lim_{x\to2}\frac{2-x}{\sqrt{x+2}-2}$</p>
+<p class="topic">主題 4 算極限的技巧｜<a href="../week02/index.html#s2-3">§2.3 有理化</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：$\frac00$ 型，分母有根號差，有理化後約掉 $x-2$。</p>
+$$\frac{(2-x)(\sqrt{x+2}+2)}{(x+2)-4}=\frac{(2-x)(\sqrt{x+2}+2)}{x-2}=-(\sqrt{x+2}+2)\;\longrightarrow\;-(2+2)$$
+<p class="ans">$-4$</p>
+</div>
+</section>
+
+<section class="q" id="q2b">
+<p class="problem"><span class="tag">2(b)</span>$\displaystyle\lim_{x\to0}\frac{\sin3x}{\sin x}$</p>
+<p class="topic">主題 4 三角極限｜<a href="../week02/index.html#s2-3">§2.3</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：湊出兩個 $\frac{\sin u}{u}$。</p>
+$$\frac{\sin3x}{\sin x}=3\cdot\frac{\sin3x}{3x}\cdot\frac{x}{\sin x}\;\longrightarrow\;3\cdot1\cdot1$$
+<p class="ans">$3$</p>
+</div>
+</section>
+
+<section class="q" id="q2c">
+<p class="problem"><span class="tag">2(c)</span>$\displaystyle\lim_{x\to-\infty}\frac{\left\lfloor2x+\sqrt{|x|}\right\rfloor}{\sqrt{x^2+1}}$，$\lfloor\cdot\rfloor$ 是高斯符號。（提示：$y-1\lt\lfloor y\rfloor\le y$。）</p>
+<p class="topic">主題 4 夾擠｜<a href="../week02/index.html#s2-4">§2.4</a>　主題 5｜<a href="../week02/index.html#s2-5">§2.5</a>（類似講義<a href="../week02/index.html#q29">週二題 29</a>）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：高斯符號沒辦法直接算，用提示把它夾在兩個沒有高斯符號的式子之間。再處理 $x\to-\infty$ 時 $\sqrt{x^2}=-x$ 的正負號。</p>
+<p>$x\lt0$ 時 $|x|=-x$。令 $y=2x+\sqrt{-x}$，用提示並除以 $\sqrt{x^2+1}\gt0$：</p>
+$$\frac{2x+\sqrt{-x}-1}{\sqrt{x^2+1}}\lt\frac{\left\lfloor2x+\sqrt{-x}\right\rfloor}{\sqrt{x^2+1}}\le\frac{2x+\sqrt{-x}}{\sqrt{x^2+1}}$$
+<p>$x\lt0$ 時 $\sqrt{x^2+1}=-x\sqrt{1+\frac1{x^2}}$，分子分母同除 $-x\gt0$：</p>
+$$\frac{2x+\sqrt{-x}}{\sqrt{x^2+1}}=\frac{-2+\frac{1}{\sqrt{-x}}}{\sqrt{1+\frac1{x^2}}}\;\longrightarrow\;\frac{-2+0}{1}=-2$$
+<p>左邊多出的 $\frac{-1}{\sqrt{x^2+1}}\to0$，所以左邊也 $\to-2$。夾擠定理：</p>
+<p class="ans">$-2$</p>
+<p>常見錯誤：把 $\sqrt{x^2+1}$ 當成 $x$，得到 $+2$。</p>
+</div>
+</section>
+
+<section class="q" id="q2d">
+<p class="problem"><span class="tag">2(d)</span>$\displaystyle\lim_{x\to+\infty}\frac{\cos(2x)\,e^{\sin(x^2)}}{x}$（提示：$e^{-1}\le e^{\sin(x^2)}\le e$。）</p>
+<p class="topic">主題 4 夾擠｜<a href="../week02/index.html#s2-4">§2.4</a>（類似講義<a href="../week02/index.html#q30">週二題 30</a> 的 $\frac{\sin x}{x}$）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：分子有界、分母 $\to\infty$，夾擠。</p>
+<p>$|\cos2x|\le1$、$0\lt e^{\sin(x^2)}\le e$，所以分子的絕對值 $\le e$。$x\gt0$ 時</p>
+$$-\frac ex\le\frac{\cos(2x)\,e^{\sin(x^2)}}{x}\le\frac ex$$
+<p>兩邊 $\to0$。</p>
+<p class="ans">$0$</p>
+</div>
+</section>
+
+<section class="q" id="q2e">
+<p class="problem"><span class="tag">2(e)</span>$\displaystyle\lim_{x\to0}\left(\frac1x-\frac1{|x|}\right)$</p>
+<p class="topic">主題 3 單邊極限｜<a href="../week02/index.html#s2-1">§2.1</a>　主題 5 無窮極限｜<a href="../week02/index.html#s2-2">§2.2</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：有絕對值就分左右。</p>
+<p>$x\gt0$：$\frac1x-\frac1x=0$，右極限 $0$。</p>
+<p>$x\lt0$：$|x|=-x$，$\frac1x+\frac1x=\frac2x\to-\infty$。</p>
+<p class="ans">左右極限不相等（左邊 $-\infty$、右邊 $0$），極限不存在</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q3">第 3 題　$\sin x$ 的導數與均值定理</h2>
+
+<section class="q" id="q3a">
+<p class="problem"><span class="tag">3(a)</span>$f(x)=\sin x$，用定義求 $f'(x)$。</p>
+<p class="topic">主題 7 用定義求導數｜<a href="../week04/index.html#s4-3">§4.3</a>（講義<a href="../week04/index.html#q8">週四題 8</a> 原題）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：導數定義加和角公式，拆成兩個標準極限 $\frac{\sin h}{h}\to1$ 和 $\frac{\cos h-1}{h}\to0$。</p>
+$$f'(x)=\lim_{h\to0}\frac{\sin(x+h)-\sin x}{h}=\lim_{h\to0}\left(\sin x\cdot\frac{\cos h-1}{h}+\cos x\cdot\frac{\sin h}{h}\right)=\sin x\cdot0+\cos x\cdot1$$
+<p class="ans">$f'(x)=\cos x$</p>
+<p>$\frac{\cos h-1}{h}\to0$ 的理由：$\frac{\cos h-1}{h}=-\frac{1-\cos h}{h^2}\cdot h\to-\frac12\cdot0$。</p>
+</div>
+</section>
+
+<section class="q" id="q3b">
+<p class="problem"><span class="tag">3(b)</span>用均值定理證明：對所有 $a\le b$，$0\le|\sin b-\sin a|\le b-a$。</p>
+<p class="topic">主題 13 均值定理｜<a href="../week06/index.html#s6-2">§6.2</a>（講義<a href="../week06/index.html#q7">週六題 7</a> 是 $\cos$ 的版本）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：證明題。均值定理把「函數值的差」換成「導數 $\times$ 區間長」，再用 $|\cos c|\le1$ 估計。</p>
+<p><strong>$a=b$</strong>：兩邊都是 $0$，成立。</p>
+<p><strong>$a\lt b$</strong>：$\sin x$ 在 $[a,b]$ 連續、在 $(a,b)$ 可微。<strong>關鍵一步</strong>：由均值定理，存在 $c\in(a,b)$ 使</p>
+$$\frac{\sin b-\sin a}{b-a}=\cos c$$
+<p>取絕對值，因為 $b-a\gt0$：$|\sin b-\sin a|=|\cos c|\,(b-a)\le b-a$。左邊的 $0\le$ 是絕對值本來就成立。</p>
+<p class="ans">得證　■</p>
+<div class="remark">
+<p><strong>常見失分</strong>：(1) 沒寫均值定理的條件（閉區間連續、開區間可微）；(2) 忘了分 $a=b$ 的情況，那時均值定理的區間退化，不能用；(3) 只寫「$|\cos c|\le1$ 所以成立」，跳過了 $\sin b-\sin a=\cos c\,(b-a)$ 這個式子。</p>
+</div>
+</div>
+</section>
+
+<section class="q" id="q3c">
+<p class="problem"><span class="tag">3(c)</span>用 (b) 和夾擠定理求 $\displaystyle\lim_{x\to0^+}\left(\sin\frac1x-\sin\frac{1}{x\sqrt{x^2+1}}\right)$。</p>
+<p class="topic">主題 4 夾擠｜<a href="../week02/index.html#s2-4">§2.4</a>　主題 13｜<a href="../week06/index.html#s6-2">§6.2</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：$\sin\frac1x$ 單獨在 $0$ 附近劇烈振盪，沒有極限；但兩個 $\sin$ 的輸入越來越接近，差就會被 (b) 控制住。</p>
+<p>$x\gt0$ 時 $\sqrt{x^2+1}\gt1$，所以 $a=\dfrac1{x\sqrt{x^2+1}}\lt\dfrac1x=b$。由 (b)：</p>
+$$\left|\sin\frac1x-\sin\frac1{x\sqrt{x^2+1}}\right|\le\frac1x-\frac1{x\sqrt{x^2+1}}=\frac{\sqrt{x^2+1}-1}{x\sqrt{x^2+1}}$$
+<p>分子有理化（$(\sqrt{x^2+1})^2-1=x^2$），約掉一個 $x$：</p>
+$$=\frac{x}{\sqrt{x^2+1}\,\left(\sqrt{x^2+1}+1\right)}\;\longrightarrow\;\frac{0}{1\cdot2}=0$$
+<p>所以 $-B(x)\le(\text{原式})\le B(x)$，$B(x)\to0$，夾擠得</p>
+<p class="ans">$0$</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q4">第 4 題　分段函數的可微性與斜漸近線</h2>
+<p>$f(x)=\begin{cases}\sqrt{x^2+5}, & x\le2\\ mx+b, & x\gt2\end{cases}$</p>
+
+<section class="q" id="q4a">
+<p class="problem"><span class="tag">4(a)</span>求 $m,b$ 使 $f$ 處處可微。</p>
+<p class="topic">主題 7 可微性｜<a href="../week04/index.html#s4-2">§4.2</a> <a href="../week04/index.html#s4-4">§4.4 可微必連續</a>（類似講義<a href="../week04/index.html#q10">週四題 10</a>）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：分段點可微需要兩個條件：(1) 連續（可微必連續），(2) 左右導數相等。兩個方程式解兩個未知數。</p>
+<p>其他地方都可微，只看 $x=2$。</p>
+<p><strong>連續</strong>：$f(2)=\sqrt{9}=3$，右極限 $2m+b$，所以 $2m+b=3$。</p>
+<p><strong>左導數</strong>：$\left(\sqrt{x^2+5}\right)'=\dfrac{x}{\sqrt{x^2+5}}$，在 $x=2$ 是 $\frac23$。</p>
+<p><strong>右導數</strong>：用連續條件 $2m+b=3$，</p>
+$$\lim_{h\to0^+}\frac{m(2+h)+b-3}{h}=\lim_{h\to0^+}\frac{mh}{h}=m$$
+<p>令兩者相等：$m=\frac23$，$b=3-\frac43=\frac53$。</p>
+<p class="ans">$m=\dfrac23$，$b=\dfrac53$</p>
+<p>連續條件一定要先用：如果 $2m+b\neq3$，右側差商的分子不趨近 $0$，右導數直接是無窮大。</p>
+</div>
+</section>
+
+<section class="q" id="q4b">
+<p class="problem"><span class="tag">4(b)</span>求 $x\to-\infty$ 時 $f$ 的斜漸近線。</p>
+<p class="topic">主題 5 漸近線｜<a href="../week06/index.html#s6-4">§6.4 斜漸近線</a><span class="lv">延伸</span></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：$y=Ax+B$，$A=\lim\frac{f(x)}{x}$，$B=\lim(f(x)-Ax)$。$x\to-\infty$ 時 $\sqrt{x^2}=-x$。</p>
+$$A=\lim_{x\to-\infty}\frac{-x\sqrt{1+\frac5{x^2}}}{x}=-1$$
+<p>算 $B$ 用有理化：</p>
+$$B=\lim_{x\to-\infty}\left(\sqrt{x^2+5}+x\right)=\lim_{x\to-\infty}\frac{5}{\sqrt{x^2+5}-x}=0$$
+<p>（分母兩項都 $\to+\infty$。）</p>
+<p class="ans">斜漸近線 $y=-x$</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q5">第 5 題　求 $f'(1)$</h2>
+
+<section class="q" id="q5a">
+<p class="problem"><span class="tag">5(a)</span>$f(x)=\ln\left(xe^{2x}\right)$</p>
+<p class="topic">主題 11 對數的導數｜<a href="../week05/index.html#s5-3">§5.3</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：先用對數律拆開再微分。</p>
+$$f(x)=\ln x+2x\;\Longrightarrow\;f'(x)=\frac1x+2$$
+<p class="ans">$f'(1)=3$</p>
+</div>
+</section>
+
+<section class="q" id="q5b">
+<p class="problem"><span class="tag">5(b)</span>$f(x)=\dfrac{\tan^{-1}x}{x^2+1}$</p>
+<p class="topic">主題 8 商法則｜<a href="../week04/index.html#s4-5">§4.5</a>　主題 10｜<a href="../week05/index.html#s5-2">§5.2</a></p>
+<div class="solution"><span class="tag">詳解</span>
+$$f'(x)=\frac{\frac{1}{1+x^2}(x^2+1)-\tan^{-1}x\cdot2x}{(x^2+1)^2}=\frac{1-2x\tan^{-1}x}{(x^2+1)^2}$$
+<p>$\tan^{-1}1=\frac\pi4$：$f'(1)=\dfrac{1-\frac\pi2}{4}$。</p>
+<p class="ans">$f'(1)=\dfrac{2-\pi}{8}$</p>
+</div>
+</section>
+
+<section class="q" id="q5c">
+<p class="problem"><span class="tag">5(c)</span>$f(x)=\tan^{-1}\left(e^{x-1}\right)$</p>
+<p class="topic">主題 10 反三角導數｜<a href="../week05/index.html#s5-2">§5.2</a>　主題 9 連鎖律｜<a href="../week04/index.html#s4-8">§4.8</a></p>
+<div class="solution"><span class="tag">詳解</span>
+$$f'(x)=\frac{1}{1+\left(e^{x-1}\right)^2}\cdot e^{x-1}\;\Longrightarrow\;f'(1)=\frac{1}{1+1}\cdot1$$
+<p class="ans">$f'(1)=\dfrac12$</p>
+</div>
+</section>
+
+<section class="q" id="q5d">
+<p class="problem"><span class="tag">5(d)</span>$f(x)=(2-x)^x$</p>
+<p class="topic">主題 11 對數微分｜<a href="../week05/index.html#s5-4-1">§5.4.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：底和指數都有 $x$，用對數微分（$x\lt2$ 時底數為正）。</p>
+$$\ln y=x\ln(2-x)\;\Longrightarrow\;\frac{y'}y=\ln(2-x)+x\cdot\frac{-1}{2-x}$$
+<p>代 $x=1$：$y=1$，$\frac{y'}{y}=\ln1-1=-1$。</p>
+<p class="ans">$f'(1)=-1$</p>
+<p>$\ln(2-x)$ 的導數有連鎖律的 $-1$，最常漏掉。</p>
+</div>
+</section>
+
+<section class="q" id="q5e">
+<p class="problem"><span class="tag">5(e)</span>$f(x)=\dfrac{x^3+1}{e^{\frac{x+1}{x+2}}\sqrt{x^2+1}}$</p>
+<p class="topic">主題 11 對數微分｜<a href="../week05/index.html#s5-4-1">§5.4.1</a>（類似講義<a href="../week05/index.html#q18">週五題 18</a>）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：一堆乘除和次方，取 $\ln$ 拆成加減最省事。只要 $f'(1)$，拆完直接代值。</p>
+<p>$x=1$ 附近 $f\gt0$。取 $\ln$：</p>
+$$\ln f=\ln(x^3+1)-\frac{x+1}{x+2}-\frac12\ln(x^2+1)$$
+<p>微分，中間項用商法則 $\left(\frac{x+1}{x+2}\right)'=\frac{(x+2)-(x+1)}{(x+2)^2}=\frac1{(x+2)^2}$：</p>
+$$\frac{f'}{f}=\frac{3x^2}{x^3+1}-\frac1{(x+2)^2}-\frac{x}{x^2+1}$$
+<p>代 $x=1$：$\frac{f'(1)}{f(1)}=\frac32-\frac19-\frac12=\frac89$，$f(1)=\dfrac{2}{e^{2/3}\sqrt2}=\dfrac{\sqrt2}{e^{2/3}}$。</p>
+<p class="ans">$f'(1)=\dfrac{8\sqrt2}{9e^{2/3}}$</p>
+</div>
+</section>
+
+<section class="q" id="q5f">
+<p class="problem"><span class="tag">5(f)</span>$f$ 是 $g(x)=x^2+\ln x$ 的反函數。</p>
+<p class="topic">主題 10 反函數定理｜<a href="../week05/index.html#s5-5">§5.5</a>（類似講義<a href="../week05/index.html#q22">週五題 22</a>）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：反函數定理。先找 $g(a)=1$ 的 $a$：$g(1)=1+0=1$，所以 $f(1)=1$。</p>
+<p>$g'(x)=2x+\frac1x\gt0$（$x\gt0$），$g$ 一對一，反函數存在。</p>
+$$f'(1)=\frac{1}{g'\bigl(f(1)\bigr)}=\frac{1}{g'(1)}=\frac1{2+1}$$
+<p class="ans">$f'(1)=\dfrac13$</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q6">第 6 題　唯一實根與線性近似</h2>
+<p>方程式 $y^5+1.009y^3+y=3$。</p>
+
+<section class="q" id="q6a">
+<p class="problem"><span class="tag">6(a)</span>證明方程式恰有一個實根。（提示：令 $g(y)=y^5+1.009y^3+y-3$，用中間值定理並求 $g'(y)$。）</p>
+<p class="topic">主題 6 中間值定理｜<a href="../week03/index.html#s3-3">§3.3</a>　主題 13 增減｜<a href="../week06/index.html#s6-3-2">§6.3.2</a>（講義<a href="../week06/index.html#q3">週六題 3</a> 同型）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：「恰有一個」拆成兩半：<strong>存在</strong>用中間值定理，<strong>唯一</strong>用嚴格遞增（$g'\gt0$）。</p>
+<p><strong>存在</strong>：$g$ 是多項式，在 $[0,1]$ 連續；$g(0)=-3\lt0$，$g(1)=0.009\gt0$。中間值定理：存在 $y_0\in(0,1)$ 使 $g(y_0)=0$。</p>
+<p><strong>唯一</strong>：$g'(y)=5y^4+3.027y^2+1\ge1\gt0$，$g$ 在 $\mathbb R$ 上嚴格遞增，最多一個根。</p>
+<p class="ans">恰有一個實根　■</p>
+<p>常見失分：只證存在或只證唯一。兩半缺一不可。</p>
+</div>
+</section>
+
+<section class="q" id="q6b">
+<p class="problem"><span class="tag">6(b)</span>已知 $y^5+xy^3+y=3$，求 $(1,1)$ 處的 $\dfrac{dy}{dx}$。</p>
+<p class="topic">主題 10 隱微分｜<a href="../week05/index.html#s5-1">§5.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：隱微分，$xy^3$ 用乘法法則。</p>
+$$5y^4y'+\bigl(y^3+3xy^2y'\bigr)+y'=0\;\Longrightarrow\;y'=-\frac{y^3}{5y^4+3xy^2+1}$$
+<p class="ans">$\dfrac{dy}{dx}\Big|_{(1,1)}=-\dfrac19$</p>
+</div>
+</section>
+
+<section class="q" id="q6c">
+<p class="problem"><span class="tag">6(c)</span>用線性近似估計 $y^5+1.009y^3+y=3$ 的實根。</p>
+<p class="topic">主題 12 線性近似｜<a href="../week06/index.html#s6-1">§6.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：這題的巧思是把 $1.009$ 看成變數 $x$ 在 $1$ 附近的值。$x=1$ 時方程式的根是 $y=1$（$1+1+1=3$），所求的根就是 $y(1.009)$，用 (b) 在 $x=1$ 做線性近似。</p>
+$$L(x)=1-\frac19(x-1),\qquad y(1.009)\approx1-\frac{0.009}{9}=1-0.001$$
+<p class="ans">實根約 $0.999$</p>
+<div class="tip"><p><span class="tag">套路</span>要解一個「很接近好算的方程式」，就把差異的那個常數換成變數，從好算的那一點做線性近似。</p></div>
+</div>
+</section>
+
+<section class="q" id="q6d">
+<p class="problem"><span class="tag">6(d)</span>(c) 的近似值是高估還是低估？</p>
+<p class="topic">主題 15 線性逼近是高估還是低估｜<a href="../week07/index.html#s7-2-1">§7.2.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：看 $y''(1)$ 的正負。凹口向上時切線在曲線下方，是低估。</p>
+<p>對 $(5y^4+3xy^2+1)y'+y^3=0$ 再微分：</p>
+$$\bigl(20y^3y'+3y^2+6xyy'\bigr)y'+(5y^4+3xy^2+1)y''+3y^2y'=0$$
+<p>代 $x=y=1$、$y'=-\frac19$：第一項 $\left(-\frac{20}9+3-\frac69\right)\left(-\frac19\right)=\frac19\cdot\left(-\frac19\right)=-\frac1{81}$，最後一項 $-\frac13=-\frac{27}{81}$，所以</p>
+$$9y''=\frac{1}{81}+\frac{27}{81}=\frac{28}{81}\;\Longrightarrow\;y''(1)=\frac{28}{729}\gt0$$
+<p>凹口向上，切線 $L$ 在曲線下方。</p>
+<p class="ans">低估</p>
+<p>官方另外直接驗算 $g(0.999)\approx-1.4\times10^{-5}\lt0$，而 $g$ 嚴格遞增、$g(y_0)=0$，所以 $0.999\lt y_0$，確認是低估。這個驗算不靠「$x=1$ 附近」的局部論證，更嚴謹。</p>
+</div>
+</section>
+
+</main>
+</body>
+</html>

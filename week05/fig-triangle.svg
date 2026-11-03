@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 279.46" width="340" height="279.46"><style>
+.ax{stroke:#6b7280;stroke-width:1.2;fill:none}
+.ah{fill:#6b7280}
+.tk{stroke:#6b7280;stroke-width:1}
+.tl{font:12px system-ui,sans-serif;fill:#6b7280}
+.lb{font:15px "Times New Roman","Microsoft JhengHei",serif;fill:#1f2328}
+.lb.it{font-style:italic}
+.pt-open{fill:#fff}
+@media (prefers-color-scheme:dark){
+.ax{stroke:#9aa2ae}.ah{fill:#9aa2ae}.tk{stroke:#9aa2ae}.tl{fill:#9aa2ae}
+.lb{fill:#e4e6ea}.pt-open{fill:#17191d}
+}
+</style><defs><clipPath id="clip"><rect x="8" y="8" width="324" height="263.46"/></clipPath></defs><path d="M35.95,226.22 L295.41,226.22" fill="none" stroke="#2f6fe4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#clip)"/><path d="M295.41,226.22 L295.41,53.24" fill="none" stroke="#2f6fe4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#clip)"/><path d="M35.95,226.22 L295.41,53.24" fill="none" stroke="#2f6fe4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#clip)"/><path d="M278.11,226.22 L278.11,208.92" fill="none" stroke="#8a93a3" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#clip)"/><path d="M278.11,208.92 L295.41,208.92" fill="none" stroke="#8a93a3" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#clip)"/><text class="lb it" x="83.51" y="215.84" text-anchor="start" style="fill:#e0483c">y</text><text class="lb" x="165.68" y="246.22" text-anchor="middle">1</text><text class="lb it" x="303.41" y="144.73" text-anchor="start">x</text><text class="lb" x="148.7" y="125.08" text-anchor="end">√(1 + x²)</text></svg>

@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 4 微分 I</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/math.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+<p class="back"><a href="../index.html">← 目錄</a></p>
+<h1>Week 4　微分 I（Differentiation I）</h1>
+<p class="subtitle">AP Calculus I（115 學年）Lecture Note 4 教學與題解</p>
+
+<div class="erratum">
+<p><span class="tag">講義筆誤</span>讀講義時請自己改正兩處：</p>
+<ol>
+<li>p.22 Remark：$x^2\sin\frac1x$ 的導數是 $f'(x)=2x\sin\frac1x-\cos\frac1x$，講義誤寫成 $-\sin\frac1x$。</li>
+<li>p.30 最後的歸納法題：$\left(\frac{1}{1+x}\right)^{(n)}$ 的分母應為 $(1+x)^{n+1}$，講義誤寫成 $(1+x)^n$。</li>
+</ol>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="s4-1">4.1 導數的定義</h2>
+
+<p>導數就是<strong>切線斜率</strong>，也就是<strong>瞬間變化率</strong>。在 $x=a$ 旁邊取一點 $a+h$，兩點連成割線，割線斜率叫做<strong>差商</strong>：</p>
+$$\frac{f(a+h)-f(a)}{h}$$
+<p>讓 $h\to0$，$Q$ 點沿著曲線往 $P$ 靠近，割線就轉成切線。</p>
+
+<figure>
+<img src="fig-secant.svg" alt="割線隨 h 趨近 0 而逼近切線">
+<figcaption>灰色虛線為割線，紅線為 $P$ 點的切線</figcaption>
+</figure>
+
+<div class="def">
+<p><span class="tag">定義 4.1.1（導數）</span></p>
+$$f'(a) := \lim_{h\to0}\frac{f(a+h)-f(a)}{h}$$
+<p>這個極限存在而且是<strong>一個有限的實數</strong>，才說 $f$ 在 $x=a$ <strong>可微</strong>（differentiable）。</p>
+</div>
+
+<ul>
+<li>把 $a$ 換成變數 $x$，就得到導函數 $f'(x)$。</li>
+<li>若 $y=f(x)$，導數也寫作 $\dfrac{dy}{dx}$。</li>
+</ul>
+
+<div class="tip">
+<p><span class="tag">不可微的三種情況</span></p>
+<ol>
+<li>差商極限為 $\pm\infty$：垂直切線</li>
+<li>左極限 $\neq$ 右極限：尖點</li>
+<li>差商震盪，極限不存在</li>
+</ol>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="s4-2">4.2 不可微的函數</h2>
+
+<figure class="pair">
+<img src="fig-x15.svg" alt="y 等於 x 的五分之一次方，原點切線垂直">
+<img src="fig-abs.svg" alt="y 等於 x 的絕對值，原點為尖點">
+<figcaption>左：垂直切線（題 1）。右：尖點（題 2）</figcaption>
+</figure>
+
+<section class="q" id="q1">
+<p class="problem"><span class="tag">題 1</span>證明 $f(x)=x^{1/5}$ 在 $x=0$ 不可微。</p>
+<div class="solution"><span class="tag">詳解</span>
+$$f'(0)=\lim_{h\to0}\frac{h^{1/5}-0}{h}=\lim_{h\to0}h^{-4/5}=\lim_{h\to0}\frac{1}{\left(h^{1/5}\right)^4}$$
+<p>分母恆正且趨近 $0$，極限為 $+\infty$，不是一個數，所以<span class="ans">不可微</span>（原點切線垂直）。</p>
+<p>$x\neq0$ 時用冪次法則：$f'(x)=\frac15x^{-4/5}$。</p>
+</div>
+</section>
+
+<section class="q" id="q2">
+<p class="problem"><span class="tag">題 2</span>證明 $f(x)=|x|$ 在 $x=0$ 不可微。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>差商為 $\dfrac{|h|}{h}$：</p>
+$$\lim_{h\to0^+}\frac{h}{h}=1,\qquad \lim_{h\to0^-}\frac{-h}{h}=-1$$
+<p>左右極限不相等，極限不存在，<span class="ans">不可微</span>（原點是尖點）。</p>
+</div>
+</section>
+
+<div class="remark">
+<p>題 1、題 2 的函數在 $0$ 都連續，卻不可微：<strong>連續不一定可微</strong>。</p>
+</div>
+
+<section class="q" id="q3">
+<p class="problem"><span class="tag">題 3</span>設 $f(x)=\begin{cases}x^2, & x\ge0\\ -x, & x\lt0\end{cases}$。(a) 證明 $f$ 連續；(b) 證明 $f'(0)$ 不存在。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) $x\neq0$ 時兩段都是多項式，連續。在 $x=0$：</p>
+$$\lim_{x\to0^+}x^2=0,\qquad \lim_{x\to0^-}(-x)=0,\qquad f(0)=0$$
+<p>三者相等，所以在 $0$ 也連續。</p>
+<p>(b) 看差商 $\dfrac{f(h)-f(0)}{h}$ 的左右極限：</p>
+$$\lim_{h\to0^+}\frac{h^2}{h}=0,\qquad \lim_{h\to0^-}\frac{-h}{h}=-1$$
+<p>$0\neq-1$，<span class="ans">$f'(0)$ 不存在</span>。</p>
+</div>
+</section>
+
+<section class="q" id="q4">
+<p class="problem"><span class="tag">題 4</span>$f$ 對所有 $x,y\in\mathbb R$ 滿足 $f(x+y)=f(x)+f(y)+2xy$，且 $f'(0)=1$。求 $f(0)$ 與 $f'(a)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>求 $f(0)$</strong>：代 $x=y=0$，得 $f(0)=2f(0)$，所以 $f(0)=0$。</p>
+<p><strong>求 $f'(a)$</strong>：用題目條件拆開 $f(a+h)$：</p>
+$$f(a+h)-f(a)=\bigl[f(a)+f(h)+2ah\bigr]-f(a)=f(h)+2ah$$
+$$f'(a)=\lim_{h\to0}\frac{f(h)+2ah}{h}=\lim_{h\to0}\frac{f(h)-f(0)}{h}+2a=f'(0)+2a$$
+<p class="ans">$f(0)=0,\quad f'(a)=2a+1$</p>
+</div>
+</section>
+
+<div class="tip">
+<p><span class="tag">函數方程題套路</span>先代 $0$ 求 $f(0)$，再用定義把 $f(a+h)$ 拆開，湊出 $f'(0)$。</p>
+</div>
+
+<figure class="pair">
+<img src="fig-xsin.svg" alt="y 等於 x 乘 sin(1/x)，夾在 y=|x| 與 y=-|x| 之間">
+<img src="fig-x2sin.svg" alt="y 等於 x 平方乘 sin(1/x)，夾在 y=x 平方與 y=-x 平方之間">
+<figcaption>左：$x\sin\frac1x$ 在原點附近割線斜率一直擺盪（題 5）。右：$x^2\sin\frac1x$ 被 $\pm x^2$ 壓扁，原點切線為水平（題 6）</figcaption>
+</figure>
+
+<section class="q" id="q5">
+<p class="problem"><span class="tag">題 5</span>設 $f(x)=\begin{cases}x\sin\frac1x, & x\neq0\\ 0, & x=0\end{cases}$，證明 $f$ 在 $x=0$ 不可微。</p>
+<div class="solution"><span class="tag">詳解</span>
+$$f'(0)=\lim_{h\to0}\frac{h\sin\frac1h-0}{h}=\lim_{h\to0}\sin\frac1h$$
+<p>$h\to0$ 時 $\frac1h\to\pm\infty$，$\sin\frac1h$ 在 $-1$ 到 $1$ 之間無限震盪，極限不存在，<span class="ans">不可微</span>。</p>
+<p>註：它在 $0$ 是連續的，因為 $\left|x\sin\frac1x\right|\le|x|\to0$。</p>
+</div>
+</section>
+
+<section class="q" id="q6">
+<p class="problem"><span class="tag">題 6</span>設 $f(x)=\begin{cases}x^2\sin\frac1x, & x\neq0\\ 0, & x=0\end{cases}$。<br>
+(a) $f$ 在 $0$ 連續嗎？(b) 可微嗎？求 $f'(0)$。(c) 求 $x\neq0$ 時的 $f'(x)$，並證明 $f'$ 在 $0$ 不連續。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) $-x^2\le x^2\sin\frac1x\le x^2$，兩邊都趨近 $0$，由夾擠定理極限為 $0=f(0)$，<span class="ans">連續</span>。</p>
+<p>(b) 差商為</p>
+$$\frac{h^2\sin\frac1h-0}{h}=h\sin\frac1h,\qquad -|h|\le h\sin\frac1h\le|h|$$
+<p>夾擠得極限為 $0$，所以<span class="ans">可微，$f'(0)=0$</span>。</p>
+<p>(c) $x\neq0$ 時用積法則與連鎖律（4.5、4.8 節）：</p>
+$$f'(x)=2x\sin\frac1x+x^2\cos\frac1x\cdot\left(-\frac{1}{x^2}\right)=2x\sin\frac1x-\cos\frac1x$$
+<p>$x\to0$ 時 $2x\sin\frac1x\to0$，但 $\cos\frac1x$ 震盪不存在，所以 $\lim_{x\to0}f'(x)$ 不存在，<span class="ans">$f'$ 在 $0$ 不連續</span>。</p>
+</div>
+</section>
+
+<div class="remark">
+<p>題 6 說明：<strong>$f$ 處處可微，$f'$ 卻可以不連續</strong>。這引出下面的 Darboux 定理。</p>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="s4-2-1">4.2.1 Darboux 定理（*）</h2>
+
+<div class="thm">
+<p><span class="tag">定理 4.2.1（Darboux）</span>$f:[a,b]\to\mathbb R$ 可微，則 $f'$ 具有中間值性質：對 $f'(a)$ 與 $f'(b)$ 之間的任何 $k$，存在 $c\in[a,b]$ 使 $f'(c)=k$。</p>
+</div>
+
+<p>厲害之處在於：中間值定理需要函數連續，但 $f'$ 不一定連續（題 6），卻依然有這個性質。</p>
+
+<p><strong>證明想法</strong>：設 $f'(b)\lt k\lt f'(a)$，令 $\varphi(x)=f(x)-kx$。</p>
+<ul>
+<li>$\varphi'(a)=f'(a)-k\gt0$：從 $a$ 往右是上升的，$a$ 不是最大值點。</li>
+<li>$\varphi'(b)=f'(b)-k\lt0$：$b$ 的左邊比 $b$ 高，$b$ 也不是最大值點。</li>
+<li>$\varphi$ 連續，在 $[a,b]$ 必有最大值（極值定理），只能在內部某點 $c$ 取得。</li>
+<li>內部極值點導數為 $0$（Fermat 定理）：$\varphi'(c)=0$，即 $f'(c)=k$。</li>
+</ul>
+
+<section class="q" id="q7">
+<p class="problem"><span class="tag">題 7</span>$f,g:\mathbb R\to\mathbb R$ 連續，$g$ 可微，且 $\bigl(f(0)-g'(0)\bigr)\bigl(f(1)-g'(1)\bigr)\lt0$。證明存在 $c\in(0,1)$ 使 $f(c)=g'(c)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>直覺是對 $f-g'$ 用中間值定理，但 $g'$ 不一定連續，不能直接用。改令</p>
+$$h(x)=\int_0^x f(s)\,ds-g(x)$$
+<p>由微積分基本定理（之後會學）$h'(x)=f(x)-g'(x)$，$h$ 在 $[0,1]$ 可微。</p>
+<p>條件說 $h'(0)h'(1)\lt0$，即 $h'(0)$、$h'(1)$ 一正一負，$0$ 介於兩者之間。由 Darboux 定理，存在 $c\in(0,1)$ 使 $h'(c)=0$，也就是 <span class="ans">$f(c)=g'(c)$</span>。</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="s4-3">4.3 用定義求導數</h2>
+
+<div class="thm">
+<p><span class="tag">兩個必背極限</span></p>
+$$\lim_{h\to0}\frac{\sin h}{h}=1,\qquad \lim_{h\to0}\frac{\cos h-1}{h}=0$$
+</div>
+
+<section class="q" id="q8">
+<p class="problem"><span class="tag">題 8</span>用定義求 $(\sin x)'$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>和角公式 $\sin(x+h)=\sin x\cos h+\cos x\sin h$：</p>
+$$\begin{aligned}
+\frac{\sin(x+h)-\sin x}{h} &= \sin x\cdot\frac{\cos h-1}{h}+\cos x\cdot\frac{\sin h}{h} \\
+&\longrightarrow \sin x\cdot0+\cos x\cdot1
+\end{aligned}$$
+<p class="ans">$(\sin x)'=\cos x$</p>
+</div>
+</section>
+
+<section class="q" id="q9">
+<p class="problem"><span class="tag">題 9</span>用定義求 $(\cos x)'$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>Step 1</strong>（證明第二個必背極限）上下同乘 $1+\cos x$：</p>
+$$\begin{aligned}
+\lim_{x\to0}\frac{1-\cos x}{x} &= \lim_{x\to0}\frac{\sin^2x}{x(1+\cos x)} \\
+&= \lim_{x\to0}\frac{\sin x}{x}\cdot\lim_{x\to0}\frac{\sin x}{1+\cos x} \\
+&= 1\cdot\frac02= 0
+\end{aligned}$$
+<p><strong>Step 2</strong> 和角公式 $\cos(x+h)=\cos x\cos h-\sin x\sin h$：</p>
+$$\frac{\cos(x+h)-\cos x}{h}=\cos x\cdot\frac{\cos h-1}{h}-\sin x\cdot\frac{\sin h}{h}\;\longrightarrow\;-\sin x$$
+<p class="ans">$(\cos x)'=-\sin x$</p>
+</div>
+</section>
+
+<div class="thm">
+<p><span class="tag">定理 4.3.2（常數倍）</span>$\bigl(cf(x)\bigr)'=cf'(x)$。常數在極限裡可以直接提出去。</p>
+</div>
+
+<div class="thm">
+<p><span class="tag">定理 4.3.3（冪次法則）</span>$(x^n)'=nx^{n-1}$。事實上對任意實數 $a$ 都有 $(x^a)'=ax^{a-1}$；常數函數的導數為 $0$。</p>
+</div>
+
+<p><strong>證明</strong>（$n$ 為正整數）用二項式展開：</p>
+$$\begin{aligned}
+\frac{(x+h)^n-x^n}{h} &= \frac{\binom n1x^{n-1}h+\binom n2x^{n-2}h^2+\cdots+h^n}{h} \\
+&= \binom n1x^{n-1}+\underbrace{\binom n2x^{n-2}h+\cdots+h^{n-1}}_{\text{都帶 }h\text{，趨近 }0}
+\end{aligned}$$
+<p>$h\to0$ 後只剩 $nx^{n-1}$。</p>
+
+<!-- ================================================================ -->
+<h2 id="s4-4">4.4 $e^x$ 的導數、可微必連續</h2>
+
+<p>$e$ 的定義：$y=e^x$ 在 $(0,1)$ 的切線斜率恰好為 $1$。而 $\dfrac{e^h-1}{h}$ 正是過 $(0,1)$ 與 $(h,e^h)$ 的割線斜率，所以</p>
+
+<div class="thm">
+<p><span class="tag">定理 4.4.1</span>$\displaystyle\lim_{h\to0}\frac{e^h-1}{h}=1$</p>
+<p><span class="tag">定理 4.4.2</span>$(e^x)'=e^x$</p>
+</div>
+$$\frac{e^{x+h}-e^x}{h}=e^x\cdot\frac{e^h-1}{h}\;\longrightarrow\;e^x\cdot1$$
+
+<div class="thm">
+<p><span class="tag">定理 4.4.3</span>$f$ 在 $x=a$ 可微 $\Longrightarrow$ $f$ 在 $x=a$ 連續。</p>
+</div>
+$$\lim_{x\to a}\bigl(f(x)-f(a)\bigr)=\lim_{x\to a}\frac{f(x)-f(a)}{x-a}\cdot(x-a)=f'(a)\cdot0=0$$
+<p>所以 $\lim_{x\to a}f(x)=f(a)$。反過來不成立，$|x|$ 就是反例。</p>
+
+<section class="q" id="q10">
+<p class="problem"><span class="tag">題 10</span>設 $f(x)=\begin{cases}a\cos x, & x\gt0\\ 2, & x\le0\end{cases}$，已知 $f$ 在 $x=0$ 可微，求 $a$ 與 $f'(0)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>Step 1：用連續求 $a$。</strong>可微必連續，右極限要等於 $f(0)$：</p>
+$$\lim_{x\to0^+}a\cos x=a=f(0)=2\quad\Longrightarrow\quad a=2$$
+<p><strong>Step 2：求 $f'(0)$。</strong></p>
+$$\lim_{h\to0^+}\frac{2\cos h-2}{h}=2\cdot0=0,\qquad \lim_{h\to0^-}\frac{2-2}{h}=0$$
+<p class="ans">$a=2,\quad f'(0)=0$</p>
+</div>
+</section>
+
+<div class="tip">
+<p><span class="tag">分段函數求參數套路</span>先用連續列一條方程，再用左右導數相等列一條方程。</p>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="s4-5">4.5 和、差、積、商法則</h2>
+
+<div class="thm">
+<p><span class="tag">定理 4.5.1</span>$f,g$ 可微，則</p>
+$$\begin{aligned}
+(f\pm g)' &= f'\pm g' \\[4pt]
+(fg)' &= f'g+fg' \\[4pt]
+\left(\frac fg\right)' &= \frac{f'g-fg'}{g^2}\quad(g\neq0)
+\end{aligned}$$
+</div>
+<p>商法則口訣：上微下不微，減去下微上不微，除以下平方。</p>
+
+<section class="q" id="q11">
+<p class="problem"><span class="tag">題 11</span>$y=x^{e^2}\cdot e^x$，求 $\dfrac{dy}{dx}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$e^2$ 只是常數，冪次法則照用，再配積法則：</p>
+$$\frac{dy}{dx}=e^2x^{e^2-1}\cdot e^x+x^{e^2}\cdot e^x=x^{e^2-1}e^x\left(e^2+x\right)$$
+</div>
+</section>
+
+<section class="q" id="q12">
+<p class="problem"><span class="tag">題 12</span>證明 $(\tan x)'=\sec^2x$。</p>
+<div class="solution"><span class="tag">詳解</span>
+$$\begin{aligned}
+\left(\frac{\sin x}{\cos x}\right)' &= \frac{\cos x\cdot\cos x-\sin x\cdot(-\sin x)}{\cos^2x} \\
+&= \frac{\cos^2x+\sin^2x}{\cos^2x} \\
+&= \frac{1}{\cos^2x}= \sec^2x
+\end{aligned}$$
+</div>
+</section>
+
+<section class="q" id="q13">
+<p class="problem"><span class="tag">題 13</span>證明 $(\sec x)'=\sec x\tan x$。</p>
+<div class="solution"><span class="tag">詳解</span>
+$$\begin{aligned}
+\left(\frac{1}{\cos x}\right)' &= \frac{0\cdot\cos x-1\cdot(-\sin x)}{\cos^2x} \\
+&= \frac{\sin x}{\cos^2x} \\
+&= \frac{1}{\cos x}\cdot\frac{\sin x}{\cos x}= \sec x\tan x
+\end{aligned}$$
+</div>
+</section>
+
+<section class="q" id="q14">
+<p class="problem"><span class="tag">題 14</span>證明 $(\cot x)'=-\csc^2x$。</p>
+<div class="solution"><span class="tag">詳解</span>
+$$\begin{aligned}
+\left(\frac{\cos x}{\sin x}\right)' &= \frac{(-\sin x)\sin x-\cos x\cdot\cos x}{\sin^2x} \\
+&= -\frac{\sin^2x+\cos^2x}{\sin^2x}= -\csc^2x
+\end{aligned}$$
+<p>同理 $(\csc x)'=\left(\dfrac{1}{\sin x}\right)'=-\dfrac{\cos x}{\sin^2x}=-\csc x\cot x$。</p>
+</div>
+</section>
+
+<div class="tip">
+<p><span class="tag">記憶法</span>c 開頭的三個（$\cos,\cot,\csc$）導數都帶負號。</p>
+</div>
+
+<h3 id="s4-5-1">4.5.1 切線與法線</h3>
+
+<div class="def">
+<p>在 $x=a$：</p>
+$$\text{切線：}\;y=f'(a)(x-a)+f(a),\qquad \text{法線斜率}=-\frac{1}{f'(a)}$$
+</div>
+
+<section class="q" id="q15">
+<p class="problem"><span class="tag">題 15</span>$f(x)=x^4e^x+3x+2$。(a) 求 $f'(x)$；(b) 求 $x=0$ 的切線；(c) 求 $x=0$ 的法線。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) $f'(x)=4x^3e^x+x^4e^x+3$（第一項用積法則）</p>
+<p>(b) $f(0)=2$，$f'(0)=3$，切線 <span class="ans">$y=3x+2$</span></p>
+<p>(c) 法線斜率 $-\frac13$，法線 <span class="ans">$y=-\frac13x+2$</span></p>
+<figure>
+<img src="fig-tangent-normal.svg" alt="題 15 的曲線、切線與法線">
+<figcaption>x、y 等比例，切線與法線互相垂直</figcaption>
+</figure>
+</div>
+</section>
+
+<section class="q" id="q16">
+<p class="problem"><span class="tag">題 16</span>求 $f(x)=\dfrac{4-x^3}{x+2x^2}$ 在 $x=1$ 的切線與法線。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$f(1)=\dfrac{3}{3}=1$。商法則（分子導數 $-3x^2$，分母導數 $1+4x$）：</p>
+$$f'(x)=\frac{-3x^2(x+2x^2)-(4-x^3)(1+4x)}{(x+2x^2)^2}$$
+$$f'(1)=\frac{-3\cdot3-3\cdot5}{9}=-\frac{24}{9}=-\frac83$$
+<p>切線 <span class="ans">$y=-\frac83(x-1)+1$</span>，法線 <span class="ans">$y=\frac38(x-1)+1$</span></p>
+</div>
+</section>
+
+<section class="q" id="q17">
+<p class="problem"><span class="tag">題 17</span>求 $f(x)=\tan x+9\cos x$ 在 $x=\pi$ 的切線與法線。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$f(\pi)=0+9(-1)=-9$；$f'(x)=\sec^2x-9\sin x$，$f'(\pi)=\dfrac{1}{(-1)^2}-0=1$。</p>
+<p>切線 <span class="ans">$y=x-\pi-9$</span>，法線 <span class="ans">$y=-x+\pi-9$</span></p>
+</div>
+</section>
+
+<h3 id="s4-5-2">4.5.2 積商法則的證明（講義標示不考）</h3>
+<p>積法則的關鍵技巧是在中間<strong>加一項再減一項</strong> $f(x+h)g(x)$：</p>
+$$\begin{aligned}
+\frac{f(x+h)g(x+h)-f(x)g(x)}{h} &= f(x+h)\cdot\frac{g(x+h)-g(x)}{h}+g(x)\cdot\frac{f(x+h)-f(x)}{h}
+\end{aligned}$$
+<p>取極限即得 $fg'+gf'$（用到可微必連續：$f(x+h)\to f(x)$）。商法則同理，加減 $f(x)g(x)$。</p>
+
+<!-- ================================================================ -->
+<h2 id="s4-6">4.6 導數表（Part I）</h2>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>$f(x)$</th><th>$f'(x)$</th><th>$f(x)$</th><th>$f'(x)$</th></tr></thead>
+<tbody>
+<tr><td>$c$</td><td>$0$</td><td>$\csc x$</td><td>$-\csc x\cot x$</td></tr>
+<tr><td>$x^k$</td><td>$kx^{k-1}$</td><td>$\sec x$</td><td>$\sec x\tan x$</td></tr>
+<tr><td>$\sin x$</td><td>$\cos x$</td><td>$\cot x$</td><td>$-\csc^2x$</td></tr>
+<tr><td>$\cos x$</td><td>$-\sin x$</td><td></td><td></td></tr>
+<tr><td>$\tan x$</td><td>$\sec^2x$</td><td></td><td></td></tr>
+<tr><td>$e^x$</td><td>$e^x$</td><td></td><td></td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="s4-7">4.7 高階導數</h2>
+
+<div class="def">
+<p><span class="tag">定義 4.7.1</span>$f''(x)=\dfrac{d^2}{dx^2}f(x)$ 是 $f'$ 的導數；$f^{(n)}(x)=\dfrac{d^n}{dx^n}f(x)$ 是 $f^{(n-1)}$ 的導數。</p>
+</div>
+
+<section class="q" id="q18">
+<p class="problem"><span class="tag">題 18</span>$f(x)=\sin x$，求 $f'$、$f''$、$f'''$、$f^{(4)}$、$f^{(2023)}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+$$f'=\cos x,\quad f''=-\sin x,\quad f'''=-\cos x,\quad f^{(4)}=\sin x$$
+<p>每 4 次循環一輪。$2023=4\cdot505+3$，所以 <span class="ans">$f^{(2023)}=f'''=-\cos x$</span>。</p>
+</div>
+</section>
+
+<section class="q" id="q19">
+<p class="problem"><span class="tag">題 19</span>利用 Leibniz 公式 $\displaystyle(fg)^{(n)}=\sum_{k=0}^{n}\binom nk f^{(k)}g^{(n-k)}$，求 $(x\cos x)^{(112)}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>取 $f=x$，它微兩次就變 $0$，所以只剩 $k=0,1$ 兩項：</p>
+$$(x\cos x)^{(112)}=x\cdot(\cos x)^{(112)}+\binom{112}{1}\cdot1\cdot(\cos x)^{(111)}$$
+<p>$\cos x$ 的循環：微 0 次 $\cos x$、1 次 $-\sin x$、2 次 $-\cos x$、3 次 $\sin x$。</p>
+<p>$112$ 除以 $4$ 餘 $0$ 得 $\cos x$；$111$ 除以 $4$ 餘 $3$ 得 $\sin x$。</p>
+<p class="ans">$(x\cos x)^{(112)}=x\cos x+112\sin x$</p>
+</div>
+</section>
+
+<section class="q" id="q20">
+<p class="problem"><span class="tag">題 20</span>$f(x)=x^{2024}$，求 $f^{(2022)}$、$f^{(2023)}$、$f^{(2024)}$、$f^{(2025)}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>微 $k$ 次後：$f^{(k)}(x)=\dfrac{2024!}{(2024-k)!}x^{2024-k}$。</p>
+$$\begin{aligned}
+f^{(2022)} &= \frac{2024!}{2}x^2 \\[4pt]
+f^{(2023)} &= 2024!\,x \\[4pt]
+f^{(2024)} &= 2024! \\[4pt]
+f^{(2025)} &= 0
+\end{aligned}$$
+</div>
+</section>
+
+<section class="q" id="q21">
+<p class="problem"><span class="tag">題 21</span>$f(x)=e^x$，求 $f^{(n)}(x)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>怎麼微都是自己：<span class="ans">$f^{(n)}(x)=e^x$</span>。</p>
+</div>
+</section>
+
+<section class="q" id="q22">
+<p class="problem"><span class="tag">題 22</span>$f(x)=x^2e^x$，用數學歸納法證明 $f^{(n)}(x)=\bigl(x^2+2nx+n(n-1)\bigr)e^x$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>$n=1$</strong>：$f'=2xe^x+x^2e^x=(x^2+2x+0)e^x$，與公式代 $n=1$ 相同。</p>
+<p><strong>設 $n$ 時成立</strong>，再微一次：</p>
+$$\begin{aligned}
+f^{(n+1)}&=(2x+2n)e^x+\bigl(x^2+2nx+n(n-1)\bigr)e^x\\
+&=\bigl(x^2+(2n+2)x+n^2+n\bigr)e^x\\
+&=\bigl(x^2+2(n+1)x+(n+1)n\bigr)e^x
+\end{aligned}$$
+<p>正是公式代 $n+1$，得證。</p>
+</div>
+</section>
+
+<section class="q" id="q23">
+<p class="problem"><span class="tag">題 23</span>$f(x)=\dfrac{1}{1+x}$，證明 $f^{(n)}(x)=\dfrac{(-1)^n\,n!}{(1+x)^{n+1}}$（講義分母誤植）。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>寫成 $f=(1+x)^{-1}$。</p>
+<p><strong>$n=1$</strong>：$f'=-(1+x)^{-2}=\dfrac{(-1)^1\,1!}{(1+x)^2}$，成立。</p>
+<p><strong>設 $n$ 時成立</strong>：$f^{(n)}=(-1)^n n!\,(1+x)^{-(n+1)}$，再微一次：</p>
+$$f^{(n+1)}=(-1)^n n!\cdot\bigl(-(n+1)\bigr)(1+x)^{-(n+2)}=\frac{(-1)^{n+1}(n+1)!}{(1+x)^{n+2}}$$
+<p>得證。</p>
+</div>
+</section>
+
+<section class="q" id="q24">
+<p class="problem"><span class="tag">題 24</span>$f:\mathbb R\to\mathbb R$ 連續，滿足 (i) $\displaystyle\lim_{x\to0}\frac{f(x)^2-4}{x}=2024$；(ii) $f(x+y)=\frac12f(x)f(y)$ 對所有 $x,y$ 成立。<br>
+(a) 證明 $f(0)\ge0$；(b) 求 $f(0)$、$f'(0)$；(c) 證明 $f$ 處處可微；(d) 求 $f^{(n)}(0)$，並證明 $f$ 是 $C^\infty$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) 把 $x$ 拆成兩半：</p>
+$$f(x)=f\left(\tfrac x2+\tfrac x2\right)=\tfrac12f\left(\tfrac x2\right)^2\ge0$$
+<p>對所有 $x$ 都成立，當然 $f(0)\ge0$。</p>
+<p>(b) 條件 (i) 分母趨近 $0$ 而極限存在，分子必須趨近 $0$：$\lim_{x\to0}f(x)^2=4$。$f$ 連續，所以 $f(0)^2=4$，配合 (a) 得 <span class="ans">$f(0)=2$</span>。</p>
+<p>求 $f'(0)$：分解平方差，</p>
+$$\frac{f(x)^2-4}{x}=\frac{f(x)-f(0)}{x}\cdot\bigl(f(x)+2\bigr)$$
+<p>右邊第二個因子趨近 $4$，所以 $\dfrac{f(x)-f(0)}{x}\to\dfrac{2024}{4}$，<span class="ans">$f'(0)=506$</span>。</p>
+<p>(c) 對任意 $a$：</p>
+$$\begin{aligned}
+\frac{f(a+h)-f(a)}{h} &= \frac{\frac12f(a)f(h)-f(a)}{h} \\
+&= \frac12f(a)\cdot\frac{f(h)-2}{h} \\
+&\longrightarrow \frac12f(a)\cdot506
+\end{aligned}$$
+<p>所以 <span class="ans">$f'(a)=253\,f(a)$</span>，對每個 $a$ 都存在，處處可微。</p>
+<p>(d) $f'=253f$，再微一次 $f''=253f'=253^2f$，歸納得 $f^{(n)}=253^n f$，所以</p>
+$$f^{(n)}(0)=2\cdot253^n$$
+<p>每一階導數都是 $f$ 的常數倍，而 $f$ 可微，所以永遠能再微下去，$f$ 是 $C^\infty$。</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="s4-8">4.8 連鎖律</h2>
+
+<p>為什麼需要：$(2x+1)^2$ 若直接套冪次法則得 $2(2x+1)=4x+2$，但展開成 $4x^2+4x+1$ 再微分得 $8x+4$，差了一倍。原因是冪次法則的底是 $x$，不是 $2x+1$。</p>
+
+<div class="thm">
+<p><span class="tag">定理 4.8.1（連鎖律）</span></p>
+$$\bigl(f(g(x))\bigr)'=f'\bigl(g(x)\bigr)\cdot g'(x)$$
+<p>口訣：外層微分（裡面照抄）乘以裡層微分。</p>
+</div>
+<p>驗證：$\bigl((2x+1)^2\bigr)'=2(2x+1)\cdot2=8x+4$。</p>
+
+<div class="thm">
+<p><span class="tag">定理 4.8.2（一般指數）</span>$a\gt0$ 時，$\dfrac{d}{dx}a^x=a^x\ln a$。</p>
+</div>
+$$a^x=e^{x\ln a}\quad\Longrightarrow\quad\frac{d}{dx}a^x=e^{x\ln a}\cdot\ln a=a^x\ln a$$
+
+<section class="q" id="q25">
+<p class="problem"><span class="tag">題 25</span>微分 $f(x)=(2x+3)^{2024}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+$$f'(x)=2024(2x+3)^{2023}\cdot2=4048(2x+3)^{2023}$$
+</div>
+</section>
+
+<section class="q" id="q26">
+<p class="problem"><span class="tag">題 26</span>微分 $f(x)=\dfrac{1}{\sqrt{1+2x+\sin x}}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>寫成 $(1+2x+\sin x)^{-1/2}$：</p>
+$$\begin{aligned}
+f'(x) &= -\frac12(1+2x+\sin x)^{-3/2}\cdot(2+\cos x) \\
+&= -\frac{2+\cos x}{2(1+2x+\sin x)^{3/2}}
+\end{aligned}$$
+</div>
+</section>
+
+<section class="q" id="q27">
+<p class="problem"><span class="tag">題 27</span>微分 $f(x)=\sin(x^2)$ 與 $g(x)=\sin^2x$（注意兩者不同）。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$\sin(x^2)$：外層 $\sin$，裡層 $x^2$。</p>
+$$f'(x)=\cos(x^2)\cdot2x=2x\cos(x^2)$$
+<p>$\sin^2x=(\sin x)^2$：外層平方，裡層 $\sin$。</p>
+$$g'(x)=2\sin x\cdot\cos x=\sin2x$$
+</div>
+</section>
+
+<section class="q" id="q28">
+<p class="problem"><span class="tag">題 28</span>微分 $f(x)=e^{\tan\sqrt x}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>三層：$e^{\square}$、$\tan\square$、$\sqrt x$，由外往內一層一層剝：</p>
+$$f'(x)=e^{\tan\sqrt x}\cdot\sec^2\sqrt x\cdot\frac{1}{2\sqrt x}$$
+</div>
+</section>
+
+<section class="q" id="q29">
+<p class="problem"><span class="tag">題 29</span>定義 $\sinh x=\dfrac{e^x-e^{-x}}{2}$，$\cosh x=\dfrac{e^x+e^{-x}}{2}$，$\tanh x=\dfrac{\sinh x}{\cosh x}$，$\operatorname{sech}x=\dfrac{1}{\cosh x}$。證明 $\dfrac{d}{dx}\tanh x=1-\tanh^2x=\operatorname{sech}^2x$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>連鎖律 $(e^{-x})'=e^{-x}\cdot(-1)=-e^{-x}$，所以</p>
+$$(\sinh x)'=\frac{e^x+e^{-x}}{2}=\cosh x,\qquad (\cosh x)'=\frac{e^x-e^{-x}}{2}=\sinh x$$
+<p>商法則：</p>
+$$(\tanh x)'=\frac{\cosh x\cdot\cosh x-\sinh x\cdot\sinh x}{\cosh^2x}=1-\tanh^2x$$
+<p>又</p>
+$$\cosh^2x-\sinh^2x=\frac{(e^x+e^{-x})^2-(e^x-e^{-x})^2}{4}=\frac44=1$$
+<p>所以上式也等於 $\dfrac{1}{\cosh^2x}=\operatorname{sech}^2x$。</p>
+</div>
+</section>
+
+<section class="q" id="q30">
+<p class="problem"><span class="tag">題 30</span>求 $\displaystyle\lim_{x\to0}\frac{(x+4)^{3/2}+e^x-9}{x}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>令 $f(x)=(x+4)^{3/2}+e^x$，則 $f(0)=8+1=9$。所求極限長得像導數定義，反過來用：</p>
+$$\lim_{x\to0}\frac{f(x)-f(0)}{x-0}=f'(0)$$
+$$f'(x)=\frac32(x+4)^{1/2}+e^x,\qquad f'(0)=\frac32\cdot2+1=4$$
+<p class="ans">答案：$4$</p>
+</div>
+</section>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th colspan="2">導數表（Part II）</th></tr><tr><th>$f(x)$</th><th>$f'(x)$</th></tr></thead>
+<tbody>
+<tr><td>$e^x$</td><td>$e^x$</td></tr>
+<tr><td>$a^x$</td><td>$a^x\ln a$</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="summary">本週必背總整理</h2>
+<ol>
+<li><strong>導數定義</strong>：$f'(a)=\displaystyle\lim_{h\to0}\frac{f(a+h)-f(a)}{h}$</li>
+<li><strong>不可微三型</strong>：垂直切線、尖點、震盪</li>
+<li><strong>可微 $\Rightarrow$ 連續</strong>，反之不成立</li>
+<li><strong>導數表</strong>（Part I、Part II）</li>
+<li><strong>積法則、商法則、連鎖律</strong></li>
+<li><strong>三種常考題型</strong>：分段函數求參數（先連續再導數）、函數方程（代 $0$ 再用定義）、極限長得像差商就是導數</li>
+</ol>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>微積分講義</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="assets/math.js"></script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main>
+<h1>微積分講義</h1>
+<p class="subtitle">AP Calculus I（115 學年）教學與題解</p>
+
+<h2>依週次</h2>
+<ul class="toc">
+<li><span class="wk">Week 1</span><a href="week01/index.html">函數與反函數：指數與對數、反函數、一對一、反三角函數</a></li>
+<li><span class="wk">Week 2</span><a href="week02/index.html">極限：單邊極限、無窮極限、sin x / x、有理化與代換、夾擠定理、漸近線</a></li>
+<li><span class="wk">Week 3</span><a href="week03/index.html">連續性：連續的定義、不連續的種類、中間值定理與勘根</a></li>
+<li><span class="wk">Week 4</span><a href="week04/index.html">微分 I：導數定義、積商法則、高階導數、連鎖律</a></li>
+<li><span class="wk">Week 5</span><a href="week05/index.html">微分 II：隱函數微分、反三角與對數導數、e 的極限、對數微分法、反函數定理</a></li>
+<li><span class="wk">Week 6</span><a href="week06/index.html">微分 III：線性近似、Rolle 與均值定理、增減判斷、斜漸近線、牛頓法</a></li>
+<li><span class="wk">Week 7</span><a href="week07/index.html">函數作圖：極值、凹性與反曲點、線性逼近誤差、DISPADDD、隱函數作圖、梯度下降</a></li>
+<li><span class="wk">Week 9</span><a href="week09/index.html">定積分：Riemann 和、不可積函數、有號面積、積分性質、反函數積分</a></li>
+</ul>
+
+<h2 id="exams">考古題與作業</h2>
+<p>官方解答改寫成詳解，每題標出對應下方主題路線的段號，並註明官方解答的錯誤。</p>
+<ul class="toc">
+<li><span class="wk">HW1</span><a href="exams/hw1.html">115-1 第一次作業：反函數、極限與夾擠、均值定理、對數微分、隱函數線性近似</a></li>
+<li><span class="wk">112</span><a href="exams/112-mid.html">112 期中考（模組 11–14 班）：極限、對數微分證明、反函數、作圖、產量與彈性應用</a></li>
+<li><span class="wk">1101A</span><a href="exams/1101-mid-a.html">110-1 期中考（模組 13–16 班）：極限、連續可微、隱函數、收益利潤、根號函數作圖</a></li>
+<li><span class="wk">1101B</span><a href="exams/1101-mid-b.html">110-1 期中考（模組 17–19 班）：不用羅必達的極限、反函數、唯一解證明、作圖、最大長方形</a></li>
+<li><span class="wk">1091</span><a href="exams/1091-mid.html">109-1 期中考（模組 13–17 班）：極限、分段可微、隱函數凹性、羅必達、利潤、對數作圖</a></li>
+</ul>
+
+<h2>主題複習路線</h2>
+<p>週次的切法不一定順，同一個主題常散在好幾週。複習時照下面的順序讀，每段的連結直接跳到對應小節。標了<span class="lv">延伸</span>的是講義的 (*) 內容或證明，時間不夠可以先跳過。每段最後的「練習」是考到這個主題的<a href="#exams">考古題與作業</a>，讀完可以直接練。</p>
+
+<ol class="route">
+<li>
+<p class="rt">函數、指數與對數</p>
+<p class="src"><a href="week01/index.html#s1-1">§1.1</a> <a href="week01/index.html#s1-2">§1.2</a> <a href="week01/index.html#s1-2-1">§1.2.1</a></p>
+<p class="use">定義域與值域、分段函數、指數對數的運算與方程式</p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/112-mid.html">112</a><span class="qs"><a href="exams/112-mid.html#q6a">6(a)</a></span></li><li><a class="exam" href="exams/1101-mid-b.html">1101B</a><span class="qs"><a href="exams/1101-mid-b.html#q6a">6(a)</a></span></li><li><a class="exam" href="exams/1091-mid.html">1091</a><span class="qs"><a href="exams/1091-mid.html#q7a">7(a)</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">反函數與反三角函數</p>
+<p class="src"><a href="week01/index.html#s1-3">§1.3</a> <a href="week01/index.html#s1-4">§1.4</a> <a href="week01/index.html#s1-5">§1.5</a><span class="pre">先讀 1</span></p>
+<p class="use">求反函數、判斷一對一、$\sin^{-1}(\sin x)$ 這類主值範圍的題目</p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/hw1.html">HW1</a><span class="qs"><a href="exams/hw1.html#q1a">1(a)</a><a href="exams/hw1.html#q1b">1(b)</a><a href="exams/hw1.html#q1c">1(c)</a><a href="exams/hw1.html#q1d">1(d)</a></span></li><li><a class="exam" href="exams/1101-mid-b.html">1101B</a><span class="qs"><a href="exams/1101-mid-b.html#q4a">4(a)</a></span></li><li><a class="exam" href="exams/1091-mid.html">1091</a><span class="qs"><a href="exams/1091-mid.html#q1b">1(b)</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">極限的概念與單邊極限</p>
+<p class="src"><a href="week02/index.html#s2-1">§2.1</a><span class="pre">先讀 1</span></p>
+<p class="use">分段函數、絕對值、高斯符號的左右極限，判斷極限存不存在</p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/hw1.html">HW1</a><span class="qs"><a href="exams/hw1.html#q2e">2(e)</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">算極限的技巧</p>
+<p class="src"><a href="week02/index.html#s2-3">§2.3</a> <a href="week02/index.html#s2-4">§2.4</a><span class="pre">先讀 3</span></p>
+<p class="use">0/0 型、有理化、代換、三角極限、夾擠定理；$\frac{\sin x}{x}$ 的證明<span class="lv">延伸</span></p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/hw1.html">HW1</a><span class="qs"><a href="exams/hw1.html#q2a">2(a)</a><a href="exams/hw1.html#q2b">2(b)</a><a href="exams/hw1.html#q2c">2(c)</a><a href="exams/hw1.html#q2d">2(d)</a><a href="exams/hw1.html#q3c">3(c)</a></span></li><li><a class="exam" href="exams/112-mid.html">112</a><span class="qs"><a href="exams/112-mid.html#q1a">1(a)</a><a href="exams/112-mid.html#q1b">1(b)</a><a href="exams/112-mid.html#q3b">3(b)</a></span></li><li><a class="exam" href="exams/1101-mid-a.html">1101A</a><span class="qs"><a href="exams/1101-mid-a.html#q1b">1(b)</a><a href="exams/1101-mid-a.html#q2a">2(a)</a></span></li><li><a class="exam" href="exams/1101-mid-b.html">1101B</a><span class="qs"><a href="exams/1101-mid-b.html#q1b">1(b)</a><a href="exams/1101-mid-b.html#q1c">1(c)</a></span></li><li><a class="exam" href="exams/1091-mid.html">1091</a><span class="qs"><a href="exams/1091-mid.html#q2a">2(a)</a><a href="exams/1091-mid.html#q5a">5(a)</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">無窮極限與三種漸近線</p>
+<p class="src"><a href="week02/index.html#s2-2">§2.2</a> <a href="week02/index.html#s2-5">§2.5</a> <a href="week06/index.html#s6-4">§6.4</a><span class="pre">先讀 3、4</span></p>
+<p class="use">垂直、水平漸近線、已知漸近線求參數；斜漸近線<span class="lv">延伸</span>，羅必達考試不能用</p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/hw1.html">HW1</a><span class="qs"><a href="exams/hw1.html#q4b">4(b)</a></span></li><li><a class="exam" href="exams/112-mid.html">112</a><span class="qs"><a href="exams/112-mid.html#q1c">1(c)</a><a href="exams/112-mid.html#q5d">5(d)</a></span></li><li><a class="exam" href="exams/1101-mid-a.html">1101A</a><span class="qs"><a href="exams/1101-mid-a.html#q1a">1(a)</a><a href="exams/1101-mid-a.html#q6a">6(a)</a></span></li><li><a class="exam" href="exams/1101-mid-b.html">1101B</a><span class="qs"><a href="exams/1101-mid-b.html#q1a">1(a)</a><a href="exams/1101-mid-b.html#q6e">6(e)</a></span></li><li><a class="exam" href="exams/1091-mid.html">1091</a><span class="qs"><a href="exams/1091-mid.html#q1a">1(a)</a><a href="exams/1091-mid.html#q1b">1(b)</a><a href="exams/1091-mid.html#q7d">7(d)</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">連續性與中間值定理</p>
+<p class="src"><a href="week03/index.html#s3-1">§3.1</a> <a href="week03/index.html#s3-2">§3.2</a> <a href="week03/index.html#s3-3">§3.3</a><span class="pre">先讀 3、4</span></p>
+<p class="use">分段函數求參數使其連續、判斷不連續種類、用中間值定理勘根</p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/hw1.html">HW1</a><span class="qs"><a href="exams/hw1.html#q6a">6(a)</a></span></li><li><a class="exam" href="exams/1101-mid-a.html">1101A</a><span class="qs"><a href="exams/1101-mid-a.html#q2a">2(a)</a></span></li><li><a class="exam" href="exams/1091-mid.html">1091</a><span class="qs"><a href="exams/1091-mid.html#q2a">2(a)</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">導數的定義與可微性</p>
+<p class="src"><a href="week04/index.html#s4-1">§4.1</a> <a href="week04/index.html#s4-2">§4.2</a> <a href="week04/index.html#s4-3">§4.3</a> <a href="week04/index.html#s4-4">§4.4</a> <a href="week04/index.html#s4-2-1">§4.2.1</a><span class="pre">先讀 4、6</span></p>
+<p class="use">用定義求 $f'(a)$、尖點與垂直切線、分段函數可微條件；Darboux 定理<span class="lv">延伸</span></p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/hw1.html">HW1</a><span class="qs"><a href="exams/hw1.html#q3a">3(a)</a><a href="exams/hw1.html#q4a">4(a)</a></span></li><li><a class="exam" href="exams/1101-mid-a.html">1101A</a><span class="qs"><a href="exams/1101-mid-a.html#q2b">2(b)</a></span></li><li><a class="exam" href="exams/1091-mid.html">1091</a><span class="qs"><a href="exams/1091-mid.html#q2b">2(b)</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">微分法則與切線法線</p>
+<p class="src"><a href="week04/index.html#s4-4">§4.4</a> <a href="week04/index.html#s4-5">§4.5</a> <a href="week04/index.html#s4-5-1">§4.5.1</a> <a href="week04/index.html#s4-6">§4.6</a><span class="pre">先讀 7</span></p>
+<p class="use">積商法則、三角與指數求導、求切線法線方程式；積商法則證明不考</p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/hw1.html">HW1</a><span class="qs"><a href="exams/hw1.html#q5b">5(b)</a></span></li><li><a class="exam" href="exams/112-mid.html">112</a><span class="qs"><a href="exams/112-mid.html#q7a">7(a)</a></span></li><li><a class="exam" href="exams/1101-mid-b.html">1101B</a><span class="qs"><a href="exams/1101-mid-b.html#q2b">2(b)</a></span></li><li><a class="exam" href="exams/1091-mid.html">1091</a><span class="qs"><a href="exams/1091-mid.html#q2c">2(c)</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">高階導數與連鎖律</p>
+<p class="src"><a href="week04/index.html#s4-7">§4.7</a> <a href="week04/index.html#s4-8">§4.8</a><span class="pre">先讀 8</span></p>
+<p class="use">多層複合函數求導、$a^x$ 的導數、求 $f^{(n)}(x)$</p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/hw1.html">HW1</a><span class="qs"><a href="exams/hw1.html#q5c">5(c)</a></span></li><li><a class="exam" href="exams/112-mid.html">112</a><span class="qs"><a href="exams/112-mid.html#q2a">2(a)</a><a href="exams/112-mid.html#q7c">7(c)</a></span></li><li><a class="exam" href="exams/1101-mid-b.html">1101B</a><span class="qs"><a href="exams/1101-mid-b.html#q2a">2(a)</a></span></li><li><a class="exam" href="exams/1091-mid.html">1091</a><span class="qs"><a href="exams/1091-mid.html#q3a">3(a)</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">隱微分、反三角導數、反函數定理</p>
+<p class="src"><a href="week05/index.html#s5-1">§5.1</a> <a href="week05/index.html#s5-2">§5.2</a> <a href="week05/index.html#s5-5">§5.5</a><span class="pre">先讀 2、9</span></p>
+<p class="use">由方程式求 $\frac{dy}{dx}$ 與 $\frac{d^2y}{dx^2}$、反三角複合函數求導、不解出反函數求它的導數</p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/hw1.html">HW1</a><span class="qs"><a href="exams/hw1.html#q5f">5(f)</a><a href="exams/hw1.html#q6b">6(b)</a></span></li><li><a class="exam" href="exams/112-mid.html">112</a><span class="qs"><a href="exams/112-mid.html#q2a">2(a)</a><a href="exams/112-mid.html#q2b">2(b)</a><a href="exams/112-mid.html#q4a">4(a)</a></span></li><li><a class="exam" href="exams/1101-mid-a.html">1101A</a><span class="qs"><a href="exams/1101-mid-a.html#q3a">3(a)</a><a href="exams/1101-mid-a.html#q4a">4(a)</a></span></li><li><a class="exam" href="exams/1101-mid-b.html">1101B</a><span class="qs"><a href="exams/1101-mid-b.html#q2b">2(b)</a><a href="exams/1101-mid-b.html#q3a">3(a)</a><a href="exams/1101-mid-b.html#q4b">4(b)</a></span></li><li><a class="exam" href="exams/1091-mid.html">1091</a><span class="qs"><a href="exams/1091-mid.html#q3c">3(c)</a><a href="exams/1091-mid.html#q4a">4(a)</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">對數微分與 $e$ 的極限</p>
+<p class="src"><a href="week05/index.html#s5-3">§5.3</a> <a href="week05/index.html#s5-4">§5.4</a> <a href="week05/index.html#s5-4-1">§5.4.1</a> <a href="week06/index.html#s6-5">§6.5</a><span class="pre">先讀 1、4、9</span></p>
+<p class="use">$\ln$ 與 $\log_a$ 求導、$f(x)^{g(x)}$ 求導、$1^\infty$ 型極限；§6.5<span class="lv">延伸</span></p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/hw1.html">HW1</a><span class="qs"><a href="exams/hw1.html#q5a">5(a)</a><a href="exams/hw1.html#q5d">5(d)</a><a href="exams/hw1.html#q5e">5(e)</a></span></li><li><a class="exam" href="exams/112-mid.html">112</a><span class="qs"><a href="exams/112-mid.html#q1d">1(d)</a><a href="exams/112-mid.html#q2c">2(c)</a><a href="exams/112-mid.html#q3a">3(a)</a></span></li><li><a class="exam" href="exams/1101-mid-a.html">1101A</a><span class="qs"><a href="exams/1101-mid-a.html#q1c">1(c)</a><a href="exams/1101-mid-a.html#q3b">3(b)</a></span></li><li><a class="exam" href="exams/1101-mid-b.html">1101B</a><span class="qs"><a href="exams/1101-mid-b.html#q1d">1(d)</a><a href="exams/1101-mid-b.html#q2c">2(c)</a></span></li><li><a class="exam" href="exams/1091-mid.html">1091</a><span class="qs"><a href="exams/1091-mid.html#q1c">1(c)</a><a href="exams/1091-mid.html#q2c">2(c)</a><a href="exams/1091-mid.html#q3b">3(b)</a><a href="exams/1091-mid.html#q5b">5(b)</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">線性近似</p>
+<p class="src"><a href="week06/index.html#s6-1">§6.1</a><span class="pre">先讀 8、9（隱函數題要 10）</span></p>
+<p class="use">在指定點寫出 $L(x)$、估算附近的函數值</p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/hw1.html">HW1</a><span class="qs"><a href="exams/hw1.html#q6c">6(c)</a></span></li><li><a class="exam" href="exams/112-mid.html">112</a><span class="qs"><a href="exams/112-mid.html#q4b">4(b)</a></span></li><li><a class="exam" href="exams/1101-mid-a.html">1101A</a><span class="qs"><a href="exams/1101-mid-a.html#q4b">4(b)</a></span></li><li><a class="exam" href="exams/1101-mid-b.html">1101B</a><span class="qs"><a href="exams/1101-mid-b.html#q3b">3(b)</a></span></li><li><a class="exam" href="exams/1091-mid.html">1091</a><span class="qs"><a href="exams/1091-mid.html#q4b">4(b)</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">均值定理與增減</p>
+<p class="src"><a href="week06/index.html#s6-2">§6.2</a> <a href="week06/index.html#s6-3">§6.3</a> <a href="week06/index.html#s6-proof">證明</a><span class="pre">先讀 6、9</span></p>
+<p class="use">求滿足 MVT 的 $c$、找遞增遞減區間、證明方程式只有一根；定理證明與 Putnam 題<span class="lv">延伸</span></p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/hw1.html">HW1</a><span class="qs"><a href="exams/hw1.html#q3b">3(b)</a><a href="exams/hw1.html#q6a">6(a)</a></span></li><li><a class="exam" href="exams/112-mid.html">112</a><span class="qs"><a href="exams/112-mid.html#q4c">4(c)</a></span></li><li><a class="exam" href="exams/1101-mid-a.html">1101A</a><span class="qs"><a href="exams/1101-mid-a.html#q5b">5(b)</a><a href="exams/1101-mid-a.html#q6b">6(b)</a></span></li><li><a class="exam" href="exams/1101-mid-b.html">1101B</a><span class="qs"><a href="exams/1101-mid-b.html#q4a">4(a)</a><a href="exams/1101-mid-b.html#q5">5</a><a href="exams/1101-mid-b.html#q6b">6(b)</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">極值</p>
+<p class="src"><a href="week07/index.html#s7-1">§7.1</a> <a href="week07/index.html#s7-fermat">Fermat</a><span class="pre">先讀 13</span></p>
+<p class="use">找臨界點、一階導數判別、閉區間上的最大最小值；Fermat 定理證明不考</p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/112-mid.html">112</a><span class="qs"><a href="exams/112-mid.html#q6b">6(b)</a></span></li><li><a class="exam" href="exams/1101-mid-a.html">1101A</a><span class="qs"><a href="exams/1101-mid-a.html#q5a">5(a)</a><a href="exams/1101-mid-a.html#q5d">5(d)</a></span></li><li><a class="exam" href="exams/1101-mid-b.html">1101B</a><span class="qs"><a href="exams/1101-mid-b.html#q7">7</a></span></li><li><a class="exam" href="exams/1091-mid.html">1091</a><span class="qs"><a href="exams/1091-mid.html#q6c">6(c)</a><a href="exams/1091-mid.html#q6d">6(d)</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">凹性與反曲點</p>
+<p class="src"><a href="week07/index.html#s7-2">§7.2</a> <a href="week07/index.html#s7-2-1">§7.2.1</a><span class="pre">先讀 12、14</span></p>
+<p class="use">判斷凹向、找反曲點、二階導數判別極值、線性近似是高估還是低估</p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/hw1.html">HW1</a><span class="qs"><a href="exams/hw1.html#q6d">6(d)</a></span></li><li><a class="exam" href="exams/112-mid.html">112</a><span class="qs"><a href="exams/112-mid.html#q5b">5(b)</a></span></li><li><a class="exam" href="exams/1101-mid-a.html">1101A</a><span class="qs"><a href="exams/1101-mid-a.html#q5b">5(b)</a><a href="exams/1101-mid-a.html#q6c">6(c)</a></span></li><li><a class="exam" href="exams/1101-mid-b.html">1101B</a><span class="qs"><a href="exams/1101-mid-b.html#q6c">6(c)</a></span></li><li><a class="exam" href="exams/1091-mid.html">1091</a><span class="qs"><a href="exams/1091-mid.html#q4c">4(c)</a><a href="exams/1091-mid.html#q7c">7(c)</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">函數作圖</p>
+<p class="src"><a href="week07/index.html#s7-3">§7.3</a> <a href="week07/index.html#s7-3-1">§7.3.1</a><span class="pre">先讀 5、14、15</span></p>
+<p class="use">用 DISPADDD 流程完整畫圖；隱函數作圖<span class="lv">延伸</span></p>
+<div class="ex"><span class="ex-h">練習</span><ul><li><a class="exam" href="exams/112-mid.html">112</a><span class="qs"><a href="exams/112-mid.html#q5">5</a></span></li><li><a class="exam" href="exams/1101-mid-a.html">1101A</a><span class="qs"><a href="exams/1101-mid-a.html#q6">6</a></span></li><li><a class="exam" href="exams/1101-mid-b.html">1101B</a><span class="qs"><a href="exams/1101-mid-b.html#q6">6</a></span></li><li><a class="exam" href="exams/1091-mid.html">1091</a><span class="qs"><a href="exams/1091-mid.html#q7">7</a></span></li></ul></div>
+</li>
+<li>
+<p class="rt">數值方法<span class="lv">延伸</span></p>
+<p class="src"><a href="week06/index.html#s6-6">§6.6</a> <a href="week07/index.html#s7-4">§7.4</a><span class="pre">先讀 12、14</span></p>
+<p class="use">牛頓法迭代幾步、判斷失效原因；一維梯度下降</p>
+</li>
+<li>
+<p class="rt">定積分與有號面積</p>
+<p class="src"><a href="week09/index.html#s9-4">§9.4</a> <a href="week09/index.html#s9-4-1">§9.4.1</a> <a href="week09/index.html#s9-4-2">§9.4.2</a><span class="pre">先讀 1</span></p>
+<p class="use">用三角形、梯形、半圓算積分、奇偶函數對稱抵消、積分性質與積分不等式</p>
+</li>
+<li>
+<p class="rt">Riemann 和<span class="lv">延伸</span></p>
+<p class="src"><a href="week09/index.html#s9-1">§9.1</a> <a href="week09/index.html#s9-2">§9.2</a> <a href="week09/index.html#s9-3">§9.3</a><span class="pre">先讀 4、18</span></p>
+<p class="use">用長方形逼近面積、把和的極限認成定積分、上和下和與不可積函數</p>
+</li>
+<li>
+<p class="rt">反函數的積分<span class="lv">延伸</span></p>
+<p class="src"><a href="week09/index.html#s9-5">§9.5</a><span class="pre">先讀 2、18</span></p>
+<p class="use">$\int_a^bf+\int_{f(a)}^{f(b)}f^{-1}=bf(b)-af(a)$，積不動的函數改積反函數</p>
+</li>
+</ol>
+</main>
+</body>
+</html>

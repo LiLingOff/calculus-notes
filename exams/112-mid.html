@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>112 期中考詳解</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/math.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+<p class="back"><a href="../index.html">← 目錄</a></p>
+<h1>112 學年　微積分 1 期中考</h1>
+<p class="subtitle">模組 11–14 班，官方解答改寫成詳解</p>
+
+<div class="erratum">
+<p><span class="tag">官方解答錯誤</span>兩處，對照官方解答時請自己改正：</p>
+<ol>
+<li>第 5(d) 題：說明 $x=-1$ 是垂直漸近線時寫成 $\displaystyle\lim_{x\to-2}f(x)=-\infty$，應為 $\displaystyle\lim_{x\to-1}f(x)=-\infty$。</li>
+<li>第 7(a) 題：$\varepsilon(16)=-\frac{141}{1234}\approx-0.114$，官方寫「$\lt-1$」，應為 $\gt-1$。後面推 $R'(16)\gt0$ 正是靠 $1+\varepsilon(16)\gt0$，所以結論「漲價」沒錯。</li>
+</ol>
+</div>
+
+<p>每題下方灰字是對應的<a href="../index.html">主題複習路線</a>段號和講義小節，點進去可以回頭複習。標<span class="lv">超出範圍</span>的是講義沒教的工具，看懂就好。官方解答有用羅必達的地方，這裡都換成講義範圍內的做法（講義規定考試不能用羅必達）。</p>
+
+<!-- ================================================================ -->
+<h2 id="q1">第 1 題　求極限（20%）</h2>
+
+<section class="q" id="q1a">
+<p class="problem"><span class="tag">1(a)</span>$\displaystyle\lim_{x\to0}|\sin x|\sin\left(\frac2x\right)$（5%）</p>
+<p class="topic">主題 4 算極限的技巧｜<a href="../week02/index.html#s2-4">§2.4 夾擠定理</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：$\sin\frac2x$ 在 $0$ 附近一直振盪，極限不存在，不能拆開算。它是「有界」乘上「趨近 $0$」，用夾擠定理。</p>
+<p>對 $x\neq0$，$-1\le\sin\frac2x\le1$，兩邊乘上 $|\sin x|\ge0$（乘非負數，不等號方向不變）：</p>
+$$-|\sin x|\le|\sin x|\sin\left(\frac2x\right)\le|\sin x|$$
+<p>左右兩邊在 $x\to0$ 時都趨近 $0$，夾擠定理得</p>
+<p class="ans">$0$</p>
+<p>官方給分：用夾擠定理 1 分、寫對不等式 2 分、驗證兩邊極限 1 分、答案 1 分。只寫答案或說「振盪乘 0 等於 0」拿不到不等式那 2 分。</p>
+</div>
+</section>
+
+<section class="q" id="q1b">
+<p class="problem"><span class="tag">1(b)</span>$\displaystyle\lim_{t\to0}\frac1t\left(\frac{1}{\sqrt{1+t}}-1\right)$（5%）</p>
+<p class="topic">主題 4 算極限的技巧｜<a href="../week02/index.html#s2-3">§2.3 有理化</a>（講義<a href="../week02/index.html#q18">週二題 18</a> 的式子乘上 $-1$）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：直接代入是 $\frac10\cdot0$ 的不定型。先通分，再把分子有理化，約掉造成 $\frac00$ 的 $t$。</p>
+<p>通分：</p>
+$$\frac1t\left(\frac{1}{\sqrt{1+t}}-1\right)=\frac{1-\sqrt{1+t}}{t\sqrt{1+t}}$$
+<p>分子分母同乘 $1+\sqrt{1+t}$，分子變成 $1-(1+t)=-t$：</p>
+$$\frac{(1-\sqrt{1+t})(1+\sqrt{1+t})}{t\sqrt{1+t}\,(1+\sqrt{1+t})}=\frac{-t}{t\sqrt{1+t}\,(1+\sqrt{1+t})}=\frac{-1}{\sqrt{1+t}\,(1+\sqrt{1+t})}$$
+<p>現在可以代 $t=0$：$\dfrac{-1}{1\cdot2}$。</p>
+<p class="ans">$-\dfrac12$</p>
+<div class="tip"><p><span class="tag">更快的看法</span>令 $g(t)=(1+t)^{-1/2}$，題目就是 $\displaystyle\lim_{t\to0}\frac{g(t)-g(0)}{t}=g'(0)$。$g'(t)=-\frac12(1+t)^{-3/2}$，$g'(0)=-\frac12$。看到「$\frac1h\bigl(f(a+h)-f(a)\bigr)$」的長相，先想導數定義（<a href="../week04/index.html#s4-1">§4.1</a>）。</p></div>
+</div>
+</section>
+
+<section class="q" id="q1c">
+<p class="problem"><span class="tag">1(c)</span>$\displaystyle\lim_{x\to\infty}\frac{x^2+2e^{-x}}{e^{-x}+3e^x}$ 與 $\displaystyle\lim_{x\to-\infty}\frac{x^2+2e^{-x}}{e^{-x}+3e^x}$（5%）</p>
+<p class="topic">主題 5 無窮極限與漸近線｜<a href="../week02/index.html#s2-5">§2.5 無窮遠處的極限</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：無窮遠處的分式，分子分母同除「跑最快的那一項」。$x\to\infty$ 時 $e^x$ 最大，$x\to-\infty$ 時 $e^{-x}$ 最大，所以兩個方向要分開做。</p>
+<p>會用到一個講義沒證明的事實<span class="lv">超出範圍</span>：指數成長比多項式快，</p>
+$$\lim_{x\to\infty}\frac{x^2}{e^x}=0$$
+<p>官方用羅必達兩次證明。考試時直接引用通常可以接受，但最好寫出來是在用這件事。</p>
+<p><strong>$x\to\infty$</strong>：分子分母同除 $e^x$，</p>
+$$\frac{x^2e^{-x}+2e^{-2x}}{e^{-2x}+3}\;\longrightarrow\;\frac{0+0}{0+3}=0$$
+<p><strong>$x\to-\infty$</strong>：分子分母同除 $e^{-x}$，</p>
+$$\frac{x^2e^{x}+2}{1+3e^{2x}}\;\longrightarrow\;\frac{0+2}{1+0}=2$$
+<p>其中 $x^2e^x$：令 $u=-x\to\infty$，$x^2e^x=\dfrac{u^2}{e^u}\to0$，用的是同一個事實。</p>
+<p class="ans">$x\to\infty$ 時為 $0$；$x\to-\infty$ 時為 $2$</p>
+<p>常見失分：先把分母的 $e^{-x}$ 當成 $0$ 丟掉、再算剩下的極限。官方說明這種「先算一部分再算全部」的寫法扣 3 分。正確做法是整個式子一起變形，最後各項同時取極限。</p>
+</div>
+</section>
+
+<section class="q" id="q1d">
+<p class="problem"><span class="tag">1(d)</span>$\displaystyle\lim_{x\to1^+}x^{1/(x-1)}$（5%）</p>
+<p class="topic">主題 11 對數微分與 $e$ 的極限｜<a href="../week05/index.html#s5-4">§5.4 $e$ 的另一個定義</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：底趨近 $1$、指數趨近 $\infty$，是 $1^\infty$ 型。取 $\ln$ 變成乘法，算完再取 $e$ 的次方。</p>
+<p>取 $\ln$：</p>
+$$\ln\left(x^{1/(x-1)}\right)=\frac{\ln x}{x-1}$$
+<p>這個極限其實是 $\ln$ 在 $x=1$ 的導數（因為 $\ln1=0$）：</p>
+$$\lim_{x\to1^+}\frac{\ln x-\ln1}{x-1}=(\ln x)'\Big|_{x=1}=\frac11=1$$
+<p>$e^x$ 連續，極限可以搬進指數：$\displaystyle\lim x^{1/(x-1)}=e^{1}$。</p>
+<p class="ans">$e$</p>
+<div class="tip"><p><span class="tag">更快的做法</span>令 $h=x-1\to0^+$，$x^{1/(x-1)}=(1+h)^{1/h}$，這就是 $e$ 的定義（<a href="../week05/index.html#q13">週五題 13</a> 證明過的 $\lim_{h\to0}(1+h)^{1/h}=e$），一步得答案。</p></div>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q2">第 2 題　求導數（15%）</h2>
+
+<section class="q" id="q2a">
+<p class="problem"><span class="tag">2(a)</span>$f(x)=\tan^{-1}(\sqrt x)$，求 $f'(x)$。（5%）</p>
+<p class="topic">主題 10 反三角導數｜<a href="../week05/index.html#s5-2">§5.2</a>　主題 9 連鎖律｜<a href="../week04/index.html#s4-8">§4.8</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：反正切的導數 $(\tan^{-1}u)'=\dfrac{1}{1+u^2}$，再乘上內層 $u=\sqrt x$ 的導數。</p>
+$$f'(x)=\frac{1}{1+(\sqrt x)^2}\cdot\frac{1}{2\sqrt x}=\frac{1}{1+x}\cdot\frac{1}{2\sqrt x}$$
+<p class="ans">$f'(x)=\dfrac{1}{2\sqrt x\,(1+x)}$，$x\gt0$</p>
+<p>容易漏掉的是 $\frac{1}{2\sqrt x}$ 這個連鎖律因子。官方給分 2 分是設內層函數，最後 1 分是把 $(\sqrt x)^2$ 化成 $x$。</p>
+</div>
+</section>
+
+<section class="q" id="q2b">
+<p class="problem"><span class="tag">2(b)</span>已知 $x^4-4x^2+2y^4+xy=0$，求在 $(x,y)=(1,1)$ 的 $\dfrac{dy}{dx}$。（5%）</p>
+<p class="topic">主題 10 隱微分｜<a href="../week05/index.html#s5-1">§5.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：隱微分。把 $y$ 看成 $x$ 的函數，兩邊對 $x$ 微分；含 $y$ 的項要多乘 $y'$，$xy$ 要用乘法法則。</p>
+$$4x^3-8x+8y^3y'+\bigl(y+xy'\bigr)=0$$
+<p>直接代 $(1,1)$，不必先解出 $y'$ 的一般式：</p>
+$$4-8+8y'+1+y'=0\;\Longrightarrow\;9y'=3$$
+<p class="ans">$\dfrac{dy}{dx}\Big|_{(1,1)}=\dfrac13$</p>
+<p>可以順手檢查 $(1,1)$ 在曲線上：$1-4+2+1=0$。</p>
+</div>
+</section>
+
+<section class="q" id="q2c">
+<p class="problem"><span class="tag">2(c)</span>$f(x)=x^{\sin x}$，求 $f'(x)$。（5%）</p>
+<p class="topic">主題 11 對數微分｜<a href="../week05/index.html#s5-4-1">§5.4.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：底和指數都有 $x$，冪次法則和指數法則都不能用，要用對數微分法。</p>
+<p>兩邊取 $\ln$（$x\gt0$）：$\ln f(x)=\sin x\cdot\ln x$。兩邊對 $x$ 微分，右邊用乘法法則：</p>
+$$\frac{f'(x)}{f(x)}=\cos x\ln x+\frac{\sin x}{x}$$
+<p class="ans">$f'(x)=x^{\sin x}\left(\cos x\ln x+\dfrac{\sin x}{x}\right)$</p>
+<p>常見錯誤是寫成 $\sin x\cdot x^{\sin x-1}$（把指數當常數）。</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q3">第 3 題　三角恆等式與極限（10%）</h2>
+
+<section class="q" id="q3a">
+<p class="problem"><span class="tag">3(a)</span>已知對 $x$ 不是 $\pi$ 的整數倍時，$\cos x\cdot\cos2x=\dfrac{\sin4x}{4\sin x}$。用這個恆等式（或其他方法）證明：對 $x$ 不是 $\frac\pi4$ 的整數倍時，
+$$\tan x+2\tan2x=\cot x-4\cot4x$$
+（提示：用對數微分法微分已知恆等式。）（5%）</p>
+<p class="topic">主題 11 對數微分｜<a href="../week05/index.html#s5-4-1">§5.4.1</a>　主題 9 連鎖律｜<a href="../week04/index.html#s4-8">§4.8</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：證明題。乘積和商取 $\ln$ 會變成和與差，微分後每一項都是「$\frac{(\cdot)'}{(\cdot)}$」，剛好就是 $\tan$、$\cot$。</p>
+<p>先確認已知恆等式為什麼對：$\sin4x=2\sin2x\cos2x=4\sin x\cos x\cos2x$，兩邊除以 $4\sin x$ 就是。</p>
+<p><strong>關鍵一步</strong>：兩邊取 $\ln|\cdot|$（要加絕對值，因為 $\cos x$ 等可能是負的）：</p>
+$$\ln|\cos x|+\ln|\cos2x|=\ln|\sin4x|-\ln4-\ln|\sin x|$$
+<p>兩邊對 $x$ 微分，用 $(\ln|u|)'=\dfrac{u'}{u}$ 和連鎖律：</p>
+$$\frac{-\sin x}{\cos x}+\frac{-2\sin2x}{\cos2x}=\frac{4\cos4x}{\sin4x}-\frac{\cos x}{\sin x}$$
+<p>也就是 $-\tan x-2\tan2x=4\cot4x-\cot x$，移項得</p>
+<p class="ans">$\tan x+2\tan2x=\cot x-4\cot4x$　■</p>
+<p>為什麼條件是「$x$ 不是 $\frac\pi4$ 的整數倍」：這時 $\cos x,\cos2x,\sin x,\sin4x$ 都不是 $0$，每個 $\ln$ 和每個 $\tan$、$\cot$ 都有定義。</p>
+<div class="remark">
+<p><strong>官方給分</strong>：取 $\ln|\cdot|$ 1 分、微分正確 3 分、整理出結論 1 分。</p>
+<p><strong>常見失分</strong>：(1) 沒加絕對值就取 $\ln$；(2) 連鎖律漏乘 $2$、$4$；(3) 直接把要證的式子當已知，兩邊互推。</p>
+</div>
+<div class="tip"><p><span class="tag">另解</span>不想取 $\ln$ 也可以直接對已知恆等式用乘法和商法則，再兩邊除以 $\cos x\cos2x$（左邊）與 $\frac{\sin4x}{4\sin x}$（右邊，兩者相等）。取 $\ln$ 的好處是乘積直接拆開，計算量少很多。</p></div>
+</div>
+</section>
+
+<section class="q" id="q3b">
+<p class="problem"><span class="tag">3(b)</span>求 $\displaystyle\lim_{x\to0}\frac{\cot x-4\cot4x}{x}$。（5%）</p>
+<p class="topic">主題 4 算極限的技巧｜<a href="../week02/index.html#s2-3">§2.3</a>（同講義<a href="../week02/index.html#q14">週二題 14</a> 的 $\frac{\tan2x}{x}$）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：直接算是 $\frac{\infty-\infty}{0}$，很難處理。上一小題就是給你用的：把分子換成 $\tan$，變成熟悉的 $\frac{\tan x}{x}$ 型。</p>
+<p>由 (a)，$x$ 靠近 $0$（但 $\neq0$）時</p>
+$$\frac{\cot x-4\cot4x}{x}=\frac{\tan x}{x}+2\cdot\frac{\tan2x}{x}$$
+<p>而 $\dfrac{\tan x}{x}=\dfrac{\sin x}{x}\cdot\dfrac{1}{\cos x}\to1\cdot1=1$，$\dfrac{\tan2x}{x}=2\cdot\dfrac{\tan2x}{2x}\to2$。所以</p>
+$$\lim_{x\to0}\frac{\cot x-4\cot4x}{x}=1+2\cdot2$$
+<p class="ans">$5$</p>
+<p>官方另外兩種解法要連用三次羅必達，考試不能用，也不必學。</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q4">第 4 題　反函數的導數與不等式（12%）</h2>
+<p>$f(x)=2x^2+\ln x$，$x\gt0$。已知 $f$ 嚴格遞增，有反函數 $f^{-1}$。</p>
+
+<section class="q" id="q4a">
+<p class="problem"><span class="tag">4(a)</span>求 $f'(1)$ 與 $(f^{-1})'(2)$。（提示：$f(1)=2$。）（5%）</p>
+<p class="topic">主題 10 反函數定理｜<a href="../week05/index.html#s5-5">§5.5</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：反函數定理 $(f^{-1})'(b)=\dfrac{1}{f'(a)}$，其中 $f(a)=b$。不用解出 $f^{-1}$，關鍵是先找出「哪個 $a$ 會送到 $b=2$」。</p>
+<p>$f'(x)=4x+\dfrac1x$，所以 $f'(1)=5$。</p>
+<p>題目提示 $f(1)=2+\ln1=2$，也就是 $f^{-1}(2)=1$：</p>
+$$(f^{-1})'(2)=\frac{1}{f'\bigl(f^{-1}(2)\bigr)}=\frac{1}{f'(1)}$$
+<p class="ans">$f'(1)=5$，$(f^{-1})'(2)=\dfrac15$</p>
+<p>常見錯誤是寫成 $\frac{1}{f'(2)}$，代錯點。</p>
+</div>
+</section>
+
+<section class="q" id="q4b">
+<p class="problem"><span class="tag">4(b)</span>用 $f^{-1}(y)$ 在 $y=2$ 的線性近似估計 $f^{-1}(2.06)$。（2%）</p>
+<p class="topic">主題 12 線性近似｜<a href="../week06/index.html#s6-1">§6.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：線性近似 $L(y)=g(2)+g'(2)(y-2)$，這裡 $g=f^{-1}$，兩個值都在 (a) 算好了。</p>
+$$f^{-1}(2.06)\approx f^{-1}(2)+(f^{-1})'(2)\cdot0.06=1+\frac{0.06}{5}$$
+<p class="ans">$f^{-1}(2.06)\approx1.012$</p>
+</div>
+</section>
+
+<section class="q" id="q4c">
+<p class="problem"><span class="tag">4(c)</span>證明對所有 $x\ge1$，$2x^2\le f(x)\le2x^2+x$。（5%）</p>
+<p class="topic">主題 13 均值定理與增減｜<a href="../week06/index.html#s6-3-2">§6.3.2 用導數判斷增減</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：證明題。兩個不等式扣掉 $2x^2$ 後分別是 $0\le\ln x$ 和 $\ln x\le x$。前者是 $\ln$ 遞增，後者要自己造一個函數，用「導數非負就遞增」證明。</p>
+<p><strong>左邊</strong>（1 分）：$\ln x$ 遞增，$x\ge1$ 時 $\ln x\ge\ln1=0$，所以 $f(x)=2x^2+\ln x\ge2x^2$。</p>
+<p><strong>右邊</strong>（4 分）：<strong>關鍵一步</strong>是令</p>
+$$g(x)=x-\ln x,\qquad g'(x)=1-\frac1x\ge0\quad(x\ge1)$$
+<p>所以 $g$ 在 $[1,\infty)$ 遞增，$g(x)\ge g(1)=1\gt0$，即 $\ln x\lt x$。因此 $f(x)=2x^2+\ln x\le2x^2+x$。</p>
+<p class="ans">得證　■</p>
+<div class="remark">
+<p><strong>官方給分（右邊 4 分）</strong>：算出 $g'\ge0$ 1 分、說明 $g$ 遞增 1 分、得到 $g(x)\ge g(1)\gt0$ 1 分、結論 1 分。</p>
+<p><strong>常見失分</strong>：只寫「$\ln x$ 長得比 $x$ 慢」或畫圖說明，沒有論證；或只算 $g'\ge0$ 卻沒和起點 $g(1)$ 比較。遞增只告訴你越來越大，要和起點的值比才知道正負。</p>
+</div>
+<div class="tip"><p><span class="tag">另解</span>均值定理：$\ln x-\ln1=\dfrac1t(x-1)$，$t\in(1,x)$。因為 $\frac1t\lt1$，$\ln x\lt x-1\lt x$。這和講義<a href="../week06/index.html#q9">週六題 9</a>、<a href="../week06/index.html#q10">10</a> 的套路相同。</p></div>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q5">第 5 題　函數作圖（22%）</h2>
+<p>$f(x)=\dfrac{(x-1)^3}{(x+1)^2}=x-5+\dfrac{12x+4}{(x+1)^2}$，$x\neq-1$。</p>
+
+<div class="tip"><p><span class="tag">解題套路</span>題目已經給了長除法的結果，<strong>微分時用右邊的形式</strong>比較輕鬆：$x-5$ 的導數是 $1$，只要處理 $\frac{12x+4}{(x+1)^2}$。斜漸近線也直接看出來是 $y=x-5$。</p></div>
+
+<section class="q" id="q5a">
+<p class="problem"><span class="tag">5(a)</span>求 $f'(x)$，寫出遞增與遞減區間。（7%）</p>
+<p class="topic">主題 13 增減｜<a href="../week06/index.html#s6-3-2">§6.3.2</a>　主題 16 作圖｜<a href="../week07/index.html#s7-3">§7.3</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：商法則求 $f'$，因式分解後列符號表。$(x-1)^2$ 這種平方因子不會變號，要特別注意。</p>
+<p>商法則，分子提出公因式 $(x-1)^2(x+1)$：</p>
+$$f'(x)=\frac{3(x-1)^2(x+1)^2-(x-1)^3\cdot2(x+1)}{(x+1)^4}=\frac{(x-1)^2\bigl[3(x+1)-2(x-1)\bigr]}{(x+1)^3}=\frac{(x-1)^2(x+5)}{(x+1)^3}$$
+<p>臨界點 $x=1,-5$；$x=-1$ 不在定義域但會讓符號改變。$(x-1)^2\ge0$ 不影響正負，只看 $(x+5)$ 和 $(x+1)^3$：</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>區間</th><th>$x\lt-5$</th><th>$(-5,-1)$</th><th>$(-1,1)$</th><th>$x\gt1$</th></tr></thead>
+<tbody>
+<tr><td>$x+5$</td><td>$-$</td><td>$+$</td><td>$+$</td><td>$+$</td></tr>
+<tr><td>$(x+1)^3$</td><td>$-$</td><td>$-$</td><td>$+$</td><td>$+$</td></tr>
+<tr><td>$f'$</td><td>$+$</td><td>$-$</td><td>$+$</td><td>$+$</td></tr>
+</tbody>
+</table>
+</div>
+<p class="ans">$f'(x)=\dfrac{(x-1)^2(x+5)}{(x+1)^3}$；遞增 $(-\infty,-5)$、$(-1,\infty)$；遞減 $(-5,-1)$</p>
+<p>$x=1$ 兩側都遞增，所以 $(-1,1)$ 和 $(1,\infty)$ 可以合成 $(-1,\infty)$。官方給分是四個區間各 1 分。</p>
+<p>但 $(-\infty,-5)$ 和 $(-1,\infty)$ 中間隔著垂直漸近線，嚴格說不能用聯集寫成一個遞增區間：$-6\lt-0.9$，可是 $f(-6)\approx-13.7\gt f(-0.9)=-685.9$。官方寫成 $(-\infty,-5)\cup(-1,\infty)$，考試通常不扣分，自己寫時分開列比較保險。</p>
+</div>
+</section>
+
+<section class="q" id="q5b">
+<p class="problem"><span class="tag">5(b)</span>求 $f''(x)$，寫出凹口向上與向下的區間。（7%）</p>
+<p class="topic">主題 15 凹性｜<a href="../week07/index.html#s7-2">§7.2</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：二階導數的符號決定凹向。用長除法的形式算最快。</p>
+<p>令 $u=\dfrac{12x+4}{(x+1)^2}$，則 $f=x-5+u$。</p>
+$$u'=\frac{12(x+1)^2-(12x+4)\cdot2(x+1)}{(x+1)^4}=\frac{12(x+1)-2(12x+4)}{(x+1)^3}=\frac{4-12x}{(x+1)^3}$$
+<p>所以 $f'=1+\dfrac{4-12x}{(x+1)^3}$（和 (a) 通分後一致）。再微一次：</p>
+$$f''=u''=\frac{-12(x+1)^3-(4-12x)\cdot3(x+1)^2}{(x+1)^6}=\frac{-12(x+1)-3(4-12x)}{(x+1)^4}=\frac{24(x-1)}{(x+1)^4}$$
+<p>分母 $(x+1)^4\gt0$，正負只看 $x-1$。</p>
+<p class="ans">$f''(x)=\dfrac{24(x-1)}{(x+1)^4}$；凹口向上 $(1,\infty)$；凹口向下 $(-\infty,-1)$、$(-1,1)$</p>
+<p>常見失分：寫成「凹口向下 $(-\infty,1)$」，沒有扣掉 $x=-1$，官方扣 0.5 分。</p>
+</div>
+</section>
+
+<section class="q" id="q5c">
+<p class="problem"><span class="tag">5(c)</span>寫出局部極值與反曲點（若有）。（2%）</p>
+<p class="topic">主題 14 極值｜<a href="../week07/index.html#s7-1">§7.1</a>　主題 15 反曲點｜<a href="../week07/index.html#s7-2">§7.2</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：一階導數由正變負是極大；臨界點兩側不變號就不是極值。凹向改變而且函數有定義的點才是反曲點。</p>
+<p>$x=-5$：$f'$ 由 $+$ 變 $-$，局部極大，$f(-5)=\dfrac{(-6)^3}{(-4)^2}=-\dfrac{216}{16}=-\dfrac{27}2$。</p>
+<p>$x=1$：$f'(1)=0$ 但兩側都是 $+$，不是極值。$f''$ 在這裡由負變正，而且 $f(1)=0$ 有定義，所以是反曲點，而且切線水平。</p>
+<p>$x=-1$ 兩側凹向沒變，而且不在定義域，不是反曲點。</p>
+<p class="ans">局部極大 $\left(-5,-\frac{27}2\right)$；沒有局部極小；反曲點 $(1,0)$</p>
+</div>
+</section>
+
+<section class="q" id="q5d">
+<p class="problem"><span class="tag">5(d)</span>求所有漸近線。（3%）</p>
+<p class="topic">主題 5 無窮極限與漸近線｜<a href="../week02/index.html#s2-2">§2.2</a> <a href="../week06/index.html#s6-4">§6.4 斜漸近線</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：分母為 $0$、分子不為 $0$ 的點是垂直漸近線；長除法的商式是斜漸近線。</p>
+<p><strong>垂直</strong>：$x\to-1$ 時分子 $\to(-2)^3=-8$，分母 $(x+1)^2\to0^+$，所以兩側都 $f\to-\infty$。$x=-1$ 是垂直漸近線。</p>
+<p><strong>斜</strong>：$f(x)-(x-5)=\dfrac{12x+4}{(x+1)^2}$，分子一次、分母二次，$x\to\pm\infty$ 時 $\to0$。所以 $y=x-5$ 是兩端共用的斜漸近線。$f$ 往兩端都趨向 $\pm\infty$，沒有水平漸近線。</p>
+<p class="ans">垂直漸近線 $x=-1$；斜漸近線 $y=x-5$（$x\to\pm\infty$ 都是）</p>
+<p>不用長除法的標準算法：$a=\lim\frac{f(x)}{x}=1$，$b=\lim\bigl(f(x)-x\bigr)=\lim\frac{(x-1)^3-x(x+1)^2}{(x+1)^2}=\lim\frac{-5x^2+2x-1}{x^2+2x+1}=-5$。官方要求兩個方向都要提到，漏寫 $x\to-\infty$ 扣 0.5 分。</p>
+</div>
+</section>
+
+<section class="q" id="q5e">
+<p class="problem"><span class="tag">5(e)</span>畫出 $y=f(x)$。（3%）</p>
+<p class="topic">主題 16 函數作圖｜<a href="../week07/index.html#s7-3">§7.3 DISPADDD</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：把 (a)–(d) 的資訊畫在一起。截距和曲線與漸近線的相對位置可以讓圖更準。</p>
+<p>截距：$f(0)=\frac{-1}{1}=-1$；$f=0\iff x=1$。</p>
+<p>和斜漸近線比較：$f(x)-(x-5)=\dfrac{12x+4}{(x+1)^2}$，$x\gt-\frac13$ 時曲線在漸近線上方，$x\lt-\frac13$ 時在下方，在 $\left(-\frac13,-\frac{16}3\right)$ 穿過漸近線。</p>
+<figure>
+<img src="fig-112-q5.svg" alt="y 等於 (x-1)³/(x+1)² 的圖：x=-1 為垂直漸近線，兩側都往下；斜漸近線 y=x-5；x=-5 有局部極大 -27/2；(1,0) 是切線水平的反曲點">
+<figcaption>5(e)：左半部在 $x=-5$ 到頂後掉進 $x=-1$；右半部從 $-\infty$ 爬上來，在 $(1,0)$ 變平再轉成凹口向上，最後貼近 $y=x-5$</figcaption>
+</figure>
+<p>官方給分各 0.5 分：兩條漸近線、極大點、反曲點、$x\lt-1$、$-1\lt x\lt1$、$x\gt1$ 三段的形狀。</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q6">第 6 題　工廠產量最大化（9%）</h2>
+<p>早班 8:00 到 12:15，共 4 小時工作加 15 分鐘咖啡休息。休息前工作 $t$ 小時可組裝 $f(t)=-t^3+6t^2+15t$ 件；休息後工作 $t$ 小時可組裝 $g(t)=-\frac13t^3+t^2+23t$ 件。</p>
+
+<section class="q" id="q6a">
+<p class="problem"><span class="tag">6(a)</span>休息前工作 $t$ 小時（$0\le t\le4$），寫出整個早班的總產量。（3%）</p>
+<p class="topic">主題 1 函數｜<a href="../week01/index.html#s1-1">§1.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：把文字翻成函數。休息後剩 $4-t$ 小時，所以休息後的產量是 $g(4-t)$。</p>
+$$h(t)=f(t)+g(4-t)=-t^3+6t^2+15t-\frac13(4-t)^3+(4-t)^2+23(4-t)$$
+<p class="ans">$h(t)=f(t)+g(4-t)$，$0\le t\le4$（如上，不必展開）</p>
+</div>
+</section>
+
+<section class="q" id="q6b">
+<p class="problem"><span class="tag">6(b)</span>休息前應工作幾小時，才能讓總產量最大？要說明確實是全域最大。（6%）</p>
+<p class="topic">主題 14 極值｜<a href="../week07/index.html#s7-1">§7.1 閉區間上的最大最小值</a>（應用題情境講義沒有，數學工具在範圍內）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：閉區間 $[0,4]$ 上的全域最大值。找臨界點，再和端點比大小。</p>
+<p>微分 $g(4-t)$ 要用連鎖律，內層 $4-t$ 的導數是 $-1$：</p>
+$$h'(t)=f'(t)-g'(4-t)=(-3t^2+12t+15)-\bigl(-(4-t)^2+2(4-t)+23\bigr)$$
+<p>展開整理：$(4-t)^2-2(4-t)=t^2-6t+8$，所以</p>
+$$h'(t)=-3t^2+12t+15+t^2-6t+8-23=-2t^2+6t=-2t(t-3)$$
+<p>臨界點 $t=0,3$。比較候選點的值：</p>
+$$h(0)=g(4)=\frac{260}{3}\approx86.7,\qquad h(3)=f(3)+g(1)=72+\frac{71}{3}=\frac{287}{3}\approx95.7,\qquad h(4)=f(4)=92$$
+<figure>
+<img src="fig-112-q6.svg" alt="h(t) 在 [0,4] 上的圖，在 t=3 有最大值 287/3">
+<figcaption>6(b)：$h$ 在 $(0,3)$ 遞增、$(3,4)$ 遞減，最大值在 $t=3$</figcaption>
+</figure>
+<p class="ans">休息前工作 $3$ 小時（8:00–11:00），總產量最大 $\frac{287}{3}\approx95.7$ 件</p>
+<div class="remark">
+<p><strong>常見失分</strong>：(1) 微分 $g(4-t)$ 時漏了負號；(2) 只用二階導數判別 $h''(3)\lt0$，那只能說明是局部極大，官方只給 1 分。要嘛比較端點值，要嘛說明 $h'$ 在 $(0,3)$ 為正、$(3,4)$ 為負。</p>
+</div>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="q7">第 7 題　需求彈性（12%）</h2>
+<p>匯率 $q=5p$（$p$ 為千元台幣、$q$ 為千元日圓）。$Y(p)$ 是定價 $p$ 台幣時的需求量，$y(q)$ 是定價 $q$ 日圓時的需求量。已知 $Y(p)=100+\dfrac{100}{\sqrt p}-\dfrac{p}{10}$，$1\le p\le100$。點彈性定義為 $\varepsilon(p)=\dfrac{Y'(p)\cdot p}{Y(p)}$。</p>
+
+<section class="q" id="q7a">
+<p class="problem"><span class="tag">7(a)</span>求 $\varepsilon(16)$。在這個價格下，零售商要漲價還是降價才能提高營收 $p\cdot Y(p)$？（8%）</p>
+<p class="topic">主題 8 微分法則｜<a href="../week04/index.html#s4-5">§4.5 乘法法則</a>　主題 13 增減｜<a href="../week06/index.html#s6-3-2">§6.3.2</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：彈性是題目定義的，只要照公式代。真正的問題是營收 $R(p)=pY(p)$ 在 $p=16$ 是遞增還是遞減，看 $R'(16)$ 的正負。</p>
+<p>$Y'(p)=-50p^{-3/2}-\dfrac1{10}$，所以</p>
+$$Y'(16)=-\frac{50}{64}-\frac1{10}=-\frac{141}{160},\qquad Y(16)=100+25-1.6=123.4$$
+$$\varepsilon(16)=\frac{-\frac{141}{160}\cdot16}{123.4}=\frac{-14.1}{123.4}=-\frac{141}{1234}\approx-0.114$$
+<p>營收用乘法法則微分，提出 $Y(p)$：</p>
+$$R'(p)=Y(p)+pY'(p)=Y(p)\bigl(1+\varepsilon(p)\bigr)$$
+<p>$Y(16)\gt0$，且 $1+\varepsilon(16)\approx0.886\gt0$，所以 $R'(16)\gt0$，營收在 $p=16$ 遞增。</p>
+<p class="ans">$\varepsilon(16)=-\dfrac{141}{1234}\approx-0.114$；應該漲價</p>
+<p>直覺：$|\varepsilon|\lt1$ 表示漲價 1% 需求只掉約 0.11%，賣少一點但每件貴很多，營收上升。官方說明沒有理由的結論不給分。</p>
+</div>
+</section>
+
+<section class="q" id="q7b">
+<p class="problem"><span class="tag">7(b)</span>假設需求只由實際價值決定，下列哪個等式正確描述 $Y$ 與 $y$ 的關係？(A) $Y(5p)=y(p)$　(B) $5Y(p)=y(p)$　(C) $Y(p)=y(5p)$　(D) $Y(p)=5y(p)$（1%）</p>
+<p class="topic">主題 1 函數｜<a href="../week01/index.html#s1-1">§1.1</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：讀懂函數的輸入是什麼。定價 $p$ 台幣和定價 $5p$ 日圓是同一個價錢，需求量相同，所以 $Y(p)=y(5p)$。</p>
+<p class="ans">(C)</p>
+</div>
+</section>
+
+<section class="q" id="q7c">
+<p class="problem"><span class="tag">7(c)</span>找出並證明台幣彈性 $\varepsilon(p)$ 與日圓彈性 $\varepsilon(q)=\dfrac{y'(q)\cdot q}{y(q)}$ 的關係。（3%）</p>
+<p class="topic">主題 9 連鎖律｜<a href="../week04/index.html#s4-8">§4.8</a></p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>考點</strong>：對 $Y(p)=y(5p)$ 用連鎖律，再代進彈性的定義。</p>
+<p>連鎖律：$Y'(p)=5y'(5p)$。代入，並用 $q=5p$（所以 $p=\frac q5$）：</p>
+$$\varepsilon(p)=\frac{Y'(p)\cdot p}{Y(p)}=\frac{5y'(5p)\cdot\frac q5}{y(5p)}=\frac{y'(q)\cdot q}{y(q)}=\varepsilon(q)$$
+<p class="ans">$\varepsilon(p)=\varepsilon(q)$：彈性和用哪種貨幣計價無關</p>
+<p>官方給分：連鎖律 1 分、換成 $y$ 和 $y'$ 1 分、結論 1 分。</p>
+</div>
+</section>
+
+</main>
+</body>
+</html>

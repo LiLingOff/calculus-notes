@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 5 微分 II</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/math.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+<p class="back"><a href="../index.html">← 目錄</a></p>
+<h1>Week 5　微分 II（Differentiation II）</h1>
+<p class="subtitle">AP Calculus I（115 學年）Lecture Note 5 教學與題解</p>
+
+<div class="erratum">
+<p><span class="tag">講義筆誤</span>讀講義時請自己改正兩處：</p>
+<ol>
+<li>p.37 Putnam 題：函數寫成 $f_n(t)=\cos(x)\cos(2x)\cdots\cos(nx)$，變數不一致，應為 $f_n(x)$。</li>
+<li>p.38 最後一題的提示：$g'(f'(x))f''(x)$ 應為 $g'(f(x))f''(x)$，正確式子是 $g''(f(x))\bigl(f'(x)\bigr)^2+g'(f(x))f''(x)=0$。</li>
+</ol>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="s5-1">5.1 隱函數微分</h2>
+
+<p>之前的函數都長成 $y=\text{一串跟 }x\text{ 有關的式子}$，叫<strong>顯函數</strong>，給 $x$ 直接代進去就有 $y$。</p>
+<p>但有些關係只給一條方程式，例如</p>
+$$y^5+x^3y^2-1=\sin(x)\,y$$
+<p>想知道 $x=1$ 時 $y$ 是多少，得去解一個五次方程，根本解不出公式。這種 $y$ 藏在方程式裡的叫<strong>隱函數</strong>。橢圓 $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$、雙曲線 $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$ 也是。</p>
+<p>好消息是：<strong>不用把 $y$ 解出來也能求 $\dfrac{dy}{dx}$</strong>。把 $y$ 當成「某個 $x$ 的函數 $y(x)$」，整條方程式兩邊一起對 $x$ 微分就好。唯一要注意的是碰到 $y$ 的地方要用連鎖律，多乘一個 $y'$。</p>
+
+<div class="thm">
+<p><span class="tag">定理 5.1.1（隱函數微分）</span>$y$ 是 $x$ 的隱函數、$f$ 可微，則</p>
+$$\frac{d}{dx}f(y)=f'(y)\cdot\frac{dy}{dx}$$
+</div>
+<p>例如 $\dfrac{d}{dx}y^3=3y^2y'$，$\dfrac{d}{dx}\sin y=\cos y\cdot y'$，$\dfrac{d}{dx}(xy)=y+xy'$（積法則）。</p>
+
+<div class="tip">
+<p><span class="tag">解題套路</span></p>
+<ol>
+<li>兩邊對 $x$ 微分，$y$ 的項記得乘 $y'$。</li>
+<li><strong>先代點、再解 $y'$</strong>：代入數字後就只是一次方程，比先解出一般式快很多。</li>
+<li>求 $y''$：把第 1 步得到的式子<strong>再微一次</strong>（$y'$ 也是 $x$ 的函數，微分會出現 $y''$），代點並把剛算好的 $y'$ 也代進去。</li>
+</ol>
+</div>
+
+<figure>
+<img src="fig-implicit.svg" alt="曲線 x 平方加 3 y 三次方等於 12，在 (3,1) 的切線">
+<figcaption>題 1 的曲線與 $(3,1)$ 的切線</figcaption>
+</figure>
+
+<section class="q" id="q1">
+<p class="problem"><span class="tag">題 1</span>$x^2+3y^3=12$。在 $(3,1)$ 附近把 $y$ 看成 $x$ 的可微函數，求 $(3,1)$ 處的 $\dfrac{dy}{dx}$ 與 $\dfrac{d^2y}{dx^2}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>先確認點在曲線上：$9+3=12$。</p>
+<p><strong>一階</strong>：兩邊對 $x$ 微分</p>
+$$2x+9y^2y'=0$$
+<p>代 $(3,1)$：$6+9y'=0$，得 $y'=-\dfrac23$。</p>
+<p><strong>二階</strong>：把 $2x+9y^2y'=0$ 再微一次，$9y^2y'$ 用積法則（$9y^2$ 微分是 $18y\,y'$）：</p>
+$$2+18y\,(y')^2+9y^2y''=0$$
+<p>代 $y=1$、$y'=-\frac23$：$2+18\cdot\frac49+9y''=0$，即 $10+9y''=0$。</p>
+<p class="ans">$\dfrac{dy}{dx}=-\dfrac23,\qquad \dfrac{d^2y}{dx^2}=-\dfrac{10}{9}$</p>
+</div>
+</section>
+
+<section class="q" id="q2">
+<p class="problem"><span class="tag">題 2</span>$y^3+xy^2+x^2y-2x^3=1$。在 $(1,1)$ 附近把 $y$ 看成 $x$ 的可微函數，求 $(1,1)$ 處的 $\dfrac{dy}{dx}$ 與 $\dfrac{d^2y}{dx^2}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>檢查：$1+1+1-2=1$。</p>
+<p><strong>一階</strong>：$xy^2$、$x^2y$ 都要用積法則。</p>
+$$3y^2y'+\bigl(y^2+2xy\,y'\bigr)+\bigl(2xy+x^2y'\bigr)-6x^2=0$$
+<p>代 $(1,1)$：$3y'+1+2y'+2+y'-6=0$，$6y'=3$，$y'=\dfrac12$。</p>
+<p><strong>二階</strong>：上式逐項再微一次。</p>
+$$\begin{aligned}
+\tfrac{d}{dx}\bigl(3y^2y'\bigr)&=6y(y')^2+3y^2y''\\
+\tfrac{d}{dx}\bigl(y^2\bigr)&=2y\,y'\\
+\tfrac{d}{dx}\bigl(2xy\,y'\bigr)&=2y\,y'+2x(y')^2+2xy\,y''\\
+\tfrac{d}{dx}\bigl(2xy\bigr)&=2y+2xy'\\
+\tfrac{d}{dx}\bigl(x^2y'\bigr)&=2xy'+x^2y''\\
+\tfrac{d}{dx}\bigl(-6x^2\bigr)&=-12x
+\end{aligned}$$
+<p>代 $x=y=1$、$y'=\frac12$，各項依序為</p>
+$$\left(\tfrac32+3y''\right)+1+\left(1+\tfrac12+2y''\right)+3+\left(1+y''\right)-12=6y''-4=0$$
+<p class="ans">$\dfrac{dy}{dx}=\dfrac12,\qquad \dfrac{d^2y}{dx^2}=\dfrac23$（與講義答案相同）</p>
+</div>
+</section>
+
+<section class="q" id="q3">
+<p class="problem"><span class="tag">題 3</span>$2xy+\pi\sin y=2\pi$。在 $\left(1,\frac\pi2\right)$ 附近把 $y$ 看成 $x$ 的可微函數，求該點的 $\dfrac{dy}{dx}$ 與 $\dfrac{d^2y}{dx^2}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>檢查：$2\cdot\frac\pi2+\pi\sin\frac\pi2=2\pi$。在這點 $\sin y=1$、$\cos y=0$，很多項會消失。</p>
+<p><strong>一階</strong>：</p>
+$$2y+2xy'+\pi\cos y\cdot y'=0$$
+<p>代點：$\pi+2y'+0=0$，$y'=-\dfrac\pi2$。</p>
+<p><strong>二階</strong>：再微一次，$\pi\cos y\cdot y'$ 用積法則（$\cos y$ 微分是 $-\sin y\cdot y'$）：</p>
+$$2y'+2y'+2xy''+\pi\bigl(-\sin y\,(y')^2+\cos y\,y''\bigr)=0$$
+<p>代點：$4y'+2y''-\pi(y')^2=0$，即 $-2\pi+2y''-\dfrac{\pi^3}{4}=0$。</p>
+<p class="ans">$\dfrac{dy}{dx}=-\dfrac\pi2,\qquad \dfrac{d^2y}{dx^2}=\dfrac{\pi^3}{8}+\pi$（與講義答案相同）</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="s5-2">5.2 反三角函數的導數</h2>
+
+<p>反函數本身常常寫不出好算的式子，但它一定滿足一條方程式。例如 $y=\tan^{-1}x$ 就是 $\tan y=x$。這就是隱函數，用 5.1 的方法兩邊對 $x$ 微分即可。</p>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th colspan="4">導數表（Part III）反三角函數</th></tr>
+<tr><th>$f(x)$</th><th>$f'(x)$</th><th>$f(x)$</th><th>$f'(x)$</th></tr></thead>
+<tbody>
+<tr><td>$\sin^{-1}x$</td><td>$\dfrac{1}{\sqrt{1-x^2}}$</td><td>$\csc^{-1}x$</td><td>$-\dfrac{1}{x\sqrt{x^2-1}}$</td></tr>
+<tr><td>$\cos^{-1}x$</td><td>$-\dfrac{1}{\sqrt{1-x^2}}$</td><td>$\sec^{-1}x$</td><td>$\dfrac{1}{x\sqrt{x^2-1}}$</td></tr>
+<tr><td>$\tan^{-1}x$</td><td>$\dfrac{1}{1+x^2}$</td><td>$\cot^{-1}x$</td><td>$-\dfrac{1}{1+x^2}$</td></tr>
+</tbody>
+</table>
+</div>
+<p>講義表格左半邊留空要自己填，上表已補上（定理 5.2.1、5.2.2 與題 6）。</p>
+
+<div class="tip">
+<p><span class="tag">記憶法</span>每一對「co」版本只差一個負號：$\cos^{-1}$ 是 $\sin^{-1}$ 加負號，$\cot^{-1}$ 是 $\tan^{-1}$ 加負號，$\csc^{-1}$ 是 $\sec^{-1}$ 加負號。原因是 $\cos^{-1}x=\frac\pi2-\sin^{-1}x$，常數微分為 $0$。</p>
+</div>
+
+<div class="remark">
+<p>$\sec^{-1}$、$\csc^{-1}$ 的公式跟值域怎麼取有關。講義的形式 $\frac{1}{x\sqrt{x^2-1}}$ 對應值域 $\left[0,\frac\pi2\right)\cup\left[\pi,\frac{3\pi}2\right)$；若 $\sec^{-1}$ 的值域取 $\left[0,\pi\right]\setminus\{\frac\pi2\}$，分母要改成 $|x|\sqrt{x^2-1}$。考試以老師的定義為準。</p>
+</div>
+
+<div class="thm">
+<p><span class="tag">定理 5.2.1</span>$\dfrac{d}{dx}\cos^{-1}x=-\dfrac{1}{\sqrt{1-x^2}}$</p>
+<p><span class="tag">定理 5.2.2</span>$\dfrac{d}{dx}\tan^{-1}x=\dfrac{1}{1+x^2}$</p>
+</div>
+
+<figure>
+<img src="fig-triangle.svg" alt="直角三角形，角 y 的鄰邊 1、對邊 x、斜邊根號 1 加 x 平方">
+<figcaption>$\tan y=x$ 時，畫鄰邊 $1$、對邊 $x$ 的直角三角形，斜邊就是 $\sqrt{1+x^2}$</figcaption>
+</figure>
+
+<section class="q" id="q4">
+<p class="problem"><span class="tag">題 4</span>證明 $\dfrac{d}{dx}\tan^{-1}x=\dfrac{1}{1+x^2}$（定理 5.2.2）。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>令 $y=\tan^{-1}x$，則 $\tan y=x$，其中 $-\frac\pi2\lt y\lt\frac\pi2$。兩邊對 $x$ 微分，左邊用連鎖律：</p>
+$$\sec^2y\cdot\frac{dy}{dx}=1\quad\Longrightarrow\quad\frac{dy}{dx}=\frac{1}{\sec^2y}=\cos^2y$$
+<p>接著要把 $\cos y$ 換回 $x$。看上面的三角形：$\cos y=\dfrac{1}{\sqrt{1+x^2}}$（$y$ 在 $(-\frac\pi2,\frac\pi2)$，$\cos y\gt0$，取正號）。所以</p>
+$$\frac{dy}{dx}=\left(\frac{1}{\sqrt{1+x^2}}\right)^2=\frac{1}{1+x^2}$$
+<p>另一種換法：$\sec^2y=1+\tan^2y=1+x^2$，一步到位。</p>
+</div>
+</section>
+
+<section class="q" id="q5">
+<p class="problem"><span class="tag">題 5</span>$f(x)=\cos\bigl(\tan^{-1}x\bigr)$，求 $f'(x)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>做法一：先化簡。</strong>由三角形，$\cos(\tan^{-1}x)=\dfrac{1}{\sqrt{1+x^2}}=(1+x^2)^{-1/2}$。</p>
+$$f'(x)=-\frac12(1+x^2)^{-3/2}\cdot2x=-\frac{x}{(1+x^2)^{3/2}}$$
+<p><strong>做法二：直接連鎖律。</strong></p>
+$$f'(x)=-\sin\bigl(\tan^{-1}x\bigr)\cdot\frac{1}{1+x^2}=-\frac{x}{\sqrt{1+x^2}}\cdot\frac{1}{1+x^2}$$
+<p>（三角形的對邊除以斜邊得 $\sin y=\frac{x}{\sqrt{1+x^2}}$。）兩種做法結果相同。</p>
+<p class="ans">$f'(x)=-\dfrac{x}{(1+x^2)^{3/2}}$</p>
+</div>
+</section>
+
+<section class="q" id="q6">
+<p class="problem"><span class="tag">題 6</span>$f(x)=\sin^{-1}x$，證明 $f'(x)=\dfrac{1}{\sqrt{1-x^2}}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>令 $y=\sin^{-1}x$，即 $\sin y=x$，$-\frac\pi2\le y\le\frac\pi2$。兩邊對 $x$ 微分：</p>
+$$\cos y\cdot\frac{dy}{dx}=1\quad\Longrightarrow\quad\frac{dy}{dx}=\frac{1}{\cos y}$$
+<p>在這個範圍 $\cos y\ge0$，所以 $\cos y=\sqrt{1-\sin^2y}=\sqrt{1-x^2}$，得證（$|x|\lt1$ 時分母不為 $0$）。</p>
+<p>$\cos^{-1}x$ 用一樣的步驟：$\cos y=x$，$-\sin y\cdot y'=1$，$y\in[0,\pi]$ 時 $\sin y=\sqrt{1-x^2}$，得 $-\frac{1}{\sqrt{1-x^2}}$，就是定理 5.2.1。</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="s5-3">5.3 對數的導數</h2>
+
+<p>$\ln x$ 是 $e^x$ 的反函數，套路和反三角一樣：$y=\ln x$ 寫成 $e^y=x$，兩邊微分。</p>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th colspan="2">導數表（Part IV）對數</th></tr><tr><th>$f(x)$</th><th>$f'(x)$</th></tr></thead>
+<tbody>
+<tr><td>$\ln x$</td><td>$\dfrac1x$</td></tr>
+<tr><td>$\log_a x$</td><td>$\dfrac{1}{x\ln a}$</td></tr>
+</tbody>
+</table>
+</div>
+
+<section class="q" id="q7">
+<p class="problem"><span class="tag">題 7</span>證明 $\dfrac{d}{dx}\ln x=\dfrac1x$（定理 5.3.1）。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$x\gt0$，令 $y=\ln x$，等價於 $e^y=x$。兩邊對 $x$ 微分：</p>
+$$e^y\cdot\frac{dy}{dx}=1\quad\Longrightarrow\quad\frac{dy}{dx}=\frac{1}{e^y}=\frac1x$$
+</div>
+</section>
+
+<div class="remark">
+<p>常用的延伸：$\dfrac{d}{dx}\ln|x|=\dfrac1x$（$x\lt0$ 時 $\ln(-x)$ 微分得 $\frac{-1}{-x}$）。配上連鎖律，$\bigl(\ln g(x)\bigr)'=\dfrac{g'(x)}{g(x)}$，這條在 5.4.1 會一直用到。</p>
+</div>
+
+<section class="q" id="q8">
+<p class="problem"><span class="tag">題 8</span>求導數：(a) $f(x)=\tan^{-1}(2x)$；(b) $f(x)=\log_4(1+e^x)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) 外層 $\tan^{-1}$、裡層 $2x$：</p>
+$$f'(x)=\frac{1}{1+(2x)^2}\cdot2=\frac{2}{1+4x^2}$$
+<p>(b) 換底 $\log_4(1+e^x)=\dfrac{\ln(1+e^x)}{\ln4}$，$\ln4$ 是常數：</p>
+$$f'(x)=\frac{1}{\ln4}\cdot\frac{e^x}{1+e^x}=\frac{e^x}{(1+e^x)\ln4}$$
+</div>
+</section>
+
+<section class="q" id="q9">
+<p class="problem"><span class="tag">題 9</span>證明對任意實數 $k$，$\dfrac{d}{dx}x^k=kx^{k-1}$（定理 5.3.2）。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><a href="../week04/index.html#s4-3">上週</a>只證了 $k$ 是正整數的情形，這裡用 $\ln$ 證一般的 $k$（$x\gt0$）。令 $y=x^k$，兩邊取 $\ln$：</p>
+$$\ln y=k\ln x$$
+<p>兩邊對 $x$ 微分，左邊用連鎖律：</p>
+$$\frac1y\cdot\frac{dy}{dx}=\frac kx\quad\Longrightarrow\quad\frac{dy}{dx}=\frac kx\cdot y=\frac kx\cdot x^k=kx^{k-1}$$
+</div>
+</section>
+
+<section class="q" id="q10">
+<p class="problem"><span class="tag">題 10</span>$f(x)=\log_a x$（$a\gt0$，$a\neq1$），求 $f'(x)$。提示：$\log_a x=\dfrac{\ln x}{\ln a}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$\dfrac{1}{\ln a}$ 是常數，直接提出去：</p>
+$$f'(x)=\frac{1}{\ln a}\cdot\frac1x$$
+<p class="ans">$f'(x)=\dfrac{1}{x\ln a}$</p>
+<p>（$a=1$ 時 $\ln a=0$，$\log_1$ 沒有定義，所以要排除。）</p>
+</div>
+</section>
+
+<section class="q" id="q11">
+<p class="problem"><span class="tag">題 11</span>求 $f(x)=3x^2\ln x$ 在 $x=e$ 的切線。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$f(e)=3e^2\cdot1=3e^2$。積法則：</p>
+$$f'(x)=6x\ln x+3x^2\cdot\frac1x=6x\ln x+3x$$
+<p>$f'(e)=6e+3e=9e$。</p>
+<p class="ans">$y=9e(x-e)+3e^2$</p>
+</div>
+</section>
+
+<section class="q" id="q12">
+<p class="problem"><span class="tag">題 12</span>$f(x)=\dfrac{\tan(2x)\cos^{-1}(x)+\ln(1+x)}{3\sec^3(x)+x^3\sin^{-1}(x)}$，求 $f'(0)$。提示：用定義。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>直接用商法則會非常痛苦。注意 $f(0)=\dfrac{0+0}{3+0}=0$，用定義：</p>
+$$f'(0)=\lim_{h\to0}\frac{f(h)-0}{h}=\lim_{h\to0}\frac{\dfrac{\tan 2h}{h}\cos^{-1}h+\dfrac{\ln(1+h)}{h}}{3\sec^3h+h^3\sin^{-1}h}$$
+<p>逐項看極限：</p>
+<ul>
+<li>$\dfrac{\tan2h}{h}=2\cdot\dfrac{\sin2h}{2h}\cdot\dfrac{1}{\cos2h}\to2$，而 $\cos^{-1}h\to\cos^{-1}0=\dfrac\pi2$，乘起來 $\to\pi$。</li>
+<li>$\dfrac{\ln(1+h)}{h}=\dfrac{\ln(1+h)-\ln1}{h}\to\bigl(\ln(1+x)\bigr)'\big|_{x=0}=1$。</li>
+<li>分母 $\to3\cdot1+0=3$。</li>
+</ul>
+<p class="ans">$f'(0)=\dfrac{\pi+1}{3}$</p>
+</div>
+</section>
+
+<div class="tip">
+<p><span class="tag">什麼時候用定義</span>函數很醜、但只問某一點的導數，而且 $f$ 在那一點的值很乾淨（通常是 $0$）時，用定義往往比套公式快。題 19 (b)(c) 也是這招。</p>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="s5-4">5.4 $e$ 的另一個定義</h2>
+
+<p><a href="../week01/index.html#s1-2">Week 1</a> 定義 $e$ 是「讓 $y=e^x$ 在 $(0,1)$ 的切線斜率剛好為 $1$ 的數」，換成極限就是 $\displaystyle\lim_{h\to0}\frac{e^h-1}{h}=1$。有了 $\ln$ 的導數，可以推出另一個更常見的寫法：</p>
+
+<div class="thm">
+<p><span class="tag">定理 5.4.1</span>$\displaystyle e=\lim_{x\to\infty}\left(1+\frac1x\right)^x$；而且 $x\to-\infty$ 時極限也是 $e$。</p>
+</div>
+
+<figure>
+<img src="fig-e-limit.svg" alt="y 等於 (1+1/x) 的 x 次方，往左往右都趨近水平線 y=e">
+<figcaption>$x\to+\infty$ 時從下方靠近 $e$，$x\to-\infty$ 時從上方靠近 $e$</figcaption>
+</figure>
+
+<section class="q" id="q13">
+<p class="problem"><span class="tag">題 13</span>證明 $\displaystyle\lim_{x\to\infty}\left(1+\frac1x\right)^x=e$（定理 5.4.1）。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>想法：算 $f(x)=\ln(1+x)$ 在 $0$ 的導數，一次用公式、一次用定義，兩邊比較。</p>
+<p><strong>用公式</strong>：$f'(x)=\dfrac{1}{1+x}$，$f'(0)=1$。</p>
+<p><strong>用定義</strong>（$f(0)=0$）：</p>
+$$1=f'(0)=\lim_{h\to0}\frac{\ln(1+h)}{h}=\lim_{h\to0}\ln(1+h)^{1/h}=\ln\left(\lim_{h\to0}(1+h)^{1/h}\right)$$
+<p>最後一步把 $\lim$ 搬進 $\ln$ 裡，是因為 $\ln$ 連續。</p>
+<p>極限存在，只看右極限 $h\to0^+$ 也一樣。令 $h=\frac1x$，$h\to0^+$ 等同 $x\to+\infty$：</p>
+$$1=\ln\left(\lim_{x\to+\infty}\left(1+\frac1x\right)^x\right)$$
+<p>$\ln(\text{所求})=1$，所以所求 $=e$。$x\to-\infty$ 則改看左極限 $h\to0^-$。</p>
+</div>
+</section>
+
+<div class="remark">
+<p>推廣：對任意實數 $a,b$，</p>
+$$\lim_{x\to\infty}\left(1+\frac ax\right)^{bx}=e^{ab}$$
+<p>理由：令 $t=\frac xa$，則 $\left(1+\frac ax\right)^{bx}=\left[\left(1+\frac1t\right)^t\right]^{ab}$，括號裡趨近 $e$（$a\lt0$ 時 $t\to-\infty$，用定理的後半）。</p>
+</div>
+
+<section class="q" id="q14">
+<p class="problem"><span class="tag">題 14</span>求 $\displaystyle\lim_{x\to\infty}\left(1-\frac2x\right)^{3x}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>令 $t=-\dfrac x2$，則 $-\dfrac2x=\dfrac1t$、$3x=-6t$，且 $x\to\infty$ 時 $t\to-\infty$：</p>
+$$\left(1-\frac2x\right)^{3x}=\left[\left(1+\frac1t\right)^t\right]^{-6}\;\longrightarrow\;e^{-6}$$
+<p>也可直接套推廣公式，$a=-2$、$b=3$，$e^{ab}=e^{-6}$。</p>
+<p class="ans">$e^{-6}$</p>
+</div>
+</section>
+
+<div class="tip">
+<p><span class="tag">$1^\infty$ 型套路</span>底趨近 $1$、指數趨近 $\infty$ 時，取 $\ln$ 變成「指數 $\times\ln(\text{底})$」，算出極限 $L$ 後答案就是 $e^L$。常用工具是 $\displaystyle\lim_{u\to0}\frac{\ln(1+u)}{u}=1$（題 13 的副產品）。</p>
+</div>
+
+<section class="q" id="q15">
+<p class="problem"><span class="tag">題 15</span>求 $\displaystyle\lim_{x\to0}(1+3x)^{\frac{1}{\sin 2x}}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>取 $\ln$：</p>
+$$\ln(1+3x)^{\frac{1}{\sin2x}}=\frac{\ln(1+3x)}{\sin2x}=\frac{\ln(1+3x)}{3x}\cdot\frac{2x}{\sin2x}\cdot\frac32$$
+<p>$x\to0$ 時前兩個因子都趨近 $1$，所以 $\ln(\text{所求})\to\dfrac32$。</p>
+<p class="ans">$e^{3/2}$（與講義答案相同）</p>
+</div>
+</section>
+
+<section class="q" id="q16">
+<p class="problem"><span class="tag">題 16</span>求 $\displaystyle\lim_{x\to+\infty}\left(2^x+3^x+5^x\right)^{\frac1x}$。提示：$5^x\lt2^x+3^x+5^x\lt3\cdot5^x$，用夾擠定理。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$x$ 很大時 $5^x$ 遠大於另外兩項，答案應該由 $5$ 決定。嚴格來說，對提示的不等式三邊取 $\frac1x$ 次方（$x\gt0$，次方保持大小順序）：</p>
+$$5\lt\left(2^x+3^x+5^x\right)^{\frac1x}\lt3^{\frac1x}\cdot5$$
+<p>$x\to\infty$ 時 $3^{1/x}\to3^0=1$，右邊趨近 $5$。夾擠得</p>
+<p class="ans">$5$</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h3 id="s5-4-1">5.4.1 對數微分法</h3>
+
+<p>函數裡有一堆乘、除、次方時，先取 $\ln$ 會把乘除變加減、次方拉下來變係數，再微分就輕鬆了。依據是連鎖律：</p>
+$$\bigl(\ln f(x)\bigr)'=\frac{f'(x)}{f(x)}\quad\Longrightarrow\quad f'(x)=f(x)\cdot\bigl(\ln f(x)\bigr)'$$
+
+<div class="tip">
+<p><span class="tag">解題套路</span></p>
+<ol>
+<li>令 $y=f(x)$，兩邊取 $\ln$（有負數的可能就取 $\ln|y|$，微分結果一樣），用對數律拆開。</li>
+<li>兩邊對 $x$ 微分，左邊得 $\dfrac{y'}{y}$。</li>
+<li>兩邊乘 $y$，最後<strong>記得把 $y$ 換回原函數</strong>。</li>
+</ol>
+</div>
+
+<p><strong>(I) 底和指數都有 $x$：$p(x)^{q(x)}$</strong>。冪次法則（指數是常數）和 $a^x$ 公式（底是常數）都不能用，只能取 $\ln$。</p>
+
+<section class="q" id="q17">
+<p class="problem"><span class="tag">題 17</span>求 $f(x)=x^x$ 的導數。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$\ln y=x\ln x$，兩邊微分（右邊用積法則）：</p>
+$$\frac{y'}{y}=\ln x+x\cdot\frac1x=\ln x+1$$
+<p class="ans">$f'(x)=x^x(\ln x+1)$</p>
+<p>常見錯誤：寫成 $x\cdot x^{x-1}$（當成冪次）或 $x^x\ln x$（當成指數），兩個都只算到一半。</p>
+</div>
+</section>
+
+<p><strong>(II) 一大串乘積、商、次方</strong></p>
+
+<section class="q" id="q18">
+<p class="problem"><span class="tag">題 18</span>求 $f(x)=\dfrac{x^2\cdot2^x}{(1+2x)^4}$ 的導數，並求 $f'(-1)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$x=-1$ 時 $x$ 與 $1+2x$ 都是負的，所以取絕對值：</p>
+$$\ln|y|=2\ln|x|+x\ln2-4\ln|1+2x|$$
+<p>兩邊微分（$\ln|1+2x|$ 用連鎖律，多乘 $2$）：</p>
+$$\frac{y'}{y}=\frac2x+\ln2-\frac{8}{1+2x}$$
+<p class="ans">$f'(x)=\dfrac{x^2\cdot2^x}{(1+2x)^4}\left(\dfrac2x+\ln2-\dfrac{8}{1+2x}\right)$</p>
+<p>代 $x=-1$：$f(-1)=\dfrac{1\cdot\frac12}{(-1)^4}=\dfrac12$，括號 $=-2+\ln2+8=6+\ln2$。</p>
+<p class="ans">$f'(-1)=\dfrac{6+\ln2}{2}=3+\dfrac{\ln2}{2}$</p>
+</div>
+</section>
+
+<section class="q" id="q19">
+<p class="problem"><span class="tag">題 19</span><br>
+(a) 求 $f(x)=(\sec x)^x$（$-\frac\pi2\lt x\lt\frac\pi2$）與 $g(x)=x^{x^x}$（$x\gt0$）的導數。<br>
+(b) $f(x)=\dfrac{1+x+x^2+xe^x}{1-x+x^2-xe^x}$，求 $f'(0)$。提示：用定義。<br>
+(c) $f(x)=(x-1)(x-2)(x-3)(x-4)(x-5)$，求 $f'(1)$。提示：用定義。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) <strong>$(\sec x)^x$</strong>：這個範圍 $\sec x\gt0$。$\ln y=x\ln\sec x$，微分：</p>
+$$\frac{y'}{y}=\ln\sec x+x\cdot\frac{\sec x\tan x}{\sec x}=\ln\sec x+x\tan x$$
+<p class="ans">$f'(x)=(\sec x)^x\bigl(\ln\sec x+x\tan x\bigr)$</p>
+<p><strong>$x^{x^x}$</strong>：意思是 $x^{(x^x)}$。$\ln y=x^x\ln x$，右邊用積法則，$(x^x)'$ 借用題 17：</p>
+$$\frac{y'}{y}=x^x(\ln x+1)\cdot\ln x+x^x\cdot\frac1x$$
+<p class="ans">$g'(x)=x^{x^x}\cdot x^x\left((\ln x)^2+\ln x+\dfrac1x\right)$</p>
+<p>(b) $f(0)=1$。</p>
+$$\begin{aligned}
+f(h)-1 &= \frac{(1+h+h^2+he^h)-(1-h+h^2-he^h)}{1-h+h^2-he^h} \\
+&= \frac{2h+2he^h}{1-h+h^2-he^h}
+\end{aligned}$$
+$$f'(0)=\lim_{h\to0}\frac{f(h)-1}{h}=\lim_{h\to0}\frac{2+2e^h}{1-h+h^2-he^h}=\frac{2+2}{1}$$
+<p class="ans">$f'(0)=4$（與講義答案相同）</p>
+<p>(c) $f(1)=0$：</p>
+$$\begin{aligned}
+f'(1) &= \lim_{h\to0}\frac{f(1+h)}{h} \\
+&= \lim_{h\to0}\frac{h(h-1)(h-2)(h-3)(h-4)}{h} \\
+&= (-1)(-2)(-3)(-4)
+\end{aligned}$$
+<p class="ans">$f'(1)=4!=24$（與講義答案相同）</p>
+<p>直覺：積法則展開會有 5 項，但除了「把 $(x-1)$ 微掉」的那一項，其他每項都還留著 $(x-1)$，代 $1$ 就是 $0$。</p>
+</div>
+</section>
+
+<section class="q" id="q20">
+<p class="problem"><span class="tag">題 20</span>（Putnam 2023 A1）對正整數 $n$，令 $f_n(x)=\cos(x)\cos(2x)\cdots\cos(nx)$。求使 $|f_n''(0)|\gt2023$ 的最小 $n$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>乘積很長，用對數微分法。$0$ 附近每個 $\cos kx\gt0$：</p>
+$$\ln f_n=\sum_{k=1}^n\ln\cos kx\quad\Longrightarrow\quad\frac{f_n'}{f_n}=\sum_{k=1}^n\frac{-k\sin kx}{\cos kx}=-\sum_{k=1}^n k\tan kx$$
+<p>代 $x=0$：$f_n(0)=1$，$f_n'(0)=0$。</p>
+<p>再微一次。左邊用商法則，右邊 $(k\tan kx)'=k^2\sec^2kx$：</p>
+$$\frac{f_n''f_n-(f_n')^2}{f_n^2}=-\sum_{k=1}^n k^2\sec^2kx$$
+<p>代 $x=0$：左邊 $=\dfrac{f_n''(0)\cdot1-0}{1}$，右邊 $=-\sum k^2$，所以</p>
+$$f_n''(0)=-\sum_{k=1}^n k^2=-\frac{n(n+1)(2n+1)}{6}$$
+<p>要 $\dfrac{n(n+1)(2n+1)}{6}\gt2023$：</p>
+<ul>
+<li>$n=17$：$\dfrac{17\cdot18\cdot35}{6}=1785$，不夠。</li>
+<li>$n=18$：$\dfrac{18\cdot19\cdot37}{6}=2109$，超過。</li>
+</ul>
+<p class="ans">$n=18$（與講義答案相同）</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="s5-5">5.5 反函數定理</h2>
+
+<p>前面算 $\tan^{-1}$、$\sin^{-1}$、$\ln$ 的導數，做的其實都是同一件事。一般化就是：</p>
+
+<div class="thm">
+<p><span class="tag">定理 5.5.1（反函數定理）</span>$f$ 是一對一函數，在 $x=x_0$ 可微且 $f'(x_0)\neq0$。則 $f^{-1}$ 在 $y_0=f(x_0)$ 可微，而且</p>
+$$\left(f^{-1}\right)'(y_0)=\frac{1}{f'(x_0)}$$
+</div>
+
+<p><strong>幾何意義</strong>：$f^{-1}$ 的圖形是 $f$ 對 $y=x$ 翻轉，切線也跟著翻轉，翻轉後「上升量」和「水平量」對調，所以斜率變成倒數。注意兩個斜率在<strong>對應的點</strong>上比較：$f$ 在 $x_0$，$f^{-1}$ 在 $y_0=f(x_0)$。</p>
+
+<p><strong>公式推導</strong>：令 $g=f^{-1}$，則 $g(f(x))=x$。兩邊對 $x$ 微分（連鎖律）：</p>
+$$g'\bigl(f(x)\bigr)\cdot f'(x)=1$$
+<p>代 $x=x_0$ 得 $g'(y_0)=\dfrac{1}{f'(x_0)}$。</p>
+
+<div class="remark">
+<p>上面的推導先假設了 $g$ 可微才能用連鎖律，所以它只說明「若可微，導數一定是這個值」。嚴格證明 $g$ 可微還要用到 $f$ 在一個區間上連續，課程不要求。</p>
+</div>
+
+<div class="tip">
+<p><span class="tag">解題套路</span>題目問 $(f^{-1})'(y_0)$ 時：</p>
+<ol>
+<li>先找 $x_0$ 使 $f(x_0)=y_0$（通常用猜的，代 $0$、$1$ 試試）。</li>
+<li>答案是 $\dfrac{1}{f'(x_0)}$。不要算成 $\dfrac{1}{f'(y_0)}$。</li>
+<li>二階：$g'(f(x))f'(x)=1$ 再微一次，得 $g''(f(x))\bigl(f'(x)\bigr)^2+g'(f(x))f''(x)=0$，所以
+$$g''(y_0)=-\frac{f''(x_0)}{\bigl(f'(x_0)\bigr)^3}$$</li>
+</ol>
+</div>
+
+<figure>
+<img src="fig-inverse.svg" alt="f(x)=2x+e^x 與其反函數對 y=x 對稱，兩條切線斜率互為倒數">
+<figcaption>題 21：$f$ 在 $(1,2+e)$ 的切線斜率 $2+e$，$f^{-1}$ 在 $(2+e,1)$ 的切線斜率 $\frac{1}{2+e}$</figcaption>
+</figure>
+
+<section class="q" id="q21">
+<p class="problem"><span class="tag">題 21</span>$f(x)=2x+e^x$。<br>
+(a) 證明 $f$ 嚴格遞增，因此一對一，反函數 $g=f^{-1}$ 存在。<br>
+(b) 求 $g'(2+e)$。<br>
+(c) 求 $g''(2+e)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) $f'(x)=2+e^x\gt0$ 對所有 $x$ 成立，所以 $f$ 嚴格遞增。嚴格遞增的函數不會有兩個 $x$ 對到同一個值，因此一對一。</p>
+<p>(b) 找 $x_0$：$f(1)=2+e$，所以 $x_0=1$。</p>
+$$g'(2+e)=\frac{1}{f'(1)}=\frac{1}{2+e}$$
+<p>(c) $f''(x)=e^x$，$f''(1)=e$。由 $g''(f(x))\bigl(f'(x)\bigr)^2+g'(f(x))f''(x)=0$ 代 $x=1$：</p>
+$$g''(2+e)\cdot(2+e)^2+\frac{1}{2+e}\cdot e=0$$
+<p class="ans">$g'(2+e)=\dfrac{1}{2+e},\qquad g''(2+e)=-\dfrac{e}{(2+e)^3}$</p>
+</div>
+</section>
+
+<section class="q" id="q22">
+<p class="problem"><span class="tag">題 22</span>$f(x)=\ln x+e^x$，$x\gt0$。(a) 求 $f'(x)$ 並證明 $f$ 一對一；(b) 求 $(f^{-1})'(e)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) $f'(x)=\dfrac1x+e^x$。$x\gt0$ 時兩項都正，$f'\gt0$，$f$ 嚴格遞增，所以一對一。</p>
+<p>(b) 找 $x_0$ 使 $f(x_0)=e$：試 $x=1$，$\ln1+e^1=e$。</p>
+$$(f^{-1})'(e)=\frac{1}{f'(1)}=\frac{1}{1+e}$$
+<p class="ans">$\dfrac{1}{1+e}$（與講義答案相同）</p>
+</div>
+</section>
+
+<section class="q" id="q23">
+<p class="problem"><span class="tag">題 23</span>$f$ 二次可微且一對一，$f(2)=1$、$f'(2)=3$、$f''(2)=e$。求 $\dfrac{d}{dx}f^{-1}(1)$ 與 $\dfrac{d^2}{dx^2}f^{-1}(1)$。（講義提示有筆誤，見頁首。）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>令 $g=f^{-1}$。$f(2)=1$，所以 $y_0=1$ 對應 $x_0=2$。</p>
+<p><strong>一階</strong>：$g'(1)=\dfrac{1}{f'(2)}=\dfrac13$。</p>
+<p><strong>二階</strong>：$g'(f(x))f'(x)=1$ 兩邊再微一次，左邊用積法則，第一個因子 $g'(f(x))$ 要用連鎖律：</p>
+$$g''\bigl(f(x)\bigr)\bigl(f'(x)\bigr)^2+g'\bigl(f(x)\bigr)f''(x)=0$$
+<p>代 $x=2$：$g''(1)\cdot9+\dfrac13\cdot e=0$。</p>
+<p class="ans">$\dfrac{d}{dx}f^{-1}(1)=\dfrac13,\qquad \dfrac{d^2}{dx^2}f^{-1}(1)=-\dfrac{e}{27}$</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="summary">本週必背總整理</h2>
+<ol>
+<li><strong>隱函數微分</strong>：兩邊對 $x$ 微分，$y$ 的項乘 $y'$；先代點再解；$y''$ 就是再微一次</li>
+<li><strong>反三角導數</strong>：$(\sin^{-1}x)'=\dfrac{1}{\sqrt{1-x^2}}$，$(\tan^{-1}x)'=\dfrac{1}{1+x^2}$，$(\sec^{-1}x)'=\dfrac{1}{x\sqrt{x^2-1}}$，co 版本加負號</li>
+<li><strong>對數導數</strong>：$(\ln x)'=\dfrac1x$，$(\log_ax)'=\dfrac{1}{x\ln a}$，$\bigl(\ln g(x)\bigr)'=\dfrac{g'}{g}$</li>
+<li><strong>$e$ 的極限</strong>：$\displaystyle\lim_{x\to\pm\infty}\left(1+\frac1x\right)^x=e$，$\displaystyle\lim_{x\to\infty}\left(1+\frac ax\right)^{bx}=e^{ab}$；$1^\infty$ 型取 $\ln$</li>
+<li><strong>對數微分法</strong>：$p(x)^{q(x)}$ 與一大串乘除次方，先取 $\ln$ 再微分，最後乘回 $y$</li>
+<li><strong>反函數定理</strong>：$(f^{-1})'(y_0)=\dfrac{1}{f'(x_0)}$，$y_0=f(x_0)$；二階 $-\dfrac{f''(x_0)}{f'(x_0)^3}$</li>
+<li><strong>只問一點的導數、函數很醜</strong>：考慮直接用定義</li>
+</ol>
+
+</main>
+</body>
+</html>

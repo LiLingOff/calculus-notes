@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 10 不定積分與微積分基本定理</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/math.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+<p class="back"><a href="../index.html">← 目錄</a></p>
+<h1>Week 10　不定積分與微積分基本定理</h1>
+<p class="subtitle">AP Calculus I（115 學年）Lecture Note 10 教學與題解</p>
+
+<div class="erratum">
+<p><span class="tag">講義筆誤</span>p.80 最後一題的提示：$\dfrac{2x^2+6x+2}{x^2+1}=2+\dfrac{4x}{x^2+1}$ 應為 $2+\dfrac{6x}{x^2+1}$（$2(x^2+1)=2x^2+2$，剩下的是 $6x$）。見題 22。</p>
+<p><span class="tag">講義筆誤</span>p.78「What is wrong with the equation?」的提示要你看 Theorem 9.6.1，但 Lecture Note 9 只到 9.5 節，沒有這個定理。這題該對照的是本週的 FTC I（定理 10.3.1）要求 $f$ 在 $[a,b]$ 上連續。見題 14。</p>
+</div>
+
+<p>上週用 Riemann 和算面積，連 $\int_0^1x^2\,dx$ 都要動用求和公式再取極限，很累。這週的主角是<strong>微積分基本定理</strong>（FTC）：積分和微分互為反運算。有了它，算定積分只要找到「哪個函數微分後是被積函數」，代上下限相減就好。</p>
+<p>所以這週其實在練兩件事：(1) 把微分公式倒過來用，找反導函數；(2) 看到 $\int_{\cdots}^{x}$ 這種「上限是變數的積分」時，知道怎麼對它微分。</p>
+
+<!-- ================================================================ -->
+<h2 id="s10-1">10.1 反導函數</h2>
+
+<div class="def"><p><span class="tag">定義 10.1.1</span>若 $F'(x)=f(x)$，稱 $F(x)$ 是 $f(x)$ 的<strong>反導函數</strong>（anti-derivative）。</p></div>
+
+<p>反導函數就是倒過來問：「誰微分會變成 $f$？」例如 $(x^3)'=3x^2$，所以 $x^3$ 是 $3x^2$ 的反導函數。但 $x^3+5$、$x^3-\pi$ 微分也是 $3x^2$，常數微分後消失了，所以答案不只一個。</p>
+
+<div class="thm">
+<p><span class="tag">定理 10.1.1</span>若 $F$ 是 $f$ 在區間 $I$ 上的反導函數，反導函數不唯一。$f$ 在 $I$ 上的一般反導函數是 $F(x)+C$，$C$ 是任意常數。</p>
+<p><span class="tag">定理 10.1.2</span>若 $F,G$ 分別是 $f,g$ 在 $I$ 上的反導函數，則 $F\pm G$ 是 $f\pm g$ 的反導函數。</p>
+</div>
+
+<p>定理 10.1.2 只是把微分的線性倒過來：$(F\pm G)'=F'\pm G'=f\pm g$。注意乘法、除法、合成都<strong>沒有</strong>這麼簡單的倒過來規則，這正是積分比微分難的原因。下一題 (b) 就是典型的錯誤示範。</p>
+
+<section class="q" id="q1">
+<p class="problem"><span class="tag">題 1</span>(a) 求 $f(x)=e^{3x}$ 的反導函數。<br>
+(b) $f(x)=e^{x^2}$ 的反導函數是 $\dfrac{e^{x^2}}{2x}$ 嗎？把它微分回去看看。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) 連鎖律：$(e^{3x})'=3e^{3x}$，多了一個 $3$，除掉就好：$\left(\frac13e^{3x}\right)'=e^{3x}$。</p>
+<p>(b) 這個猜法是「把 $e^{u}$ 的反導函數 $e^u$ 除以 $u'$」，對 $u=3x$ 有效，對 $u=x^2$ 呢？用商法則微分回去：</p>
+$$\left(\frac{e^{x^2}}{2x}\right)'=\frac{2xe^{x^2}\cdot2x-e^{x^2}\cdot2}{4x^2}=e^{x^2}\left(1-\frac1{2x^2}\right)\ne e^{x^2}.$$
+<p>多出了 $-\frac{e^{x^2}}{2x^2}$。除以 $u'$ 的做法只在 $u'$ 是常數時才對，因為分母是常數時商法則不會多出項。事實上 $e^{x^2}$ 的反導函數寫不成初等函數。</p>
+<p class="ans">(a) $\dfrac13e^{3x}+C$　(b) 不是</p>
+</div>
+</section>
+
+<div class="tip">
+<p><span class="tag">解題套路</span>積分算完，<strong>微分回去檢查</strong>。這是唯一可靠的驗算方法，而且微分一定算得出來。</p>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="s10-2">10.2 積分招式一：不定積分</h2>
+
+<div class="def"><p><span class="tag">定義 10.2.1</span>$f(x)$ 的<strong>不定積分</strong>記作 $\displaystyle\int f(x)\,dx$，是 $f$ 的所有反導函數組成的集合。</p></div>
+
+<p>實務上寫成 $\int f(x)\,dx=F(x)+C$。「招式一」就是把背過的微分公式整張倒過來：</p>
+
+<div class="table-wrap">
+$$\begin{array}{ll}
+\displaystyle\int x^n\,dx=\frac{x^{n+1}}{n+1}+C\ (n\ne-1) & \displaystyle\int\frac1x\,dx=\ln|x|+C\\[2ex]
+\displaystyle\int e^x\,dx=e^x+C & \displaystyle\int a^x\,dx=\frac{a^x}{\ln a}+C\\[2ex]
+\displaystyle\int\sin x\,dx=-\cos x+C & \displaystyle\int\cos x\,dx=\sin x+C\\[2ex]
+\displaystyle\int\sec^2x\,dx=\tan x+C & \displaystyle\int\sec x\tan x\,dx=\sec x+C\\[2ex]
+\displaystyle\int\frac1{\sqrt{1-x^2}}\,dx=\sin^{-1}x+C & \displaystyle\int\frac1{1+x^2}\,dx=\tan^{-1}x+C
+\end{array}$$
+</div>
+
+<p>$\int\frac1x\,dx$ 要加絕對值：$x\lt0$ 時 $\big(\ln(-x)\big)'=\frac{-1}{-x}=\frac1x$，所以 $\ln|x|$ 在兩側都對。再加上一條：$\int e^{kx}\,dx=\frac1ke^{kx}+C$（$k$ 是常數，題 1(a)）。</p>
+
+<section class="q" id="q2">
+<p class="problem"><span class="tag">題 2</span>求<br>
+(a) $\displaystyle\int\frac1{\sqrt{x^3}}\,dx$　(b) $\displaystyle\int\left(\frac1{\sqrt{1-x^2}}+2^x\right)dx$　(c) $\displaystyle\int\left(\frac1x+\frac1{1+x^2}\right)dx$　(d) $\displaystyle\int\tan^2x\,dx$</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) 先改寫成冪次：$\frac1{\sqrt{x^3}}=x^{-3/2}$。$n=-\frac32$，$n+1=-\frac12$：</p>
+$$\int x^{-3/2}\,dx=\frac{x^{-1/2}}{-1/2}+C=-\frac2{\sqrt x}+C.$$
+<p>(b) 兩項各自查表：$\sin^{-1}x+\dfrac{2^x}{\ln2}+C$。</p>
+<p>(c) 同樣兩項查表：$\ln|x|+\tan^{-1}x+C$。</p>
+<p>(d) $\tan^2x$ 不在表上，但 $\sec^2x$ 在。用 $\tan^2x=\sec^2x-1$：</p>
+$$\int(\sec^2x-1)\,dx=\tan x-x+C.$$
+<p class="ans">(a) $-\dfrac2{\sqrt x}+C$　(b) $\sin^{-1}x+\dfrac{2^x}{\ln2}+C$　(c) $\ln|x|+\tan^{-1}x+C$　(d) $\tan x-x+C$</p>
+</div>
+</section>
+
+<section class="q" id="q3">
+<p class="problem"><span class="tag">題 3</span>若 $f(x)=\displaystyle\int e^{\pi x}\,dx$ 且 $f(0)=0$，求 $f(x)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$f(x)=\frac1\pi e^{\pi x}+C$。條件決定 $C$：$f(0)=\frac1\pi+C=0$，$C=-\frac1\pi$。</p>
+<p class="ans">$f(x)=\dfrac1\pi e^{\pi x}-\dfrac1\pi$（與講義答案相同）</p>
+</div>
+</section>
+
+<p>接下來兩題是「認出某個乘積的導數」。積法則 $(uv)'=u'v+uv'$ 倒過來看，被積函數若長成 $u'v+uv'$，答案就是 $uv$。</p>
+
+<section class="q" id="q4">
+<p class="problem"><span class="tag">題 4</span>求 $\displaystyle\int\left(\frac{\sin x}x+\cos x\ln x\right)dx$。（提示：求 $(\ln x\sin x)'$。）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>積法則：$(\ln x\sin x)'=\frac1x\sin x+\ln x\cos x$，正好是被積函數。</p>
+<p class="ans">$\sin x\ln x+C$（$x\gt0$）</p>
+</div>
+</section>
+
+<section class="q" id="q5">
+<p class="problem"><span class="tag">題 5</span>求 $\displaystyle\int x^{\sin x}\left(\frac{\sin x}x+\cos x\ln x\right)dx$。（提示：令 $y=x^{\sin x}$，求 $\dfrac{dy}{dx}$。）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>對數微分（<a href="../week05/index.html#s5-4">§5.4</a>）：$\ln y=\sin x\ln x$，兩邊微分，右邊就是題 4 的結果：</p>
+$$\frac{y'}y=\frac{\sin x}x+\cos x\ln x\ \Longrightarrow\ y'=x^{\sin x}\left(\frac{\sin x}x+\cos x\ln x\right).$$
+<p>這正是被積函數，所以積分就是 $y$ 本身。</p>
+<p class="ans">$x^{\sin x}+C$</p>
+</div>
+</section>
+
+<p>最後兩題是函數方程：只給 $f$ 滿足的關係式和一個導數值，要你求出 $f$。套路是用導數定義把 $f'(x)$ 算出來，再積分回去。</p>
+
+<section class="q" id="q6">
+<p class="problem"><span class="tag">題 6</span>$f(x)$ 對所有 $x,y\in\mathbb R$ 滿足 $f(x+y)=f(x)+f(y)+2xy$，且 $f'(0)=1$。求 $f(x)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>先求 $f(0)$。</strong>代 $x=y=0$：$f(0)=2f(0)$，所以 $f(0)=0$。於是 $f'(0)=\displaystyle\lim_{h\to0}\frac{f(h)-f(0)}h=\lim_{h\to0}\frac{f(h)}h=1$。</p>
+<p><strong>用定義求 $f'(x)$。</strong>把 $f(x+h)=f(x)+f(h)+2xh$ 代進去：</p>
+$$f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}h=\lim_{h\to0}\frac{f(h)+2xh}h=\lim_{h\to0}\frac{f(h)}h+2x=1+2x.$$
+<p><strong>積分回去。</strong>$f(x)=x+x^2+C$，再用 $f(0)=0$ 得 $C=0$。</p>
+<p>驗算：$(x+y)+(x+y)^2=x+x^2+y+y^2+2xy$，成立。</p>
+<p class="ans">$f(x)=x^2+x$</p>
+</div>
+</section>
+
+<section class="q" id="q7">
+<p class="problem"><span class="tag">題 7</span>求所有對 $x,y\in\mathbb R$ 滿足 $f(x+y)=f(x)f(y)$ 且 $f'(0)=2$ 的函數 $f(x)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>先求 $f(0)$。</strong>代 $x=y=0$：$f(0)=f(0)^2$，$f(0)=0$ 或 $1$。若 $f(0)=0$，代 $y=0$ 得 $f(x)=f(x)f(0)=0$ 對所有 $x$ 成立，$f$ 是零函數，$f'(0)=0\ne2$，不合。所以 $f(0)=1$，$f'(0)=\displaystyle\lim_{h\to0}\frac{f(h)-1}h=2$。</p>
+<p><strong>用定義求 $f'(x)$。</strong></p>
+$$f'(x)=\lim_{h\to0}\frac{f(x)f(h)-f(x)}h=f(x)\lim_{h\to0}\frac{f(h)-1}h=2f(x).$$
+<p><strong>解 $f'=2f$。</strong>這種「導數等於自己的倍數」的式子，乘上 $e^{-2x}$ 湊成乘積的導數：</p>
+$$\big(f(x)e^{-2x}\big)'=f'(x)e^{-2x}-2f(x)e^{-2x}=0.$$
+<p>導數為 $0$ 的函數是常數（定理 10.2.1 用的同一件事），$f(x)e^{-2x}=C$，$f(x)=Ce^{2x}$。由 $f(0)=1$ 得 $C=1$。</p>
+<p class="ans">$f(x)=e^{2x}$（唯一一個）</p>
+</div>
+</section>
+
+<div class="tip">
+<p><span class="tag">解題套路</span>$f'=kf$ 就乘 $e^{-kx}$，得 $(fe^{-kx})'=0$，所以 $f=Ce^{kx}$。§10.5 會一直用到。</p>
+</div>
+
+<h3 id="s10-2-1">10.2.1 不定積分的唯一性</h3>
+
+<div class="thm">
+<p><span class="tag">定理 10.2.1</span>不定積分在相差一個常數的意義下唯一：若 $F,G$ 都是 $h$ 的反導函數，則 $F-G$ 是常數。</p>
+</div>
+<p>證明：令 $k=F-G$，則 $k'=h-h=0$。由均值定理（<a href="../week06/index.html#s6-2">§6.2</a>），區間上導數處處為 $0$ 的函數是常數。</p>
+<p>這個定理保證「$+C$」已經包含了所有答案。但不同算法得到的式子可能長得不一樣，下一題示範。</p>
+
+<section class="q" id="q8">
+<p class="problem"><span class="tag">題 8</span>求 $\displaystyle\int\sin(2x)\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>方法一。</strong>$(\cos2x)'=-2\sin2x$，所以 $\left(-\frac12\cos2x\right)'=\sin2x$：</p>
+$$\int\sin(2x)\,dx=-\frac12\cos2x+C_1.$$
+<p><strong>方法二。</strong>$\sin2x=2\sin x\cos x$，而連鎖律給 $(\sin^2x)'=2\sin x\cos x$：</p>
+$$\int\sin(2x)\,dx=\sin^2x+C_2.$$
+<p><strong>兩個答案一樣嗎？</strong>用 $\cos2x=1-2\sin^2x$：</p>
+$$-\frac12\cos2x+C_1=-\frac12+\sin^2x+C_1,$$
+<p>只差常數 $-\frac12$，令 $C_2=C_1-\frac12$ 就相同。</p>
+<p class="ans">$-\dfrac12\cos2x+C$，或等價的 $\sin^2x+C$</p>
+</div>
+</section>
+
+<div class="remark">
+<p>你的答案和解答長得不一樣，不一定是錯。先微分回去檢查；或者看兩者是否差在某個恆等式：三角恆等式、反三角恆等式（例如 $\sin^{-1}x+\cos^{-1}x=\frac\pi2$）、$\ln(kx)=\ln k+\ln x$、展開與帶分數（$\frac{x+1}x=1+\frac1x$）。</p>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="s10-3">10.3 微積分基本定理 I：淨變化</h2>
+
+<div class="thm">
+<p><span class="tag">定理 10.3.1（FTC I）</span>若 $f$ 在 $[a,b]$ 上<strong>連續</strong>，且 $F'=f$，則</p>
+$$\int_a^bf(x)\,dx=F(b)-F(a).$$
+</div>
+
+<p>右邊常寫成 $F(x)\Big|_a^b$。直覺：$f=F'$ 是 $F$ 的變化率，把每一小段的「變化率 $\times$ 時間」加起來，就是 $F$ 從 $a$ 到 $b$ 的總變化量。速度積分等於位移，就是這個意思。講義的口訣：<strong>先微分再積分，什麼都沒發生</strong>，$\int_a^bF'(x)\,dx=F(b)-F(a)$。</p>
+<p>注意定理要求 $f$ 在整個 $[a,b]$ 上連續，題 14 會看到忘了檢查的後果。證明放在 §10.6。</p>
+
+<p>用上週的題目驗證一下：$\int_0^1x^2\,dx=\frac{x^3}3\Big|_0^1=\frac13$，跟 Riemann 和算了半天的結果一樣。</p>
+
+<section class="q" id="q9">
+<p class="problem"><span class="tag">題 9</span>計算 $\displaystyle\int_0^1\left(-7x^2+3\sqrt x+\frac4{x^2+1}\right)dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>逐項找反導函數：$-7x^2\to-\frac73x^3$，$3x^{1/2}\to3\cdot\frac23x^{3/2}=2x^{3/2}$，$\frac4{x^2+1}\to4\tan^{-1}x$。</p>
+$$\left[-\frac73x^3+2x^{3/2}+4\tan^{-1}x\right]_0^1=-\frac73+2+4\cdot\frac\pi4-0=\pi-\frac13.$$
+<p class="ans">$\pi-\dfrac13$</p>
+</div>
+</section>
+
+<section class="q" id="q10">
+<p class="problem"><span class="tag">題 10</span>計算 $\displaystyle\int_0^{\pi/4}\left(e^{2x}+\sin(3x)+(3x+1)^4\right)dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>三項都是「裡面是 $kx+b$」的形式，反導函數照常寫、再除以 $k$（微分回去時連鎖律會乘回 $k$）：</p>
+$$\int e^{2x}dx=\frac{e^{2x}}2,\quad\int\sin3x\,dx=-\frac{\cos3x}3,\quad\int(3x+1)^4dx=\frac{(3x+1)^5}{5\cdot3}.$$
+<p>代上下限：</p>
+<ul>
+<li>$\dfrac{e^{\pi/2}-1}2$</li>
+<li>$-\dfrac{\cos(3\pi/4)}3+\dfrac{\cos0}3=\dfrac{\sqrt2/2}3+\dfrac13=\dfrac{2+\sqrt2}6$</li>
+<li>$\dfrac{(3\pi/4+1)^5-1}{15}$</li>
+</ul>
+<p class="ans">$\dfrac{e^{\pi/2}-1}2+\dfrac{2+\sqrt2}6+\dfrac{(1+\frac{3\pi}4)^5-1}{15}$（約 $30.80$）</p>
+</div>
+</section>
+
+<section class="q" id="q11">
+<p class="problem"><span class="tag">題 11</span>計算 $\displaystyle\int_{-1}^3x^2|x-1|\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>絕對值沒有直接的反導函數，先在 $x=1$ 拆開，各段把絕對值拿掉：</p>
+$$|x-1|=\begin{cases}1-x, & x\lt1\\ x-1, & x\ge1\end{cases}$$
+<p>$[-1,1]$ 上：</p>
+$$\int_{-1}^1(x^2-x^3)\,dx=\left[\frac{x^3}3-\frac{x^4}4\right]_{-1}^1=\left(\frac13-\frac14\right)-\left(-\frac13-\frac14\right)=\frac23.$$
+<p>$[1,3]$ 上：</p>
+$$\int_1^3(x^3-x^2)\,dx=\left[\frac{x^4}4-\frac{x^3}3\right]_1^3=\left(\frac{81}4-9\right)-\left(\frac14-\frac13\right)=\frac{34}3.$$
+<p class="ans">$\dfrac23+\dfrac{34}3=12$</p>
+</div>
+</section>
+
+<figure>
+<img src="fig-abs.svg" alt="y 等於 x 平方乘以 x 減 1 的絕對值，在 x 等於 1 處碰到 x 軸，左邊一塊小面積 2/3，右邊一塊大面積 34/3">
+<figcaption>在 $x=1$ 碰到 $x$ 軸的地方拆成兩段</figcaption>
+</figure>
+
+<section class="q" id="q12">
+<p class="problem"><span class="tag">題 12</span>若 $f(x)=x^2+2x+\displaystyle\int_0^2f(x)\,dx-\frac{29}3$，求 $f(x)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>關鍵：$\int_0^2f(x)\,dx$ 是一個<strong>數</strong>，不是函數。令它為 $k$，則 $f(x)=x^2+2x+k-\frac{29}3$。兩邊從 $0$ 積到 $2$：</p>
+$$k=\int_0^2(x^2+2x)\,dx+\left(k-\frac{29}3\right)\cdot2=\frac83+4+2k-\frac{58}3=2k-\frac{38}3.$$
+<p>解得 $k=\frac{38}3$，$f(x)=x^2+2x+\frac{38}3-\frac{29}3=x^2+2x+3$。</p>
+<p>驗算：$\int_0^2(x^2+2x+3)\,dx=\frac83+4+6=\frac{38}3$，再減 $\frac{29}3$ 得 $3$，對。</p>
+<p class="ans">$f(x)=x^2+2x+3$</p>
+</div>
+</section>
+
+<section class="q" id="q13">
+<p class="problem"><span class="tag">題 13</span>計算<br>
+(a) $\displaystyle\int_0^2x(2+x^5)\,dx$　(b) $\displaystyle\int_1^2\frac{4+x^2}{x^3}\,dx$　(c) $\displaystyle\int_1^5\lfloor x\rfloor x^2\,dx$<br>
+(d)（很難）$\displaystyle\int_1^2\left(\frac{x-1}{x+1}+\frac2{(x+1)^2}\right)e^x\,dx$。提示：$f(x)=\frac{x-1}{x+1}$，求 $f'(x)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) 先展開成冪次：$\displaystyle\int_0^2(2x+x^6)\,dx=\left[x^2+\frac{x^7}7\right]_0^2=4+\frac{128}7=\frac{156}7$。</p>
+<p>(b) 先拆開：$\frac{4+x^2}{x^3}=4x^{-3}+\frac1x$。</p>
+$$\left[-\frac2{x^2}+\ln x\right]_1^2=\left(-\frac12+\ln2\right)-(-2)=\frac32+\ln2.$$
+<p>(c) $\lfloor x\rfloor$（講義寫 $[[x]]$）在每個 $[k,k+1)$ 上是常數 $k$，所以一段一段積：</p>
+$$\int_k^{k+1}kx^2\,dx=k\cdot\frac{(k+1)^3-k^3}3.$$
+<p>$k=1,2,3,4$ 時分別是 $\frac{7}3$、$\frac{2\cdot19}3$、$\frac{3\cdot37}3$、$\frac{4\cdot61}3$，加起來 $\frac{7+38+111+244}3=\frac{400}3$。（端點 $x=5$ 只有一個點，不影響積分。）</p>
+<p>(d) 先照提示算：</p>
+$$f'(x)=\frac{(x+1)-(x-1)}{(x+1)^2}=\frac2{(x+1)^2}.$$
+<p>所以被積函數是 $\big(f(x)+f'(x)\big)e^x$。這正是 $f(x)e^x$ 用積法則微分的結果：$(fe^x)'=f'e^x+fe^x$。</p>
+$$\int_1^2\big(f(x)e^x\big)'\,dx=\frac{x-1}{x+1}e^x\Big|_1^2=\frac13e^2-0=\frac{e^2}3.$$
+<p class="ans">(a) $\dfrac{156}7$　(b) $\dfrac32+\ln2$　(c) $\dfrac{400}3$　(d) $\dfrac{e^2}3$</p>
+</div>
+</section>
+
+<div class="tip">
+<p><span class="tag">解題套路</span>看到 $(\text{某函數}+\text{它的導數})\cdot e^x$，答案就是 $\text{某函數}\cdot e^x$。</p>
+</div>
+
+<section class="q" id="q14">
+<p class="problem"><span class="tag">題 14</span>下面的計算錯在哪裡？<br>
+(a) $\displaystyle\int_{-2}^1x^{-4}\,dx=\frac{-x^{-3}}{-3}\Big|_{-2}^1=-\frac38$　(b) $\displaystyle\int_0^\pi\sec^2x\,dx=\tan x\Big|_0^\pi=0$</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>先用常識：兩個被積函數都是正的（$x^{-4}\gt0$、$\sec^2x\ge1$），積分卻得到負數和 $0$，一定有問題。</p>
+<p>(a) $x^{-4}$ 在 $x=0$ 沒有定義，而 $0\in[-2,1]$。FTC I 要求 $f$ 在整個 $[a,b]$ 上連續，條件不成立，不能直接代上下限。事實上 $x\to0$ 時 $x^{-4}\to\infty$，這塊面積是無限大。</p>
+<p>（順帶一提，題目寫的反導函數 $\frac{-x^{-3}}{-3}$ 多了一個負號，正確是 $\frac{x^{-3}}{-3}$；不過 $-\frac38$ 是用正確的式子代出來的值。重點在連續性，反導函數寫對也救不了。）</p>
+<p>(b) $\sec^2x=\frac1{\cos^2x}$ 在 $x=\frac\pi2$ 沒有定義，$\frac\pi2\in[0,\pi]$，同樣不能用 FTC I。$\tan x$ 在 $\frac\pi2$ 斷開，從 $0$ 衝到 $+\infty$ 再從 $-\infty$ 回到 $0$，代端點相減把中間的爆炸抹掉了。</p>
+<p class="ans">兩題的被積函數都在區間內有不連續點（$x=0$、$x=\frac\pi2$），不滿足 FTC I 的條件</p>
+</div>
+</section>
+
+<figure class="pair">
+<img src="fig-xm4.svg" alt="y 等於 x 的負四次方，在 x 等於 0 兩側往上衝到無限大">
+<img src="fig-sec2.svg" alt="y 等於 sec 平方 x 在 0 到 π 之間，在 π/2 處有垂直漸近線">
+<figcaption>被積函數在區間中間爆掉，FTC I 不能用</figcaption>
+</figure>
+
+<!-- ================================================================ -->
+<h2 id="s10-4">10.4 微積分基本定理 II</h2>
+
+<p>FTC I 說「先微分再積分，回到原處」。FTC II 是反方向：<strong>先積分再微分，也回到原處</strong>。</p>
+
+<div class="thm">
+<p><span class="tag">定理 10.4.1（FTC II）</span>$f$ 在 $[a,b]$ 上連續，固定 $c\in[a,b]$，定義</p>
+$$F(x)=\int_c^xf(t)\,dt.$$
+<p>則 $F$ 在 $[a,b]$ 上連續、在 $(a,b)$ 上可微，且</p>
+$$F'(x)=\frac{d}{dx}\int_c^xf(t)\,dt=f(x).$$
+</div>
+
+<p>$F(x)$ 是「從 $c$ 到 $x$ 累積的面積」。$x$ 往右多走一小步 $h$，面積多出一條寬 $h$、高約 $f(x)$ 的細長條，所以 $F(x+h)-F(x)\approx f(x)\,h$，除以 $h$ 就得到 $F'(x)=f(x)$。累積面積增加的速度，就是當下那條邊的高度。</p>
+
+<figure>
+<img src="fig-accum.svg" alt="曲線 y 等於 f(t) 底下從 c 到 x 的面積是 F(x)，再往右多一條寬 h 的細長條，面積約 f(x) 乘 h">
+<figcaption>$F(x+h)-F(x)$ 是那一條細長條，約為 $f(x)\cdot h$</figcaption>
+</figure>
+
+<p>上下限都是 $x$ 的函數時，搭配連鎖律：</p>
+<div class="thm">
+<p><span class="tag">Leibniz 積分法則</span>$F(x)=\displaystyle\int_{k(x)}^{h(x)}f(t)\,dt$，則</p>
+$$F'(x)=f\big(h(x)\big)h'(x)-f\big(k(x)\big)k'(x).$$
+</div>
+<p>口訣：<strong>上限代進去乘上限的導數，減掉下限代進去乘下限的導數</strong>。理由：令 $G(u)=\int_c^uf(t)\,dt$，則 $F(x)=G(h(x))-G(k(x))$，用 FTC II 和連鎖律微分就是上式。被積函數裡的變數是 $t$，跟 $x$ 無關；如果被積函數裡也有 $x$，要先提出來（題 17）。</p>
+
+<section class="q" id="q15">
+<p class="problem"><span class="tag">題 15</span>求 $\dfrac{d}{dx}\displaystyle\int_0^x\cos(t^2)\,dt$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>直接套 FTC II，把 $t$ 換成 $x$。$\cos(t^2)$ 的反導函數寫不出來，但不需要。</p>
+<p class="ans">$\cos(x^2)$</p>
+</div>
+</section>
+
+<section class="q" id="q16">
+<p class="problem"><span class="tag">題 16</span>$g(x)=\displaystyle\int_x^{2x^3}\frac{e^t}{2+t}\,dt$，求 $g'(1)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>Leibniz 法則，$h(x)=2x^3$、$k(x)=x$：</p>
+$$g'(x)=\frac{e^{2x^3}}{2+2x^3}\cdot6x^2-\frac{e^x}{2+x}\cdot1.$$
+<p>代 $x=1$：$\dfrac{e^2}4\cdot6-\dfrac e3=\dfrac{3e^2}2-\dfrac e3$。</p>
+<p class="ans">$g'(1)=\dfrac{3e^2}2-\dfrac e3$</p>
+</div>
+</section>
+
+<section class="q" id="q17">
+<p class="problem"><span class="tag">題 17</span>求 $\dfrac{d}{dx}\displaystyle\int_0^{2x}\frac{x^2}{\sqrt{1+t^2}}\,dt$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>陷阱：被積函數裡有 $x$。對 $t$ 積分時 $x^2$ 是常數，先提出來：</p>
+$$\int_0^{2x}\frac{x^2}{\sqrt{1+t^2}}\,dt=x^2\int_0^{2x}\frac{dt}{\sqrt{1+t^2}}.$$
+<p>現在是兩個 $x$ 的函數相乘，用積法則；後一個因子用 Leibniz 法則，導數是 $\frac1{\sqrt{1+4x^2}}\cdot2$：</p>
+$$2x\int_0^{2x}\frac{dt}{\sqrt{1+t^2}}+x^2\cdot\frac2{\sqrt{1+4x^2}}.$$
+<p>如果直接把 $t=2x$ 代進被積函數乘 $2$，會漏掉第一項。</p>
+<p class="ans">$2x\displaystyle\int_0^{2x}\frac{dt}{\sqrt{1+t^2}}+\frac{2x^2}{\sqrt{1+4x^2}}$</p>
+</div>
+</section>
+
+<section class="q" id="q18">
+<p class="problem"><span class="tag">題 18</span>$H(x)=\displaystyle\int_0^{2x}\sin\!\left(\frac{\pi(t^2+1)}3\right)dt$，求 $y=H(x)$ 在 $x=0$ 的切線方程式。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>切點：$H(0)=\int_0^0(\cdots)=0$（上下限相同，積分為 $0$）。</p>
+<p>斜率：$H'(x)=\sin\!\left(\frac{\pi(4x^2+1)}3\right)\cdot2$，$H'(0)=2\sin\frac\pi3=\sqrt3$。</p>
+<p class="ans">$y=\sqrt3\,x$</p>
+</div>
+</section>
+
+<section class="q" id="q19">
+<p class="problem"><span class="tag">題 19</span>求 $\displaystyle\lim_{x\to0}\frac{\int_0^x\cos(t^2)\,dt}x$。（講義提示用羅必達法則。）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>令 $F(x)=\int_0^x\cos(t^2)\,dt$，$F(0)=0$。所求就是</p>
+$$\lim_{x\to0}\frac{F(x)-F(0)}{x-0}=F'(0)=\cos(0^2)=1.$$
+<p>只用導數定義和 FTC II，不需要羅必達。</p>
+<p class="ans">$1$</p>
+</div>
+</section>
+
+<div class="remark">
+<p>羅必達法則<span class="lv">超出範圍</span>的做法：分子分母都 $\to0$，各自微分得 $\frac{\cos(x^2)}1\to1$。結果相同，但上面的做法更直接。</p>
+</div>
+
+<section class="q" id="q20">
+<p class="problem"><span class="tag">題 20</span>$F:(-1,\infty)\to\mathbb R$，$F(x)=\displaystyle\int_x^{\frac{1-x}{1+x}}\frac{\tan^{-1}t}{1+t}\,dt$。<br>
+(a) 求 $F(\sqrt2-1)$。(b) 證明 $F(x)=-\dfrac\pi4\ln(1+x)+C$。(c) 求 $F(0)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>記 $u(x)=\frac{1-x}{1+x}$。</p>
+<p>(a) $x=\sqrt2-1$ 時 $1+x=\sqrt2$、$1-x=2-\sqrt2$，</p>
+$$u=\frac{2-\sqrt2}{\sqrt2}=\sqrt2-1=x.$$
+<p>上下限相同，$F(\sqrt2-1)=0$。</p>
+<p>(b) 先準備：$u'=\frac{-(1+x)-(1-x)}{(1+x)^2}=\frac{-2}{(1+x)^2}$，$1+u=\frac2{1+x}$。Leibniz 法則：</p>
+$$F'(x)=\frac{\tan^{-1}u}{1+u}\cdot u'-\frac{\tan^{-1}x}{1+x}=\tan^{-1}u\cdot\frac{1+x}2\cdot\frac{-2}{(1+x)^2}-\frac{\tan^{-1}x}{1+x}=-\frac{\tan^{-1}u+\tan^{-1}x}{1+x}.$$
+<p><strong>關鍵一步</strong>：$\tan^{-1}\frac{1-x}{1+x}+\tan^{-1}x=\frac\pi4$。令 $\theta=\tan^{-1}x$，由 $x\gt-1$ 得 $\theta\in\left(-\frac\pi4,\frac\pi2\right)$。和角公式</p>
+$$\tan\!\left(\frac\pi4-\theta\right)=\frac{1-\tan\theta}{1+\tan\theta}=\frac{1-x}{1+x},$$
+<p>而 $\frac\pi4-\theta\in\left(-\frac\pi4,\frac\pi2\right)$ 落在 $\tan^{-1}$ 的值域 $\left(-\frac\pi2,\frac\pi2\right)$ 內，所以 $\tan^{-1}\frac{1-x}{1+x}=\frac\pi4-\theta$。</p>
+<p>於是 $F'(x)=-\dfrac{\pi}{4(1+x)}$。又 $\left(-\frac\pi4\ln(1+x)\right)'=-\frac{\pi}{4(1+x)}$，兩者導數相同，由定理 10.2.1 相差常數：$F(x)=-\frac\pi4\ln(1+x)+C$。</p>
+<p>(c) 用 (a) 定 $C$：$0=-\frac\pi4\ln\sqrt2+C$，$C=\frac\pi4\cdot\frac12\ln2=\frac{\pi\ln2}8$。$F(0)=-\frac\pi4\ln1+C=C$。</p>
+<p class="ans">(a) $0$　(c) $F(0)=\displaystyle\int_0^1\frac{\tan^{-1}t}{1+t}\,dt=\frac{\pi\ln2}8$</p>
+</div>
+</section>
+
+<div class="remark">
+<p>(c) 的意義：$\frac{\tan^{-1}t}{1+t}$ 的反導函數寫不出來，直接算 $\int_0^1$ 算不動。這題繞道把它變成「上限是變數的積分」，靠微分求出整個函數，再代 $x=0$。</p>
+</div>
+
+<h3 id="s10-4-log">對數技巧</h3>
+<div class="thm">
+<p><span class="tag">定理 10.4.2（Log-trick）</span>$\displaystyle\int\frac{f'(x)}{f(x)}\,dx=\ln|f(x)|+C$。</p>
+</div>
+<p>就是 $\big(\ln|f(x)|\big)'=\frac{f'(x)}{f(x)}$ 倒過來。看到分子是分母的導數（或差個常數倍），答案就是 $\ln|\text{分母}|$。</p>
+
+<section class="q" id="q21">
+<p class="problem"><span class="tag">題 21</span>求 (a) $\displaystyle\int\frac x{1-x^2}\,dx$　(b) $\displaystyle\int\tan x\,dx$　(c) $\displaystyle\int\sec x\,dx$</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) 分母 $1-x^2$ 的導數是 $-2x$，分子是 $x$，差常數 $-\frac12$：</p>
+$$\int\frac x{1-x^2}\,dx=-\frac12\int\frac{-2x}{1-x^2}\,dx=-\frac12\ln|1-x^2|+C.$$
+<p>(b) $\tan x=\frac{\sin x}{\cos x}$，分母 $\cos x$ 的導數是 $-\sin x$：</p>
+$$\int\tan x\,dx=-\int\frac{-\sin x}{\cos x}\,dx=-\ln|\cos x|+C=\ln|\sec x|+C.$$
+<p>(c) 這題要先湊。上下同乘 $\sec x+\tan x$：</p>
+$$\int\sec x\cdot\frac{\sec x+\tan x}{\sec x+\tan x}\,dx=\int\frac{\sec^2x+\sec x\tan x}{\sec x+\tan x}\,dx.$$
+<p>分母 $\sec x+\tan x$ 的導數是 $\sec x\tan x+\sec^2x$，正好是分子。</p>
+<p class="ans">(a) $-\dfrac12\ln|1-x^2|+C$　(b) $-\ln|\cos x|+C$　(c) $\ln|\sec x+\tan x|+C$</p>
+</div>
+</section>
+
+<section class="q" id="q22">
+<p class="problem"><span class="tag">題 22</span>求 $\displaystyle\int\frac{2x^2+6x+2}{x^2+1}\,dx$。（講義提示寫 $2+\frac{4x}{x^2+1}$，應為 $2+\frac{6x}{x^2+1}$，見頁首。）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>分子次數不低於分母，先做除法（帶分數）：$2x^2+6x+2=2(x^2+1)+6x$，所以</p>
+$$\frac{2x^2+6x+2}{x^2+1}=2+\frac{6x}{x^2+1}=2+3\cdot\frac{2x}{x^2+1}.$$
+<p>第二項分子是分母的導數（的 $3$ 倍），用 log-trick（$x^2+1\gt0$，絕對值可省）：</p>
+$$\int\left(2+3\cdot\frac{2x}{x^2+1}\right)dx=2x+3\ln(x^2+1)+C.$$
+<p class="ans">$2x+3\ln(x^2+1)+C$</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="s10-5">10.5 雜題：積分方程</h2>
+
+<p>這節的題目都長成「$f$ 出現在積分裡面」。共同套路：</p>
+<div class="tip">
+<p><span class="tag">解題套路</span>(1) 兩邊對 $x$ 微分，用 FTC II 把積分拿掉，得到 $f$ 和 $f'$ 的關係；(2) 解出 $f$（通常會有一個常數 $C$）；(3) <strong>代一個讓積分變成 $0$ 的值</strong>（$x$ 等於積分下限）決定 $C$。最後一步最常被忘記。</p>
+</div>
+
+<section class="q" id="q23">
+<p class="problem"><span class="tag">題 23</span>求連續函數 $f(x)$ 與常數 $a$，使得對所有 $x\gt0$，$6+\displaystyle\int_a^x\frac{f(t)}t\,dt=2\sqrt x$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>微分。</strong>兩邊對 $x$ 微分：$\dfrac{f(x)}x=\dfrac1{\sqrt x}$，所以 $f(x)=\sqrt x$。</p>
+<p><strong>代 $x=a$。</strong>積分變成 $0$：$6=2\sqrt a$，$a=9$。</p>
+<p class="ans">$f(x)=\sqrt x$，$a=9$</p>
+</div>
+</section>
+
+<section class="q" id="q24">
+<p class="problem"><span class="tag">題 24</span>$f,g$ 連續，且 $f(x)=3+\displaystyle\int_0^xg(t)\,dt$、$g(x)=\displaystyle\int_0^xf(t)\,dt-1$。證明對所有實數 $x$，$f(x)^2-g(x)^2=8$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>由 FTC II，$f'=g$、$g'=f$。令 $h(x)=f(x)^2-g(x)^2$：</p>
+$$h'(x)=2ff'-2gg'=2fg-2gf=0.$$
+<p>所以 $h$ 是常數。代 $x=0$：$f(0)=3$、$g(0)=-1$，$h(0)=9-1=8$。因此 $h(x)=8$ 對所有 $x$ 成立。</p>
+<p class="ans">得證</p>
+</div>
+</section>
+
+<div class="remark">
+<p>要證明某個式子是常數，就微分證它的導數是 $0$，再代一個好算的點求出那個常數。</p>
+</div>
+
+<section class="q" id="q25">
+<p class="problem"><span class="tag">題 25</span>$f$ 連續，且對所有 $x\ge1$，$xf(x)=3x^4-2x^3+x^2+\displaystyle\int_1^xf(t)\,dt$。求 $f(x)$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>右邊由 FTC II 可微，所以 $f(x)=\frac{\text{右邊}}x$ 也可微。兩邊微分，左邊用積法則：</p>
+$$f(x)+xf'(x)=12x^3-6x^2+2x+f(x)\ \Longrightarrow\ f'(x)=12x^2-6x+2.$$
+<p>積分：$f(x)=4x^3-3x^2+2x+C$。</p>
+<p>代 $x=1$（積分變成 $0$）：$f(1)=3-2+1=2$，而 $f(1)=4-3+2+C=3+C$，所以 $C=-1$。</p>
+<p class="ans">$f(x)=4x^3-3x^2+2x-1$（與講義答案相同）</p>
+</div>
+</section>
+
+<section class="q" id="q26">
+<p class="problem"><span class="tag">題 26</span>求所有導數連續的 $f:\mathbb R\to\mathbb R$，使得對所有 $a\in\mathbb R$，$f(a)^2=1990+\displaystyle\int_0^a\left(f(x)^2+f'(x)^2\right)dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>微分。</strong>兩邊對 $a$ 微分（被積函數連續，FTC II 適用）：</p>
+$$2f(a)f'(a)=f(a)^2+f'(a)^2\ \Longrightarrow\ \big(f(a)-f'(a)\big)^2=0.$$
+<p>所以 $f'=f$ 處處成立。</p>
+<p><strong>解 $f'=f$。</strong>$\big(f(x)e^{-x}\big)'=(f'-f)e^{-x}=0$，$f(x)=Ce^x$。</p>
+<p><strong>代 $a=0$。</strong>$f(0)^2=1990$，$C^2=1990$，$C=\pm\sqrt{1990}$。</p>
+<p>驗算：$f=Ce^x$ 時右邊 $=1990+\int_0^a2C^2e^{2x}dx=1990+C^2(e^{2a}-1)=C^2e^{2a}=f(a)^2$，成立。</p>
+<p class="ans">$f(x)=\pm\sqrt{1990}\,e^x$（與講義答案相同）</p>
+</div>
+</section>
+
+<section class="q" id="q27">
+<p class="problem"><span class="tag">題 27</span>$f$ 可微，對所有 $x$ 有 $f(x)\gt-1$，且 $f(x)=x^3+\displaystyle\int_0^x3t^2f(t)\,dt$。求 $f(x)$。提示：$\displaystyle\int\frac{f'(t)}{1+f(t)}\,dt=\ln(1+f(x))+C$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p><strong>微分。</strong>$f'(x)=3x^2+3x^2f(x)=3x^2\big(1+f(x)\big)$。</p>
+<p><strong>分離。</strong>$1+f\gt0$，可以除過去：$\dfrac{f'(x)}{1+f(x)}=3x^2$。兩邊積分，左邊用 log-trick（$1+f\gt0$ 不用絕對值）：</p>
+$$\ln\big(1+f(x)\big)=x^3+C.$$
+<p><strong>代 $x=0$。</strong>原式給 $f(0)=0$，$\ln1=0=C$。所以 $1+f(x)=e^{x^3}$。</p>
+<p class="ans">$f(x)=e^{x^3}-1$</p>
+</div>
+</section>
+
+<section class="q" id="q28">
+<p class="problem"><span class="tag">題 28</span>$f,g$ 在 $[a,b]$ 上連續。證明存在 $c\in[a,b]$ 使得</p>
+$$g(c)\int_a^cf(x)\,dx-f(c)\int_c^bg(x)\,dx=0.$$
+<p class="problem">提示：令 $F(x)=\displaystyle\int_a^xf(t)\,dt\int_x^bg(t)\,dt$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>「存在 $c$ 使某式 $=0$」，而某式像是乘積的導數，就想到 Rolle 定理（<a href="../week06/index.html#s6-2">§6.2</a>）。</p>
+<p><strong>端點值。</strong>$F(a)=\int_a^af\cdot(\cdots)=0$，$F(b)=(\cdots)\cdot\int_b^bg=0$。</p>
+<p><strong>可用 Rolle。</strong>由 FTC II，$\int_a^xf$ 與 $\int_x^bg=-\int_b^xg$ 都在 $[a,b]$ 連續、$(a,b)$ 可微，乘積 $F$ 也是。Rolle 定理給出 $c\in(a,b)$ 使 $F'(c)=0$。</p>
+<p><strong>算 $F'$。</strong>積法則，第二個因子的導數是 $-g(x)$（變數在下限）：</p>
+$$F'(x)=f(x)\int_x^bg(t)\,dt-g(x)\int_a^xf(t)\,dt.$$
+<p>$F'(c)=0$ 兩邊乘 $-1$，正是要證的式子。</p>
+<p class="ans">得證（而且 $c$ 可取在開區間 $(a,b)$ 內）</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="s10-6">10.6 兩個 FTC 的證明（*）<span class="lv">延伸</span></h2>
+
+<section class="q" id="q29">
+<p class="problem"><span class="tag">題 29</span>$f$ 在 $[a,b]$ 上連續，$F(x)=\displaystyle\int_a^xf(t)\,dt$。證明 $F$ 在 $(a,b)$ 上可微且 $F'(x)=f(x)$（FTC II）；並由此證明若 $G'=f$，則 $\int_a^bf=G(b)-G(a)$（FTC I）。講義把 $h\lt0$ 的情形留作練習。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>想法就是上面那張細長條的圖：證明 $\frac{F(x+h)-F(x)}h$ 和 $f(x)$ 的差會被夾到 $0$。</p>
+<p><strong>$h\gt0$。</strong>由可加性，$F(x+h)-F(x)=\int_x^{x+h}f(t)\,dt$。又 $f(x)=\frac1h\int_x^{x+h}f(x)\,dt$（常數積分等於常數乘長度）。相減：</p>
+$$\left|\frac{F(x+h)-F(x)}h-f(x)\right|=\frac1h\left|\int_x^{x+h}\big(f(t)-f(x)\big)dt\right|\le\frac1h\int_x^{x+h}|f(t)-f(x)|\,dt\le\max_{x\le t\le x+h}|f(t)-f(x)|.$$
+<p>這裡用了 $\left|\int g\right|\le\int|g|$，以及「被積函數不超過最大值 $\Rightarrow$ 積分不超過最大值乘長度」（<a href="../week09/index.html#s9-4-2">§9.4.2</a> 的性質）。$f$ 連續，$h\to0^+$ 時 $t$ 被擠到 $x$，最大值 $\to0$。由夾擠定理，右導數是 $f(x)$。</p>
+<p><strong>$h\lt0$（練習）。</strong>令 $h=-k$，$k\gt0$。這時 $F(x+h)-F(x)=-\int_{x-k}^xf(t)\,dt$，除以 $h=-k$：</p>
+$$\frac{F(x+h)-F(x)}h=\frac1k\int_{x-k}^xf(t)\,dt.$$
+<p>和上面完全一樣的估計，只是區間換成 $[x-k,x]$：</p>
+$$\left|\frac1k\int_{x-k}^xf(t)\,dt-f(x)\right|\le\frac1k\int_{x-k}^x|f(t)-f(x)|\,dt\le\max_{x-k\le t\le x}|f(t)-f(x)|\ \xrightarrow{\ k\to0^+\ }\ 0.$$
+<p>左右導數都是 $f(x)$，所以 $F'(x)=f(x)$。</p>
+<p><strong>推出 FTC I。</strong>$G'=f=F'$，由定理 10.2.1，$G(x)=F(x)+C$。代 $x=a$：$G(a)=F(a)+C=0+C$，所以 $C=G(a)$，$F(x)=G(x)-G(a)$。代 $x=b$：</p>
+$$\int_a^bf(t)\,dt=F(b)=G(b)-G(a).$$
+<p class="ans">得證</p>
+</div>
+</section>
+
+<!-- ================================================================ -->
+<h2 id="summary">本週必背總整理</h2>
+<ol>
+<li><strong>反導函數</strong>：$F'=f$；答案相差常數，不定積分記得 $+C$；積完<strong>微分回去檢查</strong></li>
+<li><strong>基本公式</strong>：$\int x^n=\frac{x^{n+1}}{n+1}$（$n\ne-1$）、$\int\frac1x=\ln|x|$、$\int e^{kx}=\frac1ke^{kx}$、$\int a^x=\frac{a^x}{\ln a}$、三角與反三角公式倒過來</li>
+<li><strong>改寫再積</strong>：根號改冪次、分式拆開或做除法、$\tan^2x=\sec^2x-1$、絕對值在變號點拆段</li>
+<li><strong>認出導數</strong>：$u'v+uv'\to uv$；$(f+f')e^x\to fe^x$；$f'=kf\Rightarrow f=Ce^{kx}$</li>
+<li><strong>FTC I</strong>：$f$ 在 $[a,b]$ <strong>連續</strong>時 $\int_a^bf=F(b)-F(a)$；區間內有爆掉的點就不能用</li>
+<li><strong>FTC II</strong>：$\frac d{dx}\int_c^xf(t)\,dt=f(x)$；上下限是函數時 $f(h(x))h'(x)-f(k(x))k'(x)$；被積函數有 $x$ 先提出</li>
+<li><strong>Log-trick</strong>：$\int\frac{f'}f=\ln|f|+C$；$\int\tan x=-\ln|\cos x|$、$\int\sec x=\ln|\sec x+\tan x|$</li>
+<li><strong>積分方程</strong>：微分去掉積分 → 解出 $f$ → 代積分下限定常數；$\int_0^2f$ 這種是數，設成 $k$</li>
+</ol>
+
+</main>
+</body>
+</html>

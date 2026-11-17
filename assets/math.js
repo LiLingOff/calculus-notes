@@ -6,3 +6,14 @@ renderMathInElement(document.body, {
   ],
   throwOnError: false
 });
+
+// 列印時展開練習題的折疊詳解，印完再收回原狀
+let closedDetails = [];
+window.addEventListener("beforeprint", () => {
+  closedDetails = [...document.querySelectorAll("details:not([open])")];
+  closedDetails.forEach(d => { d.open = true; });
+});
+window.addEventListener("afterprint", () => {
+  closedDetails.forEach(d => { d.open = false; });
+  closedDetails = [];
+});

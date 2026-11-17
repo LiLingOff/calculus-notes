@@ -117,6 +117,26 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 .topic { font-size: .9rem; color: var(--muted); margin: .2rem 0 .5rem; }
 .topic a { margin-right: .5em; white-space: nowrap; }
 
+/* 各節末的自編練習：詳解用 <details> 折疊，點開才看到 */
+.practice {
+  margin: 2rem 0;
+  padding: .3rem 1.1rem .5rem;
+  border: 1px dashed var(--sol-bar);
+  border-radius: 6px;
+}
+.practice-h { margin: .5rem 0 0; color: var(--muted); font-weight: 700; font-size: .95rem; }
+.pq { margin: 1.2rem 0; }
+.practice .problem .tag { color: var(--thm-bar); }
+details.solution > summary {
+  width: fit-content;
+  margin: .3rem 0;
+  color: var(--muted);
+  font-size: .9rem;
+  cursor: pointer;
+}
+details.solution > summary:hover { color: var(--accent); }
+details.solution:not([open]) { border-left-color: transparent; }
+
 /* 公式 */
 .katex { font-size: 1.08em; }
 /* position: relative 讓 KaTeX 隱藏的 MathML 層留在捲動框內，不會把整頁撐寬 */
@@ -212,6 +232,7 @@ th { background: var(--remark-bg); }
   h2 { font-size: 1.25rem; margin-top: 2.2rem; }
   .def, .thm, .remark, .erratum, .tip { padding: .7rem .8rem; }
   .solution { padding-left: .8rem; }
+  .practice { padding: .3rem .8rem .5rem; }
   .katex { font-size: 1em; }
   th, td { padding: .35rem .5rem; }
 }
@@ -219,6 +240,7 @@ th { background: var(--remark-bg); }
 @media print {
   body { background: #fff; color: #000; font-size: 12pt; }
   .back { display: none; }
-  .q, .def, .thm, figure { break-inside: avoid; }
+  .q, .pq, .def, .thm, figure { break-inside: avoid; }
+  details.solution > summary { display: none; }
   h2 { break-after: avoid; }
 }

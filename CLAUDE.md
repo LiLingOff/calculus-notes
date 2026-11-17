@@ -1,6 +1,7 @@
 # 微積分講義網頁
 
 把使用者給的 AP Calculus I 講義 PDF 轉成「概念講解＋題目＋緊接詳解」的靜態網頁。純閱讀頁，不加側欄、按鈕、摺疊等 UI。
+唯一例外：各節末的自編練習題，詳解用原生 `<details>` 折疊（列印時 `math.js` 會自動展開）。
 
 ## 結構
 - `index.html`：目錄，每週一行 `<li>`
@@ -29,6 +30,10 @@
    每個有節號的 h2/h3 加 `id`，規則是 `s` 加節號、點換成連字號（`<h2 id="s2-2">`、`<h3 id="s5-4-1">`），
    本週必背總整理用 `id="summary"`。首頁主題路線靠這些 id 跳轉。
    每題的 `section.q` 加 `id="qN"`（N 是題號），考古題頁引用講義例題時靠它跳轉。
+4.5 每個 h2 小節末尾（原題之後、下一個 h2 之前）加「本節練習」`div.practice`，格式照 `template.html`：
+   自編 2–5 題，難度和該節原題相近，題型可以自由變化；只放證明的 (*) 小節不出，有題目的 (*) 主體小節照出。
+   編號「練習 x.y-n」，`div.practice` 的 id 是 `px-y`、每題 `section.pq` 的 id 是 `px-y-n`。
+   詳解完整、結尾 `.ans`，每題自己驗算（可用 sympy 核對導數、極限）。目前已做：Week 4、9、10。
 5. 在 `index.html` 加一行週次目錄，並把新內容併入下方「主題複習路線」：
    延續既有主題的小節補進該段的連結；新主題就照先備關係插入新段，寫出「先讀」段號（插入後其他段的「先讀」號碼要跟著改）。
    講義 (*) 內容與證明加 `<span class="lv">延伸</span>`。
@@ -54,6 +59,7 @@ PDF 放進 `source/past-exams/` 或 `source/hw/`。
 ## 題目來源
 題目只用講義本身的 Example / Exercise，以及講義寫成定理並附證明的內容（例如 tan 的導數）。
 自己補充的內容放在講解或 `.remark`，不要混進題號。
+自編練習題只放在各節末的 `div.practice`，用「練習 x.y-n」編號，不佔「題 n」。
 
 ## 上線
 - 網站 https://lilingoff.github.io/calculus-notes/ ，GitHub Pages 直接送出 repo `LiLingOff/calculus-notes` 的 `main` 分支根目錄。commit 後 `git push` 就會上線，通常一兩分鐘。
@@ -71,3 +77,4 @@ PDF 放進 `source/past-exams/` 或 `source/hw/`。
 - LaTeX 裡的小於、大於用 `\lt`、`\gt`（避免 HTML 解析問題）；分段函數用 `cases`。
 - 區塊 class：`.def` 定義、`.thm` 定理、`.remark` 補充、`.tip` 套路、`.erratum` 筆誤、
   `section.q` 包 `.problem` 與 `.solution`，答案用 `.ans`。兩張圖並排用 `figure.pair`。
+  練習區 `div.practice` 內是 `section.pq`，詳解用 `details.solution` 加 `<summary>詳解</summary>`。

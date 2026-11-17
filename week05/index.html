@@ -147,6 +147,7 @@ $$\sec^2y\cdot\frac{dy}{dx}=1\quad\Longrightarrow\quad\frac{dy}{dx}=\frac{1}{\se
 <p>接著要把 $\cos y$ 換回 $x$。看上面的三角形：$\cos y=\dfrac{1}{\sqrt{1+x^2}}$（$y$ 在 $(-\frac\pi2,\frac\pi2)$，$\cos y\gt0$，取正號）。所以</p>
 $$\frac{dy}{dx}=\left(\frac{1}{\sqrt{1+x^2}}\right)^2=\frac{1}{1+x^2}$$
 <p>另一種換法：$\sec^2y=1+\tan^2y=1+x^2$，一步到位。</p>
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -169,6 +170,7 @@ $$f'(x)=-\sin\bigl(\tan^{-1}x\bigr)\cdot\frac{1}{1+x^2}=-\frac{x}{\sqrt{1+x^2}}\
 $$\cos y\cdot\frac{dy}{dx}=1\quad\Longrightarrow\quad\frac{dy}{dx}=\frac{1}{\cos y}$$
 <p>在這個範圍 $\cos y\ge0$，所以 $\cos y=\sqrt{1-\sin^2y}=\sqrt{1-x^2}$，得證（$|x|\lt1$ 時分母不為 $0$）。</p>
 <p>$\cos^{-1}x$ 用一樣的步驟：$\cos y=x$，$-\sin y\cdot y'=1$，$y\in[0,\pi]$ 時 $\sin y=\sqrt{1-x^2}$，得 $-\frac{1}{\sqrt{1-x^2}}$，就是定理 5.2.1。</p>
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -192,6 +194,7 @@ $$\cos y\cdot\frac{dy}{dx}=1\quad\Longrightarrow\quad\frac{dy}{dx}=\frac{1}{\cos
 <div class="solution"><span class="tag">詳解</span>
 <p>$x\gt0$，令 $y=\ln x$，等價於 $e^y=x$。兩邊對 $x$ 微分：</p>
 $$e^y\cdot\frac{dy}{dx}=1\quad\Longrightarrow\quad\frac{dy}{dx}=\frac{1}{e^y}=\frac1x$$
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -206,6 +209,7 @@ $$e^y\cdot\frac{dy}{dx}=1\quad\Longrightarrow\quad\frac{dy}{dx}=\frac{1}{e^y}=\f
 $$f'(x)=\frac{1}{1+(2x)^2}\cdot2=\frac{2}{1+4x^2}$$
 <p>(b) 換底 $\log_4(1+e^x)=\dfrac{\ln(1+e^x)}{\ln4}$，$\ln4$ 是常數：</p>
 $$f'(x)=\frac{1}{\ln4}\cdot\frac{e^x}{1+e^x}=\frac{e^x}{(1+e^x)\ln4}$$
+<p class="ans">(a) $\dfrac{2}{1+4x^2}$　(b) $\dfrac{e^x}{(1+e^x)\ln4}$</p>
 </div>
 </section>
 
@@ -216,6 +220,7 @@ $$f'(x)=\frac{1}{\ln4}\cdot\frac{e^x}{1+e^x}=\frac{e^x}{(1+e^x)\ln4}$$
 $$\ln y=k\ln x$$
 <p>兩邊對 $x$ 微分，左邊用連鎖律：</p>
 $$\frac1y\cdot\frac{dy}{dx}=\frac kx\quad\Longrightarrow\quad\frac{dy}{dx}=\frac kx\cdot y=\frac kx\cdot x^k=kx^{k-1}$$
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -283,6 +288,7 @@ $$1=f'(0)=\lim_{h\to0}\frac{\ln(1+h)}{h}=\lim_{h\to0}\ln(1+h)^{1/h}=\ln\left(\li
 <p>極限存在，只看右極限 $h\to0^+$ 也一樣。令 $h=\frac1x$，$h\to0^+$ 等同 $x\to+\infty$：</p>
 $$1=\ln\left(\lim_{x\to+\infty}\left(1+\frac1x\right)^x\right)$$
 <p>$\ln(\text{所求})=1$，所以所求 $=e$。$x\to-\infty$ 則改看左極限 $h\to0^-$。</p>
+<p class="ans">得證</p>
 </div>
 </section>
 

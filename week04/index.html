@@ -56,6 +56,45 @@ $$f'(a) := \lim_{h\to0}\frac{f(a+h)-f(a)}{h}$$
 </ol>
 </div>
 
+<div class="practice" id="p4-1">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p4-1-1">
+<p class="problem"><span class="tag">練習 4.1-1</span>用定義求 $f(x)=x^2-3x$ 在 $x=2$ 的導數。</p>
+<details class="solution"><summary>詳解</summary>
+<p>先算 $f(2)=4-6=-2$，再代進差商：</p>
+$$\begin{aligned}
+\frac{f(2+h)-f(2)}{h} &= \frac{(4+4h+h^2)-(6+3h)-(-2)}{h} \\
+&= \frac{h+h^2}{h}=1+h\;\longrightarrow\;1
+\end{aligned}$$
+<p>分子的常數項一定會消掉，消不掉代表 $f(2)$ 算錯了。</p>
+<p class="ans">$f'(2)=1$</p>
+</details>
+</section>
+<section class="pq" id="p4-1-2">
+<p class="problem"><span class="tag">練習 4.1-2</span>用定義求 $f(x)=\dfrac1x$ 在 $x=a$（$a\neq0$）的導數。</p>
+<details class="solution"><summary>詳解</summary>
+<p>分子是兩個分數相減，先通分：</p>
+$$\frac{1}{a+h}-\frac1a=\frac{a-(a+h)}{a(a+h)}=\frac{-h}{a(a+h)}$$
+<p>再除以 $h$，$h$ 正好約掉：</p>
+$$\frac{f(a+h)-f(a)}{h}=\frac{-1}{a(a+h)}\;\longrightarrow\;-\frac{1}{a^2}$$
+<p class="ans">$f'(a)=-\dfrac{1}{a^2}$</p>
+</details>
+</section>
+<section class="pq" id="p4-1-3">
+<p class="problem"><span class="tag">練習 4.1-3</span>下列極限各是哪個函數在哪一點的導數？求出極限值。<br>
+(a) $\displaystyle\lim_{h\to0}\frac{(3+h)^2-9}{h}$　(b) $\displaystyle\lim_{h\to0}\frac{\sqrt{4+h}-2}{h}$　(c) $\displaystyle\lim_{x\to1}\frac{x^3-1}{x-1}$</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>考點</strong>：把極限看成 $\dfrac{f(a+h)-f(a)}{h}$，認出 $f$ 和 $a$。(c) 是另一種寫法：令 $x=a+h$，$h\to0$ 就是 $x\to a$，所以</p>
+$$f'(a)=\lim_{x\to a}\frac{f(x)-f(a)}{x-a}$$
+<p>(a) $f(x)=x^2$、$a=3$（$9=f(3)$）。展開：$\dfrac{6h+h^2}{h}=6+h\to6$。</p>
+<p>(b) $f(x)=\sqrt x$、$a=4$（$2=f(4)$）。有理化：</p>
+$$\frac{\sqrt{4+h}-2}{h}\cdot\frac{\sqrt{4+h}+2}{\sqrt{4+h}+2}=\frac{1}{\sqrt{4+h}+2}\;\longrightarrow\;\frac14$$
+<p>(c) $f(x)=x^3$、$a=1$。因式分解 $x^3-1=(x-1)(x^2+x+1)$，約分後 $\to1+1+1=3$。</p>
+<p class="ans">(a) $f=x^2$ 在 $3$，值 $6$　(b) $f=\sqrt x$ 在 $4$，值 $\frac14$　(c) $f=x^3$ 在 $1$，值 $3$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s4-2">4.2 不可微的函數</h2>
 
@@ -147,8 +186,50 @@ $$f'(x)=2x\sin\frac1x+x^2\cos\frac1x\cdot\left(-\frac{1}{x^2}\right)=2x\sin\frac
 <p>題 6 說明：<strong>$f$ 處處可微，$f'$ 卻可以不連續</strong>。這引出下面的 Darboux 定理。</p>
 </div>
 
+<div class="practice" id="p4-2">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p4-2-1">
+<p class="problem"><span class="tag">練習 4.2-1</span>$f(x)=|x-2|$ 在 $x=2$ 可微嗎？</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f(2)=0$，差商為 $\dfrac{|h|}{h}$，和<a href="#q2">題 2</a> 一樣：</p>
+$$\lim_{h\to0^+}\frac{h}{h}=1,\qquad\lim_{h\to0^-}\frac{-h}{h}=-1$$
+<p>左右不同，極限不存在。圖形是 $|x|$ 往右平移 $2$，尖點跟著移到 $x=2$。</p>
+<p class="ans">不可微（$x=2$ 是尖點）</p>
+</details>
+</section>
+<section class="pq" id="p4-2-2">
+<p class="problem"><span class="tag">練習 4.2-2</span>證明 $f(x)=x^{2/3}$ 在 $x=0$ 不可微，並說明是哪一種不可微。</p>
+<details class="solution"><summary>詳解</summary>
+$$\frac{f(h)-f(0)}{h}=\frac{h^{2/3}}{h}=h^{-1/3}=\frac{1}{\sqrt[3]{h}}$$
+<p>$h\to0^+$ 時 $\sqrt[3]h\to0^+$，差商 $\to+\infty$；$h\to0^-$ 時 $\sqrt[3]h\to0^-$，差商 $\to-\infty$。</p>
+<p>差商趨向無限大，極限不是一個數，所以不可微。左右兩邊的切線都趨近鉛直，但左邊往下、右邊往上衝，圖形在原點是尖端朝下的尖點，和<a href="#q1">題 1</a> 的 $x^{1/5}$ 單純鉛直穿過不同。</p>
+<p class="ans">不可微：垂直切線，而且是尖點</p>
+</details>
+</section>
+<section class="pq" id="p4-2-3">
+<p class="problem"><span class="tag">練習 4.2-3</span>$f(x)=x|x|$ 在 $x=0$ 可微嗎？可微的話求 $f'(0)$。</p>
+<details class="solution"><summary>詳解</summary>
+$$\frac{f(h)-f(0)}{h}=\frac{h|h|}{h}=|h|\;\longrightarrow\;0$$
+<p>左右兩邊都趨近 $0$，極限存在。$|x|$ 本身在 $0$ 有尖角，乘上 $x$ 之後被壓平了：$x\ge0$ 時 $f=x^2$，$x\lt0$ 時 $f=-x^2$，兩段在原點的斜率都是 $0$。</p>
+<p class="ans">可微，$f'(0)=0$</p>
+</details>
+</section>
+<section class="pq" id="p4-2-4">
+<p class="problem"><span class="tag">練習 4.2-4</span>$f$ 對所有 $x,y$ 滿足 $f(x+y)=f(x)+f(y)+3x^2y+3xy^2$，且 $f'(0)=2$。求 $f(0)$ 與 $f'(a)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>考點</strong>：<a href="#q4">題 4</a> 的函數方程套路，先代 $0$，再用定義拆 $f(a+h)$。</p>
+<p>代 $x=y=0$：$f(0)=2f(0)$，所以 $f(0)=0$。</p>
+<p>代 $x=a$、$y=h$：</p>
+$$f(a+h)-f(a)=f(h)+3a^2h+3ah^2$$
+$$f'(a)=\lim_{h\to0}\left(\frac{f(h)-f(0)}{h}+3a^2+3ah\right)=f'(0)+3a^2$$
+<p>（$f(x)=x^3+2x$ 就滿足條件，可以拿來檢查。）</p>
+<p class="ans">$f(0)=0$，$f'(a)=3a^2+2$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
-<h2 id="s4-2-1">4.2.1 Darboux 定理（*）</h2>
+<h3 id="s4-2-1">4.2.1 Darboux 定理（*）</h3>
 
 <div class="thm">
 <p><span class="tag">定理 4.2.1（Darboux）</span>$f:[a,b]\to\mathbb R$ 可微，則 $f'$ 具有中間值性質：對 $f'(a)$ 與 $f'(b)$ 之間的任何 $k$，存在 $c\in[a,b]$ 使 $f'(c)=k$。</p>
@@ -224,6 +305,44 @@ $$\begin{aligned}
 \end{aligned}$$
 <p>$h\to0$ 後只剩 $nx^{n-1}$。</p>
 
+<div class="practice" id="p4-3">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p4-3-1">
+<p class="problem"><span class="tag">練習 4.3-1</span>用定義求 $(\sqrt x)'$（$x\gt0$）。</p>
+<details class="solution"><summary>詳解</summary>
+<p>根號相減，上下同乘共軛 $\sqrt{x+h}+\sqrt x$：</p>
+$$\begin{aligned}
+\frac{\sqrt{x+h}-\sqrt x}{h} &= \frac{(x+h)-x}{h\left(\sqrt{x+h}+\sqrt x\right)} \\
+&= \frac{1}{\sqrt{x+h}+\sqrt x}\;\longrightarrow\;\frac{1}{2\sqrt x}
+\end{aligned}$$
+<p>和冪次法則 $\left(x^{1/2}\right)'=\frac12x^{-1/2}$ 一致。</p>
+<p class="ans">$(\sqrt x)'=\dfrac{1}{2\sqrt x}$</p>
+</details>
+</section>
+<section class="pq" id="p4-3-2">
+<p class="problem"><span class="tag">練習 4.3-2</span>用定義求 $\left(\dfrac{1}{x^2}\right)'$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>先通分：</p>
+$$\frac{1}{(x+h)^2}-\frac{1}{x^2}=\frac{x^2-(x+h)^2}{x^2(x+h)^2}=\frac{-2xh-h^2}{x^2(x+h)^2}$$
+<p>除以 $h$：</p>
+$$\frac{-2x-h}{x^2(x+h)^2}\;\longrightarrow\;\frac{-2x}{x^4}=-\frac{2}{x^3}$$
+<p>和冪次法則 $\left(x^{-2}\right)'=-2x^{-3}$ 一致。</p>
+<p class="ans">$\left(\dfrac{1}{x^2}\right)'=-\dfrac{2}{x^3}$</p>
+</details>
+</section>
+<section class="pq" id="p4-3-3">
+<p class="problem"><span class="tag">練習 4.3-3</span>用定義求 $(\sin2x)'$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>照<a href="#q8">題 8</a> 用和角公式，$\sin(2x+2h)=\sin2x\cos2h+\cos2x\sin2h$：</p>
+$$\frac{\sin(2x+2h)-\sin2x}{h}=\sin2x\cdot\frac{\cos2h-1}{h}+\cos2x\cdot\frac{\sin2h}{h}$$
+<p>兩個必背極限要的是「分母和角度一樣」，所以湊 $2$：</p>
+$$\frac{\cos2h-1}{h}=2\cdot\frac{\cos2h-1}{2h}\to2\cdot0=0,\qquad\frac{\sin2h}{h}=2\cdot\frac{\sin2h}{2h}\to2$$
+<p>合起來得 $2\cos2x$。學了連鎖律（4.8）可以一步算出同樣答案。</p>
+<p class="ans">$(\sin2x)'=2\cos2x$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s4-4">4.4 $e^x$ 的導數、可微必連續</h2>
 
@@ -256,6 +375,48 @@ $$\lim_{h\to0^+}\frac{2\cos h-2}{h}=2\cdot0=0,\qquad \lim_{h\to0^-}\frac{2-2}{h}
 <p><span class="tag">分段函數求參數套路</span>先用連續列一條方程，再用左右導數相等列一條方程。</p>
 </div>
 
+<div class="practice" id="p4-4">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p4-4-1">
+<p class="problem"><span class="tag">練習 4.4-1</span>$f(x)=\begin{cases}x^2, & x\le1\\ ax+b, & x\gt1\end{cases}$ 在 $x=1$ 可微，求 $a,b$。</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>Step 1：連續。</strong>$f(1)=1$，右極限 $a+b$ 要等於它：$a+b=1$。</p>
+<p><strong>Step 2：左右導數相等。</strong></p>
+$$\lim_{h\to0^-}\frac{(1+h)^2-1}{h}=\lim_{h\to0^-}(2+h)=2,\qquad\lim_{h\to0^+}\frac{a(1+h)+b-1}{h}=\lim_{h\to0^+}\frac{ah}{h}=a$$
+<p>右導數那一步用了 $a+b-1=0$。所以 $a=2$，$b=-1$。</p>
+<p>直覺：直線 $y=2x-1$ 正是 $y=x^2$ 在 $x=1$ 的切線，兩段接得平順。</p>
+<p class="ans">$a=2,\ b=-1$</p>
+</details>
+</section>
+<section class="pq" id="p4-4-2">
+<p class="problem"><span class="tag">練習 4.4-2</span>$f(x)=\begin{cases}e^x, & x\lt0\\ ax+b, & x\ge0\end{cases}$ 在 $x=0$ 可微，求 $a,b$。</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>連續</strong>：$f(0)=b$，左極限 $e^0=1$，所以 $b=1$。</p>
+<p><strong>導數</strong>：右導數 $\displaystyle\lim_{h\to0^+}\frac{ah+1-1}{h}=a$；左導數用定理 4.4.1：</p>
+$$\lim_{h\to0^-}\frac{e^h-1}{h}=1$$
+<p>所以 $a=1$。</p>
+<p class="ans">$a=1,\ b=1$</p>
+</details>
+</section>
+<section class="pq" id="p4-4-3">
+<p class="problem"><span class="tag">練習 4.4-3</span>判斷對錯：(a) $f$ 在 $a$ 連續，則 $f$ 在 $a$ 可微。(b) $f$ 在 $a$ 不連續，則 $f$ 在 $a$ 不可微。(c) $f$ 在 $a$ 可微，則 $\displaystyle\lim_{x\to a}f(x)=f(a)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>(a) 錯。$|x|$ 在 $0$ 連續但不可微。</p>
+<p>(b) 對。這是定理 4.4.3 的逆否命題：可微推得連續，所以不連續就不可能可微。</p>
+<p>(c) 對。$\lim_{x\to a}f(x)=f(a)$ 就是連續的定義，可微推得連續。</p>
+<p class="ans">(a) 錯　(b) 對　(c) 對</p>
+</details>
+</section>
+<section class="pq" id="p4-4-4">
+<p class="problem"><span class="tag">練習 4.4-4</span>求 $\displaystyle\lim_{h\to0}\frac{e^{2+h}-e^2}{h}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>這是 $f(x)=e^x$ 在 $x=2$ 的差商，所以答案是 $f'(2)=e^2$。</p>
+<p>不想認導數的話也可以直接算：$\dfrac{e^2e^h-e^2}{h}=e^2\cdot\dfrac{e^h-1}{h}\to e^2\cdot1$。</p>
+<p class="ans">$e^2$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s4-5">4.5 和、差、積、商法則</h2>
 
@@ -274,6 +435,7 @@ $$\begin{aligned}
 <div class="solution"><span class="tag">詳解</span>
 <p>$e^2$ 只是常數，冪次法則照用，再配積法則：</p>
 $$\frac{dy}{dx}=e^2x^{e^2-1}\cdot e^x+x^{e^2}\cdot e^x=x^{e^2-1}e^x\left(e^2+x\right)$$
+<p class="ans">$\dfrac{dy}{dx}=x^{e^2-1}e^x\left(e^2+x\right)$</p>
 </div>
 </section>
 
@@ -285,6 +447,7 @@ $$\begin{aligned}
 &= \frac{\cos^2x+\sin^2x}{\cos^2x} \\
 &= \frac{1}{\cos^2x}= \sec^2x
 \end{aligned}$$
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -296,6 +459,7 @@ $$\begin{aligned}
 &= \frac{\sin x}{\cos^2x} \\
 &= \frac{1}{\cos x}\cdot\frac{\sin x}{\cos x}= \sec x\tan x
 \end{aligned}$$
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -307,6 +471,7 @@ $$\begin{aligned}
 &= -\frac{\sin^2x+\cos^2x}{\sin^2x}= -\csc^2x
 \end{aligned}$$
 <p>同理 $(\csc x)'=\left(\dfrac{1}{\sin x}\right)'=-\dfrac{\cos x}{\sin^2x}=-\csc x\cot x$。</p>
+<p class="ans">得證；同理 $(\csc x)'=-\csc x\cot x$</p>
 </div>
 </section>
 
@@ -351,6 +516,52 @@ $$f'(1)=\frac{-3\cdot3-3\cdot5}{9}=-\frac{24}{9}=-\frac83$$
 <p>切線 <span class="ans">$y=x-\pi-9$</span>，法線 <span class="ans">$y=-x+\pi-9$</span></p>
 </div>
 </section>
+
+<div class="practice" id="p4-5">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p4-5-1">
+<p class="problem"><span class="tag">練習 4.5-1</span>微分 $y=x^3\sin x$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>積法則，前微後不微加前不微後微：</p>
+$$y'=3x^2\sin x+x^3\cos x$$
+<p class="ans">$y'=3x^2\sin x+x^3\cos x$</p>
+</details>
+</section>
+<section class="pq" id="p4-5-2">
+<p class="problem"><span class="tag">練習 4.5-2</span>微分 $y=\dfrac{x^2+1}{x-1}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>商法則，分子導數 $2x$、分母導數 $1$：</p>
+$$y'=\frac{2x(x-1)-(x^2+1)\cdot1}{(x-1)^2}=\frac{x^2-2x-1}{(x-1)^2}$$
+<p class="ans">$y'=\dfrac{x^2-2x-1}{(x-1)^2}$</p>
+</details>
+</section>
+<section class="pq" id="p4-5-3">
+<p class="problem"><span class="tag">練習 4.5-3</span>微分 $y=\dfrac{e^x}{1+\cos x}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>商法則，分母導數 $(1+\cos x)'=-\sin x$：</p>
+$$y'=\frac{e^x(1+\cos x)-e^x(-\sin x)}{(1+\cos x)^2}=\frac{e^x(1+\cos x+\sin x)}{(1+\cos x)^2}$$
+<p>減掉負號變加號，是最常算錯的地方。</p>
+<p class="ans">$y'=\dfrac{e^x(1+\cos x+\sin x)}{(1+\cos x)^2}$</p>
+</details>
+</section>
+<section class="pq" id="p4-5-4">
+<p class="problem"><span class="tag">練習 4.5-4</span>求 $f(x)=xe^x$ 在 $x=0$ 的切線與法線。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f(0)=0$。積法則：$f'(x)=e^x+xe^x=(1+x)e^x$，$f'(0)=1$。</p>
+<p>切線 $y=1\cdot(x-0)+0$；法線斜率 $-\frac11=-1$。</p>
+<p class="ans">切線 $y=x$，法線 $y=-x$</p>
+</details>
+</section>
+<section class="pq" id="p4-5-5">
+<p class="problem"><span class="tag">練習 4.5-5</span>求曲線 $y=x^3-3x^2+1$ 上切線為水平的點。</p>
+<details class="solution"><summary>詳解</summary>
+<p>切線水平就是斜率 $0$：</p>
+$$y'=3x^2-6x=3x(x-2)=0\quad\Longrightarrow\quad x=0\text{ 或 }x=2$$
+<p>代回原式求 $y$：$x=0$ 時 $y=1$；$x=2$ 時 $y=8-12+1=-3$。</p>
+<p class="ans">$(0,1)$ 與 $(2,-3)$</p>
+</details>
+</section>
+</div>
 
 <h3 id="s4-5-2">4.5.2 積商法則的證明（講義標示不考）</h3>
 <p>積法則的關鍵技巧是在中間<strong>加一項再減一項</strong> $f(x+h)g(x)$：</p>
@@ -412,6 +623,7 @@ f^{(2023)} &= 2024!\,x \\[4pt]
 f^{(2024)} &= 2024! \\[4pt]
 f^{(2025)} &= 0
 \end{aligned}$$
+<p class="ans">$f^{(2022)}=\dfrac{2024!}{2}x^2$，$f^{(2023)}=2024!\,x$，$f^{(2024)}=2024!$，$f^{(2025)}=0$</p>
 </div>
 </section>
 
@@ -433,6 +645,7 @@ f^{(n+1)}&=(2x+2n)e^x+\bigl(x^2+2nx+n(n-1)\bigr)e^x\\
 &=\bigl(x^2+2(n+1)x+(n+1)n\bigr)e^x
 \end{aligned}$$
 <p>正是公式代 $n+1$，得證。</p>
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -443,7 +656,7 @@ f^{(n+1)}&=(2x+2n)e^x+\bigl(x^2+2nx+n(n-1)\bigr)e^x\\
 <p><strong>$n=1$</strong>：$f'=-(1+x)^{-2}=\dfrac{(-1)^1\,1!}{(1+x)^2}$，成立。</p>
 <p><strong>設 $n$ 時成立</strong>：$f^{(n)}=(-1)^n n!\,(1+x)^{-(n+1)}$，再微一次：</p>
 $$f^{(n+1)}=(-1)^n n!\cdot\bigl(-(n+1)\bigr)(1+x)^{-(n+2)}=\frac{(-1)^{n+1}(n+1)!}{(1+x)^{n+2}}$$
-<p>得證。</p>
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -471,6 +684,46 @@ $$f^{(n)}(0)=2\cdot253^n$$
 </div>
 </section>
 
+<div class="practice" id="p4-7">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p4-7-1">
+<p class="problem"><span class="tag">練習 4.7-1</span>$f(x)=x^5-2x^3$，求 $f''(1)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>微兩次再代值：$f'(x)=5x^4-6x^2$，$f''(x)=20x^3-12x$，$f''(1)=20-12=8$。</p>
+<p class="ans">$f''(1)=8$</p>
+</details>
+</section>
+<section class="pq" id="p4-7-2">
+<p class="problem"><span class="tag">練習 4.7-2</span>$f(x)=\cos x$，求 $f^{(2026)}(x)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$\cos x$ 微分的循環：$\cos x\to-\sin x\to-\cos x\to\sin x\to\cos x$，每 $4$ 次一輪。</p>
+<p>$2026=4\cdot506+2$，等於微 $2$ 次。</p>
+<p class="ans">$f^{(2026)}(x)=-\cos x$</p>
+</details>
+</section>
+<section class="pq" id="p4-7-3">
+<p class="problem"><span class="tag">練習 4.7-3</span>$f(x)=xe^x$。先算 $f'$、$f''$、$f'''$ 猜出 $f^{(n)}$，再用數學歸納法證明。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f'=(x+1)e^x$，$f''=e^x+(x+1)e^x=(x+2)e^x$，$f^{\prime\prime\prime}=(x+3)e^x$。猜 $f^{(n)}(x)=(x+n)e^x$。</p>
+<p><strong>$n=1$</strong>：$f'=(x+1)e^x$，成立。</p>
+<p><strong>設 $n$ 時成立</strong>，再微一次（積法則）：</p>
+$$f^{(n+1)}=1\cdot e^x+(x+n)e^x=\bigl(x+(n+1)\bigr)e^x$$
+<p>正是公式代 $n+1$。</p>
+<p class="ans">$f^{(n)}(x)=(x+n)e^x$，得證</p>
+</details>
+</section>
+<section class="pq" id="p4-7-4">
+<p class="problem"><span class="tag">練習 4.7-4</span>用 Leibniz 公式求 $(x^2\sin x)^{(50)}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>取 $f=x^2$，微三次就變 $0$，只剩 $k=0,1,2$：</p>
+$$(x^2\sin x)^{(50)}=x^2(\sin x)^{(50)}+\binom{50}{1}2x(\sin x)^{(49)}+\binom{50}{2}\cdot2\cdot(\sin x)^{(48)}$$
+<p>$\sin x$ 的循環：微 $0,1,2,3$ 次分別是 $\sin x,\cos x,-\sin x,-\cos x$。$50$ 除以 $4$ 餘 $2$，$49$ 餘 $1$，$48$ 餘 $0$：</p>
+$$x^2(-\sin x)+100x\cos x+1225\cdot2\sin x$$
+<p class="ans">$-x^2\sin x+100x\cos x+2450\sin x$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s4-8">4.8 連鎖律</h2>
 
@@ -492,6 +745,7 @@ $$a^x=e^{x\ln a}\quad\Longrightarrow\quad\frac{d}{dx}a^x=e^{x\ln a}\cdot\ln a=a^
 <p class="problem"><span class="tag">題 25</span>微分 $f(x)=(2x+3)^{2024}$。</p>
 <div class="solution"><span class="tag">詳解</span>
 $$f'(x)=2024(2x+3)^{2023}\cdot2=4048(2x+3)^{2023}$$
+<p class="ans">$f'(x)=4048(2x+3)^{2023}$</p>
 </div>
 </section>
 
@@ -503,6 +757,7 @@ $$\begin{aligned}
 f'(x) &= -\frac12(1+2x+\sin x)^{-3/2}\cdot(2+\cos x) \\
 &= -\frac{2+\cos x}{2(1+2x+\sin x)^{3/2}}
 \end{aligned}$$
+<p class="ans">$f'(x)=-\dfrac{2+\cos x}{2(1+2x+\sin x)^{3/2}}$</p>
 </div>
 </section>
 
@@ -513,6 +768,7 @@ f'(x) &= -\frac12(1+2x+\sin x)^{-3/2}\cdot(2+\cos x) \\
 $$f'(x)=\cos(x^2)\cdot2x=2x\cos(x^2)$$
 <p>$\sin^2x=(\sin x)^2$：外層平方，裡層 $\sin$。</p>
 $$g'(x)=2\sin x\cdot\cos x=\sin2x$$
+<p class="ans">$f'(x)=2x\cos(x^2)$，$g'(x)=\sin2x$</p>
 </div>
 </section>
 
@@ -521,6 +777,7 @@ $$g'(x)=2\sin x\cdot\cos x=\sin2x$$
 <div class="solution"><span class="tag">詳解</span>
 <p>三層：$e^{\square}$、$\tan\square$、$\sqrt x$，由外往內一層一層剝：</p>
 $$f'(x)=e^{\tan\sqrt x}\cdot\sec^2\sqrt x\cdot\frac{1}{2\sqrt x}$$
+<p class="ans">$f'(x)=\dfrac{e^{\tan\sqrt x}\sec^2\sqrt x}{2\sqrt x}$</p>
 </div>
 </section>
 
@@ -534,6 +791,7 @@ $$(\tanh x)'=\frac{\cosh x\cdot\cosh x-\sinh x\cdot\sinh x}{\cosh^2x}=1-\tanh^2x
 <p>又</p>
 $$\cosh^2x-\sinh^2x=\frac{(e^x+e^{-x})^2-(e^x-e^{-x})^2}{4}=\frac44=1$$
 <p>所以上式也等於 $\dfrac{1}{\cosh^2x}=\operatorname{sech}^2x$。</p>
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -555,6 +813,57 @@ $$f'(x)=\frac32(x+4)^{1/2}+e^x,\qquad f'(0)=\frac32\cdot2+1=4$$
 <tr><td>$a^x$</td><td>$a^x\ln a$</td></tr>
 </tbody>
 </table>
+</div>
+
+<div class="practice" id="p4-8">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p4-8-1">
+<p class="problem"><span class="tag">練習 4.8-1</span>微分 $f(x)=(x^2+1)^{10}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>外層 $\square^{10}$，裡層 $x^2+1$：</p>
+$$f'(x)=10(x^2+1)^9\cdot2x$$
+<p class="ans">$f'(x)=20x(x^2+1)^9$</p>
+</details>
+</section>
+<section class="pq" id="p4-8-2">
+<p class="problem"><span class="tag">練習 4.8-2</span>微分 $f(x)=\cos^3x$ 與 $g(x)=\cos(x^3)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$\cos^3x=(\cos x)^3$：外層立方，裡層 $\cos x$。</p>
+$$f'(x)=3\cos^2x\cdot(-\sin x)=-3\cos^2x\sin x$$
+<p>$\cos(x^3)$：外層 $\cos$，裡層 $x^3$。</p>
+$$g'(x)=-\sin(x^3)\cdot3x^2$$
+<p class="ans">$f'(x)=-3\cos^2x\sin x$，$g'(x)=-3x^2\sin(x^3)$</p>
+</details>
+</section>
+<section class="pq" id="p4-8-3">
+<p class="problem"><span class="tag">練習 4.8-3</span>微分 (a) $f(x)=e^{\sin2x}$；(b) $g(x)=2^{x^2}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>(a) 三層：$e^\square$、$\sin\square$、$2x$。</p>
+$$f'(x)=e^{\sin2x}\cdot\cos2x\cdot2$$
+<p>(b) 定理 4.8.2 $(a^u)'=a^u\ln a$，再乘裡層 $(x^2)'=2x$：</p>
+$$g'(x)=2^{x^2}\ln2\cdot2x$$
+<p class="ans">(a) $2\cos2x\,e^{\sin2x}$　(b) $2x\cdot2^{x^2}\ln2$</p>
+</details>
+</section>
+<section class="pq" id="p4-8-4">
+<p class="problem"><span class="tag">練習 4.8-4</span>微分 $f(x)=x^2\sqrt{1-x^2}$，並化成一個分式。</p>
+<details class="solution"><summary>詳解</summary>
+<p>先積法則，其中 $\sqrt{1-x^2}$ 要用連鎖律：$\left(\sqrt{1-x^2}\right)'=\dfrac{-2x}{2\sqrt{1-x^2}}=\dfrac{-x}{\sqrt{1-x^2}}$。</p>
+$$f'(x)=2x\sqrt{1-x^2}+x^2\cdot\frac{-x}{\sqrt{1-x^2}}$$
+<p>通分，第一項上下同乘 $\sqrt{1-x^2}$：</p>
+$$f'(x)=\frac{2x(1-x^2)-x^3}{\sqrt{1-x^2}}=\frac{2x-3x^3}{\sqrt{1-x^2}}$$
+<p class="ans">$f'(x)=\dfrac{2x-3x^3}{\sqrt{1-x^2}}$</p>
+</details>
+</section>
+<section class="pq" id="p4-8-5">
+<p class="problem"><span class="tag">練習 4.8-5</span>求 $\displaystyle\lim_{x\to0}\frac{e^{3x}+(1+x)^5-2}{x}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>考點</strong>：和<a href="#q30">題 30</a> 一樣，極限長得像差商就是導數。</p>
+<p>令 $f(x)=e^{3x}+(1+x)^5$，$f(0)=1+1=2$，所求為 $f'(0)$。</p>
+$$f'(x)=3e^{3x}+5(1+x)^4,\qquad f'(0)=3+5=8$$
+<p class="ans">$8$</p>
+</details>
+</section>
 </div>
 
 <!-- ================================================================ -->

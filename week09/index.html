@@ -88,6 +88,37 @@ $$\text{Area}=\lim_{n\to\infty}\frac{b-a}{n}\sum_{k=1}^{n}f\!\left(a+k\cdot\frac
 </div>
 <p>看懂這個式子：$\frac{b-a}n$ 是每個長方形的寬，$a+k\cdot\frac{b-a}n$ 是第 $k$ 個小區間的右端點，所以這就是右端點法。</p>
 
+<div class="practice" id="p9-1">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p9-1-1">
+<p class="problem"><span class="tag">練習 9.1-1</span>用右端點法求 $\displaystyle\int_0^2x\,dx$，再用三角形面積檢查。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$[0,2]$ 切 $n$ 等份，寬 $\frac2n$，第 $k$ 個右端點 $\frac{2k}n$，高 $f\!\left(\frac{2k}n\right)=\frac{2k}n$：</p>
+$$\sum_{k=1}^n\frac{2k}n\cdot\frac2n=\frac4{n^2}\sum_{k=1}^nk=\frac4{n^2}\cdot\frac{n(n+1)}2=\frac{2(n+1)}n\;\longrightarrow\;2$$
+<p>檢查：$y=x$ 在 $[0,2]$ 底下是底 $2$、高 $2$ 的三角形，面積 $\frac12\cdot2\cdot2=2$。</p>
+<p class="ans">$2$</p>
+</details>
+</section>
+<section class="pq" id="p9-1-2">
+<p class="problem"><span class="tag">練習 9.1-2</span>用右端點法求 $\displaystyle\int_0^3x^2\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>寬 $\frac3n$，第 $k$ 個右端點 $\frac{3k}n$，高 $\frac{9k^2}{n^2}$：</p>
+$$\sum_{k=1}^n\frac{9k^2}{n^2}\cdot\frac3n=\frac{27}{n^3}\cdot\frac{n(n+1)(2n+1)}6\;\longrightarrow\;\frac{27\cdot2}6=9$$
+<p>分子 $n(n+1)(2n+1)$ 展開最高次是 $2n^3$，和分母的 $n^3$ 相除得 $2$，其餘項都趨近 $0$。</p>
+<p class="ans">$9$</p>
+</details>
+</section>
+<section class="pq" id="p9-1-3">
+<p class="problem"><span class="tag">練習 9.1-3</span>用 $n=4$ 的左端點和估計 $\displaystyle\int_0^2x^2\,dx$，並說明是高估還是低估。</p>
+<details class="solution"><summary>詳解</summary>
+<p>寬 $\frac24=\frac12$，左端點 $0,\frac12,1,\frac32$：</p>
+$$\frac12\left(0^2+\left(\tfrac12\right)^2+1^2+\left(\tfrac32\right)^2\right)=\frac12\left(0+\frac14+1+\frac94\right)=\frac12\cdot\frac72=\frac74$$
+<p>$x^2$ 在 $[0,2]$ 遞增，每個小區間的左端點都是最低點，長方形全在曲線下方，所以是低估。（真正的值是 $\frac83\approx2.67$，$\frac74=1.75$ 確實偏小。）</p>
+<p class="ans">$\dfrac74$，低估</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s9-2">9.2 把 Riemann 和化成積分（*）</h2>
 
@@ -162,6 +193,57 @@ $$\frac{n}{\sqrt{n^2+n}}\le\sum_{k=1}^n\frac1{\sqrt{n^2+k}}\le1.$$
 </div>
 </section>
 
+<div class="practice" id="p9-2">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p9-2-1">
+<p class="problem"><span class="tag">練習 9.2-1</span>求 $\displaystyle\lim_{n\to\infty}\sum_{k=1}^n\frac{k}{n^2}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$\dfrac k{n^2}=\dfrac1n\cdot\dfrac kn$，$f(x)=x$，$\frac kn$ 從 $0$ 附近跑到 $1$：</p>
+$$\int_0^1x\,dx=\frac12$$
+<p>（三角形面積就看得出來，不用借 FTC。）</p>
+<p class="ans">$\dfrac12$</p>
+</details>
+</section>
+<section class="pq" id="p9-2-2">
+<p class="problem"><span class="tag">練習 9.2-2</span>求 $\displaystyle\lim_{n\to\infty}\frac1n\sum_{k=1}^n\sqrt{\frac kn}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>已經是標準形式：$f(x)=\sqrt x$，範圍 $[0,1]$。借用 FTC，$\left(\frac23x^{3/2}\right)'=x^{1/2}$：</p>
+$$\int_0^1\sqrt x\,dx=\frac23x^{3/2}\Big|_0^1=\frac23$$
+<p class="ans">$\dfrac23$</p>
+</details>
+</section>
+<section class="pq" id="p9-2-3">
+<p class="problem"><span class="tag">練習 9.2-3</span>求 $\displaystyle\lim_{n\to\infty}\sum_{k=1}^n\frac{n}{(n+k)^2}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>分子分母同除 $n^2$，湊出 $\frac kn$：</p>
+$$\frac n{(n+k)^2}=\frac{n/n^2}{(1+k/n)^2}=\frac1n\cdot\frac1{(1+k/n)^2}$$
+<p>$f(x)=\dfrac1{(1+x)^2}$，範圍 $[0,1]$。$\left(-\frac1{1+x}\right)'=\frac1{(1+x)^2}$：</p>
+$$\int_0^1\frac{dx}{(1+x)^2}=-\frac1{1+x}\Big|_0^1=-\frac12+1=\frac12$$
+<p class="ans">$\dfrac12$</p>
+</details>
+</section>
+<section class="pq" id="p9-2-4">
+<p class="problem"><span class="tag">練習 9.2-4</span>求 $\displaystyle\lim_{n\to\infty}\left(\frac1{n+1}+\frac1{n+2}+\cdots+\frac1{3n}\right)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>寫成 $\displaystyle\sum_{k=1}^{2n}\frac1{n+k}$。提 $\frac1n$：$\dfrac1{n+k}=\dfrac1n\cdot\dfrac1{1+k/n}$，$f(x)=\dfrac1{1+x}$。</p>
+<p>$k$ 跑到 $2n$，$\frac kn$ 就跑到 $2$，範圍 $[0,2]$。$\big(\ln(1+x)\big)'=\frac1{1+x}$：</p>
+$$\int_0^2\frac{dx}{1+x}=\ln3-\ln1=\ln3$$
+<p>和<a href="#q5">題 5</a> 比較：題 5 是 $f(x)=\frac1x$ 在 $[1,2]$，這題把 $1$ 放進分母，範圍就從 $0$ 開始。</p>
+<p class="ans">$\ln3$</p>
+</details>
+</section>
+<section class="pq" id="p9-2-5">
+<p class="problem"><span class="tag">練習 9.2-5</span>求 $\displaystyle\lim_{n\to\infty}\sum_{k=1}^n\frac{k}{n^2+k^2}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>分子分母同除 $n^2$：</p>
+$$\frac k{n^2+k^2}=\frac{k/n^2}{1+(k/n)^2}=\frac1n\cdot\frac{k/n}{1+(k/n)^2}$$
+<p>$f(x)=\dfrac x{1+x^2}$，範圍 $[0,1]$。$\left(\frac12\ln(1+x^2)\right)'=\frac12\cdot\frac{2x}{1+x^2}=\frac x{1+x^2}$：</p>
+$$\int_0^1\frac x{1+x^2}\,dx=\frac12\ln2$$
+<p class="ans">$\dfrac12\ln2$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s9-3">9.3 不能積分的函數（*）</h2>
 
@@ -209,6 +291,42 @@ $$\frac1n\sum_{k=1}^ne^{k/n}=\frac1n\cdot\frac{r(r^n-1)}{r-1}=\frac1n\cdot\frac{
 <p class="ans">$\displaystyle\int_0^1e^x\,dx=e-1$</p>
 </div>
 </section>
+
+<div class="practice" id="p9-3">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p9-3-1">
+<p class="problem"><span class="tag">練習 9.3-1</span>$f(x)=\begin{cases}x,&x\in[0,1]\cap\mathbb Q\\0,&x\in[0,1]\setminus\mathbb Q\end{cases}$。用上和、下和說明 $f$ 在 $[0,1]$ 不是 Riemann 可積。</p>
+<details class="solution"><summary>詳解</summary>
+<p>切成 $n$ 等份，第 $i$ 段 $\left[\frac{i-1}n,\frac in\right]$。</p>
+<p><strong>上和</strong>：段內的有理數讓 $f=x$，最大可以取到右端點 $\frac in$（它是有理數）。</p>
+$$U=\sum_{i=1}^n\frac in\cdot\frac1n=\frac{n(n+1)}{2n^2}\;\longrightarrow\;\frac12$$
+<p><strong>下和</strong>：段內一定有無理數，$f=0$，而 $f\ge0$，所以最小值是 $0$，$L=0$。</p>
+<p>$\frac12\neq0$，不可積。和<a href="#q8">題 8</a> 同一招，只是有理數那邊的高度從 $1$ 換成 $x$。</p>
+<p class="ans">上和 $\to\frac12$、下和 $=0$，不可積</p>
+</details>
+</section>
+<section class="pq" id="p9-3-2">
+<p class="problem"><span class="tag">練習 9.3-2</span>$f(x)=\begin{cases}5,&x=\frac12\\1,&\text{其他 }x\in[0,1]\end{cases}$。用上和、下和說明 $f$ 在 $[0,1]$ 可積，並求 $\displaystyle\int_0^1f(x)\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>切 $n$ 等份。$x=\frac12$ 最多落在兩個小區間裡（剛好是分點時同時屬於左右兩段）。</p>
+<p><strong>下和</strong>：每段都有 $f=1$ 的點，最小值都是 $1$，$L=n\cdot1\cdot\frac1n=1$。</p>
+<p><strong>上和</strong>：含 $\frac12$ 的段最大值是 $5$，其餘段是 $1$。最多兩段多出 $5-1=4$：</p>
+$$1\le U\le1+2\cdot4\cdot\frac1n\;\longrightarrow\;1$$
+<p>上和、下和極限都是 $1$，可積，積分為 $1$。單獨一個點的值改掉，面積不受影響。</p>
+<p class="ans">可積，$\displaystyle\int_0^1f(x)\,dx=1$</p>
+</details>
+</section>
+<section class="pq" id="p9-3-3">
+<p class="problem"><span class="tag">練習 9.3-3</span>用右端點法算 $f(x)=e^{2x}$ 在 $[0,1]$ 的 Riemann 和極限。</p>
+<details class="solution"><summary>詳解</summary>
+<p>照<a href="#q10">題 10</a>：寬 $\frac1n$，右端點 $\frac kn$，高 $e^{2k/n}=r^k$，$r=e^{2/n}$。等比級數：</p>
+$$\frac1n\sum_{k=1}^nr^k=\frac1n\cdot\frac{r(r^n-1)}{r-1}=(e^2-1)\cdot\frac{e^{2/n}}{n\left(e^{2/n}-1\right)}$$
+<p>令 $h=\frac2n\to0^+$，$n=\frac2h$：</p>
+$$\frac{e^{2/n}}{n\left(e^{2/n}-1\right)}=\frac{e^h}2\cdot\frac h{e^h-1}\;\longrightarrow\;\frac12\cdot1\cdot1=\frac12$$
+<p class="ans">$\displaystyle\int_0^1e^{2x}\,dx=\frac{e^2-1}2$</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="s9-4">9.4 定積分</h2>
@@ -425,6 +543,59 @@ $$\int_{-2}^2x^3\cos\frac x2\sqrt{4-x^2}\,dx+\frac12\int_{-2}^2\sqrt{4-x^2}\,dx.
 </div>
 </section>
 
+<div class="practice" id="p9-4">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p9-4-1">
+<p class="problem"><span class="tag">練習 9.4-1</span>用幾何求 $\displaystyle\int_{-2}^3(2-x)\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$y=2-x$ 在 $x=2$ 穿過 $x$ 軸。</p>
+<ul>
+<li>$[-2,2]$：$x$ 軸上方的三角形，底 $4$，高 $2-(-2)=4$，面積 $8$。</li>
+<li>$[2,3]$：下方的三角形，底 $1$，高 $|2-3|=1$，面積 $\frac12$，算負。</li>
+</ul>
+$$\int_{-2}^3(2-x)\,dx=8-\frac12=\frac{15}2$$
+<p class="ans">$\dfrac{15}2$</p>
+</details>
+</section>
+<section class="pq" id="p9-4-2">
+<p class="problem"><span class="tag">練習 9.4-2</span>求 $\displaystyle\int_0^4\sqrt{16-x^2}\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$y=\sqrt{16-x^2}$ 平方得 $x^2+y^2=16$、$y\ge0$，是半徑 $4$ 的上半圓。只積 $[0,4]$，是第一象限那四分之一：</p>
+$$\frac14\pi\cdot4^2=4\pi$$
+<p class="ans">$4\pi$</p>
+</details>
+</section>
+<section class="pq" id="p9-4-3">
+<p class="problem"><span class="tag">練習 9.4-3</span>求 $\displaystyle\int_{-3}^3\left(x^5\cos x+2\right)dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>由線性拆開。$x^5$ 奇、$\cos x$ 偶，乘起來是奇函數，對稱區間積分為 $0$（定理 9.4.1）。剩下常數 $2$ 在長度 $6$ 的區間上，是寬 $6$、高 $2$ 的長方形：</p>
+$$0+2\cdot6=12$$
+<p class="ans">$12$</p>
+</details>
+</section>
+<section class="pq" id="p9-4-4">
+<p class="problem"><span class="tag">練習 9.4-4</span>不必算出積分，證明 $\dfrac12\le\displaystyle\int_0^1\frac{1}{1+x^2}\,dx\le1$。</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>考點</strong>：先夾住被積函數，再用單調性積分。</p>
+<p>$0\le x\le1$ 時 $1\le1+x^2\le2$，取倒數不等號反向：</p>
+$$\frac12\le\frac1{1+x^2}\le1$$
+<p>三邊從 $0$ 積到 $1$，常數的積分是常數乘長度 $1$：</p>
+$$\frac12\le\int_0^1\frac{dx}{1+x^2}\le1$$
+<p>（實際值是 $\frac\pi4\approx0.785$，見<a href="#q6">題 6</a>。）</p>
+<p class="ans">得證</p>
+</details>
+</section>
+<section class="pq" id="p9-4-5">
+<p class="problem"><span class="tag">練習 9.4-5</span>求 $\displaystyle\int_{-1}^2\lfloor x\rfloor\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>一階一階看：$[-1,0)$ 上 $\lfloor x\rfloor=-1$，$[0,1)$ 上是 $0$，$[1,2)$ 上是 $1$，每階寬 $1$：</p>
+$$(-1)\cdot1+0\cdot1+1\cdot1=0$$
+<p>負的那一階在 $x$ 軸下方，算負面積，剛好和 $[1,2)$ 那一階抵消。</p>
+<p class="ans">$0$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s9-5">9.5 反函數的積分（*）</h2>
 
@@ -501,6 +672,36 @@ $$\int_0^1\left(f-f^{-1}\right)dx-\int_0^1\frac{x^2}2\,dx=0-\frac16=-\frac16.$$
 
 <div class="remark">
 <p>定理 9.5.1 寫的條件是「$f$ 為正」，這題 $f(1)=0$、上一題 $g(0)=0$，端點碰到 $0$ 不影響面積，公式照樣成立。$f$ 遞減時公式也對，只是 $\int_{f(a)}^{f(b)}$ 是由大積到小，要照反向積分的規則加負號。</p>
+</div>
+
+<div class="practice" id="p9-5">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p9-5-1">
+<p class="problem"><span class="tag">練習 9.5-1</span>$f$ 正、連續、遞增，$f(1)=2$、$f(4)=5$，且 $\displaystyle\int_1^4f(x)\,dx=10$。求 $\displaystyle\int_2^5f^{-1}(x)\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$a=1$、$b=4$，$f(a)=2$、$f(b)=5$，積分範圍 $[2,5]$ 正好對上。套定理 9.5.1：</p>
+$$10+\int_2^5f^{-1}(x)\,dx=4\cdot5-1\cdot2=18$$
+<p class="ans">$8$</p>
+</details>
+</section>
+<section class="pq" id="p9-5-2">
+<p class="problem"><span class="tag">練習 9.5-2</span>利用 $\displaystyle\int_0^1x^2\,dx=\frac13$（題 1）與反函數積分，求 $\displaystyle\int_0^1\sqrt x\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f(x)=x^2$ 在 $[0,1]$ 遞增、一對一，反函數是 $\sqrt x$。$f(0)=0$、$f(1)=1$：</p>
+$$\int_0^1x^2\,dx+\int_0^1\sqrt x\,dx=1\cdot1-0=1$$
+<p>所以 $\displaystyle\int_0^1\sqrt x\,dx=1-\frac13=\frac23$。不用 FTC 也不用 Riemann 和。</p>
+<p class="ans">$\dfrac23$</p>
+</details>
+</section>
+<section class="pq" id="p9-5-3">
+<p class="problem"><span class="tag">練習 9.5-3</span>利用 $\displaystyle\int_0^1e^x\,dx=e-1$（題 10）與反函數積分，求 $\displaystyle\int_1^e\ln x\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$\ln x$ 是 $e^x$ 的反函數。取 $f(x)=e^x$，$a=0$、$b=1$，$f(0)=1$、$f(1)=e$：</p>
+$$\int_0^1e^x\,dx+\int_1^e\ln x\,dx=1\cdot e-0\cdot1=e$$
+$$\int_1^e\ln x\,dx=e-(e-1)=1$$
+<p class="ans">$1$</p>
+</details>
+</section>
 </div>
 
 <!-- ================================================================ -->

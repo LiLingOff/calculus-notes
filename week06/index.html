@@ -107,6 +107,7 @@ $$2y^{-1/3}y'+y+xy'=0$$
 <p><strong>至多一根</strong>：若有兩根 $r_1\lt r_2$，則 $f(r_1)=f(r_2)=0$，由 Rolle 存在 $c\in(r_1,r_2)$ 使 $f'(c)=0$。但</p>
 $$f'(x)=20x^4+3x^2+7\ge7\gt0$$
 <p>永遠不是 $0$，矛盾。所以恰有一個實根。</p>
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -116,6 +117,7 @@ $$f'(x)=20x^4+3x^2+7\ge7\gt0$$
 <p>解 $x=\cos x$ 等於找 $f(x)=0$ 的根。</p>
 <p><strong>至少一根</strong>：$f(0)=-1\lt0$，$f(1)=1-\cos1\gt0$（$\cos1\lt1$）。勘根定理給出 $(0,1)$ 內一根。</p>
 <p><strong>至多一根</strong>：$f'(x)=1+\sin x$。在 $[0,1]$ 上 $\sin x\ge0$，所以 $f'(x)\ge1\gt0$。若有兩根，Rolle 給出 $f'(c)=0$，矛盾。</p>
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -130,6 +132,7 @@ $$f'(x)=20x^4+3x^2+7\ge7\gt0$$
 <li>$b\lt0$：在 $[b,0]$ 用 Rolle，同理矛盾。</li>
 </ul>
 <p>所以只有 $x=0$ 一根，交點只有 $(0,0)$。</p>
+<p class="ans">得證，唯一交點是 $(0,0)$</p>
 </div>
 </section>
 
@@ -142,6 +145,7 @@ $$f'(x)=\begin{cases}-1,&-1\lt x\lt0\\ 1,&0\lt x\lt1\end{cases}$$
 $$\lim_{h\to0^+}\frac{|h|-0}{h}=1,\qquad\lim_{h\to0^-}\frac{|h|-0}{h}=-1$$
 <p>左右極限不同，$f'(0)$ 不存在。所以 $f'$ 只取 $\pm1$，從來不是 $0$。</p>
 <p>Rolle 要求 $f$ 在整個 $(-1,1)$ 可微，$|x|$ 在 $0$ 有尖角，條件不成立，定理的結論就不保證。這題說明條件不能隨便拿掉。</p>
+<p class="ans">$f'(0)$ 不存在，Rolle 定理要求的可微條件不成立</p>
 </div>
 </section>
 
@@ -233,6 +237,7 @@ $$\frac{b-a}{b}\lt\frac{b-a}{c}\lt\frac{b-a}{a}$$
 <p><strong>$a\gt b$</strong>：$b\lt c\lt a$，所以 $\dfrac1a\lt\dfrac1c\lt\dfrac1b$。這次 $b-a\lt0$，乘上去不等號反向：</p>
 $$\frac{b-a}{b}\lt\frac{b-a}{c}\lt\frac{b-a}{a}$$
 <p>兩種情形得到同一串不等式，得證。</p>
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -262,6 +267,7 @@ $$\frac{b-a}{b}\lt\frac{b-a}{c}\lt\frac{b-a}{a}$$
 <p>任取 $[a,b]$ 中兩點 $x_1\lt x_2$。$f$ 在 $[x_1,x_2]$ 連續、在 $(x_1,x_2)$ 可微，用均值定理：存在 $c\in(x_1,x_2)$，</p>
 $$f(x_2)-f(x_1)=f'(c)(x_2-x_1)=0\cdot(x_2-x_1)=0$$
 <p>任兩點的函數值都相等，所以 $f$ 是常數。</p>
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -290,6 +296,7 @@ $$\begin{aligned}
 $$\frac{d}{dx}\sin^{-1}u=\frac{u'}{\sqrt{1-u^2}}=\frac{2}{(x+1)^2}\cdot\frac{x+1}{2\sqrt x}=\frac{1}{(x+1)\sqrt x}$$
 <p>兩項相同，$F'(x)=0$。$F$ 在 $[0,\infty)$ 連續，對任意 $b\gt0$ 在 $[0,b]$ 用定理 6.3.1，$F$ 是常數。代 $x=0$：</p>
 $$F(0)=2\tan^{-1}0-\sin^{-1}(-1)=0-\left(-\frac\pi2\right)=\frac\pi2$$
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -301,6 +308,7 @@ $$F'(x)=\frac{e^x}{1+e^{2x}}+\frac{-e^{-x}}{1+e^{-2x}}$$
 <p>第二項上下同乘 $e^{2x}$：$\dfrac{-e^{-x}\cdot e^{2x}}{e^{2x}+1}=\dfrac{-e^{x}}{1+e^{2x}}$，剛好和第一項抵消，$F'(x)=0$，$F$ 是常數。</p>
 <p>代 $x=0$：$F(0)=\tan^{-1}1+\tan^{-1}1=\dfrac\pi4+\dfrac\pi4=\dfrac\pi2$。</p>
 <p>（直覺：$e^x$ 與 $e^{-x}$ 互為倒數，而 $\tan^{-1}t+\tan^{-1}\frac1t=\frac\pi2$ 對 $t\gt0$ 成立，就是直角三角形的兩個銳角互餘。）</p>
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -316,6 +324,7 @@ $$\begin{aligned}
 \end{aligned}$$
 <p>倒數第二步用 $\sqrt{4x^2}=2x$，這裡用到了 $x\gt0$。$2\sin^{-1}x$ 的導數也是 $\dfrac{2}{\sqrt{1-x^2}}$，所以 $F'=0$。$F$ 在 $[0,1]$ 連續，由定理 6.3.1 是常數，$F(0)=0-\cos^{-1}1=0$。</p>
 <p>（$x\lt0$ 時 $\sqrt{4x^2}=-2x$，導數差一個負號，等式不成立：左邊是負的，右邊 $\cos^{-1}$ 永遠 $\ge0$。這就是題目限制 $x\ge0$ 的原因。）</p>
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -329,6 +338,7 @@ $$h'(x)=2\bigl(f-\sin x\bigr)\bigl(g-\cos x\bigr)+2\bigl(g-\cos x\bigr)\bigl(-f+
 <p>所以 $h$ 是常數，$h(x)=h(0)=(0-0)^2+(1-1)^2=0$。</p>
 <p>兩個平方和為 $0$，每個平方都必須是 $0$：$f(x)=\sin x$、$g(x)=\cos x$ 對所有 $x$ 成立。</p>
 <p>（這題說的是：滿足「導數互相輪替」與初始值的函數只有一組，所以 $\sin$、$\cos$ 可以用這組條件來定義。）</p>
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -380,6 +390,7 @@ $$f(x_2)-f(x_1)=f'(e)\,(x_2-x_1)$$
 <li>$f'(e)\gt0$ 推出 $f(x_2)\gt f(x_1)$，嚴格遞增。</li>
 <li>$f'(e)\lt0$ 推出 $f(x_2)\lt f(x_1)$，嚴格遞減。</li>
 </ol>
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -584,6 +595,7 @@ $$n\left(x^{1/n}-1\right)=\frac{x^h-x^0}{h}\;\xrightarrow{h\to0}\;\left.\frac{d}
 <p><strong>情形 2：某個 $x\in(a,b)$ 有 $f(x)\gt f(a)$。</strong>由極值定理，$f$ 在 $[a,b]$ 有最大值。最大值至少是 $f(x)$，比兩端的 $f(a)=f(b)$ 大，所以最大值不在端點，而在某個 $c\in(a,b)$。$c$ 是內部的最大值，當然也是局部極大，由 Fermat 定理 $f'(c)=0$。</p>
 <p><strong>情形 3：某個 $x\in(a,b)$ 有 $f(x)\lt f(a)$。</strong>同理，改用最小值。</p>
 <p>不是常數的話一定落在情形 2 或 3，所以三種情形涵蓋全部。</p>
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -600,6 +612,7 @@ $$h(x)=f(x)-f(a)-m(x-a)$$
 </ul>
 <p>由 Rolle，存在 $c\in(a,b)$ 使 $h'(c)=0$。而 $h'(x)=f'(x)-m$，所以</p>
 $$f'(c)=m=\frac{f(b)-f(a)}{b-a}$$
+<p class="ans">得證</p>
 </div>
 </section>
 
@@ -669,6 +682,7 @@ $$x_{k+1}=x_k-\frac{x_k^{1/3}}{\frac13x_k^{-2/3}}=x_k-3x_k=-2x_k$$
 <li>$x_1=-1$：$f(-1)=-1$，$f'(-1)=1$，$x_2=-1-\frac{-1}{1}=0$。</li>
 </ul>
 <p>回到起點，之後永遠在 $0,-1,0,-1,\ldots$ 打轉，不收斂。（真正的根約 $1.769$，要從它附近例如 $x_0=2$ 出發才找得到。）</p>
+<p class="ans">(a) $x_{k+1}=-2x_k$，越跳越遠而發散　(b) 在 $0$ 與 $-1$ 之間來回循環，不收斂</p>
 </div>
 </section>
 

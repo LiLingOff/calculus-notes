@@ -133,6 +133,9 @@ details.solution > summary {
   color: var(--muted);
   font-size: .9rem;
   cursor: pointer;
+  /* 連點展開／收合時不要反白「詳解」兩字 */
+  -webkit-user-select: none;
+  user-select: none;
 }
 details.solution > summary:hover { color: var(--accent); }
 details.solution:not([open]) { border-left-color: transparent; }

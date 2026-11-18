@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 13 積分招式三與四：分部積分、三角代換</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="../assets/math.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+<p class="back"><a href="../index.html">← 目錄</a></p>
+<h1>Week 13　積分招式三與四：分部積分、三角代換</h1>
+<p class="subtitle">AP Calculus I（115 學年）Lecture Note 13 教學與題解</p>
+
+<div class="erratum">
+<p><span class="tag">講義筆誤</span>p.109 最後一題：方程 $2^{y/2}-y=x$ 在 $x\in[0,2026]$ 上的解並不唯一（$x=0$ 時 $y=2$、$y=4$ 都是解）。講義答案對應的是 $y\ge4$ 那一支（函數在那裡遞增），題目應補上 $f(x)\ge4$ 之類的條件。見題 10。</p>
+</div>
+
+<p><a href="../week11/index.html">Week 11</a> 的變數變換是連鎖律倒過來。這週的兩招一樣是「把微分公式倒過來用」：</p>
+<ul>
+<li><strong>分部積分</strong>（integration by parts，IBP）是<strong>乘法律倒過來</strong>，專門處理「兩種不同函數相乘」，例如 $xe^x$、$x\sin x$、$\ln x$。</li>
+<li><strong>三角代換</strong>是一種特別的變數變換，用 $\sin^2+\cos^2=1$ 之類的恆等式把 $\sqrt{a^2-x^2}$ 這種根號拆掉。</li>
+</ul>
+
+<!-- ================================================================ -->
+<h2 id="s13-1">13.1 積分招式三：分部積分</h2>
+
+<p>乘法律說 $(uv)'=u'v+uv'$。兩邊積分再移項：</p>
+
+<div class="thm"><p><span class="tag">定理 13.1.1</span>（IBP）設 $u(x)$、$v(x)$ 可微，則</p>
+$$\int u(x)v'(x)\,dx=u(x)v(x)-\int u'(x)v(x)\,dx.$$
+<p>定積分版本：$\displaystyle\int_a^bu(x)v'(x)\,dx=\big[u(x)v(x)\big]_a^b-\int_a^bu'(x)v(x)\,dx$。</p></div>
+
+<p>習慣寫成 $\displaystyle\int u\,dv=uv-\int v\,du$。用法是把被積函數拆成兩塊：一塊叫 $u$（等一下要<strong>微分</strong>），一塊連同 $dx$ 叫 $dv$（等一下要<strong>積分</strong>）。拆得好，右邊的 $\int v\,du$ 會比原來簡單。</p>
+<p>挑選原則：$u$ 選「微分後變簡單」的（$x^n$ 微幾次就沒了、$\ln x$ 微完變 $\frac1x$），$dv$ 選「積得出來而且積完不會變複雜」的（$e^x$、$\sin x$）。</p>
+
+<figure>
+<img src="fig-ibp.svg" alt="uv 平面上一條曲線，曲線下方到 u 軸的藍色區域是 ∫v du，曲線左方到 v 軸的紅色區域是 ∫u dv，兩塊合起來是大矩形減小矩形">
+<figcaption>面積意義：藍 $\int v\,du$ ＋ 紅 $\int u\,dv$ ＝ $u(b)v(b)-u(a)v(a)$，也就是 $\big[uv\big]_a^b$。</figcaption>
+</figure>
+
+<section class="q" id="q1">
+<p class="problem"><span class="tag">題 1</span>求 $\displaystyle\int x\cdot e^x\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$x$ 微分會變成 $1$，$e^x$ 積分不變，所以令 $u=x$、$dv=e^x\,dx$，得 $du=dx$、$v=e^x$：</p>
+$$\int xe^x\,dx=xe^x-\int e^x\,dx=xe^x-e^x+C.$$
+<p>反過來選 $u=e^x$、$dv=x\,dx$ 會得到 $\frac{x^2}2e^x-\int\frac{x^2}2e^x\,dx$，次方越來越高，就是選錯了。</p>
+<p class="ans">$(x-1)e^x+C$</p>
+</div>
+</section>
+
+<div class="practice" id="p13-1">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p13-1-1">
+<p class="problem"><span class="tag">練習 13.1-1</span>求 $\displaystyle\int x\cos x\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $u=x$、$dv=\cos x\,dx$，$du=dx$、$v=\sin x$：</p>
+$$\int x\cos x\,dx=x\sin x-\int\sin x\,dx=x\sin x+\cos x+C.$$
+<p class="ans">$x\sin x+\cos x+C$</p>
+</details>
+</section>
+<section class="pq" id="p13-1-2">
+<p class="problem"><span class="tag">練習 13.1-2</span>求 $\displaystyle\int_0^1xe^{-x}\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $u=x$、$dv=e^{-x}\,dx$，$du=dx$、$v=-e^{-x}$：</p>
+$$\int_0^1xe^{-x}\,dx=\big[-xe^{-x}\big]_0^1+\int_0^1e^{-x}\,dx=-\frac1e+\big[-e^{-x}\big]_0^1=-\frac1e-\frac1e+1.$$
+<p class="ans">$1-\dfrac2e\approx0.264$</p>
+</details>
+</section>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="s13-2">13.2 L-I-A-T-E：誰當 $u$</h2>
+
+<p>選 $u$ 的口訣是 <strong>LIATE</strong>，越前面越優先當 $u$（剩下的當 $dv$）：</p>
+<ul>
+<li><strong>L</strong>og：$\ln x$</li>
+<li><strong>I</strong>nverse trig：$\tan^{-1}x$、$\sin^{-1}x$</li>
+<li><strong>A</strong>lgebraic：多項式 $x^n$</li>
+<li><strong>T</strong>rig：$\sin x$、$\cos x$</li>
+<li><strong>E</strong>xponential：$e^x$</li>
+</ul>
+<p>理由：L 和 I 不會直接積分，但微分後變成分式，很好處理；E 和 T 積分很輕鬆，適合放在 $dv$。</p>
+
+<h3 id="s13-2-1">13.2.1 A 型：多項式 × 指數或三角</h3>
+
+<p>多項式當 $u$，每做一次 IBP 次數降一。次數高時要連做好幾次，用<strong>表格法</strong>（tabular method）比較不會亂：左欄把 $u$ 一直微分到 $0$，右欄把 $dv$ 一直積分，斜線相乘，符號 $+,-,+,-,\dots$ 交錯。</p>
+
+<section class="q" id="q2">
+<p class="problem"><span class="tag">題 2</span>求 $\displaystyle\int(3x^2+2x)e^{3x}\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>表格法：</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>符號</th><th>$u$ 一直微分</th><th>$dv$ 一直積分</th></tr></thead>
+<tr><td>$+$</td><td>$3x^2+2x$</td><td>$e^{3x}$</td></tr>
+<tr><td>$-$</td><td>$6x+2$</td><td>$\frac13e^{3x}$</td></tr>
+<tr><td>$+$</td><td>$6$</td><td>$\frac19e^{3x}$</td></tr>
+<tr><td></td><td>$0$</td><td>$\frac1{27}e^{3x}$</td></tr>
+</table>
+</div>
+<p>左欄第 $k$ 列乘右欄第 $k+1$ 列，配上第 $k$ 列的符號：</p>
+$$e^{3x}\left[\frac{3x^2+2x}3-\frac{6x+2}9+\frac6{27}\right]=e^{3x}\left[x^2+\frac23x-\frac23x-\frac29+\frac29\right]=x^2e^{3x}.$$
+<p>驗算：$(x^2e^{3x})'=2xe^{3x}+3x^2e^{3x}$，正是被積函數。</p>
+<p class="ans">$x^2e^{3x}+C$</p>
+</div>
+</section>
+
+<h3 id="s13-2-2">13.2.2 L 或 I 型：只有一個函數也能 IBP</h3>
+
+<p>$\ln x$、$\tan^{-1}x$ 單獨出現時，把它當 $u$，$dv=dx$（也就是另一塊是 $1$）。微分後變成分式，通常就積得出來。</p>
+
+<section class="q" id="q3">
+<p class="problem"><span class="tag">題 3</span>求 $\displaystyle\int\ln x\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>令 $u=\ln x$、$dv=dx$，$du=\frac1x\,dx$、$v=x$：</p>
+$$\int\ln x\,dx=x\ln x-\int x\cdot\frac1x\,dx=x\ln x-x+C.$$
+<p class="ans">$x\ln x-x+C$（這個結果很常用，值得背）</p>
+</div>
+</section>
+
+<section class="q" id="q4">
+<p class="problem"><span class="tag">題 4</span>求 $\displaystyle\int\frac{\ln x}{\sqrt x}\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>L 優先，令 $u=\ln x$、$dv=x^{-1/2}\,dx$，$du=\frac1x\,dx$、$v=2\sqrt x$：</p>
+$$\int\frac{\ln x}{\sqrt x}\,dx=2\sqrt x\ln x-\int2\sqrt x\cdot\frac1x\,dx=2\sqrt x\ln x-\int2x^{-1/2}\,dx=2\sqrt x\ln x-4\sqrt x+C.$$
+<p class="ans">$2\sqrt x\ln x-4\sqrt x+C$</p>
+</div>
+</section>
+
+<h3 id="s13-2-3">13.2.3 TE 型：三角 × 指數，積兩次繞回來</h3>
+
+<p>$e^{ax}\sin bx$ 怎麼微分都不會消失，做兩次 IBP 會再出現原積分 $I$。這時把它當未知數，移項解出 $I$。兩次要<strong>選同一類當 $u$</strong>（都選三角或都選指數），不然會繞回原點得到 $I=I$。</p>
+
+<section class="q" id="q5">
+<p class="problem"><span class="tag">題 5</span>求 $\displaystyle\int\frac{\sin(4x)}{e^{3x}}\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>寫成 $I=\int e^{-3x}\sin4x\,dx$。第一次：$u=\sin4x$、$dv=e^{-3x}\,dx$，$v=-\frac13e^{-3x}$：</p>
+$$I=-\frac13e^{-3x}\sin4x+\frac43\int e^{-3x}\cos4x\,dx.$$
+<p>第二次同樣讓三角當 $u$：$u=\cos4x$、$dv=e^{-3x}\,dx$：</p>
+$$\int e^{-3x}\cos4x\,dx=-\frac13e^{-3x}\cos4x-\frac43\int e^{-3x}\sin4x\,dx=-\frac13e^{-3x}\cos4x-\frac43I.$$
+<p>代回：$I=-\frac13e^{-3x}\sin4x-\frac49e^{-3x}\cos4x-\frac{16}9I$，移項 $\frac{25}9I=-\frac19e^{-3x}(3\sin4x+4\cos4x)$。</p>
+<p class="ans">$-\dfrac{e^{-3x}}{25}\big(3\sin4x+4\cos4x\big)+C$</p>
+</div>
+</section>
+
+<div class="tip"><p><span class="tag">解題套路</span>算過一次就能記公式：</p>
+$$\int e^{ax}\sin bx\,dx=\frac{e^{ax}(a\sin bx-b\cos bx)}{a^2+b^2}+C,\qquad\int e^{ax}\cos bx\,dx=\frac{e^{ax}(a\cos bx+b\sin bx)}{a^2+b^2}+C.$$
+<p>題 5 是 $a=-3$、$b=4$。忘記符號就微分驗算。</p></div>
+
+<section class="q" id="q6">
+<p class="problem"><span class="tag">題 6</span>求 $\displaystyle\int e^{3x}\cdot2^x\,dx$。（提示：$2^x=e^{x\ln2}$。）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>這題其實不用 IBP。兩個指數合併：$e^{3x}\cdot e^{x\ln2}=e^{(3+\ln2)x}$，所以</p>
+$$\int e^{(3+\ln2)x}\,dx=\frac{e^{(3+\ln2)x}}{3+\ln2}+C.$$
+<p>看到兩個指數相乘，先想能不能合併，不要急著拆 $u$、$dv$。</p>
+<p class="ans">$\dfrac{2^xe^{3x}}{3+\ln2}+C$</p>
+</div>
+</section>
+
+<section class="q" id="q7">
+<p class="problem"><span class="tag">題 7</span>求 $\displaystyle\int_1^2\ln(x^x)\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>先化簡：$\ln(x^x)=x\ln x$。L 當 $u$：$u=\ln x$、$dv=x\,dx$，$v=\frac{x^2}2$：</p>
+$$\int_1^2x\ln x\,dx=\left[\frac{x^2}2\ln x\right]_1^2-\int_1^2\frac x2\,dx=2\ln2-\left[\frac{x^2}4\right]_1^2=2\ln2-\frac34.$$
+<p class="ans">$\ln4-\dfrac34$（與講義相同）</p>
+</div>
+</section>
+
+<section class="q" id="q8">
+<p class="problem"><span class="tag">題 8</span>求 $\displaystyle\int_0^1x^2\tan^{-1}x\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>I 比 A 優先：$u=\tan^{-1}x$、$dv=x^2\,dx$，$du=\frac{dx}{1+x^2}$、$v=\frac{x^3}3$：</p>
+$$\int_0^1x^2\tan^{-1}x\,dx=\left[\frac{x^3}3\tan^{-1}x\right]_0^1-\frac13\int_0^1\frac{x^3}{1+x^2}\,dx=\frac\pi{12}-\frac13\int_0^1\frac{x^3}{1+x^2}\,dx.$$
+<p>長除法：$\frac{x^3}{1+x^2}=x-\frac x{1+x^2}$，積分 $=\left[\frac{x^2}2-\frac12\ln(1+x^2)\right]_0^1=\frac12-\frac{\ln2}2$。</p>
+$$\frac\pi{12}-\frac13\left(\frac12-\frac{\ln2}2\right)=\frac\pi{12}-\frac16+\frac{\ln2}6=\frac{\pi-2+2\ln2}{12}.$$
+<p class="ans">$\dfrac1{12}(-2+\pi+\ln4)$（與講義相同）</p>
+</div>
+</section>
+
+<section class="q" id="q9">
+<p class="problem"><span class="tag">題 9</span>求 $\displaystyle\int_0^\pi e^x\sin(2x)\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>套 TE 公式，$a=1$、$b=2$：反導函數 $\frac{e^x(\sin2x-2\cos2x)}5$。（想自己推就照題 5 做兩次 IBP。）</p>
+<p>$x=\pi$：$\sin2\pi=0$、$\cos2\pi=1$，值 $-\frac{2e^\pi}5$。$x=0$：值 $-\frac25$。相減：</p>
+$$-\frac{2e^\pi}5+\frac25=-\frac25(e^\pi-1).$$
+<p class="ans">$-\dfrac25(e^\pi-1)\approx-8.86$（與講義相同）</p>
+</div>
+</section>
+
+<section class="q" id="q10">
+<p class="problem"><span class="tag">題 10</span>設 $y=f(x):[0,2026]\to\mathbb R$ 是 $2^{y/2}-y=x$（$x\in[0,2026]$）的唯一解。用變數變換求 $\displaystyle\int_0^{2026}f(x)\,dx$。<br>（講義此處條件不足，見頁首筆誤）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$f$ 寫不出公式，但它的反函數很清楚：$x=g(y)=2^{y/2}-y$。所以把積分變數從 $x$ 換成 $y$。</p>
+<p><strong>先找上下限。</strong>$x=0$：$2^{y/2}=y$，試出 $y=2$、$y=4$ 都對；$x=2026$：試 $y=22$，$2^{11}-22=2048-22=2026$。$g'(y)=\frac{\ln2}2\,2^{y/2}-1$ 在 $y\gt3.06$ 左右才為正，所以 $y\ge4$ 那一支是遞增的，$x$ 從 $0$ 到 $2026$ 對應 $y$ 從 $4$ 到 $22$（講義答案就是這一支）。</p>
+<p><strong>換變數。</strong>$x=g(y)$，$dx=g'(y)\,dy$，被積函數 $f(x)=y$：</p>
+$$\int_0^{2026}f(x)\,dx=\int_4^{22}y\,g'(y)\,dy.$$
+<p><strong>IBP。</strong>$u=y$、$dv=g'(y)\,dy$，$v=g(y)$：</p>
+$$=\big[y\,g(y)\big]_4^{22}-\int_4^{22}g(y)\,dy=22\cdot2026-4\cdot0-\int_4^{22}\left(2^{y/2}-y\right)dy.$$
+<p>$\int2^{y/2}\,dy=\frac{2\cdot2^{y/2}}{\ln2}$，從 $4$ 到 $22$ 是 $\frac{2(2048-4)}{\ln2}=\frac{4088}{\ln2}$；$\int_4^{22}y\,dy=\frac{484-16}2=234$。</p>
+$$44572-\frac{4088}{\ln2}+234=44806-\frac{4088}{\ln2}.$$
+<p>這其實就是 <a href="../week09/index.html#s9-5">Week 9 反函數的積分</a> 公式 $\int_a^bf=bf(b)-af(a)-\int_{f(a)}^{f(b)}f^{-1}$，這裡用 IBP 把它推了一次。</p>
+<p class="ans">$44806-\dfrac{4088}{\ln2}\approx38908$（與講義相同）</p>
+</div>
+</section>
+
+<h3 id="s13-2-4">13.2.4 雜例</h3>
+
+<section class="q" id="q11">
+<p class="problem"><span class="tag">題 11</span>求 $\displaystyle\int e^{\sqrt x}\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>先變數變換去根號：$t=\sqrt x$，$x=t^2$，$dx=2t\,dt$：</p>
+$$\int e^{\sqrt x}\,dx=\int2te^t\,dt.$$
+<p>這就是題 1：$\int te^t\,dt=(t-1)e^t$。所以結果 $2(t-1)e^t+C$，換回 $x$。</p>
+<p class="ans">$2(\sqrt x-1)e^{\sqrt x}+C$</p>
+</div>
+</section>
+
+<section class="q" id="q12">
+<p class="problem"><span class="tag">題 12</span>求 $\displaystyle\int\sec^3x\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>拆成 $\sec x\cdot\sec^2x$，$\sec^2x$ 積得出來：$u=\sec x$、$dv=\sec^2x\,dx$，$du=\sec x\tan x\,dx$、$v=\tan x$：</p>
+$$I=\sec x\tan x-\int\sec x\tan^2x\,dx=\sec x\tan x-\int\sec x(\sec^2x-1)\,dx=\sec x\tan x-I+\int\sec x\,dx.$$
+<p>又繞回 $I$，移項：$2I=\sec x\tan x+\ln|\sec x+\tan x|$。</p>
+<p class="ans">$\dfrac12\big(\sec x\tan x+\ln|\sec x+\tan x|\big)+C$（三角代換常用到，值得背）</p>
+</div>
+</section>
+
+<section class="q" id="q13">
+<p class="problem"><span class="tag">題 13</span><span class="lv">延伸</span>（特殊技巧）求 $\displaystyle\int_{-1}^1\left(x^2+\frac12\right)e^{x^2}\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$\int e^{x^2}\,dx$ 沒有初等反導函數，分開算行不通。技巧是只對 $x^2e^{x^2}$ 那半做 IBP，讓 $\int e^{x^2}$ 自己抵消：</p>
+<p>$x^2e^{x^2}=x\cdot xe^{x^2}$，令 $u=x$、$dv=xe^{x^2}\,dx$，$v=\frac12e^{x^2}$：</p>
+$$\int x^2e^{x^2}\,dx=\frac12xe^{x^2}-\frac12\int e^{x^2}\,dx.$$
+<p>所以 $\int\left(x^2+\frac12\right)e^{x^2}\,dx=\frac12xe^{x^2}-\frac12\int e^{x^2}\,dx+\frac12\int e^{x^2}\,dx=\frac12xe^{x^2}+C$。</p>
+<p>換個角度：$\left(xe^{x^2}\right)'=e^{x^2}+2x^2e^{x^2}=2\left(x^2+\frac12\right)e^{x^2}$，被積函數剛好是某個乘積的導數。</p>
+$$\left[\frac12xe^{x^2}\right]_{-1}^1=\frac e2-\left(-\frac e2\right)=e.$$
+<p class="ans">$e$</p>
+</div>
+</section>
+
+<section class="q" id="q14">
+<p class="problem"><span class="tag">題 14</span>求 $\displaystyle\int\frac{x+\sin x}{1+\cos x}\,dx$。（變數變換行不通。提示：$\cos2\theta=2\cos^2\theta-1$。）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>用半角：$1+\cos x=2\cos^2\frac x2$，$\sin x=2\sin\frac x2\cos\frac x2$。拆兩項：</p>
+$$\frac x{1+\cos x}=\frac x2\sec^2\frac x2,\qquad\frac{\sin x}{1+\cos x}=\frac{2\sin\frac x2\cos\frac x2}{2\cos^2\frac x2}=\tan\frac x2.$$
+<p>第一項 IBP：$u=x$、$dv=\frac12\sec^2\frac x2\,dx$，$v=\tan\frac x2$：</p>
+$$\int\frac x2\sec^2\frac x2\,dx=x\tan\frac x2-\int\tan\frac x2\,dx.$$
+<p>剩下的 $-\int\tan\frac x2$ 剛好和第二項 $+\int\tan\frac x2$ 抵消，和題 13 同一個招。</p>
+<p class="ans">$x\tan\dfrac x2+C$</p>
+</div>
+</section>
+
+<section class="q" id="q15">
+<p class="problem"><span class="tag">題 15</span>求下列積分。<br>
+(a) $\displaystyle\int(3x+x^2)\sin(2x)\,dx$　(b) $\displaystyle\int6\tan^{-1}\left(\frac8x\right)dx$　(c) $\displaystyle\int e^{2x}\cos\left(\frac x4\right)dx$<br>
+(d) $\displaystyle\int x^7\sin(2x^4)\,dx$　(e) $\displaystyle\int\tan^{-1}x\,dx$　(f) $\displaystyle\int\cos(\ln x)\,dx$<br>
+(g) $\displaystyle\int e^x\left(\frac{x-1}{x^2}\right)dx=\int e^x\left(\frac1x-\frac1{x^2}\right)dx$（提示：考慮 $\int e^x\cdot\frac1x\,dx$。）</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) 表格法，$u=3x+x^2\to3+2x\to2\to0$，$dv=\sin2x\to-\frac12\cos2x\to-\frac14\sin2x\to\frac18\cos2x$：</p>
+$$-\frac{(3x+x^2)\cos2x}2+\frac{(3+2x)\sin2x}4+\frac{2\cos2x}8.$$
+<p>(b) $u=\tan^{-1}\frac8x$、$dv=dx$。$du=\frac1{1+64/x^2}\cdot\left(-\frac8{x^2}\right)dx=-\frac8{x^2+64}\,dx$：</p>
+$$6\left[x\tan^{-1}\frac8x+\int\frac{8x}{x^2+64}\,dx\right]=6x\tan^{-1}\frac8x+24\ln(x^2+64)+C.$$
+<p>(c) TE 公式 $a=2$、$b=\frac14$，$a^2+b^2=\frac{65}{16}$：$\frac{16}{65}e^{2x}\left(2\cos\frac x4+\frac14\sin\frac x4\right)$。</p>
+<p>(d) 先換 $t=x^4$，$dt=4x^3\,dx$，$x^7\,dx=x^4\cdot x^3\,dx=\frac14t\,dt$：$\frac14\int t\sin2t\,dt$。再 IBP：$\int t\sin2t\,dt=-\frac t2\cos2t+\frac14\sin2t$。乘 $\frac14$ 換回 $x$。</p>
+<p>(e) $u=\tan^{-1}x$、$dv=dx$：$x\tan^{-1}x-\int\frac x{1+x^2}\,dx=x\tan^{-1}x-\frac12\ln(1+x^2)+C$。</p>
+<p>(f) 換 $t=\ln x$，$x=e^t$，$dx=e^t\,dt$：$\int e^t\cos t\,dt=\frac{e^t(\cos t+\sin t)}2$（TE 公式 $a=b=1$），$e^t=x$ 換回。</p>
+<p>(g) 對 $\int e^x\cdot\frac1x\,dx$ 做 IBP，$u=\frac1x$、$dv=e^x\,dx$：$\int\frac{e^x}x\,dx=\frac{e^x}x+\int\frac{e^x}{x^2}\,dx$。移項：$\int e^x\left(\frac1x-\frac1{x^2}\right)dx=\frac{e^x}x+C$。$\int\frac{e^x}x$ 本身積不出來，但它在相減中消掉了。一般地，$\int e^x\big(f(x)+f'(x)\big)\,dx=e^xf(x)+C$。</p>
+<p class="ans">(a) $-\frac{(3x+x^2)\cos2x}2+\frac{(3+2x)\sin2x}4+\frac{\cos2x}4+C$　(b) $6x\tan^{-1}\frac8x+24\ln(x^2+64)+C$<br>
+(c) $\frac{32}{65}e^{2x}\cos\frac x4+\frac4{65}e^{2x}\sin\frac x4+C$　(d) $-\frac18x^4\cos(2x^4)+\frac1{16}\sin(2x^4)+C$<br>
+(e) $x\tan^{-1}x-\frac12\ln(1+x^2)+C$　(f) $\frac x2\big(\cos(\ln x)+\sin(\ln x)\big)+C$　(g) $\frac{e^x}x+C$（皆與講義相同）</p>
+</div>
+</section>
+
+<div class="practice" id="p13-2">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p13-2-1">
+<p class="problem"><span class="tag">練習 13.2-1</span>求 $\displaystyle\int x^2\sin x\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>表格法：$u=x^2\to2x\to2\to0$，$dv=\sin x\to-\cos x\to-\sin x\to\cos x$，符號 $+,-,+$：</p>
+$$x^2(-\cos x)-2x(-\sin x)+2\cos x.$$
+<p class="ans">$-x^2\cos x+2x\sin x+2\cos x+C$</p>
+</details>
+</section>
+<section class="pq" id="p13-2-2">
+<p class="problem"><span class="tag">練習 13.2-2</span>求 $\displaystyle\int x^3\ln x\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>L 優先：$u=\ln x$、$dv=x^3\,dx$，$v=\frac{x^4}4$：</p>
+$$\frac{x^4}4\ln x-\int\frac{x^4}4\cdot\frac1x\,dx=\frac{x^4}4\ln x-\frac{x^4}{16}+C.$$
+<p class="ans">$\dfrac{x^4\ln x}4-\dfrac{x^4}{16}+C$</p>
+</details>
+</section>
+<section class="pq" id="p13-2-3">
+<p class="problem"><span class="tag">練習 13.2-3</span>求 $\displaystyle\int\sin^{-1}x\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$u=\sin^{-1}x$、$dv=dx$，$du=\frac{dx}{\sqrt{1-x^2}}$：</p>
+$$x\sin^{-1}x-\int\frac x{\sqrt{1-x^2}}\,dx.$$
+<p>後面令 $w=1-x^2$，$dw=-2x\,dx$：$\int\frac x{\sqrt{1-x^2}}\,dx=-\frac12\int w^{-1/2}\,dw=-\sqrt{1-x^2}$。</p>
+<p class="ans">$x\sin^{-1}x+\sqrt{1-x^2}+C$</p>
+</details>
+</section>
+<section class="pq" id="p13-2-4">
+<p class="problem"><span class="tag">練習 13.2-4</span>求 $\displaystyle\int_0^{\pi/2}e^x\cos x\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>TE 公式 $a=b=1$：反導函數 $\frac{e^x(\cos x+\sin x)}2$。</p>
+<p>$x=\frac\pi2$：$\frac{e^{\pi/2}(0+1)}2$；$x=0$：$\frac{1\cdot(1+0)}2$。相減。</p>
+<p class="ans">$\dfrac{e^{\pi/2}-1}2\approx1.905$</p>
+</details>
+</section>
+<section class="pq" id="p13-2-5">
+<p class="problem"><span class="tag">練習 13.2-5</span>求 $\displaystyle\int\sin\sqrt x\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>照題 11：$t=\sqrt x$，$dx=2t\,dt$，變成 $2\int t\sin t\,dt$。IBP $u=t$、$dv=\sin t\,dt$：$\int t\sin t\,dt=-t\cos t+\sin t$。</p>
+<p class="ans">$-2\sqrt x\cos\sqrt x+2\sin\sqrt x+C$</p>
+</details>
+</section>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="s13-3">13.3 應用：遞迴公式</h2>
+
+<p>被積函數帶一個次方 $n$ 時（$(\ln x)^n$、$\cos^nx$、$x^ne^x$），做一次 IBP 通常會把次方降一或降二，得到 $I_n$ 和 $I_{n-1}$（或 $I_{n-2}$）的關係，叫<strong>遞迴公式</strong>（reduction formula）。之後只要算最小的 $I_0$、$I_1$，一路往上代。</p>
+
+<h3 id="s13-3-1">13.3.1 例：$(\ln x)^n$ 的遞迴公式</h3>
+
+<section class="q" id="q16">
+<p class="problem"><span class="tag">題 16</span>令 $I_n=\int(\ln x)^n\,dx$。<br>
+(a) 證明 $\displaystyle\int(\ln x)^n\,dx=x(\ln x)^n-n\int(\ln x)^{n-1}\,dx$。<br>
+(b) 由此求 $I_3$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) 照題 3 的做法：$u=(\ln x)^n$、$dv=dx$，$du=n(\ln x)^{n-1}\cdot\frac1x\,dx$、$v=x$：</p>
+$$I_n=x(\ln x)^n-\int x\cdot n(\ln x)^{n-1}\frac1x\,dx=x(\ln x)^n-nI_{n-1}.$$
+<p>(b) 從 $I_1=x\ln x-x$（題 3）往上：</p>
+$$I_2=x(\ln x)^2-2I_1=x(\ln x)^2-2x\ln x+2x,$$
+$$I_3=x(\ln x)^3-3I_2=x(\ln x)^3-3x(\ln x)^2+6x\ln x-6x+C.$$
+<p class="ans">$I_3=x(\ln x)^3-3x(\ln x)^2+6x\ln x-6x+C$</p>
+</div>
+</section>
+
+<section class="q" id="q17">
+<p class="problem"><span class="tag">題 17</span>對每個 $n\in\mathbb N\cup\{0\}$，定義 $I_n=\displaystyle\int_1^ex(\ln x)^n\,dx$。<br>
+(a) 求 $I_0$、$I_1$。(b) 求 $I_{n+1}$ 與 $I_n$ 的遞迴關係。(c) 求 $I_4$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) $I_0=\int_1^ex\,dx=\frac{e^2-1}2$。$I_1$ 就是題 7 的積分：$\left[\frac{x^2}2\ln x-\frac{x^2}4\right]_1^e=\frac{e^2}2-\frac{e^2}4+\frac14=\frac{e^2+1}4$。</p>
+<p>(b) $u=(\ln x)^{n+1}$、$dv=x\,dx$，$du=(n+1)(\ln x)^n\frac1x\,dx$、$v=\frac{x^2}2$：</p>
+$$I_{n+1}=\left[\frac{x^2}2(\ln x)^{n+1}\right]_1^e-\frac{n+1}2\int_1^ex(\ln x)^n\,dx=\frac{e^2}2-\frac{n+1}2I_n.$$
+<p>（$\ln e=1$、$\ln1=0$，所以邊界項只剩 $\frac{e^2}2$。）</p>
+<p>(c) 往上代：</p>
+$$I_2=\frac{e^2}2-I_1=\frac{e^2-1}4,\quad I_3=\frac{e^2}2-\frac32I_2=\frac{e^2+3}8,\quad I_4=\frac{e^2}2-2I_3=\frac{e^2-3}4.$$
+<p>檢查：(b) 取 $n=0$ 得 $I_1=\frac{e^2}2-\frac12\cdot\frac{e^2-1}2=\frac{e^2+1}4$，和 (a) 一致。</p>
+<p class="ans">(a) $I_0=\frac{e^2-1}2$，$I_1=\frac{e^2+1}4$　(b) $I_{n+1}=\frac{e^2}2-\frac{n+1}2I_n$　(c) $I_4=\frac{e^2-3}4\approx1.097$</p>
+</div>
+</section>
+
+<section class="q" id="q18">
+<p class="problem"><span class="tag">題 18</span>令 $I_n=\int\cos^nx\,dx$，$n\in\mathbb N$。<br>
+(a) 證明 $I_n=\dfrac{\cos^{n-1}x\sin x}n+\dfrac{n-1}nI_{n-2}$。<br>
+(b) 求 $\displaystyle\int_0^{\pi/2}\cos^6x\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) 拆 $\cos^nx=\cos^{n-1}x\cdot\cos x$：$u=\cos^{n-1}x$、$dv=\cos x\,dx$，$du=-(n-1)\cos^{n-2}x\sin x\,dx$、$v=\sin x$：</p>
+$$I_n=\cos^{n-1}x\sin x+(n-1)\int\cos^{n-2}x\sin^2x\,dx.$$
+<p>$\sin^2x=1-\cos^2x$，後面的積分 $=I_{n-2}-I_n$：</p>
+$$I_n=\cos^{n-1}x\sin x+(n-1)I_{n-2}-(n-1)I_n\ \Rightarrow\ nI_n=\cos^{n-1}x\sin x+(n-1)I_{n-2}.$$
+<p>(b) 令 $J_n=\int_0^{\pi/2}\cos^nx\,dx$。邊界項在 $0$（$\sin0=0$）和 $\frac\pi2$（$\cos\frac\pi2=0$）都是 $0$（$n\ge2$），所以 $J_n=\frac{n-1}nJ_{n-2}$，$J_0=\frac\pi2$：</p>
+$$J_6=\frac56\cdot\frac34\cdot\frac12\cdot\frac\pi2=\frac{15\pi}{96}=\frac{5\pi}{32}.$$
+<p class="ans">(b) $\dfrac{5\pi}{32}$（與講義相同）</p>
+</div>
+</section>
+
+<section class="q" id="q19">
+<p class="problem"><span class="tag">題 19</span>令 $I_n=\int\tan^nx\,dx$，$n\ge2$。<br>
+(a) 證明 $I_n=\dfrac{\tan^{n-1}x}{n-1}-I_{n-2}$。<br>
+(b) 求 $\displaystyle\int\tan^5x\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) 這題用不到 IBP，靠 $\tan^2x=\sec^2x-1$：</p>
+$$I_n=\int\tan^{n-2}x(\sec^2x-1)\,dx=\int\tan^{n-2}x\sec^2x\,dx-I_{n-2}.$$
+<p>第一項令 $w=\tan x$，$dw=\sec^2x\,dx$：$\int w^{n-2}\,dw=\frac{w^{n-1}}{n-1}$。</p>
+<p>(b) $I_1=\int\tan x\,dx=-\ln|\cos x|$（<a href="../week11/index.html#q2">週十一題 2</a>）。</p>
+$$I_3=\frac{\tan^2x}2-I_1=\frac{\tan^2x}2+\ln|\cos x|,\qquad I_5=\frac{\tan^4x}4-I_3=\frac{\tan^4x}4-\frac{\tan^2x}2-\ln|\cos x|+C.$$
+<p>講義寫成 $\sec$ 的形式：$\tan^2x=\sec^2x-1$ 代入，$\frac{(\sec^2x-1)^2}4-\frac{\sec^2x-1}2=\frac{\sec^4x}4-\sec^2x+\frac34$，常數併進 $C$，兩者一樣。</p>
+<p class="ans">$\dfrac{\tan^4x}4-\dfrac{\tan^2x}2-\ln|\cos x|+C=\dfrac14\big(\sec^4x-4\sec^2x-4\ln|\cos x|\big)+C$（講義的 $\ln$ 漏了絕對值）</p>
+</div>
+</section>
+
+<div class="practice" id="p13-3">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p13-3-1">
+<p class="problem"><span class="tag">練習 13.3-1</span>令 $I_n=\int x^ne^x\,dx$。(a) 證明 $I_n=x^ne^x-nI_{n-1}$。(b) 求 $\displaystyle\int_0^1x^3e^x\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>(a) $u=x^n$、$dv=e^x\,dx$，$du=nx^{n-1}\,dx$、$v=e^x$：$I_n=x^ne^x-n\int x^{n-1}e^x\,dx$。</p>
+<p>(b) $I_0=e^x$，往上：$I_1=xe^x-e^x$，$I_2=x^2e^x-2I_1$，$I_3=x^3e^x-3I_2=e^x(x^3-3x^2+6x-6)$。</p>
+<p>代 $0$ 到 $1$：$e(1-3+6-6)-(-6)=-2e+6$。</p>
+<p class="ans">$6-2e\approx0.563$</p>
+</details>
+</section>
+<section class="pq" id="p13-3-2">
+<p class="problem"><span class="tag">練習 13.3-2</span>仿照題 18，證明 $J_n=\int_0^{\pi/2}\sin^nx\,dx$ 滿足 $J_n=\frac{n-1}nJ_{n-2}$（$n\ge2$），並求 $J_5$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$u=\sin^{n-1}x$、$dv=\sin x\,dx$，$du=(n-1)\sin^{n-2}x\cos x\,dx$、$v=-\cos x$：</p>
+$$J_n=\big[-\sin^{n-1}x\cos x\big]_0^{\pi/2}+(n-1)\int_0^{\pi/2}\sin^{n-2}x\cos^2x\,dx.$$
+<p>邊界項兩端都是 $0$；$\cos^2x=1-\sin^2x$，得 $J_n=(n-1)(J_{n-2}-J_n)$，整理成 $J_n=\frac{n-1}nJ_{n-2}$。</p>
+<p>奇數次從 $J_1=\int_0^{\pi/2}\sin x\,dx=1$ 開始：$J_3=\frac23$，$J_5=\frac45\cdot\frac23=\frac8{15}$。</p>
+<p class="ans">$J_5=\dfrac8{15}$</p>
+</details>
+</section>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="s13-4">13.4 積分招式四：三角代換</h2>
+
+<p>看到 $\sqrt{a^2-x^2}$、$\sqrt{a^2+x^2}$、$\sqrt{x^2-a^2}$，直接換 $u$ 通常拆不掉根號。三角代換的想法是讓根號裡變成完全平方：</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>看到</th><th>令</th><th>用的恆等式</th><th>根號變成</th></tr></thead>
+<tr><td>$\sqrt{a^2-x^2}$</td><td>$x=a\sin\theta$</td><td>$1-\sin^2\theta=\cos^2\theta$</td><td>$a\cos\theta$</td></tr>
+<tr><td>$\sqrt{a^2+x^2}$</td><td>$x=a\tan\theta$</td><td>$1+\tan^2\theta=\sec^2\theta$</td><td>$a\sec\theta$</td></tr>
+<tr><td>$\sqrt{x^2-a^2}$</td><td>$x=a\sec\theta$</td><td>$\sec^2\theta-1=\tan^2\theta$</td><td>$a\tan\theta$</td></tr>
+</table>
+</div>
+
+<figure>
+<img src="fig-trig.svg" alt="三個直角三角形：x = a sin θ 時斜邊 a、對邊 x、鄰邊根號 a²−x²；x = a tan θ 時斜邊根號 a²+x²、對邊 x、鄰邊 a；x = a sec θ 時斜邊 x、對邊根號 x²−a²、鄰邊 a">
+<figcaption>積完要換回 $x$ 時，畫對應的直角三角形，就能讀出 $\sin\theta$、$\cos\theta$、$\tan\theta$ 等用 $x$ 表示的式子。</figcaption>
+</figure>
+
+<div class="remark"><p>講義說：角度限制不用背，只要知道它帶來兩個「放心」。$x=a\sin\theta$、$x=a\tan\theta$ 時取 $\theta\in[-\frac\pi2,\frac\pi2]$，$x=a\sec\theta$（$x\ge a$）時取 $\theta\in[0,\frac\pi2)$。(i) 這時 $\cos\theta$ 或 $\tan\theta\ge0$，可以放心寫 $\sqrt{A^2}=|A|=A$；(ii) $\theta$ 落在反三角函數的值域，可以放心寫 $\theta=\sin^{-1}\frac xa$ 之類。</p></div>
+
+<h3 id="s13-4-1">13.4.1 $\sqrt{a^2-x^2}$ 型</h3>
+
+<section class="q" id="q20">
+<p class="problem"><span class="tag">題 20</span>求 $\displaystyle\int\frac{x^2}{\sqrt{1-4x^2}}\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$\sqrt{1-(2x)^2}$，令 $2x=\sin\theta$，即 $x=\frac12\sin\theta$，$dx=\frac12\cos\theta\,d\theta$，根號 $=\cos\theta$：</p>
+$$\int\frac{\frac14\sin^2\theta}{\cos\theta}\cdot\frac12\cos\theta\,d\theta=\frac18\int\sin^2\theta\,d\theta=\frac18\int\frac{1-\cos2\theta}2\,d\theta=\frac1{16}\left(\theta-\frac{\sin2\theta}2\right).$$
+<p>換回 $x$：$\sin\theta=2x$，三角形鄰邊 $\cos\theta=\sqrt{1-4x^2}$，$\frac{\sin2\theta}2=\sin\theta\cos\theta=2x\sqrt{1-4x^2}$：</p>
+$$\frac1{16}\sin^{-1}(2x)-\frac18x\sqrt{1-4x^2}+C.$$
+<p class="ans">$\dfrac1{16}\sin^{-1}(2x)-\dfrac x8\sqrt{1-4x^2}+C$</p>
+</div>
+</section>
+
+<h3 id="s13-4-2">13.4.2 $\sqrt{a^2+x^2}$ 型</h3>
+
+<section class="q" id="q21">
+<p class="problem"><span class="tag">題 21</span>求 $\displaystyle\int\frac{dx}{x^2+2x+5}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>先配方：$x^2+2x+5=(x+1)^2+4$，是 $a^2+u^2$ 的形式（$a=2$，$u=x+1$）。令 $x+1=2\tan\theta$，$dx=2\sec^2\theta\,d\theta$，分母 $=4\tan^2\theta+4=4\sec^2\theta$：</p>
+$$\int\frac{2\sec^2\theta}{4\sec^2\theta}\,d\theta=\frac12\theta+C=\frac12\tan^{-1}\frac{x+1}2+C.$$
+<p>熟了之後可以直接套 <a href="../week10/index.html">Week 10</a> 的 $\int\frac{du}{u^2+a^2}=\frac1a\tan^{-1}\frac ua$；三角代換就是這條公式的推導。</p>
+<p class="ans">$\dfrac12\tan^{-1}\dfrac{x+1}2+C$</p>
+</div>
+</section>
+
+<h3 id="s13-4-3">13.4.3 $\sqrt{x^2-a^2}$ 型</h3>
+
+<section class="q" id="q22">
+<p class="problem"><span class="tag">題 22</span>求 $\displaystyle\int_2^3\frac{dx}{(x^2-1)^{3/2}}$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>$x\ge1$，令 $x=\sec\theta$，$\theta\in[0,\frac\pi2)$，$dx=\sec\theta\tan\theta\,d\theta$，$(x^2-1)^{3/2}=\tan^3\theta$：</p>
+$$\int\frac{\sec\theta\tan\theta}{\tan^3\theta}\,d\theta=\int\frac{\sec\theta}{\tan^2\theta}\,d\theta=\int\frac{\cos\theta}{\sin^2\theta}\,d\theta=-\frac1{\sin\theta}.$$
+<p>（最後一步令 $w=\sin\theta$。）三角形：斜邊 $x$、鄰邊 $1$、對邊 $\sqrt{x^2-1}$，所以 $\sin\theta=\frac{\sqrt{x^2-1}}x$，反導函數 $-\frac x{\sqrt{x^2-1}}$。</p>
+$$\left[-\frac x{\sqrt{x^2-1}}\right]_2^3=-\frac3{\sqrt8}+\frac2{\sqrt3}=\frac{2\sqrt3}3-\frac{3\sqrt2}4.$$
+<p class="ans">$\dfrac{2\sqrt3}3-\dfrac{3\sqrt2}4\approx0.0940$</p>
+</div>
+</section>
+
+<h3 id="s13-4-4">13.4.4 先換一次再三角代換</h3>
+
+<p>根號裡不是 $x^2$ 而是 $e^{2x}$、$\sin^2x$、$(x-2)^2$ 時，把那一團當成新變數，再套上面三型。</p>
+
+<section class="q" id="q23">
+<p class="problem"><span class="tag">題 23</span>求 $\displaystyle\int e^{4x}\sqrt{1+e^{2x}}\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>根號裡是 $1+(e^x)^2$，令 $e^x=\tan\theta$，$e^x\,dx=\sec^2\theta\,d\theta$，根號 $=\sec\theta$。$e^{4x}\,dx=e^{3x}\cdot e^x\,dx=\tan^3\theta\sec^2\theta\,d\theta$：</p>
+$$\int\tan^3\theta\sec^3\theta\,d\theta=\int(\sec^2\theta-1)\sec^2\theta\cdot\sec\theta\tan\theta\,d\theta.$$
+<p>令 $s=\sec\theta$，$ds=\sec\theta\tan\theta\,d\theta$：$\int(s^4-s^2)\,ds=\frac{s^5}5-\frac{s^3}3$。$\sec\theta=\sqrt{1+\tan^2\theta}=\sqrt{1+e^{2x}}$。</p>
+<p class="ans">$\dfrac15(1+e^{2x})^{5/2}-\dfrac13(1+e^{2x})^{3/2}+C$</p>
+</div>
+</section>
+
+<div class="tip"><p><span class="tag">解題套路</span>題 23 也可以不用三角：令 $w=1+e^{2x}$，$dw=2e^{2x}\,dx$，$e^{2x}=w-1$，積分變成 $\frac12\int(w-1)\sqrt w\,dw$，一行做完。根號外面剛好有「根號裡的導數」時，普通變數變換通常比較快。</p></div>
+
+<section class="q" id="q24">
+<p class="problem"><span class="tag">題 24</span>求下列積分。<br>
+(a) $\displaystyle\int\sqrt{1-7x^2}\,dx$　(b) $\displaystyle\int\frac{\sqrt{x^2+16}}{x^4}\,dx$　(c) $\displaystyle\int x^3(3x^2-4)^{5/2}\,dx$<br>
+(d) $\displaystyle\int\frac{dx}{\sqrt{9x^2-36x+37}}$　(e) $\displaystyle\int\cos x\sqrt{9+25\sin^2x}\,dx$</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>(a) $\sqrt7x=\sin\theta$，$dx=\frac1{\sqrt7}\cos\theta\,d\theta$：</p>
+$$\frac1{\sqrt7}\int\cos^2\theta\,d\theta=\frac1{2\sqrt7}(\theta+\sin\theta\cos\theta)=\frac1{2\sqrt7}\left[\sin^{-1}(\sqrt7x)+\sqrt7x\sqrt{1-7x^2}\right].$$
+<p>(b) $x=4\tan\theta$，$dx=4\sec^2\theta\,d\theta$，根號 $=4\sec\theta$：</p>
+$$\int\frac{4\sec\theta\cdot4\sec^2\theta}{256\tan^4\theta}\,d\theta=\frac1{16}\int\frac{\cos\theta}{\sin^4\theta}\,d\theta=-\frac1{48\sin^3\theta}.$$
+<p>三角形：對邊 $x$、斜邊 $\sqrt{x^2+16}$，$\sin\theta=\frac x{\sqrt{x^2+16}}$，代回得 $-\frac{(x^2+16)^{3/2}}{48x^3}$。</p>
+<p>(c) 這題普通變數變換就好：$w=3x^2-4$，$dw=6x\,dx$，$x^2=\frac{w+4}3$：</p>
+$$\int x^2(3x^2-4)^{5/2}\cdot x\,dx=\frac1{18}\int(w+4)w^{5/2}\,dw=\frac1{18}\left(\frac29w^{9/2}+\frac87w^{7/2}\right)=\frac{w^{9/2}}{81}+\frac{4w^{7/2}}{63}.$$
+<p>(d) 配方：$9x^2-36x+37=9(x-2)^2+1$。令 $3(x-2)=\tan\theta$，$dx=\frac13\sec^2\theta\,d\theta$，根號 $=\sec\theta$：</p>
+$$\frac13\int\sec\theta\,d\theta=\frac13\ln|\sec\theta+\tan\theta|=\frac13\ln\left|\sqrt{9(x-2)^2+1}+3(x-2)\right|.$$
+<p>(e) 先換 $w=\sin x$，$dw=\cos x\,dx$：$\int\sqrt{9+25w^2}\,dw$。再令 $5w=3\tan\theta$，$dw=\frac35\sec^2\theta\,d\theta$，根號 $=3\sec\theta$：</p>
+$$\frac95\int\sec^3\theta\,d\theta=\frac9{10}\big(\sec\theta\tan\theta+\ln|\sec\theta+\tan\theta|\big)$$
+<p>（用題 12）。$\tan\theta=\frac{5w}3$、$\sec\theta=\frac{\sqrt{9+25w^2}}3$，代回：$\frac9{10}\cdot\frac{5w\sqrt{9+25w^2}}9=\frac{w\sqrt{9+25w^2}}2$。</p>
+<p class="ans">(a) $\frac1{2\sqrt7}\left[\sin^{-1}(\sqrt7x)+\sqrt7x\sqrt{1-7x^2}\right]+C$　(b) $-\frac{(x^2+16)^{3/2}}{48x^3}+C$<br>
+(c) $\frac{(3x^2-4)^{9/2}}{81}+\frac{4(3x^2-4)^{7/2}}{63}+C$　(d) $\frac13\ln\left|\sqrt{9(x-2)^2+1}+3(x-2)\right|+C$<br>
+(e) $\frac{\sin x\sqrt{9+25\sin^2x}}2+\frac9{10}\ln\left|\frac{5\sin x+\sqrt{9+25\sin^2x}}3\right|+C$（皆與講義相同）</p>
+</div>
+</section>
+
+<section class="q" id="q25">
+<p class="problem"><span class="tag">題 25</span>求 $\displaystyle\int\ln x\sin^{-1}x\,dx$。</p>
+<div class="solution"><span class="tag">詳解</span>
+<p>定義域 $0\lt x\le1$。L 和 I 都在，L 優先當 $u$：$u=\ln x$、$dv=\sin^{-1}x\,dx$。$v$ 是 <a href="#p13-2-3">練習 13.2-3</a> 的結果 $x\sin^{-1}x+\sqrt{1-x^2}$：</p>
+$$\int\ln x\sin^{-1}x\,dx=\ln x\left(x\sin^{-1}x+\sqrt{1-x^2}\right)-\int\left(\sin^{-1}x+\frac{\sqrt{1-x^2}}x\right)dx.$$
+<p>第一塊 $\int\sin^{-1}x\,dx=x\sin^{-1}x+\sqrt{1-x^2}$。第二塊三角代換 $x=\sin\theta$，$dx=\cos\theta\,d\theta$：</p>
+$$\int\frac{\cos\theta}{\sin\theta}\cos\theta\,d\theta=\int\frac{1-\sin^2\theta}{\sin\theta}\,d\theta=\int(\csc\theta-\sin\theta)\,d\theta=-\ln|\csc\theta+\cot\theta|+\cos\theta.$$
+<p>$\csc\theta=\frac1x$、$\cot\theta=\frac{\sqrt{1-x^2}}x$、$\cos\theta=\sqrt{1-x^2}$，所以第二塊 $=-\ln\frac{1+\sqrt{1-x^2}}x+\sqrt{1-x^2}$。全部合起來（兩個 $\sqrt{1-x^2}$ 都帶負號）：</p>
+$$\left(x\sin^{-1}x+\sqrt{1-x^2}\right)\ln x-x\sin^{-1}x-2\sqrt{1-x^2}+\ln\frac{1+\sqrt{1-x^2}}x+C.$$
+<p class="ans">$\left(x\sin^{-1}x+\sqrt{1-x^2}\right)\ln x-x\sin^{-1}x-2\sqrt{1-x^2}+\ln\dfrac{1+\sqrt{1-x^2}}x+C$</p>
+</div>
+</section>
+
+<div class="practice" id="p13-4">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p13-4-1">
+<p class="problem"><span class="tag">練習 13.4-1</span>求 $\displaystyle\int\frac{dx}{x^2\sqrt{4-x^2}}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$x=2\sin\theta$，$dx=2\cos\theta\,d\theta$，根號 $=2\cos\theta$：</p>
+$$\int\frac{2\cos\theta}{4\sin^2\theta\cdot2\cos\theta}\,d\theta=\frac14\int\csc^2\theta\,d\theta=-\frac14\cot\theta+C.$$
+<p>三角形：對邊 $x$、斜邊 $2$、鄰邊 $\sqrt{4-x^2}$，$\cot\theta=\frac{\sqrt{4-x^2}}x$。</p>
+<p class="ans">$-\dfrac{\sqrt{4-x^2}}{4x}+C$</p>
+</details>
+</section>
+<section class="pq" id="p13-4-2">
+<p class="problem"><span class="tag">練習 13.4-2</span>求 $\displaystyle\int_0^3\frac{dx}{(x^2+9)^{3/2}}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$x=3\tan\theta$，$dx=3\sec^2\theta\,d\theta$，$(x^2+9)^{3/2}=27\sec^3\theta$。上下限 $x=0\to\theta=0$，$x=3\to\theta=\frac\pi4$：</p>
+$$\int_0^{\pi/4}\frac{3\sec^2\theta}{27\sec^3\theta}\,d\theta=\frac19\int_0^{\pi/4}\cos\theta\,d\theta=\frac19\sin\frac\pi4=\frac{\sqrt2}{18}.$$
+<p class="ans">$\dfrac{\sqrt2}{18}\approx0.0786$</p>
+</details>
+</section>
+<section class="pq" id="p13-4-3">
+<p class="problem"><span class="tag">練習 13.4-3</span>設 $x\ge3$，求 $\displaystyle\int\frac{\sqrt{x^2-9}}x\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$x=3\sec\theta$，$\theta\in[0,\frac\pi2)$，$dx=3\sec\theta\tan\theta\,d\theta$，根號 $=3\tan\theta$：</p>
+$$\int\frac{3\tan\theta}{3\sec\theta}\cdot3\sec\theta\tan\theta\,d\theta=3\int\tan^2\theta\,d\theta=3\int(\sec^2\theta-1)\,d\theta=3\tan\theta-3\theta.$$
+<p>$\tan\theta=\frac{\sqrt{x^2-9}}3$；$\sec\theta=\frac x3$ 即 $\cos\theta=\frac3x$，$\theta=\cos^{-1}\frac3x$。</p>
+<p class="ans">$\sqrt{x^2-9}-3\cos^{-1}\dfrac3x+C$</p>
+</details>
+</section>
+<section class="pq" id="p13-4-4">
+<p class="problem"><span class="tag">練習 13.4-4</span>求 $\displaystyle\int\frac{dx}{\sqrt{x^2+4x+8}}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>配方：$(x+2)^2+4$。令 $x+2=2\tan\theta$，$dx=2\sec^2\theta\,d\theta$，根號 $=2\sec\theta$：</p>
+$$\int\sec\theta\,d\theta=\ln|\sec\theta+\tan\theta|=\ln\left|\frac{\sqrt{x^2+4x+8}}2+\frac{x+2}2\right|.$$
+<p>$\ln\frac12$ 是常數，併進 $C$。</p>
+<p class="ans">$\ln\left(x+2+\sqrt{x^2+4x+8}\right)+C$</p>
+</details>
+</section>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="summary">本週必背總整理</h2>
+<ol>
+<li><strong>分部積分 = 乘法律倒過來</strong>：$\int u\,dv=uv-\int v\,du$；定積分邊界項 $\big[uv\big]_a^b$ 別忘了</li>
+<li><strong>LIATE</strong>：Log、Inverse trig、Algebraic、Trig、Exp，越前面越優先當 $u$；$\ln x$、$\tan^{-1}x$ 單獨出現就配 $dv=dx$（題 3、15(e)）</li>
+<li><strong>多項式 × 指數或三角</strong>用表格法，一直微分到 $0$，符號 $+,-,+,\dots$（題 2、15(a)）</li>
+<li><strong>TE 型積兩次繞回來</strong>，移項解 $I$；公式 $\int e^{ax}\sin bx\,dx=\frac{e^{ax}(a\sin bx-b\cos bx)}{a^2+b^2}$、$\int e^{ax}\cos bx\,dx=\frac{e^{ax}(a\cos bx+b\sin bx)}{a^2+b^2}$</li>
+<li><strong>常用結果</strong>：$\int\ln x\,dx=x\ln x-x$，$\int\sec^3x\,dx=\frac12(\sec x\tan x+\ln|\sec x+\tan x|)$，$\int e^x(f+f')\,dx=e^xf$</li>
+<li><strong>遞迴公式</strong>：IBP 讓次方降一或降二；$\int_0^{\pi/2}\cos^nx\,dx=\frac{n-1}n\int_0^{\pi/2}\cos^{n-2}x\,dx$</li>
+<li><strong>三角代換</strong>：$\sqrt{a^2-x^2}\to x=a\sin\theta$，$\sqrt{a^2+x^2}\to x=a\tan\theta$，$\sqrt{x^2-a^2}\to x=a\sec\theta$；先配方；換回 $x$ 時畫直角三角形</li>
+<li><strong>先想簡單的</strong>：兩個指數能合併（題 6）、根號外有根號裡的導數（題 23、24(c)），普通變數變換就好</li>
+</ol>
+
+</main>
+</body>
+</html>

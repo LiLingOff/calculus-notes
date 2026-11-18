@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 260" width="380" height="260"><style>
+.ax{stroke:#6b7280;stroke-width:1.2;fill:none}
+.ah{fill:#6b7280}
+.tk{stroke:#6b7280;stroke-width:1}
+.tl{font:12px system-ui,sans-serif;fill:#6b7280}
+.lb{font:15px "Times New Roman","Microsoft JhengHei",serif;fill:#1f2328}
+.lb.it{font-style:italic}
+.pt-open{fill:#fff}
+@media (prefers-color-scheme:dark){
+.ax{stroke:#9aa2ae}.ah{fill:#9aa2ae}.tk{stroke:#9aa2ae}.tl{fill:#9aa2ae}
+.lb{fill:#e4e6ea}.pt-open{fill:#17191d}
+}
+</style><defs><clipPath id="clip"><rect x="24" y="24" width="332" height="212"/></clipPath></defs><rect x="26" y="43.33" width="328" height="57.78" fill="#e08a1e" fill-opacity="0.18" clip-path="url(#clip)"/><line class="ax" x1="18" y1="130" x2="362" y2="130"/><path class="ah" d="M368,130 l-9,-4 v8 z"/><line class="ax" x1="190" y1="242" x2="190" y2="18"/><path class="ah" d="M190,12 l-4,9 h8 z"/><text class="lb it" x="364" y="148" text-anchor="end">x</text><text class="lb it" x="182" y="22" text-anchor="end">y</text><line class="tk" x1="187" y1="72.22" x2="193" y2="72.22"/><text class="tl" x="184" y="76.22" text-anchor="end">1</text><line class="tk" x1="187" y1="187.78" x2="193" y2="187.78"/><text class="tl" x="184" y="191.78" text-anchor="end">−1</text><path d="M190,72.22 L354,72.22" fill="none" stroke="#2f6fe4" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#clip)"/><path d="M26,187.78 L190,187.78" fill="none" stroke="#2f6fe4" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#clip)"/><circle cx="190" cy="72.22" r="4" class="pt-open" stroke="#2f6fe4" stroke-width="2"/><circle cx="190" cy="187.78" r="4" class="pt-open" stroke="#2f6fe4" stroke-width="2"/><text class="lb" x="33.45" y="57.78" text-anchor="start" style="fill:#e08a1e;font-size:13px">猜 L = 1，帶寬 2ε = 1</text><text class="lb" x="108" y="167.56" text-anchor="middle" style="fill:#e0483c;font-size:13px">左邊永遠在帶外</text></svg>

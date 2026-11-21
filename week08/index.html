@@ -195,6 +195,70 @@ $$\lim_{x\to\infty}\frac{x+\cos x}{x-\cos x}=\lim_{x\to\infty}\frac{1+\frac{\cos
 </div>
 </section>
 
+<div class="practice" id="p8-0">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p8-0-1">
+<p class="problem"><span class="tag">練習 8.0-1</span>求 $\displaystyle\lim_{x\to0}\frac{e^x-1-x}{x^2}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>代 $x=0$：分子 $1-1-0=0$，分母 $0$，$\frac00$ 型。微分一次：</p>
+$$\lim_{x\to0}\frac{e^x-1-x}{x^2}\overset{L}{=}\lim_{x\to0}\frac{e^x-1}{2x}$$
+<p>再代 $x=0$ 還是 $\frac00$，可以再用一次：</p>
+$$\overset{L}{=}\lim_{x\to0}\frac{e^x}{2}=\frac12$$
+<p class="ans">$\dfrac12$</p>
+</details>
+</section>
+<section class="pq" id="p8-0-2">
+<p class="problem"><span class="tag">練習 8.0-2</span>求 $\displaystyle\lim_{x\to\infty}\frac{(\ln x)^2}{x}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$x\to\infty$ 時分子分母都 $\to\infty$，$\frac\infty\infty$ 型。分子的導數是 $2\ln x\cdot\frac1x$：</p>
+$$\lim_{x\to\infty}\frac{(\ln x)^2}{x}\overset{L}{=}\lim_{x\to\infty}\frac{2\ln x}{x}$$
+<p>還是 $\frac\infty\infty$ 型，再用一次：</p>
+$$\overset{L}{=}\lim_{x\to\infty}\frac{2/x}{1}=0$$
+<p>每微分一次，$\ln$ 的次方就少一次，最後只剩 $\frac1x$。同樣的做法可以推廣：對任何 $n$ 和任何 $p\gt0$，$\dfrac{(\ln x)^n}{x^p}\to0$。也就是對數比任何正次方的 $x$ 都長得慢。</p>
+<p class="ans">$0$</p>
+</details>
+</section>
+<section class="pq" id="p8-0-3">
+<p class="problem"><span class="tag">練習 8.0-3</span>求 $\displaystyle\lim_{x\to0}\left(\frac1x-\frac1{e^x-1}\right)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$x\to0$ 時 $\frac1x$ 和 $\frac1{e^x-1}$ 都爆開（$x\to0^+$ 時都是 $+\infty$，$x\to0^-$ 時都是 $-\infty$），是 $\infty-\infty$ 型。通分：</p>
+$$\frac1x-\frac1{e^x-1}=\frac{(e^x-1)-x}{x(e^x-1)}=\frac{e^x-1-x}{x(e^x-1)}\quad(\tfrac00\text{ 型})$$
+<p>微分一次，分母用乘法則：</p>
+$$\overset{L}{=}\lim_{x\to0}\frac{e^x-1}{(e^x-1)+xe^x}$$
+<p>代 $x=0$ 還是 $\frac00$，再用一次：</p>
+$$\overset{L}{=}\lim_{x\to0}\frac{e^x}{e^x+e^x+xe^x}=\frac{1}{1+1+0}=\frac12$$
+<p>另一個做法：分子就是<a href="#p8-0-1">練習 8.0-1</a> 的分子，把分母拆成 $x^2\cdot\dfrac{e^x-1}{x}$，原式 $=\dfrac{e^x-1-x}{x^2}\cdot\dfrac{x}{e^x-1}\to\dfrac12\cdot1$。</p>
+<p class="ans">$\dfrac12$</p>
+</details>
+</section>
+<section class="pq" id="p8-0-4">
+<p class="problem"><span class="tag">練習 8.0-4</span>求<br>
+(a) $\displaystyle\lim_{x\to\infty}x^{1/x}$　(b) $\displaystyle\lim_{x\to0^+}(1+\sin2x)^{1/x}$</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>考點</strong>：次方型先寫成 $e^{g\ln f}$，算出指數的極限 $M$，答案 $e^M$。</p>
+<p>(a) 底數 $x\to\infty$，指數 $\frac1x\to0$，$\infty^0$ 型。$x^{1/x}=e^{\frac{\ln x}{x}}$，指數是 $\frac\infty\infty$ 型：</p>
+$$\lim_{x\to\infty}\frac{\ln x}{x}\overset{L}{=}\lim_{x\to\infty}\frac{1/x}{1}=0$$
+<p>所以原式 $=e^0=1$。</p>
+<p class="ans">(a) $1$</p>
+<p>(b) 底數 $1+\sin2x\to1$，指數 $\frac1x\to\infty$，$1^\infty$ 型。$(1+\sin2x)^{1/x}=e^{\frac{\ln(1+\sin2x)}{x}}$，指數是 $\frac00$ 型：</p>
+$$\lim_{x\to0^+}\frac{\ln(1+\sin2x)}{x}\overset{L}{=}\lim_{x\to0^+}\frac{\frac{2\cos2x}{1+\sin2x}}{1}=\frac{2\cdot1}{1+0}=2$$
+<p>所以原式 $=e^2$。</p>
+<p class="ans">(b) $e^2$</p>
+</details>
+</section>
+<section class="pq" id="p8-0-5">
+<p class="problem"><span class="tag">練習 8.0-5</span>學生 C 的作業：</p>
+$$\lim_{x\to0}\frac{x^2+3}{x+1}=\lim_{x\to0}\frac{2x}{1}=0.$$
+<p class="problem">指出哪裡錯了，並求正確答案。</p>
+<details class="solution"><summary>詳解</summary>
+<p>錯在<strong>第一步就不該用羅必達</strong>。$x=0$ 時分子 $0+3=3$，分母 $0+1=1$，原式是 $\frac31$，不是 $\frac00$ 也不是 $\frac\infty\infty$，根本不是不定型，直接代值就結束了。</p>
+<p>和<a href="#q6">題 6</a> 對照：題 6 是第一步合法，第二步才變成不是不定型，所以前半段的寫法是對的。學生 C 是連第一步都不合法。兩者都是「用之前沒有先確認不定型」。</p>
+$$\lim_{x\to0}\frac{x^2+3}{x+1}=\frac{3}{1}=3$$
+<p class="ans">正確答案是 $3$；原式一開始就是 $\frac31$，不是不定型，不能用羅必達</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="summary">本週必背總整理</h2>
 <ol>

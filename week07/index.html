@@ -169,6 +169,54 @@ $$f(x)=\begin{cases}x,&0\lt x\lt1\\[2pt]\tfrac12,&x=0\text{ 或 }x=1\end{cases}$
 </div>
 </section>
 
+<div class="practice" id="p7-1">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p7-1-1">
+<p class="problem"><span class="tag">練習 7.1-1</span>求 $f(x)=x^3-3x+1$ 在 $[0,2]$ 上的全域最大值與最小值。</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>考點</strong>：閉區間找極值，臨界點加端點全部代入。</p>
+<p>$f'(x)=3x^2-3=3(x-1)(x+1)$，臨界點 $x=\pm1$，其中 $x=-1$ 不在 $[0,2]$ 內，捨去。</p>
+$$f(0)=1,\qquad f(1)=-1,\qquad f(2)=8-6+1=3$$
+<p>最大的是 $3$，最小的是 $-1$。最大值在端點，所以端點不能漏。</p>
+<p class="ans">$M=3$（在 $x=2$），$m=-1$（在 $x=1$）</p>
+</details>
+</section>
+<section class="pq" id="p7-1-2">
+<p class="problem"><span class="tag">練習 7.1-2</span>求 $f(x)=xe^{-x}$ 在 $[0,3]$ 上的全域最大值與最小值。</p>
+<details class="solution"><summary>詳解</summary>
+<p>積法則：</p>
+$$f'(x)=e^{-x}-xe^{-x}=(1-x)e^{-x}$$
+<p>$e^{-x}\gt0$，所以只有 $x=1$ 是臨界點，在區間內。代入：</p>
+$$f(0)=0,\qquad f(1)=\frac1e\approx0.368,\qquad f(3)=3e^{-3}\approx0.149$$
+<p class="ans">$M=\dfrac1e$（在 $x=1$），$m=0$（在 $x=0$）</p>
+</details>
+</section>
+<section class="pq" id="p7-1-3">
+<p class="problem"><span class="tag">練習 7.1-3</span>求 $f(x)=x^4-2x^2$ 的所有臨界點，並用 $f'$ 變號判斷哪些是局部極大、局部極小。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f'(x)=4x^3-4x=4x(x-1)(x+1)$，臨界點 $x=-1,0,1$。這是首項為正的三次式，三根由左到右 $-1,0,1$，符號從最右邊的正開始往左交替：</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>區間</th><th>$(-\infty,-1)$</th><th>$(-1,0)$</th><th>$(0,1)$</th><th>$(1,\infty)$</th></tr></thead>
+<tbody><tr><td>$f'$</td><td>$-$ 遞減</td><td>$+$ 遞增</td><td>$-$ 遞減</td><td>$+$ 遞增</td></tr></tbody>
+</table>
+</div>
+<p>$x=\pm1$ 由負變正，是局部極小，$f(\pm1)=1-2=-1$。$x=0$ 由正變負，是局部極大，$f(0)=0$。</p>
+<p class="ans">局部極小 $(-1,-1)$、$(1,-1)$；局部極大 $(0,0)$</p>
+</details>
+</section>
+<section class="pq" id="p7-1-4">
+<p class="problem"><span class="tag">練習 7.1-4</span>比較 $3^\pi$ 與 $\pi^3$ 哪個大。（仿 <a href="#q2">題 2</a>）</p>
+<details class="solution"><summary>詳解</summary>
+<p>兩數皆正，取 $\ln$：比 $\pi\ln3$ 與 $3\ln\pi$。同除以 $3\pi$，等於比</p>
+$$\frac{\ln3}{3}\quad\text{與}\quad\frac{\ln\pi}{\pi}$$
+<p>也就是 $f(x)=\dfrac{\ln x}{x}$ 在 $x=3$ 與 $x=\pi$ 的值。由題 2，$f$ 在 $(e,\infty)$ 嚴格遞減，而 $e\lt3\lt\pi$，所以 $f(3)\gt f(\pi)$：</p>
+$$\frac{\ln3}{3}\gt\frac{\ln\pi}{\pi}\ \Longrightarrow\ \pi\ln3\gt3\ln\pi\ \Longrightarrow\ 3^\pi\gt\pi^3$$
+<p class="ans">$3^\pi\gt\pi^3$（數值 $3^\pi\approx31.54$，$\pi^3\approx31.01$）</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s7-2">7.2 二階導數：凹性</h2>
 
@@ -325,6 +373,43 @@ $$\frac{f(c+h)-f(c)}{h}\le0\ \Longrightarrow\ f'(c)=\lim_{h\to0^-}\frac{f(c+h)-f
 <p class="ans">$f'(c)=0$ $\quad\blacksquare$</p>
 </div>
 </section>
+
+<div class="practice" id="p7-2">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p7-2-1">
+<p class="problem"><span class="tag">練習 7.2-1</span>求 $f(x)=x^3-6x^2+5$ 的凹性區間與反曲點。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f'(x)=3x^2-12x$，$f''(x)=6x-12=6(x-2)$。$x\lt2$ 時 $f''\lt0$，$x\gt2$ 時 $f''\gt0$，在 $x=2$ 變號。$f(2)=8-24+5=-11$。</p>
+<p class="ans">凹口向下 $(-\infty,2)$，凹口向上 $(2,\infty)$；反曲點 $(2,-11)$</p>
+</details>
+</section>
+<section class="pq" id="p7-2-2">
+<p class="problem"><span class="tag">練習 7.2-2</span>求 $f(x)=xe^x$ 的凹性區間與反曲點。</p>
+<details class="solution"><summary>詳解</summary>
+$$f'(x)=e^x+xe^x=(x+1)e^x,\qquad f''(x)=e^x+(x+1)e^x=(x+2)e^x$$
+<p>$e^x\gt0$，所以 $f''$ 的正負看 $x+2$，在 $x=-2$ 變號。$f(-2)=-2e^{-2}$。</p>
+<p class="ans">凹口向下 $(-\infty,-2)$，凹口向上 $(-2,\infty)$；反曲點 $\left(-2,-\dfrac{2}{e^2}\right)$</p>
+</details>
+</section>
+<section class="pq" id="p7-2-3">
+<p class="problem"><span class="tag">練習 7.2-3</span>求 $f(x)=\ln(x^2+1)$ 的凹性區間與反曲點。</p>
+<details class="solution"><summary>詳解</summary>
+<p>定義域 $\mathbb R$。</p>
+$$f'(x)=\frac{2x}{x^2+1},\qquad f''(x)=\frac{2(x^2+1)-2x\cdot2x}{(x^2+1)^2}=\frac{2(1-x^2)}{(x^2+1)^2}$$
+<p>分母恆正，$f''$ 與 $1-x^2$ 同號：$|x|\lt1$ 為正，$|x|\gt1$ 為負。$x=\pm1$ 兩側變號，$f(\pm1)=\ln2$。</p>
+<p class="ans">凹口向上 $(-1,1)$，凹口向下 $(-\infty,-1)\cup(1,\infty)$；反曲點 $(\pm1,\ln2)$</p>
+</details>
+</section>
+<section class="pq" id="p7-2-4">
+<p class="problem"><span class="tag">練習 7.2-4</span>用 $f(x)=\sqrt x$ 在 $x=4$ 的線性逼近估計 $\sqrt{4.1}$，並判斷是高估還是低估。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f(4)=2$，$f'(x)=\dfrac{1}{2\sqrt x}$，$f'(4)=\dfrac14$，所以 $L(x)=2+\dfrac14(x-4)$。</p>
+$$\sqrt{4.1}\approx L(4.1)=2+\frac14\cdot0.1=2.025$$
+<p>$f''(x)=-\dfrac14x^{-3/2}\lt0$，凹口向下，切線在曲線上方，所以高估。實際值 $\sqrt{4.1}\approx2.02485$，確實比 $2.025$ 小。</p>
+<p class="ans">$\sqrt{4.1}\approx2.025$，高估</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="s7-3">7.3 作圖流程 DISPADDD</h2>
@@ -723,6 +808,83 @@ $$x=y^2+\frac6y$$
 </div>
 </section>
 
+<div class="practice" id="p7-3">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p7-3-1">
+<p class="problem"><span class="tag">練習 7.3-1</span>用 DISPADDD 分析 $f(x)=\dfrac{x}{x^2+1}$ 的圖形。</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>D</strong>：$x^2+1\gt0$，定義域 $\mathbb R$。</p>
+<p><strong>I</strong>：$f(0)=0$；$f=0\iff x=0$，只有原點。</p>
+<p><strong>S</strong>：$f(-x)=-f(x)$，奇函數，對稱原點。只要算 $x\ge0$，另一半轉過去。</p>
+<p><strong>P</strong>：無。</p>
+<p><strong>A</strong>：分母次數比分子高，$\displaystyle\lim_{x\to\pm\infty}f(x)=0$，水平漸近線 $y=0$。沒有垂直漸近線。</p>
+<p><strong>D</strong>：</p>
+$$f'(x)=\frac{(x^2+1)-x\cdot2x}{(x^2+1)^2}=\frac{1-x^2}{(x^2+1)^2}$$
+<p>$|x|\lt1$ 為正（遞增），$|x|\gt1$ 為負（遞減）。$x=-1$ 由負變正是局部極小 $f(-1)=-\frac12$，$x=1$ 由正變負是局部極大 $f(1)=\frac12$。</p>
+<p><strong>D</strong>：分子 $1-x^2$ 微分是 $-2x$，分母 $(x^2+1)^2$ 微分是 $2(x^2+1)\cdot2x$：</p>
+$$\begin{aligned}
+f''(x)&=\frac{-2x(x^2+1)^2-(1-x^2)\cdot4x(x^2+1)}{(x^2+1)^4}\\
+&=\frac{-2x(x^2+1)-4x(1-x^2)}{(x^2+1)^3}\\
+&=\frac{2x(x^2-3)}{(x^2+1)^3}
+\end{aligned}$$
+<p>分母恆正，$f''$ 的正負看 $x(x^2-3)$，分界點 $-\sqrt3,\,0,\,\sqrt3$。三個點兩側都變號，都是反曲點，$f(\pm\sqrt3)=\pm\frac{\sqrt3}{4}$。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>區間</th><th>$(-\infty,-\sqrt3)$</th><th>$(-\sqrt3,-1)$</th><th>$(-1,0)$</th><th>$(0,1)$</th><th>$(1,\sqrt3)$</th><th>$(\sqrt3,\infty)$</th></tr></thead>
+<tbody>
+<tr><td>$f'$</td><td>$-$ 遞減</td><td>$-$ 遞減</td><td>$+$ 遞增</td><td>$+$ 遞增</td><td>$-$ 遞減</td><td>$-$ 遞減</td></tr>
+<tr><td>$f''$</td><td>$-$ 下凹</td><td>$+$ 上凹</td><td>$+$ 上凹</td><td>$-$ 下凹</td><td>$-$ 下凹</td><td>$+$ 上凹</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>D</strong>：圖形像一個橫放的 S：左邊從 $y=0$ 下方貼近出發，下降到谷底 $\left(-1,-\frac12\right)$，爬升穿過原點（切線斜率 $f'(0)=1$）到峰頂 $\left(1,\frac12\right)$，再降回從上方貼近 $y=0$。</p>
+<p class="ans">水平漸近線 $y=0$；奇函數；局部極大 $\left(1,\frac12\right)$、局部極小 $\left(-1,-\frac12\right)$；反曲點 $x=0,\pm\sqrt3$；下凹 $(-\infty,-\sqrt3)\cup(0,\sqrt3)$，上凹 $(-\sqrt3,0)\cup(\sqrt3,\infty)$</p>
+</details>
+</section>
+<section class="pq" id="p7-3-2">
+<p class="problem"><span class="tag">練習 7.3-2</span>用 DISPADDD 分析 $f(x)=\dfrac{x^2}{x-1}$ 的圖形。</p>
+<details class="solution"><summary>詳解</summary>
+<p>分子次數比分母高一次，先做長除法：$f(x)=x+1+\dfrac{1}{x-1}$。</p>
+<p><strong>D</strong>：$x\neq1$。</p>
+<p><strong>I</strong>：$f(0)=0$；$f=0\iff x=0$，只有原點。</p>
+<p><strong>S、P</strong>：無。（$f(-x)=\frac{x^2}{-x-1}$，既不等於 $f(x)$ 也不等於 $-f(x)$。）</p>
+<p><strong>A</strong>：$x\to1^+$ 時 $f\to+\infty$，$x\to1^-$ 時 $f\to-\infty$，垂直漸近線 $x=1$。$\frac{1}{x-1}\to0$，所以斜漸近線 $y=x+1$。$x\to+\infty$ 時 $\frac{1}{x-1}\gt0$，曲線在斜線上方；$x\to-\infty$ 時在下方。</p>
+<p><strong>D</strong>：</p>
+$$f'(x)=1-\frac{1}{(x-1)^2}=\frac{(x-1)^2-1}{(x-1)^2}=\frac{x(x-2)}{(x-1)^2}$$
+<p>$x\lt0$ 或 $x\gt2$ 時為正，$0\lt x\lt2$（$x\neq1$）為負。$x=0$ 由正變負，局部極大 $f(0)=0$；$x=2$ 由負變正，局部極小 $f(2)=4$。</p>
+<p><strong>D</strong>：</p>
+$$f''(x)=\frac{2}{(x-1)^3}$$
+<p>$x\gt1$ 為正，$x\lt1$ 為負。凹性只在漸近線 $x=1$ 兩側改變，而 $x=1$ 不在定義域，所以沒有反曲點。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>區間</th><th>$(-\infty,0)$</th><th>$(0,1)$</th><th>$(1,2)$</th><th>$(2,\infty)$</th></tr></thead>
+<tbody>
+<tr><td>$f'$</td><td>$+$ 遞增</td><td>$-$ 遞減</td><td>$-$ 遞減</td><td>$+$ 遞增</td></tr>
+<tr><td>$f''$</td><td>$-$ 下凹</td><td>$-$ 下凹</td><td>$+$ 上凹</td><td>$+$ 上凹</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>D</strong>：左支從斜線下方出發，升到原點的峰頂後掉向 $-\infty$（貼著 $x=1$ 左側）；右支從 $+\infty$ 降到 $(2,4)$ 的谷底，再沿著斜線上方往右上爬。</p>
+<p class="ans">垂直漸近線 $x=1$，斜漸近線 $y=x+1$；局部極大 $(0,0)$、局部極小 $(2,4)$；$x\lt1$ 下凹、$x\gt1$ 上凹，無反曲點</p>
+</details>
+</section>
+<section class="pq" id="p7-3-3">
+<p class="problem"><span class="tag">練習 7.3-3</span>已知 $f'(x)=(x-1)^2(x+2)$。求 $f$ 的臨界點，並判斷哪些是局部極值。（仿 <a href="#q16">題 16</a>，只給 $f'$）</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f'$ 處處有定義，$f'=0\iff x=-2,\,1$，這就是臨界點。</p>
+<p>$(x-1)^2\ge0$，所以 $f'$ 的正負只由 $x+2$ 決定（$x=1$ 除外）：</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>區間</th><th>$(-\infty,-2)$</th><th>$(-2,1)$</th><th>$(1,\infty)$</th></tr></thead>
+<tbody><tr><td>$f'$</td><td>$-$ 遞減</td><td>$+$ 遞增</td><td>$+$ 遞增</td></tr></tbody>
+</table>
+</div>
+<p>$x=-2$ 由負變正，是局部極小。$x=1$ 兩側 $f'$ 都是正的，沒有變號，不是極值（和 <a href="#q1">題 1</a> 的 $x^3$ 同類）。</p>
+<p class="ans">臨界點 $x=-2,\,1$；$x=-2$ 是局部極小，$x=1$ 不是極值</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s7-4">7.4 一維梯度下降（*）</h2>
 
@@ -768,6 +930,42 @@ $$x_{n+1}=x_n-t\,f'(x_n)$$
 
 <div class="remark">
 <p>實務上學習率可以每一步調整（例如參考前幾步的 $x_n$），讓收斂更快。另外梯度下降只會找到局部極小，函數有好幾個谷時，掉進哪一個要看起點，想找全域最小值需要其他技巧。</p>
+</div>
+
+<div class="practice" id="p7-4">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p7-4-1">
+<p class="problem"><span class="tag">練習 7.4-1</span>$f(x)=(x-3)^2$，$x_0=0$，$t=0.25$。求 $x_1,x_2,x_3$，並寫出 $x_n$ 的一般式。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f'(x)=2(x-3)$，所以</p>
+$$x_{n+1}=x_n-0.25\cdot2(x_n-3)=x_n-0.5(x_n-3)$$
+<p>逐步代入：$x_1=0-0.5(0-3)=1.5$，$x_2=1.5-0.5(-1.5)=2.25$，$x_3=2.25-0.5(-0.75)=2.625$。</p>
+<p>一般式：兩邊減 $3$，$x_{n+1}-3=0.5\,(x_n-3)$，距離谷底 $x=3$ 的差每步縮成一半，所以 $x_n-3=(0.5)^n(x_0-3)=-3(0.5)^n$。檢查 $n=3$：$3-\frac38=2.625$，吻合。</p>
+<p class="ans">$x_1=1.5,\ x_2=2.25,\ x_3=2.625$；$x_n=3-3(0.5)^n\to3$</p>
+</details>
+</section>
+<section class="pq" id="p7-4-2">
+<p class="problem"><span class="tag">練習 7.4-2</span>$f(x)=x^2$，$x_0=10$。學習率 $t$ 在什麼範圍內 $x_n$ 會收斂到 $0$？再說明 $t=0.5$ 與 $t=1$ 各發生什麼事。</p>
+<details class="solution"><summary>詳解</summary>
+<p>如 <a href="#q25">題 25</a>，$x_{n+1}=(1-2t)\,x_n$，$x_n=10(1-2t)^n$。公比的絕對值小於 $1$ 才收斂到 $0$：</p>
+$$|1-2t|\lt1\iff-1\lt1-2t\lt1\iff0\lt t\lt1$$
+<ul>
+<li>$t=0.5$：公比 $0$，$x_1=0$，一步就走到谷底。</li>
+<li>$t=1$：公比 $-1$，$x_n=10,-10,10,-10,\ldots$，在谷底兩側來回跳，不收斂也不發散。</li>
+</ul>
+<p>$0\lt t\lt0.5$ 時公比為正，從同一側慢慢靠近；$0.5\lt t\lt1$ 時公比為負，左右交替但越跳越近。</p>
+<p class="ans">$0\lt t\lt1$ 收斂；$t=0.5$ 一步到 $0$；$t=1$ 在 $10$ 與 $-10$ 之間來回跳</p>
+</details>
+</section>
+<section class="pq" id="p7-4-3">
+<p class="problem"><span class="tag">練習 7.4-3</span>$f(x)=x^4$，$x_0=1$，$t=0.1$。求 $x_1,x_2$，並說明為什麼越接近 $0$ 走得越慢。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f'(x)=4x^3$，$x_{n+1}=x_n-0.4\,x_n^3$。</p>
+$$x_1=1-0.4\cdot1=0.6,\qquad x_2=0.6-0.4\cdot0.216=0.6-0.0864=0.5136$$
+<p>每一步的移動量是 $t\,|f'(x_n)|=0.4|x_n|^3$。$x_n$ 靠近 $0$ 時，$f'=4x^3$ 比 $x^2$ 的 $2x$ 平坦得多：第一步走了 $0.4$，第二步只走 $0.0864$，到 $x=0.1$ 時一步只走 $0.0004$。步伐隨 $x^3$ 縮小，比距離縮小得快，所以越走越慢。</p>
+<p class="ans">$x_1=0.6$，$x_2=0.5136$；谷底附近斜率趨近 $0$，步伐 $0.4|x_n|^3$ 極小，所以收斂很慢</p>
+</details>
+</section>
 </div>
 
 <!-- ================================================================ -->

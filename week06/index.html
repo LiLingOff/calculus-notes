@@ -81,6 +81,37 @@ $$2y^{-1/3}y'+y+xy'=0$$
 </div>
 </section>
 
+<div class="practice" id="p6-1">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p6-1-1">
+<p class="problem"><span class="tag">練習 6.1-1</span>用線性近似估計 $\sqrt{4.02}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>找靠近 $4.02$ 又好算的點：$f(x)=\sqrt x$、$a=4$。$f(4)=2$，$f'(x)=\dfrac{1}{2\sqrt x}$，$f'(4)=\dfrac14$，所以</p>
+$$L(x)=2+\frac14(x-4)$$
+<p>$\sqrt{4.02}\approx L(4.02)=2+\dfrac{0.02}{4}=2.005$。驗算：真值 $2.004994\ldots$，誤差不到 $10^{-5}$。</p>
+<p class="ans">$\sqrt{4.02}\approx2.005$</p>
+</details>
+</section>
+<section class="pq" id="p6-1-2">
+<p class="problem"><span class="tag">練習 6.1-2</span>(a) 求 $f(x)=\ln x$ 在 $x=1$ 的線性化。(b) 用它估計 $\ln1.1$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>(a) $f(1)=\ln1=0$，$f'(x)=\dfrac1x$，$f'(1)=1$，所以 $L(x)=1\cdot(x-1)+0=x-1$。</p>
+<p>(b) $\ln1.1\approx L(1.1)=0.1$。驗算：真值 $0.0953\ldots$，差約 $0.005$。$1.1$ 離 $1$ 有 $0.1$，不算太近，所以誤差比上一題大。</p>
+<p class="ans">(a) $L(x)=x-1$　(b) $\ln1.1\approx0.1$</p>
+</details>
+</section>
+<section class="pq" id="p6-1-3">
+<p class="problem"><span class="tag">練習 6.1-3</span>在 $(1,2)$ 附近，$x^2+y^3=9$ 定義了函數 $y=f(x)$。求 $f'(1)$，並用線性近似估計 $f(1.06)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>檢查：$1+2^3=9$。兩邊對 $x$ 微分（$y$ 是 $x$ 的函數）：</p>
+$$2x+3y^2y'=0$$
+<p>代 $x=1$、$y=2$：$2+12y'=0$，$y'=-\dfrac16$。</p>
+<p>$f(1.06)\approx f(1)+f'(1)\cdot0.06=2-\dfrac{0.06}{6}=2-0.01=1.99$。驗算：真值約 $1.9896$。</p>
+<p class="ans">$f'(1)=-\dfrac16$，$f(1.06)\approx1.99$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s6-2">6.2 均值定理</h2>
 
@@ -249,6 +280,46 @@ $$\frac{b-a}{b}\lt\frac{b-a}{c}\lt\frac{b-a}{a}$$
 <p class="ans">$c=\sqrt3$（與講義答案相同）</p>
 </div>
 </section>
+
+<div class="practice" id="p6-2">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p6-2-1">
+<p class="problem"><span class="tag">練習 6.2-1</span>求 $f(x)=x^2+2x$ 在 $[0,2]$ 上滿足均值定理的 $c$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>割線斜率：$\dfrac{f(2)-f(0)}{2-0}=\dfrac{8-0}{2}=4$。</p>
+<p>解 $f'(c)=2c+2=4$，得 $c=1$，在 $(0,2)$ 內。</p>
+<p class="ans">$c=1$</p>
+</details>
+</section>
+<section class="pq" id="p6-2-2">
+<p class="problem"><span class="tag">練習 6.2-2</span>求 $f(x)=\sqrt x$ 在 $[1,4]$ 上滿足均值定理的 $c$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>割線斜率：$\dfrac{2-1}{4-1}=\dfrac13$。</p>
+<p>解 $f'(c)=\dfrac{1}{2\sqrt c}=\dfrac13$：$\sqrt c=\dfrac32$，$c=\dfrac94=2.25$，在 $(1,4)$ 內。</p>
+<p class="ans">$c=\dfrac94$</p>
+</details>
+</section>
+<section class="pq" id="p6-2-3">
+<p class="problem"><span class="tag">練習 6.2-3</span>證明 $x^3+3x-5=0$ 恰有一個實根。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $f(x)=x^3+3x-5$，多項式處處連續可微。照 6.2 的套路分兩步。</p>
+<p><strong>至少一根</strong>：$f(1)=-1\lt0$，$f(2)=9\gt0$，勘根定理給出 $(1,2)$ 內一根。</p>
+<p><strong>至多一根</strong>：若有兩根 $r_1\lt r_2$，Rolle 給出 $c\in(r_1,r_2)$ 使 $f'(c)=0$。但</p>
+$$f'(x)=3x^2+3\ge3\gt0$$
+<p>永遠不是 $0$，矛盾。</p>
+<p class="ans">得證</p>
+</details>
+</section>
+<section class="pq" id="p6-2-4">
+<p class="problem"><span class="tag">練習 6.2-4</span>用均值定理證明：$x\gt0$ 時，$\ln(1+x)\lt x$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $f(t)=\ln(1+t)$，在 $[0,x]$ 連續、在 $(0,x)$ 可微，$f'(t)=\dfrac{1}{1+t}$。均值定理：存在 $c\in(0,x)$，</p>
+$$\ln(1+x)-\ln1=\frac{1}{1+c}\cdot x$$
+<p>$c\gt0$ 所以 $1+c\gt1$，$\dfrac{1}{1+c}\lt1$。再乘上正數 $x$，$\ln(1+x)\lt x$。</p>
+<p class="ans">得證</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="s6-3">6.3 均值定理的推論</h2>
@@ -453,6 +524,54 @@ f'(x) &= -5x^4+10x^3+40x^2 \\
 </div>
 </section>
 
+<div class="practice" id="p6-3">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p6-3-1">
+<p class="problem"><span class="tag">練習 6.3-1</span>證明 $\sin^{-1}x+\cos^{-1}x=\dfrac\pi2$，$x\in[-1,1]$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $F(x)=\sin^{-1}x+\cos^{-1}x$。在 $(-1,1)$ 內</p>
+$$F'(x)=\frac{1}{\sqrt{1-x^2}}-\frac{1}{\sqrt{1-x^2}}=0$$
+<p>$F$ 在 $[-1,1]$ 連續（端點不可微沒關係，見證明恆等式的套路），由定理 6.3.1，$F$ 在 $[-1,1]$ 是常數。代 $x=0$：$F(0)=0+\dfrac\pi2=\dfrac\pi2$。</p>
+<p>端點也可以直接驗證：$F(1)=\dfrac\pi2+0$，$F(-1)=-\dfrac\pi2+\pi=\dfrac\pi2$。</p>
+<p class="ans">得證</p>
+</details>
+</section>
+<section class="pq" id="p6-3-2">
+<p class="problem"><span class="tag">練習 6.3-2</span>求 $f(x)=x^3-3x^2-9x+1$ 的遞增與遞減區間。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$$f'(x)=3x^2-6x-9=3(x^2-2x-3)=3(x-3)(x+1)$$</p>
+<p>$f'=0$ 的點是 $x=-1$、$x=3$，把數線切成三段：</p>
+<ul>
+<li>$x\lt-1$：兩個因式都是負的，乘積正，$f'\gt0$。</li>
+<li>$-1\lt x\lt3$：$(x-3)\lt0$、$(x+1)\gt0$，$f'\lt0$。</li>
+<li>$x\gt3$：兩個因式都正，$f'\gt0$。</li>
+</ul>
+<p class="ans">嚴格遞增：$(-\infty,-1]$ 與 $[3,+\infty)$；嚴格遞減：$[-1,3]$</p>
+</details>
+</section>
+<section class="pq" id="p6-3-3">
+<p class="problem"><span class="tag">練習 6.3-3</span>求 $f(x)=xe^{-x}$ 的遞增與遞減區間。</p>
+<details class="solution"><summary>詳解</summary>
+<p>積法則：$f'(x)=e^{-x}-xe^{-x}=(1-x)e^{-x}$。</p>
+<p>$e^{-x}$ 恆正，所以 $f'$ 的正負只看 $1-x$：$x\lt1$ 時為正，$x\gt1$ 時為負。</p>
+<p class="ans">嚴格遞增：$(-\infty,1]$；嚴格遞減：$[1,+\infty)$</p>
+</details>
+</section>
+<section class="pq" id="p6-3-4">
+<p class="problem"><span class="tag">練習 6.3-4</span>證明對所有實數 $x$，$e^x\ge1+x$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $g(x)=e^x-1-x$，要證 $g(x)\ge0$。$g'(x)=e^x-1$。</p>
+<ul>
+<li>$x\lt0$：$e^x\lt1$，$g'\lt0$，$g$ 在 $(-\infty,0]$ 遞減。</li>
+<li>$x\gt0$：$e^x\gt1$，$g'\gt0$，$g$ 在 $[0,+\infty)$ 遞增。</li>
+</ul>
+<p>$g$ 先降後升，最低點在 $x=0$，$g(0)=1-1-0=0$。所以 $g(x)\ge g(0)=0$。</p>
+<p>（幾何意思：$1+x$ 是 $e^x$ 在 $x=0$ 的切線，$e^x$ 的圖形永遠在這條切線上方。）</p>
+<p class="ans">得證</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s6-4">6.4 斜漸近線（*）</h2>
 
@@ -550,6 +669,55 @@ $$\lim_{x\to0^+}x^x=e^{\lim_{x\to0^+}x\ln x}=e^0$$
 </div>
 </section>
 
+<div class="practice" id="p6-4">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p6-4-1">
+<p class="problem"><span class="tag">練習 6.4-1</span>求 $f(x)=\dfrac{x^2+3x+1}{x+1}$ 的所有漸近線。</p>
+<details class="solution"><summary>詳解</summary>
+<p>長除法：$x^2+3x+1=(x+1)(x+2)-1$，所以</p>
+$$f(x)=x+2-\frac{1}{x+1}$$
+<p><strong>垂直</strong>：$x=-1$ 時分子 $1-3+1=-1\neq0$，分母 $\to0$，$f\to\pm\infty$，垂直漸近線 $x=-1$。</p>
+<p><strong>水平</strong>：$x\to\pm\infty$ 時 $f\to\pm\infty$，沒有。</p>
+<p><strong>斜</strong>：$\dfrac{1}{x+1}\to0$，所以 $f(x)-(x+2)\to0$（兩邊都是）。</p>
+<p class="ans">V.A. $x=-1$；H.A. 無；S.A. $y=x+2$</p>
+</details>
+</section>
+<section class="pq" id="p6-4-2">
+<p class="problem"><span class="tag">練習 6.4-2</span>求 $f(x)=\dfrac{2x^3+x^2+1}{x^2+1}$ 的所有漸近線。</p>
+<details class="solution"><summary>詳解</summary>
+<p>長除法：$2x^3+x^2+1=(x^2+1)(2x+1)-2x$，所以</p>
+$$f(x)=2x+1+\frac{-2x}{x^2+1}$$
+<p>$\dfrac{-2x}{x^2+1}$ 分子次數比分母低，$\to0$，所以斜漸近線 $y=2x+1$（兩邊都是）。分母 $x^2+1\gt0$ 永遠不是 $0$，沒有垂直漸近線；$x\to\pm\infty$ 時 $f\to\pm\infty$，沒有水平漸近線。</p>
+<p class="ans">V.A. 無；H.A. 無；S.A. $y=2x+1$</p>
+</details>
+</section>
+<section class="pq" id="p6-4-3">
+<p class="problem"><span class="tag">練習 6.4-3</span>用定理 6.4.1 求 $f(x)=\sqrt{x^2+2x}$ 的斜漸近線（$x\to+\infty$ 與 $x\to-\infty$ 分開算）。</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>$x\to+\infty$</strong>：</p>
+$$A=\lim_{x\to\infty}\frac{\sqrt{x^2+2x}}{x}=\lim_{x\to\infty}\sqrt{1+\frac2x}=1$$
+$$B=\lim_{x\to\infty}\left(\sqrt{x^2+2x}-x\right)=\lim_{x\to\infty}\frac{2x}{\sqrt{x^2+2x}+x}=\lim_{x\to\infty}\frac{2}{\sqrt{1+\frac2x}+1}=1$$
+<p><strong>$x\to-\infty$</strong>：這時 $x\lt0$，$\sqrt{x^2}=-x$，所以 $\dfrac{\sqrt{x^2+2x}}{x}=-\sqrt{1+\dfrac2x}$：</p>
+$$A=\lim_{x\to-\infty}\left(-\sqrt{1+\frac2x}\right)=-1$$
+<p>$B=\lim\bigl[f(x)-Ax\bigr]=\lim_{x\to-\infty}\left(\sqrt{x^2+2x}+x\right)$，有理化後分子分母同除以 $x$：</p>
+$$B=\lim_{x\to-\infty}\frac{2x}{\sqrt{x^2+2x}-x}=\lim_{x\to-\infty}\frac{2}{-\sqrt{1+\frac2x}-1}=\frac{2}{-2}=-1$$
+<p>（$x$ 是負數，除進根號要變成 $-\sqrt{\cdot}$，這是最容易錯的地方。）</p>
+<p class="ans">$x\to+\infty$：$y=x+1$；$x\to-\infty$：$y=-x-1$</p>
+</details>
+</section>
+<section class="pq" id="p6-4-4">
+<p class="problem"><span class="tag">練習 6.4-4</span>用羅必達法則求下列極限（提醒：羅必達法則考試不能用，這裡只當練習與檢查工具）。<br>(a) $\displaystyle\lim_{x\to0}\frac{e^{2x}-1}{\sin x}$　(b) $\displaystyle\lim_{x\to\infty}x^2e^{-x}$</p>
+<details class="solution"><summary>詳解</summary>
+<p>(a) $x\to0$ 時分子 $\to0$、分母 $\to0$，是 $\frac00$ 型，可以用：</p>
+$$\lim_{x\to0}\frac{e^{2x}-1}{\sin x}\overset{L}{=}\lim_{x\to0}\frac{2e^{2x}}{\cos x}=\frac21=2$$
+<p>(b) 先寫成 $\dfrac{x^2}{e^x}$，分子分母都 $\to\infty$，用兩次：</p>
+$$\lim_{x\to\infty}\frac{x^2}{e^x}\overset{L}{=}\lim_{x\to\infty}\frac{2x}{e^x}\overset{L}{=}\lim_{x\to\infty}\frac{2}{e^x}=0$$
+<p>第二次用之前也要確認 $2x$ 與 $e^x$ 都 $\to\infty$。直覺：指數函數長得比任何次方都快。</p>
+<p class="ans">(a) $2$　(b) $0$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s6-5">6.5 $e^x$ 與 $\ln x$ 的極限形式（*）</h2>
 
@@ -576,6 +744,31 @@ $$\ln x=\lim_{n\to\infty}n\left(x^{1/n}-1\right)$$
 <p>「反函數的極限等於極限的反函數」需要另外證明，講義沒有要求。可以用 <a href="../week04/index.html#s4-1">Week 4 的導數定義</a>驗證：令 $h=\frac1n$，</p>
 $$n\left(x^{1/n}-1\right)=\frac{x^h-x^0}{h}\;\xrightarrow{h\to0}\;\left.\frac{d}{dt}x^t\right|_{t=0}=x^0\ln x=\ln x$$
 <p>兩邊對得上。</p>
+</div>
+
+<div class="practice" id="p6-5">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p6-5-1">
+<p class="problem"><span class="tag">練習 6.5-1</span>用 (6.5.1) 求 (a) $\displaystyle\lim_{n\to\infty}\left(1-\frac2n\right)^n$　(b) $\displaystyle\lim_{n\to\infty}\left(1+\frac{1}{2n}\right)^n$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>(6.5.1) 是 $\displaystyle\lim_{n\to\infty}\left(1+\frac xn\right)^n=e^x$，只要把括號裡整理成 $1+\dfrac xn$ 的形狀，認出 $x$。</p>
+<p>(a) $1-\dfrac2n=1+\dfrac{-2}{n}$，所以 $x=-2$，極限是 $e^{-2}$。</p>
+<p>(b) $\dfrac{1}{2n}=\dfrac{1/2}{n}$，所以 $1+\dfrac{1}{2n}=1+\dfrac{1/2}{n}$，$x=\dfrac12$，極限是 $e^{1/2}=\sqrt e$。</p>
+<p class="ans">(a) $e^{-2}$　(b) $e^{1/2}$</p>
+</details>
+</section>
+<section class="pq" id="p6-5-2">
+<p class="problem"><span class="tag">練習 6.5-2</span>用 $\ln x=\displaystyle\lim_{n\to\infty}n\left(x^{1/n}-1\right)$ 估計 $\ln2$：分別取 $n=10$ 與 $n=100$，和真值 $0.6931\ldots$ 比較。</p>
+<details class="solution"><summary>詳解</summary>
+<p>取 $x=2$，計算 $n\left(2^{1/n}-1\right)$：</p>
+<ul>
+<li>$n=10$：$2^{0.1}\approx1.071773$，$10\times0.071773\approx0.7177$。</li>
+<li>$n=100$：$2^{0.01}\approx1.006956$，$100\times0.006956\approx0.6956$。</li>
+</ul>
+<p>真值 $\ln2\approx0.6931$。$n$ 變大 $10$ 倍，誤差從約 $0.0246$ 縮到約 $0.0025$，越來越準，但誤差大約只跟 $\frac1n$ 一起縮小，想多準一位就得把 $n$ 乘上 $10$，收斂很慢。</p>
+<p class="ans">$n=10$ 得 $0.7177$，$n=100$ 得 $0.6956$，趨近 $0.6931$</p>
+</details>
+</section>
 </div>
 
 <!-- ================================================================ -->
@@ -685,6 +878,43 @@ $$x_{k+1}=x_k-\frac{x_k^{1/3}}{\frac13x_k^{-2/3}}=x_k-3x_k=-2x_k$$
 <p class="ans">(a) $x_{k+1}=-2x_k$，越跳越遠而發散　(b) 在 $0$ 與 $-1$ 之間來回循環，不收斂</p>
 </div>
 </section>
+
+<div class="practice" id="p6-6">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p6-6-1">
+<p class="problem"><span class="tag">練習 6.6-1</span>用牛頓法近似 $\sqrt5$：取 $f(x)=x^2-5$、$x_0=2$，求 $x_1,x_2$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f'(x)=2x$，迭代式化簡成 $x_{k+1}=\dfrac12\left(x_k+\dfrac5{x_k}\right)$。</p>
+<ul>
+<li>$x_1=\dfrac12\left(2+\dfrac52\right)=\dfrac94=2.25$</li>
+<li>$x_2=\dfrac12\left(\dfrac94+\dfrac{20}{9}\right)=\dfrac{161}{72}\approx2.236111$</li>
+</ul>
+<p>$\sqrt5=2.236068\ldots$，兩步就對了四位。</p>
+<p class="ans">$x_1=2.25$，$x_2\approx2.236111$</p>
+</details>
+</section>
+<section class="pq" id="p6-6-2">
+<p class="problem"><span class="tag">練習 6.6-2</span>用牛頓法解 $\cos x=x$：取 $f(x)=x-\cos x$、$x_0=1$，求 $x_1,x_2$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f'(x)=1+\sin x$，所以 $x_{k+1}=x_k-\dfrac{x_k-\cos x_k}{1+\sin x_k}$。</p>
+<ul>
+<li>$x_1=1-\dfrac{1-\cos1}{1+\sin1}\approx0.750364$</li>
+<li>$x_2=x_1-\dfrac{x_1-\cos x_1}{1+\sin x_1}\approx0.739113$</li>
+</ul>
+<p>真正的根約 $0.739085$，兩步已準到四位。這個方程式的根存在而且唯一，見<a href="#q4">題 4</a>：勘根定理給出 $[0,1]$ 內有根，$f'\ge1\gt0$ 加 Rolle 保證至多一根。所以從 $[0,1]$ 裡的點出發是合理的。</p>
+<p class="ans">$x_1\approx0.750364$，$x_2\approx0.739113$</p>
+</details>
+</section>
+<section class="pq" id="p6-6-3">
+<p class="problem"><span class="tag">練習 6.6-3</span>說明對 $f(x)=x^3-3x$ 取 $x_0=1$，牛頓法為什麼第一步就走不了。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f'(x)=3x^2-3$，$f'(1)=0$，而 $f(1)=-2\neq0$。</p>
+<p>算 $x_1=1-\dfrac{f(1)}{f'(1)}=1-\dfrac{-2}{0}$，要除以 $0$。</p>
+<p>幾何上：$(1,-2)$ 的切線是水平線 $y=-2$，永遠碰不到 $x$ 軸，所以沒有下一個猜測值。（$x=1$ 是 $f$ 的臨界點，不是根；真正的根是 $0,\pm\sqrt3$。）</p>
+<p class="ans">$f'(1)=0$，切線水平，與 $x$ 軸沒有交點，$x_1$ 不存在</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="summary">本週必背總整理</h2>

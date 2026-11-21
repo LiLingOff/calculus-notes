@@ -103,6 +103,45 @@ $$2y'+2y'+2xy''+\pi\bigl(-\sin y\,(y')^2+\cos y\,y''\bigr)=0$$
 </div>
 </section>
 
+<div class="practice" id="p5-1">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p5-1-1">
+<p class="problem"><span class="tag">練習 5.1-1</span>$x^2+xy+y^2=7$。求 $(1,2)$ 處的 $\dfrac{dy}{dx}$ 與 $\dfrac{d^2y}{dx^2}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>檢查：$1+2+4=7$。</p>
+<p><strong>一階</strong>：$xy$ 要用積法則。</p>
+$$2x+y+xy'+2yy'=0$$
+<p>代 $(1,2)$：$2+2+y'+4y'=0$，$y'=-\dfrac45$。</p>
+<p><strong>二階</strong>：把上式再微一次，$y+xy'$ 微成 $y'+y'+xy''$，$2yy'$ 微成 $2(y')^2+2yy''$：</p>
+$$2+2y'+2(y')^2+(x+2y)\,y''=0$$
+<p>代 $x=1$、$y=2$、$y'=-\frac45$：$2-\frac85+\frac{32}{25}+5y''=0$，即 $\frac{42}{25}+5y''=0$。</p>
+<p class="ans">$\dfrac{dy}{dx}=-\dfrac45,\qquad \dfrac{d^2y}{dx^2}=-\dfrac{42}{125}$</p>
+</details>
+</section>
+<section class="pq" id="p5-1-2">
+<p class="problem"><span class="tag">練習 5.1-2</span>$x^3+y^3=9$。求 $(1,2)$ 處的 $y'$ 與 $y''$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>檢查：$1+8=9$。</p>
+<p><strong>一階</strong>：</p>
+$$3x^2+3y^2y'=0$$
+<p>代 $(1,2)$：$3+12y'=0$，$y'=-\dfrac14$。</p>
+<p><strong>二階</strong>：再微一次，$3y^2y'$ 用積法則：</p>
+$$6x+6y\,(y')^2+3y^2y''=0$$
+<p>代 $x=1$、$y=2$、$y'=-\frac14$：$6+12\cdot\frac1{16}+12y''=0$，即 $\frac{27}{4}+12y''=0$。</p>
+<p class="ans">$y'=-\dfrac14,\qquad y''=-\dfrac{9}{16}$</p>
+</details>
+</section>
+<section class="pq" id="p5-1-3">
+<p class="problem"><span class="tag">練習 5.1-3</span>曲線 $e^y+xy=e$ 通過 $(0,1)$。求在這一點的切線方程式。</p>
+<details class="solution"><summary>詳解</summary>
+<p>檢查：$e^1+0=e$。兩邊對 $x$ 微分，$e^y$ 用連鎖律、$xy$ 用積法則：</p>
+$$e^y\,y'+y+xy'=0$$
+<p>代 $(0,1)$：$e\,y'+1+0=0$，$y'=-\dfrac1e$。切線過 $(0,1)$、斜率 $-\frac1e$。</p>
+<p class="ans">$y=1-\dfrac{x}{e}$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s5-2">5.2 反三角函數的導數</h2>
 
@@ -173,6 +212,40 @@ $$\cos y\cdot\frac{dy}{dx}=1\quad\Longrightarrow\quad\frac{dy}{dx}=\frac{1}{\cos
 <p class="ans">得證</p>
 </div>
 </section>
+
+<div class="practice" id="p5-2">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p5-2-1">
+<p class="problem"><span class="tag">練習 5.2-1</span>求 $\dfrac{d}{dx}\sin^{-1}\bigl(x^2\bigr)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>外層 $\sin^{-1}$、裡層 $x^2$。把表上的 $\dfrac{1}{\sqrt{1-u^2}}$ 裡的 $u$ 換成 $x^2$，再乘裡層的導數 $2x$：</p>
+$$\frac{1}{\sqrt{1-(x^2)^2}}\cdot2x=\frac{2x}{\sqrt{1-x^4}}$$
+<p>定義域是 $|x|\lt1$。</p>
+<p class="ans">$\dfrac{2x}{\sqrt{1-x^4}}$</p>
+</details>
+</section>
+<section class="pq" id="p5-2-2">
+<p class="problem"><span class="tag">練習 5.2-2</span>求 $\dfrac{d}{dx}\bigl(x\tan^{-1}x\bigr)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>兩個因子都含 $x$，用積法則：</p>
+$$1\cdot\tan^{-1}x+x\cdot\frac{1}{1+x^2}$$
+<p class="ans">$\tan^{-1}x+\dfrac{x}{1+x^2}$</p>
+</details>
+</section>
+<section class="pq" id="p5-2-3">
+<p class="problem"><span class="tag">練習 5.2-3</span>求 $\dfrac{d}{dx}\cos^{-1}\dfrac1x$（$|x|\gt1$），並化簡成只含 $|x|$ 與 $\sqrt{x^2-1}$ 的式子。</p>
+<details class="solution"><summary>詳解</summary>
+<p>外層 $\cos^{-1}$ 有負號，裡層 $\frac1x$ 的導數是 $-\frac1{x^2}$，兩個負號抵消：</p>
+$$-\frac{1}{\sqrt{1-\frac1{x^2}}}\cdot\left(-\frac1{x^2}\right)=\frac{1}{x^2\sqrt{1-\frac1{x^2}}}$$
+<p>化簡根號。通分得 $1-\dfrac1{x^2}=\dfrac{x^2-1}{x^2}$，而 $\sqrt{x^2}=|x|$（不是 $x$，$x$ 可能是負的），所以</p>
+$$\sqrt{1-\frac1{x^2}}=\frac{\sqrt{x^2-1}}{|x|}$$
+<p>代回：</p>
+$$\frac{1}{x^2}\cdot\frac{|x|}{\sqrt{x^2-1}}=\frac{|x|}{x^2\sqrt{x^2-1}}=\frac{1}{|x|\sqrt{x^2-1}}$$
+<p>最後一步用 $x^2=|x|^2$。這跟前面 $\sec^{-1}$ 的備註一致：$\cos^{-1}\frac1x$ 就是值域取 $[0,\pi]\setminus\{\frac\pi2\}$ 時的 $\sec^{-1}x$，分母帶絕對值。</p>
+<p class="ans">$\dfrac{1}{|x|\sqrt{x^2-1}}$</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="s5-3">5.3 對數的導數</h2>
@@ -261,6 +334,45 @@ $$f'(0)=\lim_{h\to0}\frac{f(h)-0}{h}=\lim_{h\to0}\frac{\dfrac{\tan 2h}{h}\cos^{-
 
 <div class="tip">
 <p><span class="tag">什麼時候用定義</span>函數很醜、但只問某一點的導數，而且 $f$ 在那一點的值很乾淨（通常是 $0$）時，用定義往往比套公式快。題 19 (b)(c) 也是這招。</p>
+</div>
+
+<div class="practice" id="p5-3">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p5-3-1">
+<p class="problem"><span class="tag">練習 5.3-1</span>求 $\dfrac{d}{dx}\ln\bigl(x^2+1\bigr)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>用 $\bigl(\ln g\bigr)'=\dfrac{g'}{g}$，$g=x^2+1$、$g'=2x$：</p>
+<p class="ans">$\dfrac{2x}{x^2+1}$</p>
+</details>
+</section>
+<section class="pq" id="p5-3-2">
+<p class="problem"><span class="tag">練習 5.3-2</span>求 $\dfrac{d}{dx}\log_2(3x)$。結果裡為什麼沒有 $3$？</p>
+<details class="solution"><summary>詳解</summary>
+<p>換底：$\log_2(3x)=\dfrac{\ln(3x)}{\ln2}$，$\ln2$ 是常數。$\ln(3x)$ 用連鎖律，$g=3x$、$g'=3$：</p>
+$$\frac{1}{\ln2}\cdot\frac{3}{3x}=\frac{1}{x\ln2}$$
+<p>為什麼 $3$ 會消失：$\log_2(3x)=\log_23+\log_2x$，$\log_23$ 是常數，微分掉了，剩下 $\log_2x$ 的導數。加上常數只是把圖形上下平移，不改變斜率。</p>
+<p class="ans">$\dfrac{1}{x\ln2}$</p>
+</details>
+</section>
+<section class="pq" id="p5-3-3">
+<p class="problem"><span class="tag">練習 5.3-3</span>求 $\dfrac{d}{dx}\ln(\sec x+\tan x)$，化簡成最簡形。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$g=\sec x+\tan x$，$g'=\sec x\tan x+\sec^2x=\sec x(\tan x+\sec x)$。所以</p>
+$$\frac{g'}{g}=\frac{\sec x\,(\sec x+\tan x)}{\sec x+\tan x}=\sec x$$
+<p>分子分母的 $\sec x+\tan x$ 約掉。</p>
+<p class="ans">$\sec x$</p>
+</details>
+</section>
+<section class="pq" id="p5-3-4">
+<p class="problem"><span class="tag">練習 5.3-4</span>求過原點、且與 $y=\ln x$ 相切的直線方程式。</p>
+<details class="solution"><summary>詳解</summary>
+<p>切點不知道，先設為 $(t,\ln t)$，$t\gt0$。該點斜率 $\dfrac1t$，切線是</p>
+$$y-\ln t=\frac1t(x-t)$$
+<p>要過原點，代 $(0,0)$：$-\ln t=-1$，所以 $\ln t=1$，$t=e$。切點是 $(e,1)$，斜率 $\frac1e$。</p>
+<p>檢查：直線 $y=\frac xe$ 在 $x=e$ 時 $y=1$，確實通過切點。</p>
+<p class="ans">$y=\dfrac{x}{e}$</p>
+</details>
+</section>
 </div>
 
 <!-- ================================================================ -->
@@ -423,6 +535,48 @@ $$f_n''(0)=-\sum_{k=1}^n k^2=-\frac{n(n+1)(2n+1)}{6}$$
 </div>
 </section>
 
+<div class="practice" id="p5-4">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p5-4-1">
+<p class="problem"><span class="tag">練習 5.4-1</span>求 $\displaystyle\lim_{x\to\infty}\left(1+\frac3x\right)^{2x}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $t=\dfrac x3$，則 $\dfrac3x=\dfrac1t$、$2x=6t$，$x\to\infty$ 時 $t\to\infty$：</p>
+$$\left(1+\frac3x\right)^{2x}=\left[\left(1+\frac1t\right)^t\right]^6\;\longrightarrow\;e^6$$
+<p>也可直接套推廣公式，$a=3$、$b=2$，$e^{ab}=e^6$。</p>
+<p class="ans">$e^6$</p>
+</details>
+</section>
+<section class="pq" id="p5-4-2">
+<p class="problem"><span class="tag">練習 5.4-2</span>求 $\displaystyle\lim_{x\to0}(1-2x)^{1/x}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>這是 $1^\infty$ 型，取 $\ln$，湊出 $\dfrac{\ln(1+u)}{u}$ 的形狀，$u=-2x$：</p>
+$$\ln(1-2x)^{1/x}=\frac{\ln(1-2x)}{x}=\frac{\ln(1-2x)}{-2x}\cdot(-2)$$
+<p>$x\to0$ 時 $u=-2x\to0$，第一個因子 $\to1$，所以 $\ln(\text{所求})\to-2$。</p>
+<p class="ans">$e^{-2}$</p>
+</details>
+</section>
+<section class="pq" id="p5-4-3">
+<p class="problem"><span class="tag">練習 5.4-3</span>用對數微分法求 $f(x)=x^{\sin x}$（$x\gt0$）的導數。</p>
+<details class="solution"><summary>詳解</summary>
+<p>底和指數都有 $x$，取 $\ln$：$\ln y=\sin x\cdot\ln x$。右邊用積法則：</p>
+$$\frac{y'}{y}=\cos x\ln x+\frac{\sin x}{x}$$
+<p>兩邊乘 $y=x^{\sin x}$。</p>
+<p class="ans">$f'(x)=x^{\sin x}\left(\cos x\ln x+\dfrac{\sin x}{x}\right)$</p>
+</details>
+</section>
+<section class="pq" id="p5-4-4">
+<p class="problem"><span class="tag">練習 5.4-4</span>$f(x)=\dfrac{\sqrt{x+1}\,(x-2)^3}{x^2+1}$，用對數微分法求 $f'(0)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f(0)=\dfrac{1\cdot(-2)^3}{1}=-8$，是負的，所以取 $\ln|f|$：</p>
+$$\ln|f|=\tfrac12\ln(x+1)+3\ln|x-2|-\ln(x^2+1)$$
+<p>兩邊微分：</p>
+$$\frac{f'}{f}=\frac{1}{2(x+1)}+\frac{3}{x-2}-\frac{2x}{x^2+1}$$
+<p>代 $x=0$：$\dfrac12+\dfrac{3}{-2}-0=-1$。所以 $f'(0)=f(0)\cdot(-1)=(-8)(-1)=8$。</p>
+<p class="ans">$f'(0)=8$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s5-5">5.5 反函數定理</h2>
 
@@ -494,6 +648,41 @@ $$g''\bigl(f(x)\bigr)\bigl(f'(x)\bigr)^2+g'\bigl(f(x)\bigr)f''(x)=0$$
 <p class="ans">$\dfrac{d}{dx}f^{-1}(1)=\dfrac13,\qquad \dfrac{d^2}{dx^2}f^{-1}(1)=-\dfrac{e}{27}$</p>
 </div>
 </section>
+
+<div class="practice" id="p5-5">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p5-5-1">
+<p class="problem"><span class="tag">練習 5.5-1</span>$f(x)=x^3+x+1$。求 $(f^{-1})'(3)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f'(x)=3x^2+1\gt0$，所以 $f$ 嚴格遞增、一對一，反函數存在。</p>
+<p>找 $x_0$ 使 $f(x_0)=3$：試 $x=1$，$1+1+1=3$，所以 $x_0=1$。$f'(1)=4$。</p>
+$$(f^{-1})'(3)=\frac{1}{f'(1)}=\frac14$$
+<p>注意是 $f'$ 在 $x_0=1$ 的值，不是在 $3$ 的值。</p>
+<p class="ans">$\dfrac14$</p>
+</details>
+</section>
+<section class="pq" id="p5-5-2">
+<p class="problem"><span class="tag">練習 5.5-2</span>$f(x)=x+\ln x$（$x\gt0$）。說明 $f$ 一對一，並求 $(f^{-1})'(1)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f'(x)=1+\dfrac1x$，$x\gt0$ 時 $f'\gt0$，所以 $f$ 嚴格遞增、一對一。</p>
+<p>找 $x_0$ 使 $f(x_0)=1$：試 $x=1$，$1+\ln1=1$，所以 $x_0=1$。$f'(1)=1+1=2$。</p>
+<p class="ans">$(f^{-1})'(1)=\dfrac{1}{2}$</p>
+</details>
+</section>
+<section class="pq" id="p5-5-3">
+<p class="problem"><span class="tag">練習 5.5-3</span>$f$ 二次可微且一對一，$f(1)=2$、$f'(1)=2$、$f''(1)=4$。求 $(f^{-1})''(2)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $g=f^{-1}$。先看一階公式 $g'(x)=\dfrac{1}{f'(g(x))}$。二階就是把它再微一次，分母 $f'(g(x))$ 用連鎖律，微分是 $f''(g(x))\cdot g'(x)$：</p>
+$$g''(x)=-\frac{f''(g(x))\,g'(x)}{\bigl(f'(g(x))\bigr)^2}$$
+<p>把 $g'(x)=\dfrac{1}{f'(g(x))}$ 代進去，並令 $a=g(x)$（即 $x=f(a)$）：</p>
+$$g''\bigl(f(a)\bigr)=-\frac{f''(a)}{\bigl(f'(a)\bigr)^3}$$
+<p>這就是 <a href="#q23">題 23</a> 用的式子，只是整理成一般形式。</p>
+<p>$f(1)=2$，所以 $x=2$ 對應 $a=1$：</p>
+$$g''(2)=-\frac{f''(1)}{f'(1)^3}=-\frac{4}{2^3}=-\frac12$$
+<p class="ans">$(f^{-1})''(2)=-\dfrac12$</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="summary">本週必背總整理</h2>

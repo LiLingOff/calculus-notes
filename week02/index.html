@@ -155,6 +155,43 @@ $$\lim_{x\to3^-}\frac{(x-1)(x-3)}{3-x}=\lim_{x\to3^-}\bigl(-(x-1)\bigr)=-2$$
 </div>
 </section>
 
+<div class="practice" id="p2-1">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p2-1-1">
+<p class="problem"><span class="tag">練習 2.1-1</span>求 $\displaystyle\lim_{x\to3}\frac{x^2-x-6}{x-3}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>代入得 $\frac00$。分子因式分解 $x^2-x-6=(x-3)(x+2)$，$x\ne3$ 所以可以約掉：</p>
+$$\lim_{x\to3}(x+2)=5$$
+<p class="ans">$5$</p>
+</details>
+</section>
+<section class="pq" id="p2-1-2">
+<p class="problem"><span class="tag">練習 2.1-2</span>求 $\displaystyle\lim_{x\to-1}\frac{x^3+1}{x^2-1}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>代入得 $\frac00$，兩邊都有因式 $x+1$。立方和 $x^3+1=(x+1)(x^2-x+1)$，平方差 $x^2-1=(x+1)(x-1)$：</p>
+$$\lim_{x\to-1}\frac{x^2-x+1}{x-1}=\frac{1+1+1}{-2}=-\frac32$$
+<p class="ans">$-\dfrac32$</p>
+</details>
+</section>
+<section class="pq" id="p2-1-3">
+<p class="problem"><span class="tag">練習 2.1-3</span>$f(x)=\begin{cases}2x+1, &amp; x\lt1\\ x^2+k, &amp; x\ge1\end{cases}$，求 $k$ 使 $\displaystyle\lim_{x\to1}f(x)$ 存在。</p>
+<details class="solution"><summary>詳解</summary>
+<p>雙邊極限存在的條件是左右極限相等。左邊用 $2x+1$，右邊用 $x^2+k$：</p>
+$$\lim_{x\to1^-}(2x+1)=3,\qquad\lim_{x\to1^+}(x^2+k)=1+k$$
+<p>令 $3=1+k$ 得 $k=2$。這時兩邊都是 $3$，極限為 $3$。</p>
+<p class="ans">$k=2$</p>
+</details>
+</section>
+<section class="pq" id="p2-1-4">
+<p class="problem"><span class="tag">練習 2.1-4</span>求 $\displaystyle\lim_{x\to2^+}\frac{x-2}{|x-2|}$ 與 $\displaystyle\lim_{x\to2^-}\frac{x-2}{|x-2|}$，並說明 $\displaystyle\lim_{x\to2}\frac{x-2}{|x-2|}$ 是否存在。</p>
+<details class="solution"><summary>詳解</summary>
+<p>跟<a href="#q5">題 5</a> 同一個套路，只是中心換成 $2$。</p>
+<p>$x\gt2$ 時 $|x-2|=x-2$，比值是 $1$；$x\lt2$ 時 $|x-2|=-(x-2)$，比值是 $-1$。左右極限不相等，雙邊極限不存在。</p>
+<p class="ans">右極限 $1$，左極限 $-1$，雙邊極限不存在</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s2-2">2.2 無窮極限與垂直漸近線</h2>
 
@@ -213,6 +250,37 @@ $$f(x)=\frac{(x-9)^2}{(x-9)(x+9)}=\frac{x-9}{x+9}\quad(x\ne9)$$
 <p class="ans">(a) $x=2$、$x=-2$　(b) $x=\ln3$（與講義答案相同）</p>
 </div>
 </section>
+
+<div class="practice" id="p2-2">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p2-2-1">
+<p class="problem"><span class="tag">練習 2.2-1</span>求 $f(x)=\dfrac{x^2-1}{x^2-3x+2}$ 的垂直漸近線。</p>
+<details class="solution"><summary>詳解</summary>
+<p>分母 $(x-1)(x-2)$，可疑點是 $x=1$、$x=2$。分子 $(x-1)(x+1)$，先約分：</p>
+$$f(x)=\frac{x+1}{x-2}\quad(x\ne1)$$
+<p>$x=1$：$\displaystyle\lim_{x\to1}\frac{x+1}{x-2}=-2$，只是一個洞，不是漸近線。</p>
+<p>$x=2$：分子趨近 $3$，分母趨近 $0$，$\displaystyle\lim_{x\to2^+}f(x)=+\infty$（分母 $0^+$）、$\displaystyle\lim_{x\to2^-}f(x)=-\infty$。</p>
+<p class="ans">只有 $x=2$</p>
+</details>
+</section>
+<section class="pq" id="p2-2-2">
+<p class="problem"><span class="tag">練習 2.2-2</span>討論 $f(x)=\ln(x-3)$ 的垂直漸近線，並說明 $x\to3^+$ 時 $f$ 往哪裡去。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$\ln(x-3)$ 要 $x-3\gt0$ 才有定義，所以只能從右邊靠近 $3$。$x\to3^+$ 時 $x-3\to0^+$，而 $\ln$ 在 $0^+$ 處往下衝（<a href="#q10">題 10</a>）：</p>
+$$\lim_{x\to3^+}\ln(x-3)=-\infty$$
+<p>只有單邊爆掉也算垂直漸近線。</p>
+<p class="ans">$x=3$ 是垂直漸近線，$x\to3^+$ 時 $f\to-\infty$</p>
+</details>
+</section>
+<section class="pq" id="p2-2-3">
+<p class="problem"><span class="tag">練習 2.2-3</span>判斷下列函數有沒有垂直漸近線，有的話求出來。(a) $f(x)=\dfrac{x}{x^2+1}$　(b) $g(x)=\dfrac1{e^x-2}$</p>
+<details class="solution"><summary>詳解</summary>
+<p>(a) 分母 $x^2+1\ge1$ 永遠不為 $0$，沒有可疑點，$f$ 在每一點都是正常的數，沒有垂直漸近線。</p>
+<p>(b) 分母 $e^x-2=0$ 即 $x=\ln2$。此時分子是 $1\ne0$，不會約掉。$x\to\ln2^+$ 時 $e^x\gt2$，分母 $0^+$，$g\to+\infty$；$x\to\ln2^-$ 時 $g\to-\infty$。</p>
+<p class="ans">(a) 沒有　(b) $x=\ln2$</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="s2-3">2.3 算極限的技巧（一）</h2>
@@ -304,6 +372,46 @@ $$\frac{1-u}{1-v}=\frac{1+v+v^2+v^3+v^4}{1+u+u^2}\ \longrightarrow\ \frac53$$
 <p class="ans">(a) $-12$　(b) $-\dfrac58$　(c) $\dfrac53$（與講義答案相同）</p>
 </div>
 </section>
+
+<div class="practice" id="p2-3">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p2-3-1">
+<p class="problem"><span class="tag">練習 2.3-1</span>求 $\displaystyle\lim_{x\to0}\frac{\sin5x}{\sin3x}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>分子要湊成 $\frac{\sin5x}{5x}$，分母湊成 $\frac{3x}{\sin3x}$：</p>
+$$\frac{\sin5x}{\sin3x}=\frac{\sin5x}{5x}\cdot\frac{3x}{\sin3x}\cdot\frac53\ \longrightarrow\ 1\cdot1\cdot\frac53$$
+<p class="ans">$\dfrac53$</p>
+</details>
+</section>
+<section class="pq" id="p2-3-2">
+<p class="problem"><span class="tag">練習 2.3-2</span>求 $\displaystyle\lim_{x\to0}\frac{\sqrt{x+9}-3}{x}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>代入得 $\frac00$。乘共軛 $\sqrt{x+9}+3$：</p>
+$$\frac{(x+9)-9}{x\bigl(\sqrt{x+9}+3\bigr)}=\frac{1}{\sqrt{x+9}+3}\ \longrightarrow\ \frac16$$
+<p class="ans">$\dfrac16$</p>
+</details>
+</section>
+<section class="pq" id="p2-3-3">
+<p class="problem"><span class="tag">練習 2.3-3</span>求 $\displaystyle\lim_{x\to0}\frac{1-\cos2x}{x\sin x}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>用 $1-\cos2x=2\sin^2x$（倍角公式），再拆成 $\frac{\sin x}{x}$：</p>
+$$\frac{2\sin^2x}{x\sin x}=2\cdot\frac{\sin x}{x}\ \longrightarrow\ 2$$
+<p>也可以用<a href="#q17">題 17</a> 的結果：$\dfrac{1-\cos2x}{(2x)^2}\to\dfrac12$，所以 $1-\cos2x\approx2x^2$，除以 $x\sin x\approx x^2$ 得 $2$。</p>
+<p class="ans">$2$</p>
+</details>
+</section>
+<section class="pq" id="p2-3-4">
+<p class="problem"><span class="tag">練習 2.3-4</span>求 $\displaystyle\lim_{x\to0}\frac{\tan x-\sin x}{x^3}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>先把 $\tan x=\dfrac{\sin x}{\cos x}$ 代入，提出 $\sin x$：</p>
+$$\tan x-\sin x=\sin x\left(\frac1{\cos x}-1\right)=\frac{\sin x\,(1-\cos x)}{\cos x}$$
+<p>再拆成已知零件：</p>
+$$\frac{\tan x-\sin x}{x^3}=\frac{\sin x}{x}\cdot\frac{1-\cos x}{x^2}\cdot\frac1{\cos x}\ \longrightarrow\ 1\cdot\frac12\cdot1$$
+<p>三個零件的極限都存在，所以可以用四則運算。</p>
+<p class="ans">$\dfrac12$</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="s2-4">2.4 算極限的技巧（二）</h2>
@@ -445,6 +553,42 @@ $$\lim_{x\to0^-}\frac{\sin x}{x}=\lim_{y\to0^+}\frac{\sin(-y)}{-y}=\lim_{y\to0^+
 <p class="ans">$\displaystyle\lim_{x\to0}\frac{\sin x}{x}=1$</p>
 </div>
 </section>
+
+<div class="practice" id="p2-4">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p2-4-1">
+<p class="problem"><span class="tag">練習 2.4-1</span>求 $\displaystyle\lim_{x\to0}\frac{\sin(x^2)}{1-\cos x}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $u=x^2\to0$（$x\ne0$ 時 $u\ne0$），湊出 $\frac{\sin u}{u}$，其餘用<a href="#q17">題 17</a>：</p>
+$$\frac{\sin(x^2)}{1-\cos x}=\frac{\sin(x^2)}{x^2}\cdot\frac{x^2}{1-\cos x}\ \longrightarrow\ 1\cdot2$$
+<p>第二個因子是<a href="#q17">題 17</a> 的倒數，$\frac{1-\cos x}{x^2}\to\frac12$，所以它趨近 $2$。</p>
+<p class="ans">$2$</p>
+</details>
+</section>
+<section class="pq" id="p2-4-2">
+<p class="problem"><span class="tag">練習 2.4-2</span>求 $\displaystyle\lim_{x\to0^-}\frac{\sqrt{1-\cos x}}{x}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>這是根號陷阱。$1-\cos x=2\sin^2\frac x2$，所以</p>
+$$\sqrt{1-\cos x}=\sqrt2\,\left|\sin\frac x2\right|$$
+<p>$x\lt0$ 且靠近 $0$ 時 $\frac x2\lt0$，$\sin\frac x2\lt0$，絕對值要變號：$\left|\sin\frac x2\right|=-\sin\frac x2$。</p>
+$$\frac{-\sqrt2\sin\frac x2}{x}=-\frac{\sqrt2}{2}\cdot\frac{\sin\frac x2}{\frac x2}\ \longrightarrow\ -\frac{\sqrt2}{2}$$
+<p>如果漏掉絕對值會得到 $+\frac{\sqrt2}2$，符號整個反過來。</p>
+<p class="ans">$-\dfrac{\sqrt2}{2}$</p>
+</details>
+</section>
+<section class="pq" id="p2-4-3">
+<p class="problem"><span class="tag">練習 2.4-3</span>求 $\displaystyle\lim_{x\to0}\sqrt{x^3+x^2}\,\sin\frac{\pi}{x}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$\sin\frac\pi x$ 在 $0$ 附近一直亂跳，沒有極限，不能拆開算。但它被 $\pm1$ 管住，前面的根號又會趨近 $0$，這是夾擠的標準場合。</p>
+<p>先整理根號，注意 $\sqrt{x^2}=|x|$：</p>
+$$\sqrt{x^3+x^2}=\sqrt{x^2(x+1)}=|x|\sqrt{x+1}\qquad(x\ge-1)$$
+<p>因為 $\left|\sin\frac\pi x\right|\le1$，</p>
+$$-|x|\sqrt{x+1}\le\sqrt{x^3+x^2}\,\sin\frac{\pi}{x}\le|x|\sqrt{x+1}$$
+<p>$x\to0$ 時左右兩邊都趨近 $0\cdot1=0$，由夾擠定理，中間也趨近 $0$。</p>
+<p class="ans">$0$</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="s2-5">2.5 無窮遠處的極限與水平漸近線</h2>
@@ -646,6 +790,48 @@ g(x) &= \ln\frac{(x-1)^2}{x^2} \\
 <div class="remark"><p>常見的漏網之魚是 $x=3\pm\sqrt5$：只看分母為 $0$ 的點會漏掉 $\ln$ 裡面趨近 $0$ 的地方。講義沒附答案。</p></div>
 </div>
 </section>
+
+<div class="practice" id="p2-5">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p2-5-1">
+<p class="problem"><span class="tag">練習 2.5-1</span>求 $\displaystyle\lim_{x\to\infty}\frac{3x^2-x}{2x^2+5}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>上下同除最高次 $x^2$：</p>
+$$\frac{3-\frac1x}{2+\frac5{x^2}}\ \longrightarrow\ \frac32$$
+<p class="ans">$\dfrac32$</p>
+</details>
+</section>
+<section class="pq" id="p2-5-2">
+<p class="problem"><span class="tag">練習 2.5-2</span>求 $\displaystyle\lim_{x\to-\infty}\frac{\sqrt{4x^2+1}}{x+3}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>分子的 $x^2$ 搬出根號要變 $|x|$，而 $x\to-\infty$ 時 $|x|=-x$：</p>
+$$\sqrt{4x^2+1}=|x|\sqrt{4+\frac1{x^2}}=-x\sqrt{4+\frac1{x^2}}$$
+<p>上下同除 $x$：</p>
+$$\frac{-\sqrt{4+\frac1{x^2}}}{1+\frac3x}\ \longrightarrow\ \frac{-2}{1}=-2$$
+<p>如果忘了負號會得到 $2$。分子恆正、分母 $x+3$ 在 $x\to-\infty$ 時為負，整個式子本來就是負的，可以用來檢查符號。</p>
+<p class="ans">$-2$</p>
+</details>
+</section>
+<section class="pq" id="p2-5-3">
+<p class="problem"><span class="tag">練習 2.5-3</span>求 $\displaystyle\lim_{x\to\infty}\left(\sqrt{x^2+4x}-x\right)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$\infty-\infty$ 型，有理化：</p>
+$$\sqrt{x^2+4x}-x=\frac{4x}{\sqrt{x^2+4x}+x}=\frac{4}{\sqrt{1+\frac4x}+1}\ \longrightarrow\ \frac42=2$$
+<p>最後一步上下同除 $x$，$x\gt0$ 所以 $\frac{\sqrt{x^2+4x}}{x}=\sqrt{1+\frac4x}$。</p>
+<p class="ans">$2$</p>
+</details>
+</section>
+<section class="pq" id="p2-5-4">
+<p class="problem"><span class="tag">練習 2.5-4</span>求 $f(x)=\dfrac{3e^x-1}{e^x+2}$ 的垂直與水平漸近線（若有）。</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>水平</strong>：兩邊分開算。$x\to\infty$ 時上下同除 $e^x$：</p>
+$$\frac{3-e^{-x}}{1+2e^{-x}}\ \longrightarrow\ \frac{3-0}{1+0}=3$$
+<p>$x\to-\infty$ 時 $e^x\to0$，直接代入：$\dfrac{0-1}{0+2}=-\dfrac12$。</p>
+<p><strong>垂直</strong>：分母 $e^x+2\gt0$ 永遠不為 $0$，沒有可疑點，不會爆掉。</p>
+<p class="ans">水平漸近線 $y=3$ 與 $y=-\dfrac12$，沒有垂直漸近線</p>
+</details>
+</section>
+</div>
 
 <h2 id="summary">本週必背總整理</h2>
 <ol>

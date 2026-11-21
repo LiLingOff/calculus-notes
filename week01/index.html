@@ -97,6 +97,34 @@ $$D-I-S-P-A-D-D-D$$
 <figcaption>左：題 2。右：題 3</figcaption>
 </figure>
 
+<div class="practice" id="p1-1">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p1-1-1">
+<p class="problem"><span class="tag">練習 1.1-1</span>描述 $f(x)=\cos x$：定義域、值域、週期、奇偶。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$\cos x$ 和 $\sin x$ 是同一條波，只是左右平移了 $\frac\pi2$，所以定義域、值域、週期都和 $\sin x$ 一樣。差別在對稱：$\cos(-x)=\cos x$，圖形對 $y$ 軸左右對稱，是偶函數。</p>
+<p class="ans">定義域 $\mathbb R$，值域 $[-1,1]$，週期 $2\pi$，偶函數</p>
+</details>
+</section>
+<section class="pq" id="p1-1-2">
+<p class="problem"><span class="tag">練習 1.1-2</span>$f(x)=\begin{cases}x^2, & x\lt1\\ 2-x, & x\ge1\end{cases}$。求定義域與值域，並判斷圖形在 $x=1$ 接不接得起來。</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>定義域</strong>：兩段合起來涵蓋所有實數（$x=1$ 歸下面那段），所以是 $\mathbb R$。</p>
+<p><strong>值域</strong>：左段 $x\lt1$ 時 $x^2$ 可以任意大（$x$ 往負的方向走），最小是 $0$，給出 $[0,\infty)$；右段 $2-x$ 在 $x\ge1$ 遞減，從 $1$ 一路降下去，給出 $(-\infty,1]$。兩段合起來蓋住整條實數線。</p>
+<p><strong>接不接得起來</strong>：$x\to1^-$ 時 $x^2\to1$；$x=1$ 時 $f(1)=2-1=1$，右邊 $x\to1^+$ 時 $2-x\to1$。左右都趨近 $1$，而且正好等於 $f(1)$，所以圖形在 $(1,1)$ 接在一起，沒有斷開。</p>
+<p class="ans">定義域 $\mathbb R$，值域 $\mathbb R$；在 $x=1$ 接得起來（左右都趨近 $1=f(1)$）</p>
+</details>
+</section>
+<section class="pq" id="p1-1-3">
+<p class="problem"><span class="tag">練習 1.1-3</span>用平移描述 $f(x)=|x-2|+1$ 的圖形，並寫出值域。</p>
+<details class="solution"><summary>詳解</summary>
+<p>從 $y=|x|$ 出發：$|x-2|$ 是把圖形<strong>向右</strong>平移 $2$（括號裡減 $2$，要代更大的 $x$ 才會到原本的位置），再 $+1$ 是整個<strong>向上</strong>平移 $1$。所以 V 字形的尖角從 $(0,0)$ 搬到 $(2,1)$。</p>
+<p>$|x-2|\ge0$，所以 $f(x)\ge1$，最小值在 $x=2$ 取到。</p>
+<p class="ans">$y=|x|$ 右移 $2$、上移 $1$，頂點 $(2,1)$；值域 $[1,\infty)$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s1-2">1.2 指數函數與自然對數</h2>
 
@@ -201,6 +229,52 @@ $$x(\ln3+2\ln2)=1-\ln2$$
 </div>
 </section>
 
+<div class="practice" id="p1-2">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p1-2-1">
+<p class="problem"><span class="tag">練習 1.2-1</span>解 $e^{2x}-3e^x+2=0$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$e^{2x}=(e^x)^2$，令 $u=e^x\gt0$，方程式變成一元二次：</p>
+$$u^2-3u+2=0\;\Longrightarrow\;(u-1)(u-2)=0\;\Longrightarrow\;u=1\text{ 或 }2$$
+<p>$u=e^x\gt0$，兩個根都合格。$e^x=1$ 得 $x=0$；$e^x=2$ 得 $x=\ln2$。</p>
+<p class="ans">$x=0$ 或 $x=\ln2$</p>
+</details>
+</section>
+<section class="pq" id="p1-2-2">
+<p class="problem"><span class="tag">練習 1.2-2</span>解 $\ln x+\ln(x-2)=\ln3$。</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>先寫定義域</strong>：$x\gt0$ 且 $x-2\gt0$，合起來 $x\gt2$。</p>
+<p>用 $\ln A+\ln B=\ln(AB)$ 合併，再讓兩邊 $\ln$ 的內容相等：</p>
+$$\ln\bigl(x(x-2)\bigr)=\ln3\;\Longrightarrow\;x^2-2x=3\;\Longrightarrow\;(x-3)(x+1)=0$$
+<p>$x=3$ 或 $x=-1$。$x=-1$ 不在定義域 $x\gt2$ 裡，丟掉。</p>
+<p class="ans">$x=3$（$x=-1$ 不合定義域）</p>
+</details>
+</section>
+<section class="pq" id="p1-2-3">
+<p class="problem"><span class="tag">練習 1.2-3</span>不用計算機，把 $\log_23$、$\log_32$、$\ln\frac12$ 由大到小排列。</p>
+<details class="solution"><summary>詳解</summary>
+<p>每個數都和 $0$、$1$ 比一下：</p>
+<ul>
+<li>$\log_23$：$2^1=2\lt3$，所以 $2$ 要超過 $1$ 次方才等於 $3$，$\log_23\gt1$。</li>
+<li>$\log_32$：$3^0=1\lt2\lt3=3^1$，所以 $0\lt\log_32\lt1$。</li>
+<li>$\ln\frac12$：$\frac12\lt1$，而 $\ln1=0$，$\ln$ 遞增，所以 $\ln\frac12\lt0$（其實等於 $-\ln2$）。</li>
+</ul>
+<p class="ans">$\log_23\gt\log_32\gt\ln\frac12$</p>
+</details>
+</section>
+<section class="pq" id="p1-2-4">
+<p class="problem"><span class="tag">練習 1.2-4</span>解 $2^{x+1}=3^x$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>指數裡有 $x$，兩邊取 $\ln$，把次方拉下來：</p>
+$$(x+1)\ln2=x\ln3$$
+<p>含 $x$ 的項放一起：</p>
+$$x\ln3-x\ln2=\ln2\;\Longrightarrow\;x(\ln3-\ln2)=\ln2\;\Longrightarrow\;x=\frac{\ln2}{\ln3-\ln2}$$
+<p>分母也可以寫成 $\ln\frac32$。驗算：$x\approx0.693/0.405\approx1.71$，$2^{2.71}\approx6.55$，$3^{1.71}\approx6.55$，吻合。</p>
+<p class="ans">$x=\dfrac{\ln2}{\ln(3/2)}$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s1-3">1.3 反函數</h2>
 
@@ -252,6 +326,37 @@ $$y-1=e^x(y+1)\quad\Longrightarrow\quad e^x=\frac{y-1}{y+1}\quad\Longrightarrow\
 <p>定義域：$\dfrac{x-1}{x+1}\gt0$，即 $x\gt1$ 或 $x\lt-1$。這正好是 $f$ 的值域：$e^x$ 在 $(0,1)$ 時 $f\gt1$，$e^x\gt1$ 時 $f\lt-1$。</p>
 </div>
 </section>
+
+<div class="practice" id="p1-3">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p1-3-1">
+<p class="problem"><span class="tag">練習 1.3-1</span>求 $f(x)=\dfrac{2x+1}{x-3}$ 的反函數。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $y=\dfrac{2x+1}{x-3}$，$x$ 在分母，先去分母再把含 $x$ 的項集中：</p>
+$$y(x-3)=2x+1\;\Longrightarrow\;xy-3y=2x+1\;\Longrightarrow\;x(y-2)=3y+1\;\Longrightarrow\;x=\frac{3y+1}{y-2}$$
+<p>$x$、$y$ 互換。</p>
+<p class="ans">$f^{-1}(x)=\dfrac{3x+1}{x-2}$</p>
+</details>
+</section>
+<section class="pq" id="p1-3-2">
+<p class="problem"><span class="tag">練習 1.3-2</span>求 $f(x)=\ln(x-1)+2$ 的反函數，並寫出 $f^{-1}$ 的定義域。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $y=\ln(x-1)+2$，先把 $\ln$ 單獨留在一邊，再用指數還原：</p>
+$$y-2=\ln(x-1)\;\Longrightarrow\;e^{y-2}=x-1\;\Longrightarrow\;x=e^{y-2}+1$$
+<p>互換 $x$、$y$。$f^{-1}$ 的定義域就是 $f$ 的值域：$\ln(x-1)$ 在 $x\gt1$ 可以取遍所有實數，加 $2$ 後還是所有實數，所以定義域是 $\mathbb R$（也可以直接看 $e^{x-2}+1$ 對任何 $x$ 都有意義）。</p>
+<p class="ans">$f^{-1}(x)=e^{x-2}+1$，定義域 $\mathbb R$</p>
+</details>
+</section>
+<section class="pq" id="p1-3-3">
+<p class="problem"><span class="tag">練習 1.3-3</span>$f(x)=x^3+x$ 的反函數存在。不必求出公式，求 $f^{-1}(2)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f^{-1}(2)$ 的意思是「$f$ 的輸出是 $2$ 時，輸入是多少」，所以只要解 $f(x)=2$：</p>
+$$x^3+x=2$$
+<p>試 $x=1$：$1+1=2$，成立。因為 $x^3+x$ 嚴格遞增，不會有第二個解，所以輸入就是 $1$。</p>
+<p class="ans">$f^{-1}(2)=1$</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="s1-4">1.4 一對一函數</h2>
@@ -313,6 +418,38 @@ $$f(x)=\begin{cases}1-x, & 0\le x\le1\\ x, & 1\lt x\le2\end{cases}$$
 <p class="ans">$f$ 一對一但不單調（而且 $f^{-1}=f$）</p>
 </div>
 </section>
+
+<div class="practice" id="p1-4">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p1-4-1">
+<p class="problem"><span class="tag">練習 1.4-1</span>$f(x)=x^2-4x$，$x\ge2$。說明 $f$ 是一對一，並求反函數及其定義域。</p>
+<details class="solution"><summary>詳解</summary>
+<p>配方：$f(x)=(x-2)^2-4$，頂點在 $x=2$。限制 $x\ge2$ 後只剩拋物線的右半邊，嚴格遞增，所以是一對一（定理 1.4.3）。</p>
+<p>令 $y=(x-2)^2-4$，解 $x$：</p>
+$$(x-2)^2=y+4\;\Longrightarrow\;x-2=\pm\sqrt{y+4}$$
+<p>原本 $x\ge2$，所以 $x-2\ge0$，取正號：$x=2+\sqrt{y+4}$。互換 $x$、$y$。</p>
+<p>定義域是 $f$ 的值域：右半邊從頂點 $y=-4$ 往上，值域 $[-4,\infty)$。</p>
+<p class="ans">$f^{-1}(x)=2+\sqrt{x+4}$，定義域 $x\ge-4$</p>
+</details>
+</section>
+<section class="pq" id="p1-4-2">
+<p class="problem"><span class="tag">練習 1.4-2</span>判斷 $f(x)=x^3-x$ 與 $g(x)=x^3+x$ 各是不是一對一。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f$：$f(0)=0$、$f(1)=1-1=0$，兩個不同的輸入給出同一個輸出，水平線 $y=0$ 交圖形不只一點（$x=-1,0,1$ 三點），所以<strong>不是</strong>一對一。</p>
+<p>$g$：$x^3$ 與 $x$ 都是嚴格遞增，兩個遞增函數相加還是嚴格遞增，所以由定理 1.4.3，$g$ 是一對一。</p>
+<p class="ans">$x^3-x$ 不是一對一（$f(0)=f(1)=0$）；$x^3+x$ 是一對一（嚴格遞增）</p>
+</details>
+</section>
+<section class="pq" id="p1-4-3">
+<p class="problem"><span class="tag">練習 1.4-3</span>說明 $f(x)=\dfrac1x$ 在 $\mathbb R\setminus\{0\}$ 上是一對一，但不是單調函數。</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>一對一</strong>：若 $f(a)=f(b)$，即 $\frac1a=\frac1b$，兩邊取倒數得 $a=b$。所以不同的輸入一定給出不同的輸出。</p>
+<p><strong>不單調</strong>：在 $x\lt0$ 與 $x\gt0$ 兩段各自遞減，但跨過 $0$ 時方向不一致：$f(-1)=-1\lt f(1)=1$（$x$ 變大，輸出也變大），而 $f(1)=1\gt f(2)=\frac12$（$x$ 變大，輸出變小）。整體既不是遞增也不是遞減。</p>
+<p>這和 <a href="#q12">題 12</a> 一樣是「一對一但不單調」的例子。差別在這裡定義域被 $0$ 切成兩段，兩段的值域 $(-\infty,0)$ 與 $(0,\infty)$ 不重疊，所以不會撞到同一個輸出。</p>
+<p class="ans">一對一，但不單調（左右兩支各自遞減，整體不是）</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="s1-5">1.5 反三角函數</h2>
@@ -389,6 +526,50 @@ $$\sin\frac{3\pi}4=\frac{\sqrt2}2\quad\Longrightarrow\quad\sin^{-1}\frac{\sqrt2}
 
 <div class="remark">
 <p>(b)(1) 的重點：$\sin^{-1}(\sin x)=x$ <strong>只在 $x\in\left[-\frac\pi2,\frac\pi2\right]$ 時成立</strong>。反方向 $\sin\left(\sin^{-1}x\right)=x$ 則對所有 $x\in[-1,1]$ 都成立。</p>
+</div>
+
+<div class="practice" id="p1-5">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p1-5-1">
+<p class="problem"><span class="tag">練習 1.5-1</span>求 $\sin^{-1}\left(-\frac12\right)$、$\cos^{-1}\left(-\frac12\right)$、$\tan^{-1}\left(-\sqrt3\right)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>每題先想「$\sin^{-1}$ 的答案只能落在 $\left[-\frac\pi2,\frac\pi2\right]$，$\cos^{-1}$ 只能落在 $[0,\pi]$，$\tan^{-1}$ 只能落在 $\left(-\frac\pi2,\frac\pi2\right)$」。</p>
+<ul>
+<li>$\sin\frac\pi6=\frac12$，$\sin$ 是奇函數，所以 $\sin\left(-\frac\pi6\right)=-\frac12$，且 $-\frac\pi6$ 在範圍內。</li>
+<li>$\cos\frac\pi3=\frac12$。要得到 $-\frac12$，角要在第二象限：$\pi-\frac\pi3=\frac{2\pi}3$，在 $[0,\pi]$ 內。</li>
+<li>$\tan\frac\pi3=\sqrt3$，$\tan$ 是奇函數，所以 $\tan\left(-\frac\pi3\right)=-\sqrt3$，在範圍內。</li>
+</ul>
+<p class="ans">$-\dfrac\pi6$、$\dfrac{2\pi}3$、$-\dfrac\pi3$</p>
+</details>
+</section>
+<section class="pq" id="p1-5-2">
+<p class="problem"><span class="tag">練習 1.5-2</span>化簡 $\sin\left(\tan^{-1}x\right)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $\theta=\tan^{-1}x$，則 $\tan\theta=\dfrac x1$，$-\frac\pi2\lt\theta\lt\frac\pi2$。</p>
+<p>畫直角三角形：對邊 $x$、鄰邊 $1$，斜邊 $\sqrt{1+x^2}$。所以 $\sin\theta=\dfrac{\text{對邊}}{\text{斜邊}}=\dfrac{x}{\sqrt{1+x^2}}$。</p>
+<p>正負號：$x\lt0$ 時 $\theta\lt0$，$\sin\theta\lt0$，式子的分子 $x$ 本來就是負的，符號吻合，不需另外處理。</p>
+<p class="ans">$\sin\left(\tan^{-1}x\right)=\dfrac{x}{\sqrt{1+x^2}}$</p>
+</details>
+</section>
+<section class="pq" id="p1-5-3">
+<p class="problem"><span class="tag">練習 1.5-3</span>求 $\cos^{-1}\left(\cos\frac{5\pi}4\right)$ 與 $\tan^{-1}\left(\tan\frac{3\pi}4\right)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>這是「外層反函數、內層原函數」的陷阱題：答案要落在反函數的值域內，不能直接寫括號裡的角。先算裡面。</p>
+<p>(a) $\cos\frac{5\pi}4=-\frac{\sqrt2}2$。$[0,\pi]$ 裡 $\cos$ 等於 $-\frac{\sqrt2}2$ 的角是 $\frac{3\pi}4$（$\frac{5\pi}4$ 超出範圍，它和 $\frac{3\pi}4$ 對 $\pi$ 對稱，餘弦值相同）。</p>
+<p>(b) $\tan\frac{3\pi}4=-1$。$\left(-\frac\pi2,\frac\pi2\right)$ 裡 $\tan$ 等於 $-1$ 的角是 $-\frac\pi4$。</p>
+<p class="ans">(a) $\dfrac{3\pi}4$　(b) $-\dfrac\pi4$</p>
+</details>
+</section>
+<section class="pq" id="p1-5-4">
+<p class="problem"><span class="tag">練習 1.5-4</span>求 $\sin\left(2\cos^{-1}\frac35\right)$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $\theta=\cos^{-1}\frac35$，則 $\cos\theta=\frac35$，$0\le\theta\le\pi$。</p>
+<p>三角形：鄰邊 $3$、斜邊 $5$，對邊 $4$。$\theta$ 在 $[0,\pi]$ 內 $\sin\theta\ge0$，所以 $\sin\theta=\frac45$。</p>
+<p>倍角公式 $\sin2\theta=2\sin\theta\cos\theta$：</p>
+$$\sin2\theta=2\cdot\frac45\cdot\frac35=\frac{24}{25}$$
+<p class="ans">$\dfrac{24}{25}$</p>
+</details>
+</section>
 </div>
 
 <!-- ================================================================ -->

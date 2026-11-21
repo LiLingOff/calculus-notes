@@ -88,6 +88,36 @@ $$x^{\ln x}=e^{\ln x\cdot\ln x}=e^{(\ln x)^2}$$
 </div>
 </section>
 
+<div class="practice" id="p3-1">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p3-1-1">
+<p class="problem"><span class="tag">練習 3.1-1</span>$f(x)=\begin{cases}x^2+a, & x\lt 1\\ 3, & x=1\\ bx-1, & x\gt 1\end{cases}$ 在 $x=1$ 連續，求 $a,b$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>三個量要相等：左極限、右極限、函數值 $f(1)=3$。</p>
+$$\lim_{x\to1^-}(x^2+a)=1+a,\qquad \lim_{x\to1^+}(bx-1)=b-1$$
+<p>$1+a=3$ 得 $a=2$；$b-1=3$ 得 $b=4$。</p>
+<p class="ans">$a=2,\ b=4$</p>
+</details>
+</section>
+<section class="pq" id="p3-1-2">
+<p class="problem"><span class="tag">練習 3.1-2</span>求 $\displaystyle\lim_{x\to0}e^{\frac{\sin x}{x}}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$e^u$ 是連續函數，極限可以搬進指數：</p>
+$$\lim_{x\to0}e^{\frac{\sin x}{x}}=e^{\lim_{x\to0}\frac{\sin x}{x}}=e^1$$
+<p class="ans">$e$</p>
+</details>
+</section>
+<section class="pq" id="p3-1-3">
+<p class="problem"><span class="tag">練習 3.1-3</span>$f(x)=\dfrac{x^2-4}{x-2}$（$x\ne2$），$f(2)=k$。求 $k$ 使 $f$ 在 $x=2$ 連續。</p>
+<details class="solution"><summary>詳解</summary>
+<p>連續要求 $k=f(2)=\displaystyle\lim_{x\to2}f(x)$。$x\ne2$ 時可以約分：</p>
+$$\frac{x^2-4}{x-2}=x+2\;\longrightarrow\;4$$
+<p>$x=2$ 以外的地方，$f$ 是有理函數，分母不為 0，本來就連續。</p>
+<p class="ans">$k=4$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s3-2">3.2 不連續的種類</h2>
 
@@ -162,6 +192,39 @@ $$\text{(c) }f(x)=\begin{cases}\dfrac1q, & x=\dfrac pq\text{ 為最簡分數，}
 <p class="ans">(a) 處處不連續　(b) 只在 $x=0$ 連續　(c) 在所有無理數連續、所有有理數不連續</p>
 </div>
 </section>
+
+<div class="practice" id="p3-2">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p3-2-1">
+<p class="problem"><span class="tag">練習 3.2-1</span>判斷下列各函數在指定點的不連續屬於哪一種（跳躍、可去、本質）。<br>
+(a) $\dfrac{x^2-1}{x-1}$ 在 $x=1$　(b) $\lfloor x\rfloor$ 在 $x=2$　(c) $\dfrac{1}{(x-3)^2}$ 在 $x=3$　(d) $f(x)=\begin{cases}\sin\dfrac1x, & x\ne0\\ 0, & x=0\end{cases}$ 在 $x=0$</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>(a)</strong> $x\ne1$ 時 $\dfrac{x^2-1}{x-1}=x+1\to2$，左右極限都是 $2$，但函數在 $1$ 沒有定義。極限存在，補上就好，是可去不連續。</p>
+<p><strong>(b)</strong> $x\to2^-$ 時 $\lfloor x\rfloor=1$，$x\to2^+$ 時 $\lfloor x\rfloor=2$。左右極限都存在但不同，是跳躍不連續。</p>
+<p><strong>(c)</strong> 兩邊都 $\to+\infty$，極限是無窮大，是本質不連續。</p>
+<p><strong>(d)</strong> $x\to0$ 時 $\frac1x\to\pm\infty$，$\sin\frac1x$ 在 $-1$ 和 $1$ 之間來回震盪，左右極限都不存在，是本質不連續。就算把 $f(0)$ 改成別的值也救不回來。</p>
+<p class="ans">(a) 可去　(b) 跳躍　(c) 本質　(d) 本質</p>
+</details>
+</section>
+<section class="pq" id="p3-2-2">
+<p class="problem"><span class="tag">練習 3.2-2</span>找出 $f(x)=\dfrac{x^2+x-2}{x^2-1}$ 所有的不連續點，並分類。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$f$ 是有理函數，只有分母為 $0$ 的點可能不連續：$x^2-1=0$，即 $x=\pm1$。分子分母先因式分解：</p>
+$$f(x)=\frac{(x+2)(x-1)}{(x-1)(x+1)}$$
+<p><strong>$x=1$</strong>：$(x-1)$ 可以約掉，$x\ne1$ 時 $f(x)=\dfrac{x+2}{x+1}\to\dfrac32$。左右極限相等且存在，但 $f(1)$ 沒有定義，是可去不連續。</p>
+<p><strong>$x=-1$</strong>：約分後分母剩 $x+1$，分子 $\to1\ne0$。$x\to-1^+$ 時 $\dfrac{x+2}{x+1}\to+\infty$，$x\to-1^-$ 時 $\to-\infty$，是本質不連續。</p>
+<p class="ans">$x=1$：可去（極限 $\frac32$）；$x=-1$：本質（無窮型）</p>
+</details>
+</section>
+<section class="pq" id="p3-2-3">
+<p class="problem"><span class="tag">練習 3.2-3</span>承上題，補定義 $f(1)$ 使 $f$ 在 $x=1$ 連續。$x=-1$ 能用同樣方法補好嗎？</p>
+<details class="solution"><summary>詳解</summary>
+<p>連續要求 $f(1)=\displaystyle\lim_{x\to1}f(x)=\dfrac32$，所以定義 $f(1)=\dfrac32$。</p>
+<p>$x=-1$ 補不了：補定義只能改一個點的值，要能補好，必須左右極限存在而且相等。但 $x\to-1$ 時 $|f(x)|\to\infty$，沒有任何實數可以當函數值接上去。</p>
+<p class="ans">$f(1)=\dfrac32$；$x=-1$ 的極限是無窮大，補不了</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="s3-3">3.3 中間值定理</h2>
@@ -310,6 +373,53 @@ $$\begin{aligned}
 <p class="ans">(a) 有解　(b) 得證；$\cos^{-1}\frac{-1+\sqrt5}{2}\approx0.905$，介於 $\frac\pi4\approx0.785$ 與 $\frac\pi3\approx1.047$ 之間</p>
 </div>
 </section>
+
+<div class="practice" id="p3-3">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p3-3-1">
+<p class="problem"><span class="tag">練習 3.3-1</span>證明 $x^3+x-1=0$ 在 $(0,1)$ 內有根。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $g(x)=x^3+x-1$。多項式處處連續，所以 $g$ 在 $[0,1]$ 上連續。算兩端：</p>
+$$g(0)=-1\lt 0,\qquad g(1)=1+1-1=1\gt 0$$
+<p>一負一正，由勘根定理，存在 $c\in(0,1)$ 使 $g(c)=0$。</p>
+<p class="ans">在 $(0,1)$ 內有根</p>
+</details>
+</section>
+<section class="pq" id="p3-3-2">
+<p class="problem"><span class="tag">練習 3.3-2</span>證明 $\cos x=x$ 在 $\left[0,\frac\pi2\right]$ 內有解。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $g(x)=\cos x-x$。$\cos x$ 與 $x$ 都連續，所以 $g$ 在 $\left[0,\frac\pi2\right]$ 上連續。</p>
+$$g(0)=1-0=1\gt 0,\qquad g\left(\tfrac\pi2\right)=0-\frac\pi2\lt 0$$
+<p>由勘根定理，存在 $c\in\left(0,\frac\pi2\right)$ 使 $\cos c=c$。</p>
+<p class="ans">在 $\left(0,\frac\pi2\right)$ 內有解</p>
+</details>
+</section>
+<section class="pq" id="p3-3-3">
+<p class="problem"><span class="tag">練習 3.3-3</span>證明 $e^x=3-x$ 在 $[0,1]$ 內有解。</p>
+<details class="solution"><summary>詳解</summary>
+<p>移項，令 $g(x)=e^x+x-3$。指數函數與多項式都連續，所以 $g$ 在 $[0,1]$ 上連續。</p>
+$$g(0)=1+0-3=-2\lt 0,\qquad g(1)=e+1-3=e-2\gt 0$$
+<p>（$e\approx2.718\gt 2$。）由勘根定理，存在 $c\in(0,1)$ 使 $e^c=3-c$。</p>
+<p class="ans">在 $(0,1)$ 內有解</p>
+</details>
+</section>
+<section class="pq" id="p3-3-4">
+<p class="problem"><span class="tag">練習 3.3-4</span>證明 $x^4-3x^2+1=0$ 在 $[-2,2]$ 內至少有 4 個根。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $f(x)=x^4-3x^2+1$，多項式處處連續，所以在 $[-2,2]$ 上連續。要四個根，就要找五個點讓正負號變四次。算幾個好算的點：</p>
+$$f(-2)=5,\quad f(-1)=-1,\quad f(0)=1,\quad f(1)=-1,\quad f(2)=5$$
+<p>符號依序是 $+,-,+,-,+$，四個相鄰區間各變號一次：</p>
+<ul>
+<li>$[-2,-1]$：$f(-2)\gt 0\gt f(-1)$，有根；</li>
+<li>$[-1,0]$：$f(-1)\lt 0\lt f(0)$，有根；</li>
+<li>$[0,1]$：$f(0)\gt 0\gt f(1)$，有根；</li>
+<li>$[1,2]$：$f(1)\lt 0\lt f(2)$，有根。</li>
+</ul>
+<p>端點的值都不是 $0$，所以四個根分別落在 $(-2,-1)$、$(-1,0)$、$(0,1)$、$(1,2)$，區間互不重疊，是四個不同的根。</p>
+<p class="ans">至少 4 個根，分別在 $(-2,-1)$、$(-1,0)$、$(0,1)$、$(1,2)$</p>
+</details>
+</section>
+</div>
 
 <h2 id="summary">本週必背總整理</h2>
 <ol>

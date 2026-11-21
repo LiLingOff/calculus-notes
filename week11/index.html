@@ -62,6 +62,43 @@ $$\int\frac{\sin x}{\cos x}\,dx=-\int\frac{du}u=-\ln|\cos x|+C.$$
 </div>
 </section>
 
+<div class="practice" id="p11-1">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p11-1-1">
+<p class="problem"><span class="tag">練習 11.1-1</span>求 $\displaystyle\int xe^{x^2}\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>考點</strong>：$e^{x^2}$ 的裡面那團是 $x^2$，它的導數 $2x$ 差個常數倍就在前面。令 $u=x^2$，$du=2x\,dx$，所以 $x\,dx=\frac12du$：</p>
+$$\int e^u\cdot\frac12\,du=\frac12e^u+C.$$
+<p class="ans">$\dfrac12e^{x^2}+C$</p>
+</details>
+</section>
+<section class="pq" id="p11-1-2">
+<p class="problem"><span class="tag">練習 11.1-2</span>求 $\displaystyle\int\sin^3x\cos x\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$\sin x$ 和它的導數 $\cos x$ 同時出現。令 $u=\sin x$，$du=\cos x\,dx$：</p>
+$$\int u^3\,du=\frac{u^4}4+C.$$
+<p class="ans">$\dfrac14\sin^4x+C$</p>
+</details>
+</section>
+<section class="pq" id="p11-1-3">
+<p class="problem"><span class="tag">練習 11.1-3</span>求 $\displaystyle\int\frac{e^x}{1+e^{2x}}\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$e^{2x}=(e^x)^2$，分母是 $1+(\text{某東西})^2$，目標是 $\tan^{-1}$。令 $u=e^x$，$du=e^x\,dx$，分子剛好用掉：</p>
+$$\int\frac{du}{1+u^2}=\tan^{-1}u+C.$$
+<p class="ans">$\tan^{-1}(e^x)+C$</p>
+</details>
+</section>
+<section class="pq" id="p11-1-4">
+<p class="problem"><span class="tag">練習 11.1-4</span>求 $\displaystyle\int\frac1{x\ln x}\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>把它看成 $\dfrac{1}{\ln x}\cdot\dfrac1x$。令 $u=\ln x$，$du=\dfrac{dx}x$：</p>
+$$\int\frac{du}u=\ln|u|+C.$$
+<p>換回 $x$，絕對值要留著。</p>
+<p class="ans">$\ln|\ln x|+C$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s11-2">11.2 變數變換 II：定積分</h2>
 
@@ -190,6 +227,43 @@ $$\frac12\int\frac{du}{1+u^2}=\frac12\tan^{-1}u+C.$$
 </div>
 </section>
 
+<div class="practice" id="p11-2">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p11-2-1">
+<p class="problem"><span class="tag">練習 11.2-1</span>求 $\displaystyle\int_0^{\sqrt\pi}x\sin(x^2)\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $u=x^2$，$du=2x\,dx$，$x\,dx=\frac12du$。上下限 $x=0\to u=0$，$x=\sqrt\pi\to u=\pi$：</p>
+$$\frac12\int_0^\pi\sin u\,du=\frac12\big[-\cos u\big]_0^\pi=\frac12\big(1+1\big)=1.$$
+<p class="ans">$1$</p>
+</details>
+</section>
+<section class="pq" id="p11-2-2">
+<p class="problem"><span class="tag">練習 11.2-2</span>求 $\displaystyle\int_0^1\frac x{1+x^2}\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>分子是分母導數的一半。令 $u=1+x^2$，$du=2x\,dx$。上下限 $x=0\to u=1$，$x=1\to u=2$：</p>
+$$\frac12\int_1^2\frac{du}u=\frac12\big[\ln u\big]_1^2=\frac12\ln2.$$
+<p class="ans">$\dfrac12\ln2$</p>
+</details>
+</section>
+<section class="pq" id="p11-2-3">
+<p class="problem"><span class="tag">練習 11.2-3</span>求 $\displaystyle\int_0^{\pi/4}\tan x\sec^2x\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$\tan x$ 配它的導數 $\sec^2x$。令 $u=\tan x$，$du=\sec^2x\,dx$。上下限 $x=0\to u=0$，$x=\frac\pi4\to u=1$：</p>
+$$\int_0^1u\,du=\frac12.$$
+<p class="ans">$\dfrac12$</p>
+</details>
+</section>
+<section class="pq" id="p11-2-4">
+<p class="problem"><span class="tag">練習 11.2-4</span>求 $\displaystyle\int_0^3x\sqrt{x+1}\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p><strong>考點</strong>：去根號，並用 $u$ 反解出殘留的 $x$（§11.2.1）。令 $u=x+1$，$x=u-1$，$du=dx$。上下限 $x=0\to u=1$，$x=3\to u=4$：</p>
+$$\int_1^4(u-1)\sqrt u\,du=\int_1^4\left(u^{3/2}-u^{1/2}\right)du=\left[\frac25u^{5/2}-\frac23u^{3/2}\right]_1^4.$$
+<p>$u=4$：$\frac25\cdot32-\frac23\cdot8=\frac{64}5-\frac{16}3=\frac{112}{15}$。$u=1$：$\frac25-\frac23=-\frac4{15}$。相減：$\frac{112}{15}+\frac4{15}=\frac{116}{15}$。</p>
+<p class="ans">$\dfrac{116}{15}$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s11-3">11.3 特殊代換一：$u=x^k\pm\frac1{x^k}$（*）<span class="lv">延伸</span></h2>
 
@@ -212,6 +286,32 @@ $$\frac12\cdot\frac1{2\sqrt2}\Big(\ln|u-\sqrt2|-\ln|u+\sqrt2|\Big)+C=\frac1{4\sq
 <p class="ans">$\dfrac1{4\sqrt2}\ln\left|\dfrac{x^2+\frac1{x^2}-\sqrt2}{x^2+\frac1{x^2}+\sqrt2}\right|+C$</p>
 </div>
 </section>
+
+<div class="practice" id="p11-3">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p11-3-1">
+<p class="problem"><span class="tag">練習 11.3-1</span>求 $\displaystyle\int\frac{x^2+1}{x^4+1}\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>上下同除 $x^2$：</p>
+$$\frac{x^2+1}{x^4+1}=\frac{1+\frac1{x^2}}{x^2+\frac1{x^2}}.$$
+<p>分子 $1+\frac1{x^2}$ 是 $x-\frac1x$ 的導數。令 $u=x-\frac1x$，$du=\left(1+\frac1{x^2}\right)dx$，且 $x^2+\frac1{x^2}=u^2+2$：</p>
+$$\int\frac{du}{u^2+2}=\frac1{\sqrt2}\tan^{-1}\frac u{\sqrt2}+C.$$
+<p class="ans">$\dfrac1{\sqrt2}\tan^{-1}\dfrac{x-\frac1x}{\sqrt2}+C$</p>
+</details>
+</section>
+<section class="pq" id="p11-3-2">
+<p class="problem"><span class="tag">練習 11.3-2</span>求 $\displaystyle\int\frac{x^2-1}{x^4+1}\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>同樣同除 $x^2$，這次分子 $1-\frac1{x^2}$ 是 $x+\frac1x$ 的導數。令 $u=x+\frac1x$，$du=\left(1-\frac1{x^2}\right)dx$，且 $x^2+\frac1{x^2}=u^2-2$：</p>
+$$\int\frac{du}{u^2-2}.$$
+<p>拆分式（和題 13 同一招）：</p>
+$$\frac1{u^2-2}=\frac1{2\sqrt2}\left(\frac1{u-\sqrt2}-\frac1{u+\sqrt2}\right),$$
+<p>所以積分是 $\frac1{2\sqrt2}\ln\left|\frac{u-\sqrt2}{u+\sqrt2}\right|+C$。換回 $x$ 即得答案。</p>
+<p>跟練習 11.3-1 比：分子的正負號不同，$u$ 就從 $x-\frac1x$ 變成 $x+\frac1x$，分母從 $u^2+2$ 變成 $u^2-2$，結果也從 $\tan^{-1}$ 變成 $\ln$。</p>
+<p class="ans">$\dfrac1{2\sqrt2}\ln\left|\dfrac{x+\frac1x-\sqrt2}{x+\frac1x+\sqrt2}\right|+C$</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="s11-4">11.4 特殊代換二：對稱（King's rule）（*）<span class="lv">延伸</span></h2>
@@ -285,6 +385,42 @@ $$1+\frac{1-\tan\theta}{1+\tan\theta}=\frac2{1+\tan\theta}\ \Rightarrow\ I=\int_
 </div>
 </section>
 
+<div class="practice" id="p11-4">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p11-4-1">
+<p class="problem"><span class="tag">練習 11.4-1</span>求 $\displaystyle\int_0^{\pi/2}\frac{\sin x}{\sin x+\cos x}\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>令 $I$ 為所求，做 $x\to\frac\pi2-x$，$\sin$ 和 $\cos$ 互換：</p>
+$$I=\int_0^{\pi/2}\frac{\cos x}{\cos x+\sin x}\,dx.$$
+<p>兩式相加，被積函數變成 $1$：$2I=\int_0^{\pi/2}1\,dx=\frac\pi2$。</p>
+<p class="ans">$\dfrac\pi4$</p>
+</details>
+</section>
+<section class="pq" id="p11-4-2">
+<p class="problem"><span class="tag">練習 11.4-2</span>求 $\displaystyle\int_0^{\pi/2}\ln(\tan x)\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$\ln(\tan x)$ 寫不出反導函數，但 $x\to\frac\pi2-x$ 會把 $\tan$ 變成 $\cot$，而 $\ln(\cot x)=\ln\frac1{\tan x}=-\ln(\tan x)$，剛好變號。</p>
+<p>令 $I$ 為所求。$a+b=\frac\pi2$，做 $x\to\frac\pi2-x$：</p>
+$$I=\int_0^{\pi/2}\ln\left(\tan\left(\tfrac\pi2-x\right)\right)dx=\int_0^{\pi/2}\ln(\cot x)\,dx=-\int_0^{\pi/2}\ln(\tan x)\,dx=-I.$$
+<p>$I=-I$，所以 $I=0$。圖形上看：$\ln(\tan x)$ 對點 $\left(\frac\pi4,0\right)$ 點對稱，左半段在 $x$ 軸下方的面積和右半段上方的面積一樣大。（兩端 $\ln(\tan x)\to\mp\infty$，嚴格說是瑕積分，這裡跟 11.8 節一樣先不追究。）</p>
+<p class="ans">$0$</p>
+</details>
+</section>
+<section class="pq" id="p11-4-3">
+<p class="problem"><span class="tag">練習 11.4-3</span>求 $\displaystyle\int_0^\pi\frac{x}{1+\sin x}\,dx$。（可以用 $\displaystyle\int_0^\pi\frac{dx}{1+\sin x}=2$）</p>
+<details class="solution"><summary>詳解</summary>
+<p>分子的 $x$ 是麻煩所在。$x\to\pi-x$ 時 $\sin(\pi-x)=\sin x$，分母不動，分子變成 $\pi-x$，兩式相加 $x$ 就消掉了。</p>
+<p>令 $I$ 為所求。$a+b=\pi$，做 $x\to\pi-x$：</p>
+$$I=\int_0^\pi\frac{\pi-x}{1+\sin x}\,dx.$$
+<p>和原式相加：</p>
+$$2I=\int_0^\pi\frac{x+(\pi-x)}{1+\sin x}\,dx=\pi\int_0^\pi\frac{dx}{1+\sin x}=2\pi.$$
+<p>題目給的 $\int_0^\pi\frac{dx}{1+\sin x}=2$ 可以這樣驗證：分子分母乘 $1-\sin x$，得 $\frac{1-\sin x}{\cos^2x}=\sec^2x-\sec x\tan x$，反導函數 $\tan x-\sec x=\frac{\sin x-1}{\cos x}$，在 $x=\frac\pi2$ 的極限是 $0$，補上這個值就是 $[0,\pi]$ 上的連續函數。代上下限：$\frac{0-1}{-1}-\frac{0-1}{1}=1-(-1)=2$。</p>
+<p>這和 <a href="#q16">題 16</a>(c) 同一招：被積函數是「$x$ 乘上對 $\frac\pi2$ 對稱的函數」時，可以把 $x$ 換成平均值 $\frac\pi2$。</p>
+<p class="ans">$\pi$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s11-5">11.5 換不動的時候</h2>
 
@@ -328,6 +464,40 @@ $$\left(x\tan\frac x2\right)'=\tan\frac x2+x\cdot\frac12\sec^2\frac x2.$$
 <p class="ans">$x\tan\dfrac x2+C$</p>
 </div>
 </section>
+
+<div class="practice" id="p11-5">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p11-5-1">
+<p class="problem"><span class="tag">練習 11.5-1</span>對照 <a href="#q18">題 18</a>：有人用 $u=\sin x$ 算 $\displaystyle\int_0^\pi\sin^2x\cos x\,dx$，上下限都變成 $u=0$，宣稱積分為 $0$。這次對嗎？為什麼題 18 不行而這題可以？</p>
+<details class="solution"><summary>詳解</summary>
+<p>先直接算確認：$\left[\dfrac{\sin^3x}3\right]_0^\pi=0$，答案確實是 $0$。</p>
+<p>差別在被積函數的形狀。這題是 $\sin^2x\cdot\cos x=f(g(x))\,g'(x)$，其中 $g=\sin x$、$f(u)=u^2$、$g'=\cos x$，$dx$ 有一起換成 $du=\cos x\,dx$，所以</p>
+$$\int_0^\pi\sin^2x\cos x\,dx=\int_0^0u^2\,du=0.$$
+<p>定理 11.2.1 只要求 $g'$ 連續、$f$ 連續，<strong>不要求 $g$ 一對一</strong>。$\sin x$ 在 $[0,\pi]$ 先升後降，$u$ 走了去程又回程，兩段積分正好抵消。題 18 的問題是被積函數 $x^2$ 湊不出 $f(g(x))g'(x)$（學生根本沒換 $dx$），不是上下限相同。</p>
+<p class="ans">對，值是 $0$。只要被積函數真的是 $f(g(x))\,g'(x)$，$g$ 不必一對一，上下限相同就得 $0$</p>
+</details>
+</section>
+<section class="pq" id="p11-5-2">
+<p class="problem"><span class="tag">練習 11.5-2</span>對照 <a href="#q19">題 19</a>：求 $\displaystyle\int_0^1x^2(x+1)^8\,dx$。為什麼這題的變數變換換得動？</p>
+<details class="solution"><summary>詳解</summary>
+<p>括號裡是一次式 $x+1$，反解 $x=u-1$ 很簡單，換完仍是多項式。令 $u=x+1$，$du=dx$。上下限 $x=0\to u=1$，$x=1\to u=2$：</p>
+$$\int_1^2(u-1)^2u^8\,du=\int_1^2\left(u^{10}-2u^9+u^8\right)du=\left[\frac{u^{11}}{11}-\frac{u^{10}}5+\frac{u^9}9\right]_1^2.$$
+<p>$u=2$：$\frac{2048}{11}-\frac{1024}5+\frac{512}9$。$u=1$：$\frac1{11}-\frac15+\frac19$。相減：$\frac{2047}{11}-\frac{1023}5+\frac{511}9$，通分到 $495$：</p>
+$$\frac{92115-101277+28105}{495}=\frac{18943}{495}.$$
+<p>題 19 失敗是因為括號裡是二次式 $x^2+x+1$，反解 $x$ 要解二次方程，會出現根號。</p>
+<p class="ans">$\dfrac{18943}{495}\approx38.27$</p>
+</details>
+</section>
+<section class="pq" id="p11-5-3">
+<p class="problem"><span class="tag">練習 11.5-3</span>對照 <a href="#q20">題 20</a>：求 $\displaystyle\int e^x(\sin x+\cos x)\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>變數變換在這題沒用，不管 $u$ 取什麼，式子都不會變簡單。改看有沒有乘積的導數：</p>
+$$\big(e^x\sin x\big)'=e^x\sin x+e^x\cos x=e^x(\sin x+\cos x).$$
+<p>正好是被積函數，所以反導函數就是 $e^x\sin x$。</p>
+<p class="ans">$e^x\sin x+C$</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="s11-6">11.6 變數變換公式的證明（*）<span class="lv">延伸</span></h2>
@@ -395,6 +565,34 @@ $$\int\frac{1-t^2}{5t}\cdot\frac{10t}{(1-t^2)^2}\,dt=\int\frac2{1-t^2}\,dt.$$
 </div>
 </section>
 
+<div class="practice" id="p11-7">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p11-7-1">
+<p class="problem"><span class="tag">練習 11.7-1</span>（$a\gt0$）求 $\displaystyle\int\frac{dx}{\sqrt{x^2+2x+5}}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$x^2$ 的係數是 $1\gt0$，設 $\sqrt{x^2+2x+5}=t-x$，即 $t=x+\sqrt{x^2+2x+5}$。平方：$x^2+2x+5=t^2-2tx+x^2$，$x^2$ 消掉，解出</p>
+$$x=\frac{t^2-5}{2(t+1)},\qquad dx=\frac{t^2+2t+5}{2(t+1)^2}\,dt,\qquad \sqrt{x^2+2x+5}=t-x=\frac{t^2+2t+5}{2(t+1)}.$$
+<p>代入，$dx$ 和根號相除，大部分都約掉：</p>
+$$\int\frac{t^2+2t+5}{2(t+1)^2}\cdot\frac{2(t+1)}{t^2+2t+5}\,dt=\int\frac{dt}{t+1}=\ln|t+1|+C.$$
+<p>$t+1=x+1+\sqrt{(x+1)^2+4}\gt0$（根號比 $|x+1|$ 大），所以絕對值可以拿掉。</p>
+<p class="ans">$\ln\left(x+1+\sqrt{x^2+2x+5}\right)+C$</p>
+</details>
+</section>
+<section class="pq" id="p11-7-2">
+<p class="problem"><span class="tag">練習 11.7-2</span>（有實根）求 $\displaystyle\int\frac{dx}{\sqrt{x^2-1}}$（$x\gt1$）。</p>
+<details class="solution"><summary>詳解</summary>
+<p>$x^2-1=(x-1)(x+1)$，取實根 $\alpha=1$，設 $\sqrt{x^2-1}=(x-1)t$。平方後約掉一個 $x-1$：$x+1=(x-1)t^2$，解出</p>
+$$x=\frac{t^2+1}{t^2-1},\qquad dx=\frac{-4t}{(t^2-1)^2}\,dt,\qquad \sqrt{x^2-1}=(x-1)t=\frac{2t}{t^2-1}.$$
+<p>（$x\gt1$ 時 $t=\sqrt{\frac{x+1}{x-1}}\gt1$。）代入：</p>
+$$\int\frac{t^2-1}{2t}\cdot\frac{-4t}{(t^2-1)^2}\,dt=-2\int\frac{dt}{t^2-1}.$$
+<p>拆分式 $\frac2{t^2-1}=\frac1{t-1}-\frac1{t+1}$，所以積分是 $-\ln(t-1)+\ln(t+1)=\ln\dfrac{t+1}{t-1}+C$。換回 $x$，分子分母同乘 $\sqrt{x-1}$：</p>
+$$\frac{t+1}{t-1}=\frac{\sqrt{x+1}+\sqrt{x-1}}{\sqrt{x+1}-\sqrt{x-1}}=\frac{\left(\sqrt{x+1}+\sqrt{x-1}\right)^2}{2}=x+\sqrt{x^2-1}.$$
+<p>中間一步分母用了 $(x+1)-(x-1)=2$。這次剛好化得跟標準形式完全一樣，沒有差常數。</p>
+<p class="ans">$\ln\left(x+\sqrt{x^2-1}\right)+C$</p>
+</details>
+</section>
+</div>
+
 <!-- ================================================================ -->
 <h2 id="s11-8">11.8 瑕積分的特殊代換一：$u=ax\pm\frac bx$（*）<span class="lv">延伸</span></h2>
 
@@ -445,6 +643,28 @@ $$\frac12\int_{-\infty}^\infty e^{-2}e^{-\left(x-\frac1x\right)^2}\,dx=\frac{e^{
 <p class="ans">$\dfrac{\sqrt\pi}{2e^2}\approx0.120$</p>
 </div>
 </section>
+
+<div class="practice" id="p11-8">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p11-8-1">
+<p class="problem"><span class="tag">練習 11.8-1</span>已知 $\displaystyle\int_0^\infty e^{-x^2}\,dx=\frac{\sqrt\pi}2$，求 $\displaystyle\int_0^\infty e^{-\left(x-\frac1x\right)^2}\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>套用定理 11.8.1，$a=b=1$，$f(s)=e^{-s}$（左邊就是 $f\left(\left(x-\frac1x\right)^2\right)$）：</p>
+$$\int_0^\infty e^{-\left(x-\frac1x\right)^2}\,dx=\frac11\int_0^\infty e^{-x^2}\,dx=\frac{\sqrt\pi}2.$$
+<p>也就是說，把指數裡的 $-\frac1x$ 拿掉，積分值不變。</p>
+<p class="ans">$\dfrac{\sqrt\pi}2$</p>
+</details>
+</section>
+<section class="pq" id="p11-8-2">
+<p class="problem"><span class="tag">練習 11.8-2</span>求 $\displaystyle\int_0^\infty\frac{dx}{\left(2x-\frac3x\right)^2+1}$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>被積函數是 $f\left(\left(ax-\frac bx\right)^2\right)$ 的形式，$a=2$，$b=3$，$f(s)=\frac1{s+1}$。定理 11.8.1：</p>
+$$\int_0^\infty\frac{dx}{\left(2x-\frac3x\right)^2+1}=\frac12\int_0^\infty\frac{dx}{x^2+1}=\frac12\left[\tan^{-1}x\right]_0^\infty=\frac12\cdot\frac\pi2.$$
+<p>答案只和 $a$ 有關，$b=3$ 完全不影響。</p>
+<p class="ans">$\dfrac\pi4$</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="s11-9">11.9 瑕積分的特殊代換二：$u=\pm\frac ax$（*）<span class="lv">延伸</span></h2>
@@ -501,6 +721,30 @@ $$I=I_1-I_2=-\frac32\ln2.$$
 <p class="ans">(a) $\pi$　(b) $-\dfrac{3\ln2}2$（與講義相同）</p>
 </div>
 </section>
+
+<div class="practice" id="p11-9">
+<p class="practice-h">本節練習</p>
+<section class="pq" id="p11-9-1">
+<p class="problem"><span class="tag">練習 11.9-1</span>求 $\displaystyle\int_0^\infty\frac{\ln x}{x^2+1}\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>首項和常數項係數相同（$a=c=1$，$b=0$），由定理 11.9.1 等於 $0$。</p>
+<p>直接驗證：令 $x=\frac1u$，$dx=-\frac{du}{u^2}$，$\ln x=-\ln u$，$x^2+1=\frac{1+u^2}{u^2}$，$x:0\to\infty$ 對應 $u:\infty\to0$：</p>
+$$I=\int_\infty^0\frac{-\ln u}{(1+u^2)/u^2}\cdot\left(-\frac{du}{u^2}\right)=\int_\infty^0\frac{\ln u}{1+u^2}\,du=-I.$$
+<p>$I=-I$，所以 $I=0$。</p>
+<p class="ans">$0$</p>
+</details>
+</section>
+<section class="pq" id="p11-9-2">
+<p class="problem"><span class="tag">練習 11.9-2</span>求 $\displaystyle\int_0^\infty\frac{\ln x}{x^2+4}\,dx$。</p>
+<details class="solution"><summary>詳解</summary>
+<p>首尾係數是 $1$ 和 $4$，不相等。學題 29 的做法，令 $x=2u$，讓分母變成 $4(u^2+1)$：$dx=2\,du$，$\ln x=\ln2+\ln u$，上下限不變（$0\to0$、$\infty\to\infty$）：</p>
+$$I=\int_0^\infty\frac{\ln2+\ln u}{4u^2+4}\cdot2\,du=\frac12\int_0^\infty\frac{\ln2+\ln u}{u^2+1}\,du=\frac{\ln2}2\int_0^\infty\frac{du}{u^2+1}+\frac12\int_0^\infty\frac{\ln u}{u^2+1}\,du.$$
+<p>第二項由練習 11.9-1 等於 $0$，第一項 $\int_0^\infty\frac{du}{u^2+1}=\frac\pi2$：</p>
+$$I=\frac{\ln2}2\cdot\frac\pi2=\frac{\pi\ln2}4.$$
+<p class="ans">$\dfrac{\pi\ln2}4\approx0.544$</p>
+</details>
+</section>
+</div>
 
 <!-- ================================================================ -->
 <h2 id="summary">本週必背總整理</h2>

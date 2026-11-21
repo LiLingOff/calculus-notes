@@ -662,7 +662,7 @@ $$\int_a^b|f|^p\ge\int_I|f|^p\ge(M-\varepsilon)^p\cdot\text{length}(I),$$
 $$\left(\frac{e^p-1}p\right)^{1/p}=\frac{e\,(1-e^{-p})^{1/p}}{p^{1/p}}.$$
 <ul>
 <li>$1-e^{-p}$ 在 $[\frac12,1]$ 之間（$p\ge1$），開 $p$ 次方根後夾在 $(\frac12)^{1/p}$ 與 $1$ 之間，兩邊都趨近 $1$。</li>
-<li>$p^{1/p}=e^{\ln p/p}$，而 $\frac{\ln p}p\to0$（<a href="../week08/index.html#s8-0-1">羅必達</a>：$\frac{1/p}{1}\to0$），所以 $p^{1/p}\to1$。</li>
+<li>$p^{1/p}=e^{\ln p/p}$，而 $\frac{\ln p}p\to0$（<a href="../week08/index.html#s8-0-1">羅必達</a>：$\frac{\frac1p}{1}\to0$），所以 $p^{1/p}\to1$。</li>
 </ul>
 <p>極限是 $e$。和定理對照：$e^x$ 在 $[0,1]$ 上的最大值正是 $e$。</p>
 <p class="ans">$e$</p>
@@ -676,7 +676,7 @@ $$\left(\frac{e^p-1}p\right)^{1/p}=\frac{e\,(1-e^{-p})^{1/p}}{p^{1/p}}.$$
 (c) 用羅必達法則證明 $\lim_{p\to\infty}\left(\int_a^bx^p\,dx\right)^{1/p}=b$。</p>
 <div class="solution"><span class="tag">詳解</span>
 <p>(a) $\int_a^bx^p\,dx=\frac{b^{p+1}-a^{p+1}}{p+1}$，所以答案是 $\left(\frac{b^{p+1}-a^{p+1}}{p+1}\right)^{1/p}$。</p>
-<p>(b) 取對數：$\ln(p+1)^{1/p}=\frac{\ln(p+1)}p$，是 $\frac\infty\infty$ 型。羅必達：$\frac{1/(p+1)}1\to0$。所以 $(p+1)^{1/p}\to e^0=1$。$p^{1/p}$ 同理（$\frac{\ln p}p\to\frac{1/p}1\to0$）。</p>
+<p>(b) 取對數：$\ln(p+1)^{1/p}=\frac{\ln(p+1)}p$，是 $\frac\infty\infty$ 型。羅必達：$\frac{\frac1{p+1}}1\to0$。所以 $(p+1)^{1/p}\to e^0=1$。$p^{1/p}$ 同理（$\frac{\ln p}p\to\frac{\frac1p}1\to0$）。</p>
 <p>(c) 提出 $b^{p+1}$：</p>
 $$\left(\frac{b^{p+1}-a^{p+1}}{p+1}\right)^{1/p}=b^{1+\frac1p}\cdot\frac{\left(1-(a/b)^{p+1}\right)^{1/p}}{(p+1)^{1/p}}.$$
 <p>$b^{1+1/p}\to b$；$0\lt\frac ab\lt1$，所以 $1-(a/b)^{p+1}$ 夾在 $1-\frac ab$ 與 $1$ 之間，開 $p$ 次方根後趨近 $1$；分母由 (b) 趨近 $1$。極限是 $b$，正是 $f(x)=x$ 在 $[a,b]$ 上的最大值。</p>

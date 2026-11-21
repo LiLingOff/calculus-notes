@@ -23,7 +23,7 @@
 </div>
 
 <p>前幾週的招式（查表、變數變換、分部積分、三角變換）處理的是「長得像某個導數」的函數。這週要對付一整類函數：<strong>有理函數</strong> $\dfrac{P(x)}{Q(x)}$，分子分母都是多項式。結論很強：<strong>任何</strong>有理函數都積得出來，而且有固定的流程。</p>
-<p>核心想法是通分的反方向。$\frac1{x-2}-\frac1{x+2}$ 通分得 $\frac4{x^2-4}$；反過來，看到 $\frac1{x^2-4}$ 就把它拆回 $\frac{1/4}{x-2}-\frac{1/4}{x+2}$，每一塊都是 $\ln$ 的形式，一下就積完。</p>
+<p>核心想法是通分的反方向。$\frac1{x-2}-\frac1{x+2}$ 通分得 $\frac4{x^2-4}$；反過來，看到 $\frac1{x^2-4}$ 就把它拆回 $\frac14\cdot\frac1{x-2}-\frac14\cdot\frac1{x+2}$，每一塊都是 $\ln$ 的形式，一下就積完。</p>
 
 <!-- ================================================================ -->
 <h2 id="s14-0">14.0 積分招式五：部分分式（Partial Fractions）</h2>
@@ -93,7 +93,7 @@ $$\int\frac1{(ax+b)^n}\,dx=\frac1a\int u^{-n}\,du.$$
 $$\int\frac1{x^2-4}\,dx=\frac14\ln|x-2|-\frac14\ln|x+2|+C=\frac14\ln\left|\frac{x-2}{x+2}\right|+C.$$
 <figure>
 <img src="fig-pf.svg" alt="1/(x²−4) 的圖形，以及兩個分式 ¼/(x−2) 與 −¼/(x+2) 的虛線圖形">
-<figcaption>藍線是兩條虛線相加。靠近 $x=2$ 時藍線幾乎和紅虛線 $\frac{1/4}{x-2}$ 重合，係數 $\frac14$ 就是「把 $x-2$ 蓋住、代 $x=2$」得到的值。</figcaption>
+<figcaption>藍線是兩條虛線相加。靠近 $x=2$ 時藍線幾乎和紅虛線 $\frac14\cdot\frac1{x-2}$ 重合，係數 $\frac14$ 就是「把 $x-2$ 蓋住、代 $x=2$」得到的值。</figcaption>
 </figure>
 <p>(b) 以 $x\gt2$ 為例，$0\lt\theta\lt\frac\pi2$。$dx=2\sec\theta\tan\theta\,d\theta$，$x^2-4=4\tan^2\theta$：</p>
 $$\int\frac{2\sec\theta\tan\theta}{4\tan^2\theta}\,d\theta=\frac12\int\frac{\sec\theta}{\tan\theta}\,d\theta=\frac12\int\csc\theta\,d\theta=\frac12\ln|\csc\theta-\cot\theta|+C.$$
@@ -197,7 +197,7 @@ $$\frac19\Big[\ln|x+1|\Big]_2^4+\frac{26}9\Big[\ln|x-5|\Big]_2^4+\frac{38}3\left
 $$\int\left(6+\frac3{x-2}-\frac{18}{x+4}\right)dx=6x+3\ln|x-2|-18\ln|x+4|+C.$$
 <p>(c) 設 $\dfrac{x^2+2x+3}{(x-6)(x^2+4)}=\dfrac A{x-6}+\dfrac{Bx+C}{x^2+4}$，乘開 $x^2+2x+3=A(x^2+4)+(Bx+C)(x-6)$。</p>
 <p>代 $x=6$：$51=40A$，$A=\frac{51}{40}$。$x^2$ 係數：$1=A+B$，$B=-\frac{11}{40}$。常數項：$3=4A-6C$，$C=\frac{4A-3}6=\frac7{20}$。</p>
-$$\int\frac{51/40}{x-6}\,dx-\frac{11}{40}\int\frac{x}{x^2+4}\,dx+\frac7{20}\int\frac{dx}{x^2+4}=\frac{51}{40}\ln|x-6|-\frac{11}{80}\ln(x^2+4)+\frac7{40}\tan^{-1}\frac x2+C.$$
+$$\frac{51}{40}\int\frac{dx}{x-6}-\frac{11}{40}\int\frac{x}{x^2+4}\,dx+\frac7{20}\int\frac{dx}{x^2+4}=\frac{51}{40}\ln|x-6|-\frac{11}{80}\ln(x^2+4)+\frac7{40}\tan^{-1}\frac x2+C.$$
 <p>(d) 令 $u=\sqrt{1-x}$，$x=1-u^2$，$dx=-2u\,du$。分母 $1-u^2+2u+2=-(u^2-2u-3)=-(u-3)(u+1)$：</p>
 $$\int\frac{-2u}{-(u-3)(u+1)}\,du=\int\frac{2u}{(u-3)(u+1)}\,du.$$
 <p>$\dfrac{2u}{(u-3)(u+1)}=\dfrac A{u-3}+\dfrac B{u+1}$：代 $u=3$ 得 $A=\frac64=\frac32$，代 $u=-1$ 得 $B=\frac{-2}{-4}=\frac12$。</p>

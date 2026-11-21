@@ -108,7 +108,7 @@ $$\begin{array}{ll}
 (a) $\displaystyle\int\frac1{\sqrt{x^3}}\,dx$　(b) $\displaystyle\int\left(\frac1{\sqrt{1-x^2}}+2^x\right)dx$　(c) $\displaystyle\int\left(\frac1x+\frac1{1+x^2}\right)dx$　(d) $\displaystyle\int\tan^2x\,dx$</p>
 <div class="solution"><span class="tag">詳解</span>
 <p>(a) 先改寫成冪次：$\frac1{\sqrt{x^3}}=x^{-3/2}$。$n=-\frac32$，$n+1=-\frac12$：</p>
-$$\int x^{-3/2}\,dx=\frac{x^{-1/2}}{-1/2}+C=-\frac2{\sqrt x}+C.$$
+$$\int x^{-3/2}\,dx=\frac{x^{-1/2}}{-\frac12}+C=-\frac2{\sqrt x}+C.$$
 <p>(b) 兩項各自查表：$\sin^{-1}x+\dfrac{2^x}{\ln2}+C$。</p>
 <p>(c) 同樣兩項查表：$\ln|x|+\tan^{-1}x+C$。</p>
 <p>(d) $\tan^2x$ 不在表上，但 $\sec^2x$ 在。用 $\tan^2x=\sec^2x-1$：</p>
@@ -276,8 +276,8 @@ $$\int e^{2x}dx=\frac{e^{2x}}2,\quad\int\sin3x\,dx=-\frac{\cos3x}3,\quad\int(3x+
 <p>代上下限：</p>
 <ul>
 <li>$\dfrac{e^{\pi/2}-1}2$</li>
-<li>$-\dfrac{\cos(3\pi/4)}3+\dfrac{\cos0}3=\dfrac{\sqrt2/2}3+\dfrac13=\dfrac{2+\sqrt2}6$</li>
-<li>$\dfrac{(3\pi/4+1)^5-1}{15}$</li>
+<li>$-\dfrac{\cos\frac{3\pi}4}3+\dfrac{\cos0}3=\dfrac{\frac{\sqrt2}2}3+\dfrac13=\dfrac{2+\sqrt2}6$</li>
+<li>$\dfrac{\left(\frac{3\pi}4+1\right)^5-1}{15}$</li>
 </ul>
 <p class="ans">$\dfrac{e^{\pi/2}-1}2+\dfrac{2+\sqrt2}6+\dfrac{(1+\frac{3\pi}4)^5-1}{15}$（約 $30.80$）</p>
 </div>
@@ -358,7 +358,7 @@ $$\int_1^2\big(f(x)e^x\big)'\,dx=\frac{x-1}{x+1}e^x\Big|_1^2=\frac13e^2-0=\frac{
 <section class="pq" id="p10-3-1">
 <p class="problem"><span class="tag">練習 10.3-1</span>計算 $\displaystyle\int_1^4\left(2x+\frac1{\sqrt x}\right)dx$。</p>
 <details class="solution"><summary>詳解</summary>
-<p>$\frac1{\sqrt x}=x^{-1/2}$，反導函數 $\frac{x^{1/2}}{1/2}=2\sqrt x$：</p>
+<p>$\frac1{\sqrt x}=x^{-1/2}$，反導函數 $\frac{x^{1/2}}{\frac12}=2\sqrt x$：</p>
 $$\left[x^2+2\sqrt x\right]_1^4=(16+4)-(1+2)=17$$
 <p class="ans">$17$</p>
 </details>

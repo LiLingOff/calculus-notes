@@ -300,13 +300,15 @@ $$\frac{b-a}{b}\lt\frac{b-a}{c}\lt\frac{b-a}{a}$$
 </details>
 </section>
 <section class="pq" id="p6-2-3">
-<p class="problem"><span class="tag">練習 6.2-3</span>證明 $x^3+3x-5=0$ 恰有一個實根。</p>
+<p class="problem"><span class="tag">練習 6.2-3</span>證明 $xe^x=1$ 恰有一個實根。</p>
 <details class="solution"><summary>詳解</summary>
-<p>令 $f(x)=x^3+3x-5$，多項式處處連續可微。照 6.2 的套路分兩步。</p>
-<p><strong>至少一根</strong>：$f(1)=-1\lt0$，$f(2)=9\gt0$，勘根定理給出 $(1,2)$ 內一根。</p>
-<p><strong>至多一根</strong>：若有兩根 $r_1\lt r_2$，Rolle 給出 $c\in(r_1,r_2)$ 使 $f'(c)=0$。但</p>
-$$f'(x)=3x^2+3\ge3\gt0$$
-<p>永遠不是 $0$，矛盾。</p>
+<p>令 $f(x)=xe^x-1$，處處連續可微。照 6.2 的套路要證至少一根、至多一根，但這題的導數</p>
+$$f'(x)=e^x+xe^x=(x+1)e^x$$
+<p>在 $x\lt-1$ 時是負的，不是處處為正，不能直接用 Rolle 排除第二個根。先把範圍縮小。</p>
+<p><strong>$x\le0$ 沒有根</strong>：$e^x\gt0$，所以 $xe^x\le0\lt1$，$f(x)\lt0$。</p>
+<p><strong>$x\gt0$ 至少一根</strong>：$f(0)=-1\lt0$，$f(1)=e-1\gt0$，勘根定理給出 $(0,1)$ 內一根。</p>
+<p><strong>$x\gt0$ 至多一根</strong>：若有兩根 $r_1\lt r_2$ 都在 $(0,\infty)$，Rolle 給出 $c\in(r_1,r_2)$ 使 $f'(c)=0$。但 $c\gt0$ 時 $(c+1)e^c\gt0$，矛盾。</p>
+<p>合起來，全部實數上恰有一根，而且在 $(0,1)$ 內。</p>
 <p class="ans">得證</p>
 </details>
 </section>

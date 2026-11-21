@@ -465,12 +465,15 @@ $$\int=\frac13\ln|x+1|-\frac16\ln(x^2-x+1)+\frac12\cdot\frac2{\sqrt3}\tan^{-1}\f
 </details>
 </section>
 <section class="pq" id="p14-3-3">
-<p class="problem"><span class="tag">練習 14.3-3</span>求 $\displaystyle\int_0^1\frac{\ln(1+x)}{1+x^2}\,dx$。</p>
+<p class="problem"><span class="tag">練習 14.3-3</span>求 $\displaystyle\int\frac{\sin^{-1}x}{x^2}\,dx$，$0\lt x\lt1$。</p>
 <details class="solution"><summary>詳解</summary>
-<p>T：令 $x=\tan\theta$，$dx=\sec^2\theta\,d\theta=(1+x^2)\,d\theta$，上下限 $0\to0$、$1\to\frac\pi4$：</p>
-$$\int_0^{\pi/4}\ln(1+\tan\theta)\,d\theta.$$
-<p>這正是題 15(j)，答案 $\frac\pi8\ln2$。</p>
-<p class="ans">$\dfrac\pi8\ln2\approx0.272$</p>
+<p>P：$\sin^{-1}x$ 微分會變成代數式，適合當 $u$；$\frac1{x^2}$ 好積分，當 $dv$。令 $u=\sin^{-1}x$、$dv=\frac{dx}{x^2}$，$du=\frac{dx}{\sqrt{1-x^2}}$、$v=-\frac1x$：</p>
+$$\int\frac{\sin^{-1}x}{x^2}\,dx=-\frac{\sin^{-1}x}{x}+\int\frac{dx}{x\sqrt{1-x^2}}.$$
+<p>T：右邊的積分有 $\sqrt{1-x^2}$，令 $x=\sin\theta$，$dx=\cos\theta\,d\theta$，$0\lt\theta\lt\frac\pi2$ 時 $\sqrt{1-x^2}=\cos\theta$：</p>
+$$\int\frac{\cos\theta\,d\theta}{\sin\theta\cos\theta}=\int\csc\theta\,d\theta=-\ln\left|\csc\theta+\cot\theta\right|+C.$$
+<p>用三角形換回 $x$：$\csc\theta=\frac1x$，$\cot\theta=\frac{\sqrt{1-x^2}}x$，所以 $-\ln\dfrac{1+\sqrt{1-x^2}}{x}$。</p>
+<p>檢查：對 $-\ln\frac{1+\sqrt{1-x^2}}x$ 微分會回到 $\frac1{x\sqrt{1-x^2}}$。</p>
+<p class="ans">$-\dfrac{\sin^{-1}x}{x}-\ln\dfrac{1+\sqrt{1-x^2}}{x}+C$</p>
 </details>
 </section>
 </div>
